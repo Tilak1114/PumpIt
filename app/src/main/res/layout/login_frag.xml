@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/bckprimary">
+    <Button
+        android:id="@+id/lgnuser"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/roundedbtn"
+        android:fontFamily="@font/futura_light"
+        android:text="USER"
+        android:textColor="@color/bckprimary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/lgnadmin"
+        android:layout_width="340dp"
+        android:layout_height="55dp"
+        android:layout_below="@id/lgnuser"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="19dp"
+        android:background="@drawable/roundedbtn"
+        android:fontFamily="@font/futura_light"
+        android:text="ADMIN"
+        android:textColor="@color/bckprimary"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

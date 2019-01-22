@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="vlblue">#86B3C7</color>
+    <color name="bckprimary">#324755</color>
+    <color name="gtstrtbck">#D97D54</color>
+    <color name="gtstrtbck1">#C4714B</color>
+
+</resources>

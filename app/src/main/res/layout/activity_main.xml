@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@color/bckprimary">
+
+
+    <RelativeLayout
+        android:id="@+id/bck1"
+        android:layout_height="310dp"
+        android:layout_width="match_parent"
+        android:background="@drawable/image_20">
+        <ImageView
+            android:layout_marginTop="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/weightlift"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bck1"
+        android:layout_above="@id/btmgtstrtlay">
+        <TextView
+            android:id="@+id/tvtrk"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="Track Your"
+            android:textSize="30sp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/proxima"
+            />
+        <TextView
+            android:id="@+id/tvactlif"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="Active Lifestyle"
+            android:textSize="30sp"
+            android:layout_marginLeft="30dp"
+            android:layout_below="@id/tvtrk"
+            android:fontFamily="@font/proxima"
+            />
+
+        <ImageView
+            android:id="@+id/line"
+            android:layout_width="31dp"
+            android:layout_height="21dp"
+            android:layout_below="@id/tvactlif"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/substract" />
+        <TextView
+            android:layout_below="@id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:fontFamily="@font/proxima"
+            android:text="With a goal driven approach"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="30dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/btmgtstrtlay"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Get Started"
+            android:layout_marginStart="100dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/ubuntu_b"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

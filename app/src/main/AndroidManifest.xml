@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.tilak.pumpit">
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:supportsRtl="true">
+        <activity android:name=".ChooseTheme"></activity>
+        <activity
+            android:name=".InAppActivity"
+            android:theme="@style/AppTheme3" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity2"
+            android:theme="@style/AppTheme2" />
+    </application>
+
+</manifest>
