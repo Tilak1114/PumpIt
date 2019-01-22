@@ -137,7 +137,8 @@
     </RelativeLayout>
     <Button
         android:layout_marginTop="30dp"
-        android:text="Next"
+        android:text="Temporary logout"
+        android:id="@+id/testlogout"
         android:textSize="18sp"
         android:gravity="center"
         android:background="@drawable/test"
