@@ -6,6 +6,22 @@
     <color name="vlblue">#86B3C7</color>
     <color name="bckprimary">#324755</color>
     <color name="gtstrtbck">#D97D54</color>
-    <color name="gtstrtbck1">#C4714B</color>
+    <color name="gtstrtbck1">#C4714B</color>\
+
+
+    <color name="primary_sage">#87BCBF</color>
+    <color name="primary_rust">#D97D54</color>
+    <color name="primary_drab">#324755</color>
+
+    <color name="secondary_ice">#F0F3F4</color>
+    <color name="secondary_fossil">#C8D1D3</color>
+    <color name="secondary_sand">#B9B0A2</color>
+
+
+    <color name="typography_black">#1B1C20</color>
+    <color name="typography_slate">#6E8CA0</color>
+    <color name="typography_snow">#fff</color>
+
+
 
 </resources>

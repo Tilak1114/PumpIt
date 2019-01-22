@@ -3,8 +3,8 @@
 
     <item>
         <shape android:shape="oval">
-            <solid android:color="#BDBDBD"/>
-            <!--shadow Color-->
+            <solid android:color="#BDBDBD" />
+            
         </shape>
     </item>
 
@@ -14,7 +14,8 @@
         android:top="0dp"
         android:bottom="3dp">
         <shape android:shape="oval">
-            <solid android:color="#fff"/>//Background Color
+            <solid android:color="#fff"/>
+
         </shape>
     </item>
 </layer-list>
