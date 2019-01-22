@@ -145,7 +145,7 @@
         android:id="@+id/testlogout"
         android:textSize="18sp"
         android:gravity="center"
-        android:background="@drawable/test"
+        android:background="@drawable/memb_btn_rect"
         android:layout_width="match_parent"
         android:layout_marginStart="20dp"
         android:elevation="4dp"
