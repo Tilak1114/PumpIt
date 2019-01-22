@@ -10,7 +10,7 @@
         android:id="@+id/membTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/proxima"
@@ -23,7 +23,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <TextView
         android:id="@+id/seeallmemb"
@@ -51,7 +51,7 @@
         android:layout_height="140dp"
         android:layout_below="@id/membTitle"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="360dp"
         android:gravity="center"
@@ -61,7 +61,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/membTitle"
-        app:layout_constraintVertical_bias="0.162">
+        app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
             android:id="@+id/activerect"
@@ -148,14 +148,14 @@
         app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actpplay"
-        app:layout_constraintVertical_bias="0.079" />
+        app:layout_constraintVertical_bias="0.055" />
 
     <LinearLayout
         android:id="@+id/qcklnkslayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="8dp"
         android:orientation="horizontal"
@@ -164,7 +164,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/qcklnks"
-        app:layout_constraintVertical_bias="0.056">
+        app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
             android:id="@+id/addmembfab"
