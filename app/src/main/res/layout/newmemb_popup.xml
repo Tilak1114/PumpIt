@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent">
@@ -56,15 +57,16 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/textfieldsbck"
         android:layout_height="60dp">
+
         <EditText
-            android:background="@drawable/memb_btn_rect"
             android:layout_width="match_parent"
+            android:layout_height="45dp"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="22dp"
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="3dp"
-            android:fontFamily="@font/europab"
-            android:layout_height="45dp"/>
+            android:background="@drawable/memb_btn_rect"
+            android:fontFamily="@font/roboto" />
     </RelativeLayout>
     <TextView
         android:layout_width="wrap_content"
@@ -86,15 +88,16 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/textfieldsbck"
             android:layout_height="60dp">
+
             <EditText
-                android:background="@drawable/memb_btn_rect"
                 android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
-                android:fontFamily="@font/europab"
-                android:layout_height="45dp"/>
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/roboto" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -116,15 +119,16 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/textfieldsbck"
             android:layout_height="60dp">
+
             <EditText
-                android:background="@drawable/memb_btn_rect"
                 android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
-                android:fontFamily="@font/europab"
-                android:layout_height="45dp"/>
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/roboto" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"

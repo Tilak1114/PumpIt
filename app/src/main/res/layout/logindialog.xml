@@ -47,26 +47,28 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/textfieldsbck"
             android:layout_height="60dp">
+
             <EditText
                 android:id="@+id/adminemail"
-                android:background="@drawable/memb_btn_rect"
                 android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
-                android:inputType="textEmailAddress"
-                android:fontFamily="@font/europab"
-                android:layout_height="45dp"/>
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/roboto"
+                android:inputType="textEmailAddress" />
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="E-mail Address"
-            android:textSize="18sp"
-            android:layout_marginTop="18dp"
             android:layout_marginStart="50dp"
-            android:background="#ffffff"/>
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:text=" E-mail Address "
+            android:textSize="18sp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="10dp"
@@ -79,26 +81,28 @@
             android:layout_marginEnd="20dp"
             android:background="@drawable/textfieldsbck"
             android:layout_height="60dp">
+
             <EditText
                 android:id="@+id/adminpwd"
-                android:background="@drawable/memb_btn_rect"
                 android:layout_width="match_parent"
+                android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
-                android:inputType="textPassword"
-                android:fontFamily="@font/europab"
-                android:layout_height="45dp"/>
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/roboto"
+                android:inputType="textPassword" />
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
-            android:textSize="18sp"
-            android:layout_marginTop="18dp"
             android:layout_marginStart="50dp"
-            android:background="#ffffff"/>
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:text=" Password "
+            android:textSize="18sp" />
     </RelativeLayout>
     <Button
         android:layout_marginTop="40dp"

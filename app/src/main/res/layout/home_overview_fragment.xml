@@ -14,7 +14,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/proxima"
-        android:text="Members"
+        android:text="@string/members"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold"
