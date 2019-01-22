@@ -3,11 +3,6 @@
     <item>
         <!-- create gradient you want to use with the angle you want to use -->
         <shape android:shape="oval" >
-            <gradient
-                android:angle="0"
-                android:endColor="#4AB0FE"
-                android:startColor="#28F19D" />
-
         </shape>
     </item>
     <!-- create the stroke for top, left, bottom and right with the dp you want -->
