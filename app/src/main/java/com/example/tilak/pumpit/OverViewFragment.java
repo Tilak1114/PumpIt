@@ -22,7 +22,9 @@ public class OverViewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
         myDialog = new Dialog(ovfragview.getContext(), android.R.style.Theme_Light_NoTitleBar);
+        myDialog.setContentView(R.layout.newmemb_popup);
         addmemb = ovfragview.findViewById(R.id.addmembfab);
+        cancel = myDialog.findViewById(R.id.cancelpopup);
         return ovfragview;
     }
 
@@ -37,7 +39,12 @@ public class OverViewFragment extends Fragment {
     }
     public void showPopup()
     {
-        myDialog.setContentView(R.layout.newmemb_popup);
         myDialog.show();
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                myDialog.dismiss();
+            }
+        });
     }
 }

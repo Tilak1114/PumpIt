@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "296015450418",
+    "firebase_url": "https://pumpit-2b897.firebaseio.com",
+    "project_id": "pumpit-2b897",
+    "storage_bucket": "pumpit-2b897.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296015450418:android:37b660430b938f01",
+        "android_client_info": {
+          "package_name": "com.example.tilak.pumpit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "296015450418-l0p7hnfc81ur1kj8kmmi6jraanemu8gg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkpRnXU0UC3Cbi6wiWpi8QshP8F_phX0c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
