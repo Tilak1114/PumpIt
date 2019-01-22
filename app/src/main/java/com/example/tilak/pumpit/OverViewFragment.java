@@ -23,7 +23,6 @@ public class OverViewFragment extends Fragment {
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
         myDialog = new Dialog(ovfragview.getContext(), android.R.style.Theme_Light_NoTitleBar);
         addmemb = ovfragview.findViewById(R.id.addmembfab);
-        cancel = myDialog.findViewById(R.id.cancelpopup);
         return ovfragview;
     }
 

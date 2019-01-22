@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/planstoolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="@android:color/white"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/Theme.AppCompat.Light">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/proxima"
+                android:gravity="center"
+                android:text="PumpIt"
+                android:textColor="@color/gtstrtbck1"
+                android:textSize="18sp" />
+            <ImageButton
+                android:layout_height="24dp"
+                android:layout_width="24dp"
+                android:backgroundTint="@color/gtstrtbck"
+                android:layout_alignParentRight="true"
+                android:layout_marginEnd="20dp"
+                android:layout_centerVertical="true"
+                android:elevation="8dp"
+                android:background="@drawable/notbell"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:id="@+id/planstitlelay"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/planstoolbar"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/planTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/proxima"
+            android:text="Active Plans"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/addplantitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/proxima"
+            android:gravity="center"
+            android:text="Add a new plan +"
+            android:textColor="#6E8CA0"
+            android:textSize="15sp" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:id="@+id/plansscroll"
+        android:layout_width="match_parent"
+        android:layout_below="@id/planstitlelay"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_height="200dp"
+                android:background="@drawable/plan1"
+                >
+                <TextView
+                    android:id="@+id/pln1"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="30sp"
+                    android:text="3 Months Plan"
+                    android:textColor="@android:color/white"
+                    android:layout_above="@id/pln1membcount"
+                    android:layout_marginStart="20dp"
+                    />
+                <TextView
+                    android:id="@+id/pln1membcount"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="10sp"
+                    android:text="0 Members"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_height="200dp"
+                android:background="@drawable/plan2"
+                >
+                <TextView
+                    android:id="@+id/pln2"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="30sp"
+                    android:text="6 Months Plan"
+                    android:textColor="@android:color/white"
+                    android:layout_above="@id/pln2membcount"
+                    android:layout_marginStart="20dp"
+                    />
+                <TextView
+                    android:id="@+id/pln2membcount"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="10sp"
+                    android:text="0 Members"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_height="200dp"
+                android:background="@drawable/plan3"
+                >
+                <TextView
+                    android:id="@+id/pln3"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="30sp"
+                    android:text="12 Months Plan"
+                    android:textColor="@android:color/white"
+                    android:layout_above="@id/pln3membcount"
+                    android:layout_marginStart="20dp"
+                    />
+                <TextView
+                    android:id="@+id/pln3membcount"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:textSize="10sp"
+                    android:text="0 Members"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="20dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="20dp"/>
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

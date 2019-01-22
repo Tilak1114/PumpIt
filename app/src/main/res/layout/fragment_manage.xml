@@ -75,6 +75,7 @@
             android:textSize="25sp" />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/planlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -100,6 +101,7 @@
             android:text="Plans" />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/expenseslay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
