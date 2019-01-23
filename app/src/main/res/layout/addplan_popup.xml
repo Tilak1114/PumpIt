@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/NewPlanPopup"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="New Plan"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:textSize="30sp"
+            android:textColor="#1B1C20"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Create A New Plan Profile"
+            android:layout_below="@id/NewPlanPopup"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="30dp"
+            android:textSize="16sp"
+            android:textColor="#1B1C20"/>
+        <ImageView
+            android:id="@+id/cancelplanpopup"
+            android:layout_height="30dp"
+            android:layout_width="30dp"
+            android:backgroundTint="@color/gtstrtbck"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/cancelbtn"
+            android:layout_alignParentEnd="true"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/textfieldsbck"
+            android:layout_height="60dp">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:hint="In months"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="3dp"
+                android:inputType="number"
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/roboto" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plan Duration"
+            android:textSize="18sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="50dp"
+            android:background="#ffffff"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/textfieldsbck"
+            android:layout_height="60dp">
+            <TextView
+                android:id="@+id/rupsym"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:textSize="20sp"
+                android:layout_marginBottom="3dp"
+                android:text="\u20B9"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_toEndOf="@id/rupsym"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="3dp"
+                android:inputType="number"
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/roboto" />
+        </RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Plan Price"
+            android:textSize="18sp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="50dp"
+            android:background="#ffffff"/>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plan Cover Photo"
+        android:textSize="18sp"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="50dp"
+        android:background="#ffffff"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+
+        <GridView
+            android:id="@+id/gridview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:columnWidth="200dp"
+            android:gravity="center"
+            android:horizontalSpacing="0dp"
+            android:numColumns="3"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="0dp" />
+
+    </LinearLayout>
+    <Button
+        android:layout_marginTop="30dp"
+        android:text="Add Plan"
+        android:id="@+id/addnewplan"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:background="@drawable/memb_btn_rect_grad"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="60dp"/>
+
+</LinearLayout>
