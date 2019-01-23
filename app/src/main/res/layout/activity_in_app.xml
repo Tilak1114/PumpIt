@@ -28,7 +28,8 @@
         app:itemIconSize="20dp"
         app:itemTextColor="@drawable/bottom_navigation_colors"
         app:itemIconTint="@drawable/bottom_navigation_colors"
-        app:elevation="4dp"
+        app:elevation="8dp"
+        android:translationZ="10dp"
         app:menu="@menu/bottom_nav_bar">
 
     </android.support.design.widget.BottomNavigationView>
