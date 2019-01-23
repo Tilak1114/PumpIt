@@ -68,14 +68,15 @@
             android:background="@drawable/memb_btn_rect"
             android:fontFamily="@font/roboto" />
     </RelativeLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="First Name"
-        android:textSize="18sp"
-        android:layout_marginTop="18dp"
-        android:layout_marginStart="50dp"
-        android:background="#ffffff"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:text=" First Name "
+            android:textSize="18sp" />
 </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="0dp"
@@ -99,14 +100,15 @@
                 android:background="@drawable/memb_btn_rect"
                 android:fontFamily="@font/roboto" />
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Last Name"
-            android:textSize="18sp"
-            android:layout_marginTop="18dp"
             android:layout_marginStart="50dp"
-            android:background="#ffffff"/>
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:text=" Last Name "
+            android:textSize="18sp" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_marginTop="0dp"
@@ -130,14 +132,15 @@
                 android:background="@drawable/memb_btn_rect"
                 android:fontFamily="@font/roboto" />
         </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone Number"
-            android:textSize="18sp"
-            android:layout_marginTop="18dp"
             android:layout_marginStart="50dp"
-            android:background="#ffffff"/>
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:text=" Phone Number "
+            android:textSize="18sp" />
     </RelativeLayout>
     <Button
         android:layout_marginTop="30dp"
