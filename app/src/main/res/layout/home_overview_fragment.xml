@@ -182,8 +182,8 @@
 
         <RelativeLayout
             android:id="@+id/addmembfab"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/customfab"
             tools:layout_editor_absoluteX="26dp"
@@ -208,8 +208,8 @@
 
         <RelativeLayout
             android:id="@+id/announcerfab"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
             android:layout_marginStart="30dp"
             android:background="@drawable/customfab"
             android:backgroundTint="@android:color/holo_blue_dark"
@@ -239,7 +239,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/qcklnkslayout"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="18dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
@@ -261,7 +261,7 @@
         android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_below="@id/qcklnkslayout"
-        android:layout_marginStart="0dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
