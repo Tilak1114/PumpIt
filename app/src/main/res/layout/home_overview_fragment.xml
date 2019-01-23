@@ -13,10 +13,10 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/proxima"
+        android:fontFamily="@font/helvetica_neue_lightext"
         android:text="@string/members"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         android:elevation="4dp"
         android:translationZ="5dp"
@@ -35,13 +35,14 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/proxima"
+        android:fontFamily="@font/helvetica_neue_lightext"
         android:elevation="4dp"
         android:translationZ="5dp"
+        android:textStyle="bold"
         android:gravity="center"
         android:text="See All Members >"
         android:textColor="@color/bckprimary"
-        android:textSize="15sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -52,7 +53,7 @@
     <LinearLayout
         android:id="@+id/actpplay"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="130dp"
         android:layout_below="@id/membTitle"
         android:layout_marginStart="15dp"
         android:layout_marginTop="20dp"
@@ -84,11 +85,11 @@
                 android:layout_gravity="bottom"
                 android:background="@drawable/memb_btn_rect_grad"
                 android:elevation="4dp"
-                android:fontFamily="@font/europab"
+                android:fontFamily="@font/helvetica_neue_lightext"
                 android:gravity="center"
                 android:text="Active"
                 android:textColor="@color/typography_black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_margin="2dp" />
 
             <TextView
@@ -97,11 +98,11 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/gradientcir"
                 android:elevation="4dp"
-                android:fontFamily="@font/europab"
+                android:fontFamily="@font/helvetica_neue_lightext"
                 android:gravity="center"
                 android:text="24"
                 android:textColor="@color/primary_rust"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_margin="3dp" />
         </RelativeLayout>
 
@@ -119,11 +120,11 @@
                 android:layout_gravity="bottom"
                 android:background="@drawable/memb_btn_rect_grad"
                 android:elevation="4dp"
-                android:fontFamily="@font/europab"
+                android:fontFamily="@font/helvetica_neue_lightext"
                 android:gravity="center"
                 android:text="Overdue"
                 android:textColor="@color/typography_black"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_margin="2dp"/>
 
             <TextView
@@ -132,11 +133,11 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/gradientcir"
                 android:elevation="4dp"
-                android:fontFamily="@font/europab"
+                android:fontFamily="@font/helvetica_neue_lightext"
                 android:gravity="center"
                 android:text="1"
                 android:textColor="@color/primary_rust"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:layout_margin="3dp"/>
         </RelativeLayout>
     </LinearLayout>
@@ -149,10 +150,10 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/proxima"
+        android:fontFamily="@font/helvetica_neue_lightext"
         android:text="Quick links"
         android:textColor="@android:color/black"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -181,16 +182,16 @@
 
         <RelativeLayout
             android:id="@+id/addmembfab"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/customfab"
             tools:layout_editor_absoluteX="26dp"
             tools:layout_editor_absoluteY="342dp">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:elevation="10dp"
                 android:translationZ="12dp"
                 android:layout_alignParentStart="true"
@@ -207,8 +208,8 @@
 
         <RelativeLayout
             android:id="@+id/announcerfab"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="30dp"
             android:background="@drawable/customfab"
             android:backgroundTint="@android:color/holo_blue_dark"
@@ -216,13 +217,20 @@
             tools:layout_editor_absoluteY="342dp">
 
             <ImageView
-                android:layout_width="35dp"
-                android:layout_height="35dp"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
                 android:elevation="10dp"
                 android:translationZ="12dp"
-                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="13dp"
+                android:layout_marginBottom="13dp"
                 android:background="@drawable/ic_message"
-                android:backgroundTint="@android:color/white" />
+                android:backgroundTint="@android:color/white"  />
         </RelativeLayout>
     </LinearLayout>
 
@@ -235,12 +243,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/proxima"
+        android:fontFamily="@font/helvetica_neue_lightext"
         android:elevation="8dp"
         android:translationZ="10dp"
         android:text="Add Member"
         android:textColor="@color/gtstrtbck"
-        android:textSize="14sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -253,17 +261,17 @@
         android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_below="@id/qcklnkslayout"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:translationZ="10dp"
         android:elevation="8dp"
         android:layout_toEndOf="@id/qcklnkslayout"
-        android:fontFamily="@font/proxima"
+        android:fontFamily="@font/helvetica_neue_lightext"
         android:text="Message"
         android:textColor="@android:color/holo_blue_dark"
-        android:textSize="14sp"
+        android:textSize="10sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

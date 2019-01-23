@@ -22,7 +22,7 @@
     </style>
 
     <style name="Widget.BottomNavigationView" parent="Widget.Design.BottomNavigationView">
-        <item name="fontFamily">@font/proxima</item>
+        <item name="fontFamily">@font/lato</item>
     </style>
 
     <style name="tabtheme" parent="Base.Widget.Design.TabLayout">
