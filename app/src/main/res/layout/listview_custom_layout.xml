@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/listview_grad_bck"
+    android:elevation="8dp"
+    android:translationZ="10dp"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="3dp"
+        android:layout_marginStart="3dp"
+        android:layout_height="100dp">
+        <ImageView
+            android:id="@+id/fruitImg"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_weight="10"
+            android:src="@drawable/avatar"
+            android:layout_gravity="center"
+            android:layout_marginStart="20dp"
+            android:scaleType="centerCrop" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="30dp"
+            android:layout_gravity="center"
+            android:layout_weight="90">
+            <TextView
+                android:id="@+id/MemberName"
+                android:text="Example name"
+                android:textSize="18sp"
+                android:fontFamily="@font/helvetica_neue_lightext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp" />
+
+            <TextView
+                android:id="@+id/PlanDetails"
+                android:textSize="16sp"
+                android:text="6 months plan"
+                android:fontFamily="@font/helvetica_neue_lightext"
+                android:layout_below="@id/MemberName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                />
+            <TextView
+                android:id="@+id/PaymentStatus"
+                android:textSize="16sp"
+                android:text="Fees Paid"
+                android:fontFamily="@font/helvetica_neue_lightext"
+                android:layout_below="@id/PlanDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+</RelativeLayout>
