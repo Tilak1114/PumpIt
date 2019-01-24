@@ -15,27 +15,29 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ManagePlansFragment extends Fragment {
     ScrollView scrollView;
-    Button close;
     Dialog addplanDialog;
-    Button addnewplan;
+    RelativeLayout addplanfab;
     GridView gridview;
-    ImageView cancel;
+    ImageView cancelpopup;
+    Button cancel;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View mngplans = inflater.inflate(R.layout.fragment_manage_plans, container, false);
         scrollView = mngplans.findViewById(R.id.plansscroll);
-        close = mngplans.findViewById(R.id.planclose);
+        cancel = mngplans.findViewById(R.id.planclose);
         addplanDialog = new Dialog(mngplans.getContext(), android.R.style.Theme_Light_NoTitleBar);
         addplanDialog.setContentView(R.layout.addplan_popup);
-        cancel = addplanDialog.findViewById(R.id.cancelplanpopup);
-        addnewplan = addplanDialog.findViewById(R.id.addnewplan);
+        cancelpopup = addplanDialog.findViewById(R.id.cancelplanpopup);
+        addplanfab = mngplans.findViewById(R.id.addplanfab);
+
         gridview = addplanDialog.findViewById(R.id.gridview);
         gridview.setAdapter(new ImageAdapter(getContext()));
         return mngplans;
@@ -43,23 +45,23 @@ public class ManagePlansFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager myfragmentManager = getFragmentManager ();
-                myfragmentManager.beginTransaction().replace(R.id.frag_container, new ManageFragment()).commit();
-            }
-        });
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addplanDialog.dismiss();
+                FragmentManager myfragmentManager = getFragmentManager ();
+                myfragmentManager.beginTransaction().replace(R.id.frag_container, new ManageMembersFragment()).commit();
             }
         });
-        addnewplan.setOnClickListener(new View.OnClickListener() {
+        addplanfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get data from dialog and then
+                addplanDialog.show();
+            }
+        });
+        cancelpopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 addplanDialog.dismiss();
             }
         });

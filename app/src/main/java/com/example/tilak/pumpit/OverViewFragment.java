@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -25,11 +27,13 @@ public class OverViewFragment extends Fragment {
     RelativeLayout addmemb;
     FirebaseAuth firebaseAuth;
     ImageView cancel;
+    TextView allmembs;
     Button testlogout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
+        allmembs = ovfragview.findViewById(R.id.seeallmemb);
         myDialog = new Dialog(ovfragview.getContext(), android.R.style.Theme_Light_NoTitleBar);
         myDialog.setContentView(R.layout.newmemb_popup);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -50,6 +54,13 @@ public class OverViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 showPopup();
+            }
+        });
+        allmembs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.frag_container, new ManageMembersFragment()).commit();
             }
         });
     }

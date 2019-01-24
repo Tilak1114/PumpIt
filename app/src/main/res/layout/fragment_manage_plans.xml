@@ -187,6 +187,7 @@
         </LinearLayout>
     </ScrollView>
     <RelativeLayout
+        android:id="@+id/addplanfab"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
