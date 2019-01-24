@@ -1,18 +1,22 @@
 package com.example.tilak.pumpit;
 
 import android.app.Dialog;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ManagePlansFragment extends Fragment {
     ScrollView scrollView;
@@ -57,6 +61,5 @@ public class ManagePlansFragment extends Fragment {
                 addplanDialog.dismiss();
             }
         });
-
     }
 }

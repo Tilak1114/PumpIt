@@ -42,14 +42,18 @@
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
-    <LinearLayout
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_below="@id/toolbarmng"
-        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
     <RelativeLayout
         android:id="@+id/memblayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="10dp"
         android:layout_weight="1"
@@ -58,26 +62,39 @@
 
         <ImageView
             android:layout_width="match_parent"
+            android:scaleType="centerCrop"
             android:layout_height="match_parent"
-            android:background="@drawable/membwlp" />
+            android:background="@drawable/managemenmers" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/mngmmb"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/europab"
+            android:layout_width="wrap_content"
+            android:textSize="30sp"
+            android:fontFamily="@font/helvetica_neue_lightext"
             android:textStyle="bold"
-            android:text="Members"
+            android:text="\u25CF Members"
             android:textColor="@android:color/white"
-            android:textSize="25sp" />
+            android:layout_above="@id/mngmmbcnt"
+            android:layout_marginStart="20dp"
+            />
+        <TextView
+            android:id="@+id/mngmmbcnt"
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:text="\u25CF 156 Active Members \u25CF"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/planlay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:layout_marginBottom="10dp"
@@ -87,23 +104,37 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/planswlp" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/manageplans" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:textSize="25sp"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/europab"
+            android:id="@+id/mngpln"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:textSize="30sp"
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:textStyle="bold"
+            android:text="\u25CF Plans"
+            android:textColor="@android:color/white"
+            android:layout_above="@id/mngplncnt"
+            android:layout_marginStart="20dp"
+            />
+        <TextView
+            android:id="@+id/mngplncnt"
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:text="\u25CF 3 Active Plans \u25CF"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="25dp"
-            android:text="Plans" />
+            android:layout_marginBottom="20dp"/>
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/expenseslay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:layout_marginEnd="20dp"
@@ -113,18 +144,33 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/expenwlp" />
+            android:scaleType="centerCrop"
+            android:background="@drawable/managefina" />
         <TextView
-            android:textSize="25sp"
-            android:textColor="@android:color/white"
-            android:fontFamily="@font/europab"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/mngfin"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
+            android:layout_width="wrap_content"
+            android:textSize="30sp"
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:textStyle="bold"
+            android:text="\u25CF Finances"
+            android:textColor="@android:color/white"
+            android:layout_above="@id/mngtrancnt"
+            android:layout_marginStart="20dp"
+            />
+        <TextView
+            android:id="@+id/mngtrancnt"
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textSize="15sp"
+            android:text="\u25CF 32 Transactions This Week \u25CF"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="20dp"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="25dp"
-            android:text="Expenses" />
+            android:layout_marginBottom="20dp"/>
     </RelativeLayout>
     </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

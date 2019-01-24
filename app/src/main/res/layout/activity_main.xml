@@ -68,6 +68,8 @@
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/btmgtstrtlay"
+        android:elevation="8dp"
+        android:translationZ="10dp"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/getstartedbtn"
