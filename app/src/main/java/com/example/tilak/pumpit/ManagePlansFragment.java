@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ import android.widget.Toast;
 
 public class ManagePlansFragment extends Fragment {
     ScrollView scrollView;
-    TextView addplan;
+    Button close;
     Dialog addplanDialog;
     Button addnewplan;
     GridView gridview;
@@ -30,7 +31,7 @@ public class ManagePlansFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View mngplans = inflater.inflate(R.layout.fragment_manage_plans, container, false);
         scrollView = mngplans.findViewById(R.id.plansscroll);
-        addplan = mngplans.findViewById(R.id.addplantitle);
+        close = mngplans.findViewById(R.id.planclose);
         addplanDialog = new Dialog(mngplans.getContext(), android.R.style.Theme_Light_NoTitleBar);
         addplanDialog.setContentView(R.layout.addplan_popup);
         cancel = addplanDialog.findViewById(R.id.cancelplanpopup);
@@ -42,10 +43,11 @@ public class ManagePlansFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        addplan.setOnClickListener(new View.OnClickListener() {
+        close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addplanDialog.show();
+                FragmentManager myfragmentManager = getFragmentManager ();
+                myfragmentManager.beginTransaction().replace(R.id.frag_container, new ManageFragment()).commit();
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {
