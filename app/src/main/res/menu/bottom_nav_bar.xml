@@ -6,7 +6,7 @@
         android:id="@+id/action_home"
         android:icon="@drawable/home"/>
     <item
-        android:title="Manage"
+        android:title="Dashboard"
         android:gravity="center"
         android:id="@+id/action_manage"
         android:icon="@drawable/manage"/>
