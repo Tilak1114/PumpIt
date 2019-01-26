@@ -154,7 +154,7 @@
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/memb_btn_rect"
                 android:fontFamily="@font/myraidprolight"
-                android:inputType="textPassword" />
+                android:inputType="textPersonName" />
         </RelativeLayout>
 
         <TextView
@@ -245,6 +245,7 @@
     </RelativeLayout>
             <Button
                 android:layout_width="match_parent"
+                android:id="@+id/subsnp"
                 android:layout_marginTop="30dp"
                 android:layout_below="@id/addressLay"
                 android:background="@drawable/memb_btn_rect_grad"
