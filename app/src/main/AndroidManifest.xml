@@ -10,6 +10,7 @@
         <activity android:name=".ChooseTheme" />
         <activity
             android:name=".InAppActivity"
+            android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme3" />
         <activity
             android:name=".MainActivity"
