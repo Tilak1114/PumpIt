@@ -43,7 +43,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:layout_centerInParent="true"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -62,6 +62,7 @@
         android:layout_height="60dp">
 
         <EditText
+            android:id="@+id/newMembFN"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_alignParentBottom="true"
@@ -94,6 +95,7 @@
             android:layout_height="60dp">
 
             <EditText
+                android:id="@+id/newMembLN"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_alignParentBottom="true"
@@ -128,6 +130,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:id="@+id/newMembPNO"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
@@ -145,6 +148,19 @@
             android:text=" Phone Number "
             android:textSize="18sp" />
     </RelativeLayout>
+    <Button
+        android:layout_marginTop="30dp"
+        android:text="Add"
+        android:id="@+id/addnewmemb"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:background="@drawable/listview_grad_bck"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:elevation="4dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="60dp"/>
     <Button
         android:layout_marginTop="30dp"
         android:text="Temporary logout"

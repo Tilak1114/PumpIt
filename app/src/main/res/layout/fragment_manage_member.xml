@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent" android:layout_height="match_parent"
@@ -42,28 +42,49 @@
             android:textColor="@android:color/white"
             android:layout_marginStart="20dp" />
     </RelativeLayout>
+
     <RelativeLayout
-        android:translationZ="18dp"
-        android:layout_alignParentBottom="true"
-        android:elevation="8dp"
-        android:layout_marginBottom="5dp"
         android:id="@+id/membsearchlay"
-        android:background="@drawable/memb_btn_rect"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/memblay"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/memb_btn_rect"
+        android:elevation="8dp"
+        android:translationZ="18dp">
+
         <SearchView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:layout_centerInParent="true"
-            android:queryHint="Search Members"/>
+            android:queryHint="Search Members" />
     </RelativeLayout>
-    <ListView
-        android:id="@+id/memberlist"
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/membsearchlay"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/membRecyclerview">
+        
+    </android.support.v7.widget.RecyclerView>
+    <RelativeLayout
+        android:id="@+id/addMembfab"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/addplanfab"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginStart="20dp"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        android:clickable="true"
+        android:elevation="12dp"
+        android:translationZ="14dp"
+        android:focusable="true"
+        android:layout_width="55dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:backgroundTint="@color/bckprimary"
+            android:layout_centerInParent="true"
+            android:background="@drawable/add"/>
+    </RelativeLayout>
+</RelativeLayout>

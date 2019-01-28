@@ -2,6 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/listview_grad_bck"
     android:elevation="8dp"
+    android:id="@+id/parent_lay"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
     android:translationZ="10dp"
     android:layout_width="match_parent" android:layout_height="wrap_content">
     <LinearLayout
@@ -10,15 +13,12 @@
         android:layout_marginEnd="3dp"
         android:layout_marginStart="3dp"
         android:layout_height="100dp">
-        <ImageView
-            android:id="@+id/fruitImg"
+        <android.support.v4.widget.CircleImageView
+            android:layout_margin="5dp"
             android:layout_width="80dp"
+            android:id="@+id/membProfilepic"
             android:layout_height="80dp"
-            android:layout_weight="10"
-            android:src="@drawable/avatar"
-            android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:scaleType="centerCrop" />
+            android:background="@drawable/avatar"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
