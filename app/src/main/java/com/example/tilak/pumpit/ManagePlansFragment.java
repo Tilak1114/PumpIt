@@ -11,6 +11,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -26,6 +27,14 @@ import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ManagePlansFragment extends Fragment {
     ScrollView scrollView;
@@ -48,12 +57,39 @@ public class ManagePlansFragment extends Fragment {
         addplanDialog.setContentView(R.layout.addplan_popup);
         planListLL = mngplans.findViewById(R.id.planlistll);
         planDur = addplanDialog.findViewById(R.id.plnmonths);
+        planDesc = addplanDialog.findViewById(R.id.)
         planPrice = addplanDialog.findViewById(R.id.planPrice);
         cancelpopup = addplanDialog.findViewById(R.id.cancelplanpopup);
         addplanbtn = addplanDialog.findViewById(R.id.addnewplan);
         addplanfab = mngplans.findViewById(R.id.addplanfab);
-
+        defaultPlans();
         return mngplans;
+    }
+
+    private void defaultPlans() {
+        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/MalakaFitness"+
+                "/Plans/Plan1");
+        Map<String, Object> data1 = new HashMap<String, Object>();
+        data1.put("PlanName", "Plan1");
+        data1.put("PlanDuration", "3 months");
+        data1.put("PlanFeatures", "Cardio, Strength");
+        planDoc1.set(data1);
+
+        DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/MalakaFitness"+
+                "/Plans/Plan2");
+        Map<String, Object> data2 = new HashMap<String, Object>();
+        data2.put("PlanName", "Plan2");
+        data2.put("PlanDuration", "6 months");
+        data2.put("PlanFeatures", "Cardio, Strength");
+        planDoc2.set(data2);
+
+        DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/MalakaFitness"+
+                "/Plans/Plan3");
+        Map<String, Object> data3 = new HashMap<String, Object>();
+        data3.put("PlanName", "Plan3");
+        data3.put("PlanDuration", "12 months");
+        data3.put("PlanFeatures", "Cardio, Strength");
+        planDoc3.set(data3);
     }
 
     @Override
@@ -71,7 +107,9 @@ public class ManagePlansFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 String PlanDur = planDur.getText().toString();
-                createDynamicCardView(PlanDur+" Months Plan", "23 Members");
+                String PlanPrice = planPrice.getText().toString();
+                String PlanDesc = plan
+                //createDynamicCardView(PlanDur+" Months Plan", "23 Members");
             }
         });
 

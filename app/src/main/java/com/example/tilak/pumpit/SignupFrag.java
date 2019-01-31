@@ -9,12 +9,14 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,16 +25,21 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignupFrag extends Fragment {
     private static final int CHOOSE_IMAGE = 101;
+    private static final String TAG = "test ";
     Button signupadmin, subSignUp;
     Dialog snpDialog;
     String profileImgUrl;
@@ -40,7 +47,7 @@ public class SignupFrag extends Fragment {
     ImageView cancelSnp;
     CircleImageView Avatar;
     Uri uriProfileImage;
-
+    DocumentReference documentReference;
     FirebaseAuth mAuth;
 
     @Nullable
@@ -53,6 +60,8 @@ public class SignupFrag extends Fragment {
         subSignUp = snpDialog.findViewById(R.id.subsnp);
         cancelSnp = snpDialog.findViewById(R.id.cancelSignUp);
         gymName = snpDialog.findViewById(R.id.snpName);
+        gymPh = snpDialog.findViewById(R.id.snpPhone);
+        gymAddr = snpDialog.findViewById(R.id.snpaddress);
         gymEmail = snpDialog.findViewById(R.id.adminemail);
         gymPwd = snpDialog.findViewById(R.id.adminpwd);
 
@@ -85,20 +94,26 @@ public class SignupFrag extends Fragment {
             }
         });
         subSignUp.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
+                Log.d("OnClickTest", "entering onclick");
                 String GymEmail = gymEmail.getText().toString();
                 String GymPwd = gymPwd.getText().toString();
+
                 mAuth.createUserWithEmailAndPassword(GymEmail, GymPwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            Log.d("OnClickTest", "signup test");
+                            Toast.makeText(getContext(), "Account created", Toast.LENGTH_LONG).show();
                             uploadToFireBase();
                             saveUserInfo();
                             startActivity(new Intent(getActivity(), InAppActivity.class));
                         }
                     }
                 });
+
             }
         });
     }
@@ -135,22 +150,51 @@ public class SignupFrag extends Fragment {
                 }
             });
         }
+        return;
     }
     private void saveUserInfo() {
         final String GymName = gymName.getText().toString();
-        //final String GymPh = gymPh.getText().toString();
-        //final String GymAddr = gymAddr.getText().toString();
+        String GymPhone = gymPh.getText().toString();
+        String GymAddr = gymAddr.getText().toString();
 
         if(GymName.isEmpty()){
             gymName.setError("Name Required");
             gymName.requestFocus();
             return;
         }
+        if(GymPhone.isEmpty()){
+            gymName.setError("Phone Number Required");
+            gymName.requestFocus();
+            return;
+        }
+        if(GymAddr.isEmpty()){
+            gymName.setError("Address Required");
+            gymName.requestFocus();
+            return;
+        }
+        documentReference = FirebaseFirestore.getInstance().document("Gyms/"+
+                GymName+"/profile/myProfile");
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("gym name", GymName);
+        data.put("Phone Number", GymPhone);
+        data.put("address", GymAddr);
+        documentReference.set(data).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(getContext(), "Profile data added", Toast.LENGTH_LONG).show();
+                }
+                else
+                   Toast.makeText(getContext(), "Failed to add data", Toast.LENGTH_LONG).show();
+            }
+        });
+
         FirebaseUser user = mAuth.getCurrentUser();
         if(user != null && profileImgUrl != null){
             UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
                     .setDisplayName(GymName).setPhotoUri(Uri.parse(profileImgUrl)).build();
             user.updateProfile(profileChangeRequest);
         }
+
     }
 }
