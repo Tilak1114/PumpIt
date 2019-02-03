@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_centerInParent="true"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/signUpTitleLay"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/adminSignup"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Sign Up"
+            android:textStyle="bold"
+            android:fontFamily="@font/myraidprolight"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:textSize="35sp"
+            android:textColor="#1B1C20"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Create a new Account"
+            android:textStyle="bold"
+            android:fontFamily="@font/myraidprolight"
+            android:layout_below="@id/adminSignup"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="30dp"
+            android:textSize="18sp"
+            android:textColor="#1B1C20"/>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/signUpTitleLay"
+        android:id="@+id/snpemail"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/textfieldsbck"
+            android:layout_height="60dp">
+
+            <EditText
+                android:id="@+id/adminemail"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="22dp"
+                android:fontFamily="@font/myraidprolight"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/memb_btn_rect"
+                android:inputType="textEmailAddress" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:fontFamily="@font/myraidprolight"
+            android:text=" E-Mail "
+            android:textSize="18sp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/snpemail"
+        android:id="@+id/snpPwd"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/textfieldsbck"
+            android:layout_height="60dp">
+
+            <EditText
+                android:id="@+id/adminpwd"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="3dp"
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/myraidprolight"
+                android:inputType="textPassword" />
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="18dp"
+            android:background="#ffffff"
+            android:fontFamily="@font/myraidprolight"
+            android:text=" Password "
+            android:textSize="18sp" />
+    </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/snpPwd"
+                android:id="@+id/snpcnfrmPwd"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/textfieldsbck"
+                    android:layout_height="60dp">
+
+                    <EditText
+                        android:id="@+id/admincnfrmpwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/myraidprolight"
+                        android:inputType="textPassword" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#ffffff"
+                    android:fontFamily="@font/myraidprolight"
+                    android:text=" Confirm Password "
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:id="@+id/Next1"
+        android:elevation="8dp"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Next"
+            android:textStyle="bold"
+            android:layout_marginStart="160dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/myraidprolight"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="70dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

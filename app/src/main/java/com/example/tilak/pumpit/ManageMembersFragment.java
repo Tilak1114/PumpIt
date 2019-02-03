@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -40,7 +42,9 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ManageMembersFragment extends Fragment {
+    private static final String TAG = "FIREBASE";
     FirebaseAuth mAuth;
+    String membFNfromDb;
     private static final int CHOOSE_IMAGE = 101;
     Uri uriProfileImage;
     EditText firstName, lastName, phoneNo;
@@ -50,6 +54,12 @@ public class ManageMembersFragment extends Fragment {
     RecyclerView recyclerView;
     CircleImageView avatar, cancelNewMember;
     Button addMembbtn;
+
+    private ArrayList<String> membernames = new ArrayList<>();
+    private ArrayList<String> memberprofileurls = new ArrayList<>();
+    private ArrayList<String> memberplans = new ArrayList<>();
+    private ArrayList<String> membpp = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
@@ -65,7 +75,16 @@ public class ManageMembersFragment extends Fragment {
         cancelNewMember = addMembDialog.findViewById(R.id.cancelpopup);
         recyclerView= MemberManage.findViewById(R.id.membRecyclerview);
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
+        initdata(MemberManage);
         return MemberManage;
+    }
+
+    private void initrecyclerView(View mngV) {
+        RecyclerView recyclerView = mngV.findViewById(R.id.membRecyclerview);
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(mngV.getContext(), membernames,
+                memberprofileurls, memberplans, membpp);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(mngV.getContext()));
     }
 
     @Override
@@ -81,6 +100,7 @@ public class ManageMembersFragment extends Fragment {
             public void onClick(View v) {
                 saveUserInfo();
                 uploadToFireBase();
+
             }
         });
         avatar.setOnClickListener(new View.OnClickListener() {
@@ -110,6 +130,7 @@ public class ManageMembersFragment extends Fragment {
         }
     }
     private void uploadToFireBase() {
+        final String membProfileUrl;
         String memberName = firstName.getText().toString()+lastName.getText().toString();
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference(memberName+System.currentTimeMillis()+".jpg");
@@ -127,7 +148,7 @@ public class ManageMembersFragment extends Fragment {
         MemberFN = firstName.getText().toString();
         MemberLN = lastName.getText().toString();
         MemberPhno = phoneNo.getText().toString();
-        DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/MalakaFitness" +
+        DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
                 "/Members/"+MemberFN);
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("firstName", MemberFN);
@@ -156,5 +177,12 @@ public class ManageMembersFragment extends Fragment {
         imgSelect.setType("image/*");
         imgSelect.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(imgSelect, "Select Profile Image"), CHOOSE_IMAGE);
+    }
+    public void initdata(View mngmembv){
+        memberprofileurls.add("https://firebasestorage.googleapis.com/v0/b/pumpit-2b897.appspot.com/o/profilepic1549011741623.jpg?alt=media&token=bd740016-011c-4f74-963a-413af0ca2f21");
+        membernames.add("Test");
+        memberplans.add("3 months");
+        membpp.add("Fees Paid");
+        initrecyclerView(mngmembv);
     }
 }

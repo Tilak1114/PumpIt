@@ -44,20 +44,21 @@ public class ManagePlansFragment extends Fragment {
     ImageView cancelpopup;
     LinearLayout.LayoutParams layoutparams;
     Button addplanbtn;
-    EditText planDur, planPrice;
+    EditText planDur, planPrice, planDesc;
     TextView newPlan, newPlanMembers;
     CardView cardView;
-    Context context= getContext();
+    Context context;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View mngplans = inflater.inflate(R.layout.fragment_manage_plans, container, false);
+        context = mngplans.getContext();
         scrollView = mngplans.findViewById(R.id.plansscroll);
         addplanDialog = new Dialog(mngplans.getContext(), android.R.style.Theme_Light_NoTitleBar);
         addplanDialog.setContentView(R.layout.addplan_popup);
         planListLL = mngplans.findViewById(R.id.planlistll);
         planDur = addplanDialog.findViewById(R.id.plnmonths);
-        planDesc = addplanDialog.findViewById(R.id.)
+        planDesc = addplanDialog.findViewById(R.id.planDesc);
         planPrice = addplanDialog.findViewById(R.id.planPrice);
         cancelpopup = addplanDialog.findViewById(R.id.cancelplanpopup);
         addplanbtn = addplanDialog.findViewById(R.id.addnewplan);
@@ -108,8 +109,17 @@ public class ManagePlansFragment extends Fragment {
             public void onClick(View v) {
                 String PlanDur = planDur.getText().toString();
                 String PlanPrice = planPrice.getText().toString();
-                String PlanDesc = plan
-                //createDynamicCardView(PlanDur+" Months Plan", "23 Members");
+                String PlanDesc = planDesc.getText().toString();
+                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/MalakaFitness"+
+                        "/Plans/Plan4");
+                Map<String, Object> newData = new HashMap<String, Object>();
+                newData.put("PlanName", "Plan4");
+                newData.put("PlanDuration", PlanDur);
+                newData.put("PlanFeatures", PlanDesc);
+                newData.put("Price", PlanPrice);
+                newPlan.set(newData);
+                createDynamicCardView(PlanDur+" Months Plan", "23 Members");
+                addplanDialog.dismiss();
             }
         });
 

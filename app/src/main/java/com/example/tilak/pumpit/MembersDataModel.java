@@ -13,6 +13,20 @@ public class MembersDataModel {
 
     }
 
+    public void setMemberName(String name){
+        this.MemberName = name;
+    }
+
+
+    public void setMemberPlan(String plan){
+        this.Plan = plan;
+    }
+
+
+    public void setMemberPaymentStatus(String pp){
+        this.PaymentStatus = pp;
+    }
+
     public String getMemberName() {
         return MemberName;
     }

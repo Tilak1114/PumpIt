@@ -41,10 +41,8 @@ public class SignupFrag extends Fragment {
     private static final int CHOOSE_IMAGE = 101;
     private static final String TAG = "test ";
     Button signupadmin, subSignUp;
-    Dialog snpDialog;
     String profileImgUrl;
     EditText gymName, gymEmail, gymPwd, gymPh, gymAddr;
-    ImageView cancelSnp;
     CircleImageView Avatar;
     Uri uriProfileImage;
     DocumentReference documentReference;
@@ -55,17 +53,6 @@ public class SignupFrag extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View signup = inflater.inflate(R.layout.signup_frag, container, false);
         signupadmin = signup.findViewById(R.id.newadmin);
-        snpDialog = new Dialog(signup.getContext(), android.R.style.Theme_Light_NoTitleBar);
-        snpDialog.setContentView(R.layout.signup_dialog);
-        subSignUp = snpDialog.findViewById(R.id.subsnp);
-        cancelSnp = snpDialog.findViewById(R.id.cancelSignUp);
-        gymName = snpDialog.findViewById(R.id.snpName);
-        gymPh = snpDialog.findViewById(R.id.snpPhone);
-        gymAddr = snpDialog.findViewById(R.id.snpaddress);
-        gymEmail = snpDialog.findViewById(R.id.adminemail);
-        gymPwd = snpDialog.findViewById(R.id.adminpwd);
-
-        Avatar = snpDialog.findViewById(R.id.snpavatar);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -77,17 +64,11 @@ public class SignupFrag extends Fragment {
         signupadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                snpDialog.show();
+                startActivity(new Intent(getActivity(), SignupActivity.class));
             }
         });
-        cancelSnp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                snpDialog.dismiss();
-                Avatar.setImageResource(R.drawable.avatar);
-            }
-        });
-        Avatar.setOnClickListener(new View.OnClickListener() {
+
+        /*Avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showImageChooser();
@@ -194,7 +175,7 @@ public class SignupFrag extends Fragment {
             UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
                     .setDisplayName(GymName).setPhotoUri(Uri.parse(profileImgUrl)).build();
             user.updateProfile(profileChangeRequest);
-        }
+        }*/
 
     }
 }

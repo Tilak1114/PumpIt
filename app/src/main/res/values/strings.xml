@@ -4,4 +4,11 @@
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="members">Members</string>
     <string name="app_name">PumpIt</string>
+    <array name="steps">
+        <item>Step 1</item>
+        <item>Step 2</item>
+        <item>Step 3</item>
+        <item>Step 4</item>
+        <item>Step 5</item>
+    </array>
 </resources>
