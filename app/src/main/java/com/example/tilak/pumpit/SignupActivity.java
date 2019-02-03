@@ -11,7 +11,7 @@ import com.shuhart.stepview.StepView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignupActivity extends AppCompatActivity implements SignUpEmailPassword.NextBtnListener {
+public class SignupActivity extends AppCompatActivity implements SignUpEmailPassword.NextBtnListener, SignUpSecond.NextBtnListener {
     StepView stepView;
     FrameLayout snpcont;
     @Override
@@ -30,6 +30,15 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.signup_container, new SignUpSecond()).commit();
             stepView.go(1, true);
+        }
+    }
+
+    @Override
+    public void onBtnClick(Boolean result) {
+        if(result){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.signup_container, new SignUpSecond()).commit();
+            stepView.go(2, true);
         }
     }
 }
