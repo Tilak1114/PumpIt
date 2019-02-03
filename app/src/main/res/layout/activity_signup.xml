@@ -25,12 +25,14 @@
         app:sv_nextStepLineColor="@android:color/darker_gray"
         app:sv_doneCircleColor="@android:color/white"
         app:sv_doneStepLineColor="@android:color/white"
-        app:sv_doneCircleRadius="15dp"
-        app:sv_selectedCircleRadius="13dp"
+        app:sv_doneCircleRadius="13dp"
+        android:paddingEnd="3dp"
+        android:paddingStart="3dp"
+        app:sv_selectedCircleRadius="15dp"
         app:sv_selectedStepNumberColor="@color/bckprimary"
         app:sv_stepViewStyle="@style/StepView"
         app:sv_doneStepMarkColor="@color/bckprimary"
-        app:sv_stepNumberTextSize="12sp"
+        app:sv_stepNumberTextSize="16sp"
         app:sv_animationType="All"/>
 
     <FrameLayout
