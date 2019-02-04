@@ -4,8 +4,8 @@
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/bckprimary"
     android:layout_height="match_parent"
+    android:background="@color/bckprimary"
     tools:context=".SignupActivity">
 
     <com.shuhart.stepview.StepView
@@ -36,6 +36,7 @@
         app:sv_animationType="All"/>
 
     <FrameLayout
+        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/signup_container"

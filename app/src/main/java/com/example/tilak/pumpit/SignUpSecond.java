@@ -1,5 +1,6 @@
 package com.example.tilak.pumpit;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,7 +31,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class SignUpSecond extends Fragment {
 
     private static final int CHOOSE_IMAGE = 101;
-
+    ProgressDialog progressDialog;
     String profileImgUrl;
     Uri uriProfileImage;
     NextBtnListener nextBtnListener;
@@ -43,6 +45,9 @@ public class SignUpSecond extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
+
+        progressDialog = new ProgressDialog(getContext());
+
         View SnpSecV = inflater.inflate(R.layout.signup_second, container, false);
         next = SnpSecV.findViewById(R.id.Next2);
         Avatar = SnpSecV.findViewById(R.id.snpavatar);
@@ -108,9 +113,12 @@ public class SignUpSecond extends Fragment {
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("profilepic" + System.currentTimeMillis() + ".jpg");
         if (uriProfileImage != null) {
+            progressDialog.setMessage("Uploading Profile Picture");
+            progressDialog.show();
             profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    progressDialog.dismiss();
                     profileImgUrl = taskSnapshot.toString();
                     Log.d("Url", profileImgUrl);
                     nextBtnListener.onBtnClick(true);

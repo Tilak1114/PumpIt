@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_centerInParent="true"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/signUpTitleLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <TextView
+                    android:id="@+id/snpthirdsm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/myraidprolight"
+                    android:text="Part of"
+                    android:textColor="#1B1C20"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/snpthirdwyg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/snpthirdsm"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="0dp"
+                    android:fontFamily="@font/myraidprolight"
+                    android:text="The Package"
+                    android:textColor="#1B1C20"
+                    android:textSize="35sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/snpthirdmata"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/snpthirdwyg"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/myraidprolight"
+                    android:text="Mark All that apply"
+                    android:textColor="#1B1C20"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+    <ExpandableListView
+        android:id="@+id/expandGymFaci"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/Next3"
+        android:layout_below="@id/signUpTitleLay"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:childDivider="@color/gtstrtbck"
+        android:divider="@color/gtstrtbck"
+        android:dividerHeight="1dp"
+        android:indicatorStart="?android:attr/expandableListPreferredChildIndicatorLeft" />
+    <RelativeLayout
+        android:id="@+id/Next3"
+        android:elevation="8dp"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Finish"
+            android:textStyle="bold"
+            android:layout_marginStart="160dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/myraidprolight"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

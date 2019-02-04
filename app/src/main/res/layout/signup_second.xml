@@ -9,7 +9,7 @@
         android:layout_height="match_parent">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
             <RelativeLayout
                 android:id="@+id/signUpTitleLay"
                 android:layout_marginTop="20dp"
@@ -130,7 +130,7 @@
         android:elevation="8dp"
         android:translationZ="10dp"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:background="@drawable/getstartedbtn"
         android:layout_alignParentBottom="true">
         <TextView
@@ -145,7 +145,7 @@
             android:textColor="@android:color/white"
             />
         <RelativeLayout
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_width="80dp"
             android:background="@color/gtstrtbck1"
             android:layout_alignParentEnd="true">
