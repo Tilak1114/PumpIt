@@ -9,6 +9,12 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     @Override
@@ -16,6 +22,9 @@ public class InAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        defaultPlans();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -40,4 +49,30 @@ public class InAppActivity extends AppCompatActivity {
             }
         });
     }
+    private void defaultPlans() {
+        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+                "/Plans/Plan1");
+        Map<String, Object> data1 = new HashMap<String, Object>();
+        data1.put("PlanName", "Plan1");
+        data1.put("PlanDuration", "3 Months Plan");
+        data1.put("PlanFeatures", "Cardio, Strength");
+        planDoc1.set(data1);
+
+        DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+                "/Plans/Plan2");
+        Map<String, Object> data2 = new HashMap<String, Object>();
+        data2.put("PlanName", "Plan2");
+        data2.put("PlanDuration", "6 Months Plan");
+        data2.put("PlanFeatures", "Cardio, Strength");
+        planDoc2.set(data2);
+
+        DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+                "/Plans/Plan3");
+        Map<String, Object> data3 = new HashMap<String, Object>();
+        data3.put("PlanName", "Plan3");
+        data3.put("PlanDuration", "12 Months Plan");
+        data3.put("PlanFeatures", "Cardio, Strength");
+        planDoc3.set(data3);
+    }
+
 }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -80,8 +81,8 @@ public class GymFaciAdapter extends BaseExpandableListAdapter {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.exp_child, parent, false);
         }
-        TextView childTv = convertView.findViewById(R.id.child_txt);
-        childTv.setText(child_title);
+        CheckBox childCb = convertView.findViewById(R.id.checkbox_child);
+        childCb.setText(child_title);
         return convertView;
     }
 

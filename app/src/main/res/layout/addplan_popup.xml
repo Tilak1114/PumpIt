@@ -53,6 +53,39 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
+                    android:id="@+id/plntitle"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginBottom="3dp"
+                    android:inputType="text"
+                    android:background="@drawable/memb_btn_rect"
+                    android:fontFamily="@font/roboto" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plan Title"
+                android:textSize="18sp"
+                android:layout_marginTop="18dp"
+                android:layout_marginStart="50dp"
+                android:background="#ffffff"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/textfieldsbck"
+                android:layout_height="60dp">
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
                     android:hint="In months"
                     android:id="@+id/plnmonths"
                     android:layout_marginTop="10dp"
