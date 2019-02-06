@@ -38,13 +38,9 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignupFrag extends Fragment {
-    private static final int CHOOSE_IMAGE = 101;
     private static final String TAG = "test ";
     Button signupadmin, subSignUp;
     String profileImgUrl;
-    EditText gymName, gymEmail, gymPwd, gymPh, gymAddr;
-    CircleImageView Avatar;
-    Uri uriProfileImage;
     DocumentReference documentReference;
     FirebaseAuth mAuth;
 

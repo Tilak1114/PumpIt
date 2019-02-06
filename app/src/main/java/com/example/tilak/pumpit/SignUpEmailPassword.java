@@ -1,5 +1,6 @@
 package com.example.tilak.pumpit;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUpEmailPassword extends Fragment {
     RelativeLayout next;
+    ProgressDialog progressDialog;
     NextBtnListener nextBtnListener;
     EditText email, pwd, cpwd;
     FirebaseAuth mAuth;
@@ -33,6 +36,7 @@ public class SignUpEmailPassword extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View emailpwdV = inflater.inflate(R.layout.signup_empwd, container, false);
         mAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(getContext());
 
         next = emailpwdV.findViewById(R.id.Next1);
         email = emailpwdV.findViewById(R.id.adminemail);
@@ -62,10 +66,13 @@ public class SignUpEmailPassword extends Fragment {
                         !email.getText().toString().isEmpty()){
                     String GymEmail = email.getText().toString();
                     String GymPwd = pwd.getText().toString();
-
+                    progressDialog.setTitle("Creating New Account.");
+                    progressDialog.setMessage("Please Wait...");
+                    progressDialog.show();
                     mAuth.createUserWithEmailAndPassword(GymEmail, GymPwd).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                         @Override
                         public void onSuccess(AuthResult authResult) {
+                            progressDialog.dismiss();
                             Boolean res = true;
                             nextBtnListener.onBtnClicked(res);
                         }
