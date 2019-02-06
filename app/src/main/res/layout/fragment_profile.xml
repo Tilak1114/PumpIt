@@ -1,30 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="210dp"
         android:id="@+id/coverbck"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
         android:background="@drawable/profilecover">
+
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="120dp"
             android:id="@+id/gymprofilepic"
-            android:layout_height="120dp"
-            android:layout_marginStart="40dp"
-            android:background="@drawable/avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerVertical="true"
-            />
+            android:layout_marginStart="30dp"
+            android:background="@drawable/avatar" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="26sp"
-            android:fontFamily="@font/helvetica_neue_lightext"
-            android:textColor="@android:color/white"
-            android:text="Evolve Fitness"
-            android:textStyle="bold"
-            android:layout_toEndOf="@id/gymprofilepic"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="70dp"
-            android:layout_marginStart="20dp"/>
+            android:layout_toEndOf="@id/gymprofilepic"
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:text="Evolve Fitness"
+            android:textColor="@android:color/white"
+            android:textSize="26sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30px"
+        android:orientation="vertical"
+        android:paddingLeft="30px"
+        android:paddingRight="30px">
+
+        <android.support.design.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/switch2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="40px"
+            android:checked="true"
+            android:fontFamily="@font/roboto"
+            android:text="Push Notification"
+            android:textColorLink="@color/primary_sage"
+            android:textSize="30px" />
+
+    </android.support.design.card.MaterialCardView>
+        <android.support.design.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Switch
+                android:id="@+id/switch3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="40px"
+                android:checked="true"
+                android:fontFamily="@font/roboto"
+                android:text="Send usage stats to devs"
+                android:buttonTint="@color/primary_sage"
+                android:textSize="30px" />
+
+        </android.support.design.card.MaterialCardView>
+
+    </LinearLayout>
+
+
+</LinearLayout>
