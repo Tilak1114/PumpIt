@@ -43,21 +43,22 @@
         android:paddingRight="30px">
 
         <android.support.design.card.MaterialCardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Switch
-            android:id="@+id/switch2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="40px"
-            android:checked="true"
-            android:fontFamily="@font/roboto"
-            android:text="Push Notification"
-            android:textColorLink="@color/primary_sage"
-            android:textSize="30px" />
+            android:layout_height="wrap_content">
 
-    </android.support.design.card.MaterialCardView>
+            <Switch
+                android:id="@+id/switch2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="40px"
+                android:checked="true"
+                android:fontFamily="@font/roboto"
+                android:text="Push Notification"
+                android:textColorLink="@color/primary_sage"
+                android:textSize="30px" />
+
+        </android.support.design.card.MaterialCardView>
+
         <android.support.design.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -67,15 +68,44 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="40px"
+                android:buttonTint="@color/primary_sage"
                 android:checked="true"
                 android:fontFamily="@font/roboto"
                 android:text="Send usage stats to devs"
-                android:buttonTint="@color/primary_sage"
                 android:textSize="30px" />
 
         </android.support.design.card.MaterialCardView>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="230px"
+        android:layout_marginBottom="50px"
+        android:orientation="vertical"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="440px"
+            android:layout_height="wrap_content"
+            android:hapticFeedbackEnabled="true"
+            android:text="LOG OUT"
+            android:background="@drawable/button_states" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_margin="5px"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Version 1.0.0" />
+
+    </LinearLayout>
+
+
 
 
 </LinearLayout>
