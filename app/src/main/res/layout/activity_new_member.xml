@@ -9,7 +9,7 @@
     tools:context=".SignupActivity">
 
     <com.shuhart.stepview.StepView
-        android:id="@+id/stepView"
+        android:id="@+id/stepViewMemb"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
         android:layout_marginTop="3dp"
@@ -38,7 +38,7 @@
         android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/signup_container"
+        android:id="@+id/newMemb_container"
         />
 
 

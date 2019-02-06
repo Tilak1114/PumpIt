@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+   android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:id="@+id/newmembtitle"
         android:layout_height="wrap_content"
         android:layout_width="match_parent">
     <TextView
@@ -28,19 +27,12 @@
         android:layout_marginStart="30dp"
         android:textSize="16sp"
         android:textColor="#1B1C20"/>
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/cancelpopup"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:backgroundTint="@color/gtstrtbck"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/cancelbtn"
-            android:layout_alignParentEnd="true"/>
 
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginTop="30dp"
+        android:layout_below="@id/newmembtitle"
+        android:layout_marginTop="20dp"
+        android:id="@+id/newMembAvatarlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <de.hdodenhof.circleimageview.CircleImageView
@@ -51,9 +43,12 @@
             android:background="@drawable/avatar"/>
     </RelativeLayout>
     <RelativeLayout
-    android:layout_marginTop="0dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+        android:id="@+id/newMembFNlay"
+        android:layout_below="@id/newMembAvatarlay"
+        android:layout_marginTop="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
     <RelativeLayout
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
@@ -84,6 +79,8 @@
             android:textSize="18sp" />
 </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@id/newMembFNlay"
+        android:id="@+id/newMembLNlay"
         android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -117,6 +114,8 @@
             android:textSize="18sp" />
     </RelativeLayout>
     <RelativeLayout
+        android:layout_below="@id/newMembLNlay"
+        android:id="@+id/newMembPNOlay"
         android:layout_marginTop="0dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -150,62 +149,36 @@
             android:textSize="18sp" />
     </RelativeLayout>
     <RelativeLayout
-        android:layout_marginTop="0dp"
+        android:id="@+id/newMembNext"
+        android:elevation="8dp"
+        android:translationZ="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/textfieldsbck"
-            android:layout_height="60dp">
-
-            <Spinner
-                android:id="@+id/planSelector"
-                android:layout_marginTop="18dp"
-                android:layout_height="42dp"
-                android:layout_width="match_parent"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"/>
-        </RelativeLayout>
-
+        android:layout_height="60dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff"
-            android:text=" Select Plan "
-            android:textSize="18sp" />
+            android:layout_width="match_parent"
+            android:text="Next"
+            android:textStyle="bold"
+            android:layout_marginStart="160dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/myraidprolight"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
     </RelativeLayout>
-
-    <Button
-        android:layout_marginTop="30dp"
-        android:text="Add"
-        android:id="@+id/addnewmemb"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:background="@drawable/listview_grad_bck"
-        android:layout_width="match_parent"
-        android:layout_marginStart="30dp"
-        android:elevation="4dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_height="60dp"/>
-    <Button
-        android:layout_marginTop="30dp"
-        android:text="Temporary logout"
-        android:id="@+id/testlogout"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:background="@drawable/listview_grad_bck"
-        android:layout_width="match_parent"
-        android:layout_marginStart="20dp"
-        android:elevation="4dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="20dp"
-        android:layout_height="60dp"/>
-
-</LinearLayout>
-</ScrollView>
+</RelativeLayout>

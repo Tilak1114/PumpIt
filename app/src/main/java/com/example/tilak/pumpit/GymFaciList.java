@@ -41,10 +41,10 @@ public class GymFaciList {
         AddAmenities.add("SHOWERS");
         AddAmenities.add("SAUNA");
 
-        gymFaci.put("CardioVascular", CardioVascular);
-        gymFaci.put("Strength", Strength);
-        gymFaci.put("Group Activities", GroupActivities);
         gymFaci.put("Additional Amenities", AddAmenities);
+        gymFaci.put("Group Activities", GroupActivities);
+        gymFaci.put("Strength", Strength);
+        gymFaci.put("CardioVascular", CardioVascular);
 
         return gymFaci;
 

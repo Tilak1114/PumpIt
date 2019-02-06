@@ -16,27 +16,36 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.shuhart.stepview.StepView;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -53,12 +62,19 @@ public class ManageMembersFragment extends Fragment {
     String profileImgUrl;
     RecyclerView recyclerView;
     CircleImageView avatar, cancelNewMember;
+    Spinner planSpi;
     Button addMembbtn;
+    StepView newMembsteps;
+    FrameLayout newMembframe;
 
     private ArrayList<String> membernames = new ArrayList<>();
     private ArrayList<String> memberprofileurls = new ArrayList<>();
     private ArrayList<String> memberplans = new ArrayList<>();
     private ArrayList<String> membpp = new ArrayList<>();
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference planRef = db.collection("Gyms/EvolveFitness/Plans");
+    List<String>  planSpiData = new ArrayList<>();
 
     @Nullable
     @Override
@@ -66,16 +82,23 @@ public class ManageMembersFragment extends Fragment {
         View MemberManage = inflater.inflate(R.layout.fragment_manage_member, container, false);
         mAuth = FirebaseAuth.getInstance();
         addMembDialog = new Dialog(MemberManage.getContext(), android.R.style.Theme_Light_NoTitleBar);
-        addMembDialog.setContentView(R.layout.newmemb_popup);
+        //addMembDialog.setContentView(R.layout.newmemb_step_popup);
+        newMembsteps = addMembDialog.findViewById(R.id.stepViewMemb);
+        newMembframe = addMembDialog.findViewById(R.id.newMemb_container);
+        //FragmentManager fm =
+        //getFragmentManager().beginTransaction()
+              // .replace(R.id.newMemb_container, new NewMembFrag1()).commit();
+
         firstName = addMembDialog.findViewById(R.id.newMembFN);
         avatar = addMembDialog.findViewById(R.id.newMembAvatar);
         lastName = addMembDialog.findViewById(R.id.newMembLN);
         phoneNo = addMembDialog.findViewById(R.id.newMembPNO);
         addMembbtn = addMembDialog.findViewById(R.id.addnewmemb);
-        cancelNewMember = addMembDialog.findViewById(R.id.cancelpopup);
+        planSpi = addMembDialog.findViewById(R.id.planSelector);
+
         recyclerView= MemberManage.findViewById(R.id.membRecyclerview);
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
-        initdata(MemberManage);
+
         return MemberManage;
     }
 
@@ -88,13 +111,15 @@ public class ManageMembersFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+        initdata(view);
         addNewMembFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addMembDialog.show();
+                startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
+        /*
         addMembbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +140,7 @@ public class ManageMembersFragment extends Fragment {
                 addMembDialog.dismiss();
             }
         });
+        */
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

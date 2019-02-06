@@ -55,12 +55,19 @@ public class SignUpThird extends Fragment {
         return SnpSecV;
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nextBtnListener.onBtnClickF(true);
+            }
+        });
+        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
+                return false;
             }
         });
     }
