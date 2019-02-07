@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bckprimary"
+    tools:context=".SignupActivity">
+
+    <com.shuhart.stepview.StepView
+        android:id="@+id/stepViewPlan"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="3dp"
+        app:sv_stepsNumber="2"
+        app:sv_selectedCircleColor="@android:color/white"
+        app:sv_selectedTextColor="@android:color/white"
+        app:sv_stepLineWidth="2dp"
+        app:sv_nextTextColor="@android:color/darker_gray"
+        app:sv_nextStepLineColor="@android:color/darker_gray"
+        app:sv_doneCircleColor="@android:color/white"
+        app:sv_doneStepLineColor="@android:color/white"
+        app:sv_doneCircleRadius="13dp"
+        android:padding="50dp"
+        app:sv_selectedCircleRadius="15dp"
+        app:sv_selectedStepNumberColor="@color/bckprimary"
+        app:sv_stepViewStyle="@style/StepView"
+        app:sv_doneStepMarkColor="@color/bckprimary"
+        app:sv_stepNumberTextSize="16sp"
+        app:sv_animationType="All"/>
+
+    <FrameLayout
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/newPlan_container"
+        />
+
+
+</LinearLayout>

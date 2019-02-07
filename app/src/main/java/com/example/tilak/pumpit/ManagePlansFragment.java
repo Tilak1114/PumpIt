@@ -2,6 +2,7 @@ package com.example.tilak.pumpit;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -85,29 +86,18 @@ public class ManagePlansFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        initData();
-        loadPlanRv();
-
         addplanfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // get data from dialog and then
-                addplanDialog.show();
+                //addplanDialog.show();
+                startActivity(new Intent(getActivity(), NewPlanActivity.class));
             }
         });
 
         addplanbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String PlanDur = planDur.getText().toString()+" Months Plan";
-                String PlanTitle = planTitle.getText().toString();
-                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
-                        "/Plans/"+PlanTitle);
-                Map<String, Object> data1 = new HashMap<String, Object>();
-                data1.put("PlanName", PlanTitle);
-                data1.put("PlanDuration", PlanDur);
-                data1.put("PlanFeatures", "Cardio, Strength");
-                newPlan.set(data1);
 
                 initData();
                 loadPlanRv();
@@ -126,6 +116,7 @@ public class ManagePlansFragment extends Fragment {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String PlanDuration =(String) document.getData().get("PlanDuration");
                         planDurList.add(PlanDuration);
+                        planCover.add(R.drawable.gridwlp4);
                         Log.d("FsData", document.getId() + " => " + document.getData().get("PlanDuration"));
                     }
                 } else {
@@ -133,9 +124,6 @@ public class ManagePlansFragment extends Fragment {
                 }
             }
         });
-        planCover.add(R.drawable.plan1);
-        planCover.add(R.drawable.plan2);
-        planCover.add(R.drawable.plan3);
         /*planDurList.add("3 Months Plan");
         planCover.add(R.drawable.plan1);
         planDurList.add("6 Months Plan");
