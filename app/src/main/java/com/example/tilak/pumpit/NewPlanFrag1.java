@@ -61,10 +61,10 @@ public class NewPlanFrag1 extends Fragment {
                 DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data1 = new HashMap<String, Object>();
-                data1.put("PlanName", PlanTitle);
-                data1.put("PlanDuration", PlanDur);
-                data1.put("PlanPrice", PlanPrice);
-                data1.put("PlanFeatures", "Cardio, Strength");
+                data1.put("planName", PlanTitle);
+                data1.put("planDuration", PlanDur);
+                data1.put("planPrice", PlanPrice);
+                data1.put("planFeatures", "Cardio, Strength");
                 newPlan.set(data1).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

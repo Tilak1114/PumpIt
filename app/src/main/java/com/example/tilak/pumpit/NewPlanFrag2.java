@@ -54,7 +54,7 @@ public class NewPlanFrag2 extends Fragment {
                 DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data2 = new HashMap<String, Object>();
-                data2.put("PlanCoverId", R.drawable.gridwlp4); // later change to user input
+                data2.put("coverId", R.drawable.gridwlp4); // later change to user input
                 newPlan.set(data2, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

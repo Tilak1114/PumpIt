@@ -17,6 +17,23 @@
             android:translationZ="10dp"
             android:background="@drawable/plan3"
             >
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:id="@+id/deleteIcon"
+                android:layout_alignParentEnd="true"
+                android:clickable="false"
+                android:visibility="invisible"
+                android:background="@drawable/circle"
+                android:layout_margin="10dp"
+                >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background = "@drawable/cancelbtn"
+                android:layout_margin="3dp"
+                />
+            </RelativeLayout>
             <TextView
                 android:id="@+id/newPlanDur"
                 android:fontFamily="@font/helvetica_neue_lightext"
