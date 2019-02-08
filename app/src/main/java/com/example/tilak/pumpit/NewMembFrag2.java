@@ -32,7 +32,7 @@ public class NewMembFrag2 extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(getContext());
 
-        next = NewMembView1.findViewById(R.id.newMembNext);
+        next = NewMembView1.findViewById(R.id.newMembNext2);
 
         return NewMembView1;
     }
@@ -42,6 +42,7 @@ public class NewMembFrag2 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nextBtnListener.onNewMembBtnClicked2(true);
             }
         });
     }

@@ -53,25 +53,31 @@ public class InAppActivity extends AppCompatActivity {
         DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
                 "/Plans/Plan1");
         Map<String, Object> data1 = new HashMap<String, Object>();
-        data1.put("PlanName", "Plan1");
-        data1.put("PlanDuration", "3 Months Plan");
-        data1.put("PlanFeatures", "Cardio, Strength");
+        data1.put("planName", "Plan1");
+        data1.put("planPrice", "2500");
+        data1.put("planDuration", "3 Months Plan");
+        data1.put("planFeatures", "Cardio, Strength");
+        data1.put("coverId", R.drawable.plan1);
         planDoc1.set(data1);
 
         DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
                 "/Plans/Plan2");
         Map<String, Object> data2 = new HashMap<String, Object>();
-        data2.put("PlanName", "Plan2");
-        data2.put("PlanDuration", "6 Months Plan");
-        data2.put("PlanFeatures", "Cardio, Strength");
+        data2.put("planName", "Plan2");
+        data2.put("planPrice", "5000");
+        data2.put("planDuration", "6 Months Plan");
+        data2.put("planFeatures", "Cardio, Strength");
+        data2.put("coverId", R.drawable.plan2);
         planDoc2.set(data2);
 
         DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
                 "/Plans/Plan3");
         Map<String, Object> data3 = new HashMap<String, Object>();
-        data3.put("PlanName", "Plan3");
-        data3.put("PlanDuration", "12 Months Plan");
-        data3.put("PlanFeatures", "Cardio, Strength");
+        data3.put("planName", "Plan3");
+        data3.put("planPrice", "12000");
+        data3.put("planDuration", "12 Months Plan");
+        data3.put("planFeatures", "Cardio, Strength");
+        data3.put("coverId", R.drawable.plan3);
         planDoc3.set(data3);
     }
 

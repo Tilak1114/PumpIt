@@ -32,12 +32,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -46,9 +48,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ManagePlansFragment extends Fragment {
-
-    ArrayList<String> planDurList = new ArrayList<>();
-    ArrayList<Integer> planCover = new ArrayList<>();
 
     ScrollView scrollView;
     LinearLayout planListLL;
@@ -62,6 +61,9 @@ public class ManagePlansFragment extends Fragment {
     TextView newPlan, newPlanMembers;
     CardView cardView;
     Context context;
+
+    PlanAdapter adapter;
+    
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
@@ -85,27 +87,40 @@ public class ManagePlansFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        setupRecyclerView();
         addplanfab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // get data from dialog and then
-                //addplanDialog.show();
                 startActivity(new Intent(getActivity(), NewPlanActivity.class));
             }
         });
 
-        addplanbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                initData();
-                loadPlanRv();
-                addplanDialog.dismiss();
-            }
-        });
     }
 
+    private void setupRecyclerView() {
+        CollectionReference planCollection = FirebaseFirestore.getInstance()
+                .collection("Gyms/EvolveFitness/Plans");
+        Query query = planCollection;
+        FirestoreRecyclerOptions<Plan> options = new FirestoreRecyclerOptions.Builder<Plan>().
+                setQuery(query, Plan.class).build();
+        adapter = new PlanAdapter(options);
+        planRv.setAdapter(adapter);
+        planRv.setLayoutManager(new LinearLayoutManager(getContext()));
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+    /*
     public void initData(){
         CollectionReference planCollection = FirebaseFirestore.getInstance()
                 .collection("Gyms/EvolveFitness/Plans");
@@ -124,13 +139,13 @@ public class ManagePlansFragment extends Fragment {
                 }
             }
         });
-        /*planDurList.add("3 Months Plan");
+        planDurList.add("3 Months Plan");
         planCover.add(R.drawable.plan1);
         planDurList.add("6 Months Plan");
         planCover.add(R.drawable.plan2);
         planDurList.add("12 Months Plan");
         planCover.add(R.drawable.plan3);
-        */
+
     }
 
     public void loadPlanRv(){
@@ -139,5 +154,5 @@ public class ManagePlansFragment extends Fragment {
         planRv.setAdapter(adapter);
         planRv.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
+    */
 }
