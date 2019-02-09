@@ -1,17 +1,18 @@
 package com.example.tilak.pumpit;
 
 public class Member {
-    String firstName, lastName, membPlan, payment, phoneNo;
+    String firstName, lastName, membPlan, payment, phoneNo, profileUrl;
     public Member(){
 
     }
 
-    public Member(String firstName, String lastName, String membPlan, String payment, String phoneNo) {
+    public Member(String firstName, String lastName, String membPlan, String payment, String phoneNo, String profileUrl) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.membPlan = membPlan;
         this.payment = payment;
         this.phoneNo = phoneNo;
+        this.profileUrl = profileUrl;
     }
 
     public String getfName() {
@@ -32,5 +33,9 @@ public class Member {
 
     public String getPhoneNo() {
         return phoneNo;
+    }
+
+    public String getProfileUrl(){
+        return profileUrl;
     }
 }

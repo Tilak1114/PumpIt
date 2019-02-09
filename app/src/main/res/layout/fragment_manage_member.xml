@@ -48,6 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/memblay"
+        android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/memb_btn_rect"
         android:elevation="8dp"

@@ -116,7 +116,7 @@ public class ManageMembersFragment extends Fragment {
     private void setUpRecyclerView() {
         Query query = memberref;
         FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(query, Member.class).build();
-        adapter = new MemberAdapter(options);
+        adapter = new MemberAdapter(options, getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
