@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/list_memb_bck"
-    android:elevation="4dp"
+    android:elevation="1dp"
 
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:id="@+id/parent_lay"
     android:layout_marginEnd="5dp"
     android:layout_marginStart="5dp"
-    android:translationZ="8dp"
+    android:translationZ="1dp"
     android:layout_width="match_parent"
     android:layout_height="80dp">
     <LinearLayout

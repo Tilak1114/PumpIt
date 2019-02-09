@@ -7,40 +7,39 @@
 
     <RelativeLayout
         android:id="@+id/memblay"
-        android:elevation="12dp"
-        android:translationZ="14dp"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="90dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/managemenmers">
+        android:elevation="0dp"
+        android:translationZ="0dp">
 
         <TextView
             android:id="@+id/mngmmb"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="30sp"
-            android:fontFamily="@font/helvetica_neue_lightext"
-            android:textStyle="bold"
-            android:text="Members"
+            android:layout_height="wrap_content"
             android:layout_above="@id/mngmmbcnt"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:elevation="14dp"
-            android:translationZ="16dp"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="20dp"
-            />
+            android:fontFamily="@font/helvetica_neue_lightext"
+            android:text="Members"
+            android:textColor="@color/typography_black"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:translationZ="0dp" />
+
         <TextView
             android:id="@+id/mngmmbcnt"
-            android:fontFamily="@font/helvetica_neue_lightext"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:textSize="18sp"
-            android:layout_marginBottom="20dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/helvetica_neue_lightext"
             android:text="\u25CF 156 Active Members \u25CF"
-            android:textColor="@android:color/white"
-            android:layout_marginStart="20dp" />
+            android:textColor="@color/typography_slate"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -51,8 +50,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginStart="10dp"
         android:background="@drawable/memb_btn_rect"
-        android:elevation="8dp"
-        android:translationZ="18dp">
+        android:elevation="2dp"
+        android:translationZ="0dp">
 
         <SearchView
             android:layout_width="match_parent"
@@ -66,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/membRecyclerview">
-        
+
     </android.support.v7.widget.RecyclerView>
     <RelativeLayout
         android:id="@+id/addMembfab"
@@ -84,8 +83,9 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:backgroundTint="@color/bckprimary"
+            android:backgroundTint="#fff"
             android:layout_centerInParent="true"
             android:background="@drawable/add"/>
     </RelativeLayout>
+
 </RelativeLayout>
