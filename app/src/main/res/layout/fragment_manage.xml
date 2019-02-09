@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/toolbar"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="0dp"
         android:elevation="10dp"
         android:translationZ="10dp"
         android:theme="@style/tabtheme"
         app:tabBackground="@drawable/membtabs_selector"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/gtstrtbck"
-        app:tabIndicatorHeight="3dp"
+        app:tabIndicatorColor="#00FFFFFF"
+        app:tabIndicatorHeight="1dp"
         app:tabSelectedTextColor="@android:color/black"
         app:tabTextColor="@android:color/darker_gray">
 
