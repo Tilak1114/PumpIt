@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <Button
+        android:id="@+id/reqdemo"
+        android:layout_width="match_parent"
+        android:layout_marginEnd="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:layout_marginStart="20dp"
+        android:layout_height="60dp"
+        android:hapticFeedbackEnabled="true"
+        android:textColor="@android:color/white"
+        android:text="Request a Demo"
+        android:background="@drawable/button_states1" />
+    <TextView
+        android:id="@+id/gotcodetv"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:text="Already have a validation code? Enter Below"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/reqdemo"/>
+
+    <RelativeLayout
+        android:layout_below="@id/gotcodetv"
+        android:id="@+id/vericodelay"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/textfieldsbck"
+            android:layout_height="60dp">
+
+            <EditText
+                android:id="@+id/validcode"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="22dp"
+                android:hint="validation code"
+                android:layout_marginEnd="22dp"
+                android:layout_marginBottom="7dp"
+                android:background="@drawable/memb_btn_rect"
+                android:fontFamily="@font/myraidprolight"
+                android:inputType="text" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/validateBtn"
+        android:elevation="8dp"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Validate"
+            android:textStyle="bold"
+            android:layout_marginStart="160dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/myraidprolight"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    </RelativeLayout>
