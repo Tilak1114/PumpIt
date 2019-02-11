@@ -53,7 +53,6 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            holder.membProfilePic.setImageBitmap(null);
             holder.membProfilePic.setImageBitmap(mBitmap);
             //holder.membProfilePic.setImageURI(Uri.parse("https://firebasestorage.googleapis.com/v0/b/pumpit-2b897.appspot.com/o/EvolveFitnessqwertyui.jpg?alt=media&token=a1c2714e-cf3c-4fff-a91c-05232bbc11ae"));
         }

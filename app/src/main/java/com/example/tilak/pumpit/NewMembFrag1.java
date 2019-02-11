@@ -69,6 +69,7 @@ public class NewMembFrag1 extends Fragment {
         phoneNo = NewMembView1.findViewById(R.id.newMembPNO);
 
         next = NewMembView1.findViewById(R.id.newMembNext);
+        next.setClickable(false);
 
         return NewMembView1;
     }
@@ -79,8 +80,6 @@ public class NewMembFrag1 extends Fragment {
             @Override
             public void onClick(View v) {
                 saveUserInfo();
-                uploadToFireBase();
-                nextBtnListener.onNewMembBtnClicked1(true);
             }
         });
         avatar.setOnClickListener(new View.OnClickListener() {
@@ -118,12 +117,13 @@ public class NewMembFrag1 extends Fragment {
         }
     }
     private void uploadToFireBase() {
-        progressDialog.setTitle("Uploading Profile Picture");
-        progressDialog.show();
+
         String memberName = firstName.getText().toString()+lastName.getText().toString();
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("MemberUploads/EvolveFitness"+memberName+".jpg");
         if(uriProfileImage != null){
+            progressDialog.setTitle("Uploading Profile Picture");
+            progressDialog.show();
             profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -138,6 +138,7 @@ public class NewMembFrag1 extends Fragment {
                             Map<String, Object> data = new HashMap<String, Object>();
                             data.put("profileUrl", downloadUrl);
                             documentReference.set(data, SetOptions.merge());
+                            nextBtnListener.onNewMembBtnClicked1(true);
                         }
                     });
                 }
@@ -148,27 +149,43 @@ public class NewMembFrag1 extends Fragment {
 
         progressDialog.setTitle("Uploading To Database");
         progressDialog.setMessage("Adding Member Data");
-        progressDialog.show();
         String MemberFN, MemberLN, MemberPhno;
         MemberFN = firstName.getText().toString();
         MemberLN = lastName.getText().toString();
         MemberPhno = phoneNo.getText().toString();
 
-        DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
-                "/Members/"+MemberFN);
+        if(MemberFN.isEmpty()){
+            firstName.setError("First Name Required");
+        }
+        if(MemberLN.isEmpty()){
+            lastName.setError("Last Name Required");
+        }
+        if(MemberPhno.isEmpty()){
+            phoneNo.setError("Phone Number Required");
+        }
 
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("firstName", MemberFN);
-        data.put("lastName", MemberLN);
-        data.put("membPlan", "");
-        data.put("payment", "");
-        data.put("phoneNo", MemberPhno);
-        documentReference.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                progressDialog.dismiss();
-            }
-        });
+
+        if(!MemberFN.isEmpty()&&!MemberLN.isEmpty()&&!MemberPhno.isEmpty()){
+            next.setClickable(true);
+            progressDialog.show();
+
+            DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
+                    "/Members/"+MemberFN+" "+MemberLN);
+
+            Map<String, Object> data = new HashMap<String, Object>();
+            data.put("firstName", MemberFN);
+            data.put("lastName", MemberLN);
+            data.put("membPlan", "");
+            data.put("payment", "");
+            data.put("phoneNo", MemberPhno);
+            documentReference.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    progressDialog.dismiss();
+                    uploadToFireBase();
+                }
+            });
+        }
     }
     private void showImageChooser(){
         Intent imgSelect = new Intent();

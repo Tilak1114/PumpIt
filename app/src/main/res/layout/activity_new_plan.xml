@@ -17,7 +17,7 @@
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="3dp"
-        app:sv_stepsNumber="2"
+        app:sv_stepsNumber="3"
         app:sv_selectedCircleColor="@android:color/white"
         app:sv_selectedTextColor="@android:color/white"
         app:sv_stepLineWidth="2dp"

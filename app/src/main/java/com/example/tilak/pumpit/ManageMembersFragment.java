@@ -12,6 +12,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -57,6 +60,7 @@ public class ManageMembersFragment extends Fragment {
 
     RelativeLayout addNewMembFab;
     RecyclerView recyclerView;
+    SearchView searchView;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference memberref = db.collection("Gyms/EvolveFitness/Members");
@@ -72,6 +76,7 @@ public class ManageMembersFragment extends Fragment {
               // .replace(R.id.newMemb_container, new NewMembFrag1()).commit();
 
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
+        searchView = MemberManage.findViewById(R.id.searchmemb);
 
         return MemberManage;
     }
@@ -89,28 +94,26 @@ public class ManageMembersFragment extends Fragment {
                 startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
-        /*
-        addMembbtn.setOnClickListener(new View.OnClickListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
-            public void onClick(View v) {
-                saveUserInfo();
-                uploadToFireBase();
+            public boolean onQueryTextSubmit(String query) {
+                filter(query);
+                return false;
+            }
 
-            }
-        });
-        avatar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                showImageChooser();
+            public boolean onQueryTextChange(String newText) {
+                return false;
             }
         });
-        cancelNewMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addMembDialog.dismiss();
-            }
-        });
-        */
+    }
+
+    private void filter(String query) {
+        Query searchQ = memberref.whereEqualTo("firstName", query);
+        FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(searchQ, Member.class).build();
+        adapter = new MemberAdapter(options, getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(adapter);
     }
 
     private void setUpRecyclerView() {

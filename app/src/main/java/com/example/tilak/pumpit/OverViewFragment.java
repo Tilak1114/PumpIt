@@ -53,7 +53,7 @@ public class OverViewFragment extends Fragment {
         addmemb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showPopup();
+                startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
         allmembs.setOnClickListener(new View.OnClickListener() {

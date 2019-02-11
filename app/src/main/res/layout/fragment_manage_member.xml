@@ -6,6 +6,7 @@
     >
 
     <RelativeLayout
+        android:layout_marginTop="20dp"
         android:id="@+id/memblay"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -26,7 +27,7 @@
             android:textColor="@color/typography_black"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:translationZ="0dp" />
+            android:translationZ="10dp" />
 
         <TextView
             android:id="@+id/mngmmbcnt"
@@ -35,6 +36,8 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="20dp"
             android:layout_marginBottom="2dp"
+            android:translationZ="10dp"
+            android:elevation="8dp"
             android:fontFamily="@font/helvetica_neue_lightext"
             android:text="156 Active Members"
             android:textColor="@color/typography_slate"
@@ -50,10 +53,11 @@
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/memb_btn_rect"
-        android:elevation="2dp"
-        android:translationZ="0dp">
+        android:elevation="8dp"
+        android:translationZ="10dp">
 
         <SearchView
+            android:id="@+id/searchmemb"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_centerInParent="true"

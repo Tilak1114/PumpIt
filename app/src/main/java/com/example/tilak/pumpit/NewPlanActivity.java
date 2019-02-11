@@ -8,12 +8,13 @@ import android.widget.FrameLayout;
 
 import com.shuhart.stepview.StepView;
 
-public class NewPlanActivity extends AppCompatActivity implements NewPlanFrag1.NextBtnListener, NewPlanFrag2.NextBtnListener {
+public class NewPlanActivity extends AppCompatActivity implements NewPlanFrag1.NextBtnListener, NewPlanFrag2.NextBtnListener, NewPlanFrag3.NextBtnListener {
 
     StepView stepView;
     FrameLayout newmembcont;
     NewPlanFrag1 newPlanFrag1 = new NewPlanFrag1();
     NewPlanFrag2 newPlanFrag2 = new NewPlanFrag2();
+    NewPlanFrag3 newPlanFrag3 = new NewPlanFrag3();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,17 @@ public class NewPlanActivity extends AppCompatActivity implements NewPlanFrag1.N
     @Override
     public void onNewPlanBtnClicked2(Boolean result) {
         if(result){
-            stepView.done(true);
-            Intent backToInApp = new Intent(NewPlanActivity.this, InAppActivity.class);
-            startActivity(backToInApp);
+            stepView.go(2, true);
+            getSupportFragmentManager().beginTransaction().replace(R.id.newPlan_container,
+                    newPlanFrag3).commit();
+
         }
     }
 
+    @Override
+    public void onNewPlanBtnClicked3(Boolean result) {
+        stepView.done(true);
+        Intent backToInApp = new Intent(NewPlanActivity.this, InAppActivity.class);
+        startActivity(backToInApp);
+    }
 }

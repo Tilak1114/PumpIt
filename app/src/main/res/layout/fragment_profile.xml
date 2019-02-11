@@ -89,7 +89,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/logout"
             android:layout_width="440px"
             android:layout_height="wrap_content"
             android:hapticFeedbackEnabled="true"

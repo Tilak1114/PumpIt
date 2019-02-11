@@ -6,6 +6,7 @@
     >
 
             <RelativeLayout
+                android:layout_marginTop="20dp"
                 android:id="@+id/planlay"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -21,7 +22,7 @@
                 android:textStyle="bold"
                 android:text="Plans"
                 android:elevation="14dp"
-                android:translationZ="0dp"
+                android:translationZ="10dp"
                 android:textColor="@color/typography_black"
                 android:layout_above="@id/mngplncnt"
                 android:layout_marginStart="20dp"
@@ -34,6 +35,8 @@
                 android:layout_width="wrap_content"
                 android:textSize="18sp"
                 android:text="3 Active Plans"
+                android:elevation="8dp"
+                android:translationZ="10dp"
                 android:textColor="@color/typography_slate"
                 android:layout_marginStart="20dp"
                 android:layout_alignParentBottom="true"

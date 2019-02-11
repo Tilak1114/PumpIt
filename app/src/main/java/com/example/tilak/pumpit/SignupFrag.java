@@ -60,7 +60,7 @@ public class SignupFrag extends Fragment {
         signupadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), SignupActivity.class));
+                startActivity(new Intent(getActivity(), RequestADemo.class));
             }
         });
 
