@@ -53,6 +53,7 @@ public class VerifyOrReqDemo extends Fragment {
                 validateBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         if(!veriCode.getText().toString().isEmpty()){
                            validateBtnClick.onValidateClicked(true, veriCode.getText().toString());
                         }

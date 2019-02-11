@@ -118,7 +118,7 @@ public class NewMembFrag1 extends Fragment {
     }
     private void uploadToFireBase() {
 
-        String memberName = firstName.getText().toString()+lastName.getText().toString();
+        final String memberName = firstName.getText().toString()+lastName.getText().toString();
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("MemberUploads/EvolveFitness"+memberName+".jpg");
         if(uriProfileImage != null){
@@ -130,7 +130,7 @@ public class NewMembFrag1 extends Fragment {
                     profileImgUrl = taskSnapshot.toString();
                     progressDialog.dismiss();
                     final DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
-                            "/Members/"+firstName.getText().toString());
+                            "/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
                     profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
