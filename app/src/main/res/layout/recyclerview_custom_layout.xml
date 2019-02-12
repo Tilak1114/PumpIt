@@ -20,16 +20,16 @@
         android:layout_height="80dp">
         <de.hdodenhof.circleimageview.CircleImageView
             android:scaleType="centerCrop"
-            android:layout_width="60dp"
-            android:layout_marginStart="10dp"
+            android:layout_width="70dp"
+            android:layout_marginStart="5dp"
             android:layout_gravity="center"
             android:id="@+id/membProfilepic"
-            android:layout_height="60dp"
+            android:layout_height="70dp"
             android:background="@drawable/avatar"/>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="20dp"
             android:layout_gravity="center"
             android:layout_weight="90">
             <TextView
@@ -38,7 +38,7 @@
                 android:text="Example name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/lato"
+                android:fontFamily="@font/product_sans_reg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

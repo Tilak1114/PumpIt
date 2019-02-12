@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
@@ -47,14 +48,7 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
         }
         holder.membPaymentStatus.setText(model.getPayment());
         if(model.getProfileUrl()!=null){
-            Bitmap  mBitmap = null;
-            try {
-                mBitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), Uri.parse(model.getProfileUrl()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            holder.membProfilePic.setImageBitmap(mBitmap);
-            //holder.membProfilePic.setImageURI(Uri.parse("https://firebasestorage.googleapis.com/v0/b/pumpit-2b897.appspot.com/o/EvolveFitnessqwertyui.jpg?alt=media&token=a1c2714e-cf3c-4fff-a91c-05232bbc11ae"));
+            Picasso.with(context).load(model.getProfileUrl()).into(holder.membProfilePic);
         }
     }
 
