@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MemberDetails">
+    tools:context=".MemberDetails"
+    android:background="@color/primary_drab">
     <RelativeLayout
         android:id="@+id/topmembmenu"
         android:layout_width="match_parent"
@@ -20,69 +21,70 @@
             android:background="@drawable/icn_close"/>
         <ImageView
             android:layout_toStartOf="@id/cancel"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:backgroundTint="@color/bckprimary"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/edit_icon"/>
+            android:background="@drawable/edit_icon"
+            />
     </RelativeLayout>
     <RelativeLayout
         android:layout_below="@id/topmembmenu"
         android:layout_width="match_parent"
         android:id="@+id/profileinfodetails"
-        android:layout_height="180dp">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+          android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/membProfilepicDetails"
                 android:layout_width="110dp"
                 android:layout_height="110dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="20dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="30dp"
                 android:background="@drawable/avatar"
                 android:scaleType="centerCrop" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:layout_weight="90">
 
                 <TextView
                     android:id="@+id/MemberNameDetails"
-                    android:layout_marginTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/product_sans_reg"
                     android:text="Example name"
+                    android:textColor="@color/typography_snow"
                     android:textSize="25sp"
                     android:textStyle="bold" />
+
                 <TextView
-                    android:layout_below="@id/MemberNameDetails"
                     android:id="@+id/activestatustv"
                     android:layout_width="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:fontFamily="@font/product_sans_reg"
-                    android:textSize="18sp"
-                    android:textColor="@android:color/holo_blue_dark"
                     android:layout_height="wrap_content"
-                    android:text="Active"
+                    android:layout_below="@id/MemberNameDetails"
                     android:layout_gravity="center"
-                    android:layout_weight="3"/>
+                    android:layout_weight="3"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:text="Active"
+                    android:textColor="@android:color/holo_blue_dark"
+                    android:textSize="18sp" />
 
                 <RelativeLayout
                     android:layout_width="160dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
                     android:layout_below="@id/activestatustv"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/roundedbtncolor">
 
                     <TextView
@@ -92,8 +94,8 @@
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/product_sans_reg"
                         android:text="Send Message"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold" />
                 </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -111,7 +113,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="30dp"
             android:textSize="22sp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:text="Course Details"/>
         <TextView
             android:layout_below="@id/cdd"
@@ -121,6 +123,7 @@
             android:id="@+id/monthstv"
             android:textStyle="bold"
             android:fontFamily="@font/product_sans_reg"
+            android:textColor="#AFAFAF"
             android:text="3 Months Plan"
             android:textSize="18sp"
             android:layout_height="wrap_content"/>
@@ -130,7 +133,8 @@
             android:id="@+id/startdatetv"
             android:layout_marginTop="5dp"
             android:layout_marginStart="40dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
+            android:textColor="@color/typography_snow"
             android:fontFamily="@font/product_sans_reg"
             android:text="Start Date"
             android:textSize="18sp"
@@ -139,19 +143,22 @@
             android:layout_below="@id/monthstv"
             android:layout_width="wrap_content"
             android:id="@+id/startdateval"
+            android:textColor="@color/typography_snow"
             android:layout_marginTop="5dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="12/03/2019"
             android:textSize="16sp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
         <TextView
             android:layout_below="@id/startdatetv"
             android:layout_width="wrap_content"
             android:id="@+id/enddatetv"
-            android:textStyle="bold"
+            android:textColor="@color/typography_snow"
+            android:textStyle="normal"
             android:layout_marginTop="5dp"
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
@@ -164,12 +171,14 @@
             android:id="@+id/enddateval"
             android:layout_marginTop="5dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginStart="40dp"
+            android:textColor="@color/typography_snow"
             android:fontFamily="@font/product_sans_reg"
             android:text="12/06/2019"
             android:textSize="16sp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
         <EditText
             android:visibility="gone"
             android:layout_below="@id/cdd"
@@ -186,13 +195,14 @@
             android:layout_width="wrap_content"
             android:textColor="@color/gtstrtbck"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="30dp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textSize="22sp"
             android:text="Payment Details"/>
         <TextView
+            android:textColor="@color/typography_snow"
             android:layout_below="@id/pdd"
             android:layout_width="wrap_content"
             android:id="@+id/pddtv"
@@ -219,13 +229,14 @@
             android:layout_width="wrap_content"
             android:textColor="@color/gtstrtbck"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="30dp"
             android:textSize="22sp"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:text="Member Information"/>
         <TextView
+            android:textColor="@color/typography_snow"
             android:layout_below="@id/pid"
             android:id="@+id/emailtvdet"
             android:layout_width="wrap_content"
@@ -233,22 +244,25 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="E Mail"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textSize="18sp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:textColor="@color/typography_snow"
             android:layout_below="@id/pid"
             android:id="@+id/emailvaldet"
             android:layout_width="wrap_content"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="example@gmail.com"
             android:textSize="18sp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
         <TextView
+            android:textColor="@color/typography_snow"
             android:layout_below="@id/emailtvdet"
             android:id="@+id/phonetvdet"
             android:layout_width="wrap_content"
@@ -256,10 +270,11 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="Phone"
-            android:textStyle="bold"
+            android:textStyle="normal"
             android:textSize="18sp"
             android:layout_height="wrap_content"/>
         <TextView
+            android:textColor="@color/typography_snow"
             android:layout_below="@id/emailtvdet"
             android:id="@+id/phonevaldet"
             android:layout_width="wrap_content"
@@ -268,8 +283,9 @@
             android:fontFamily="@font/product_sans_reg"
             android:text="7684857647"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="30dp"
+            android:layout_marginEnd="40dp"
             android:textSize="18sp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:textStyle="bold"/>
     </RelativeLayout>
 </RelativeLayout>
