@@ -6,7 +6,7 @@
     >
 
     <RelativeLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/memblay"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -59,14 +59,14 @@
         <SearchView
             android:id="@+id/searchmemb"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_centerInParent="true"
             android:queryHint="Search Members" />
     </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         android:layout_below="@id/membsearchlay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

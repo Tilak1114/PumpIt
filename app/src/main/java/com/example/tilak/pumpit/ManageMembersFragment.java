@@ -1,13 +1,17 @@
 package com.example.tilak.pumpit;
 
+import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -38,7 +43,9 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -55,14 +62,16 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ManageMembersFragment extends Fragment {
+public class ManageMembersFragment extends Fragment implements MemberAdapter.ItemclickListener {
     private static final String TAG = "FIREBASE";
 
     RelativeLayout addNewMembFab;
     RecyclerView recyclerView;
     SearchView searchView;
+    TextView activemembs;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     private CollectionReference memberref = db.collection("Gyms/EvolveFitness/Members");
     private MemberAdapter adapter;
 
@@ -77,14 +86,14 @@ public class ManageMembersFragment extends Fragment {
 
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
         searchView = MemberManage.findViewById(R.id.searchmemb);
+        activemembs = MemberManage.findViewById(R.id.mngmmbcnt);
+        recyclerView = MemberManage.findViewById(R.id.membRecyclerview);
 
         return MemberManage;
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
-
-        recyclerView = view.findViewById(R.id.membRecyclerview);
 
         setUpRecyclerView();
         
@@ -111,7 +120,7 @@ public class ManageMembersFragment extends Fragment {
     private void filter(String query) {
         Query searchQ = memberref.whereEqualTo("firstName", query);
         FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(searchQ, Member.class).build();
-        adapter = new MemberAdapter(options, getContext());
+        adapter = new MemberAdapter(options, getContext(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
@@ -119,7 +128,8 @@ public class ManageMembersFragment extends Fragment {
     private void setUpRecyclerView() {
         Query query = memberref;
         FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(query, Member.class).build();
-        adapter = new MemberAdapter(options, getContext());
+        adapter = new MemberAdapter(options, getContext(), this);
+        activemembs.setText(String.valueOf(adapter.getMembCount())+" Active Members");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
@@ -134,5 +144,29 @@ public class ManageMembersFragment extends Fragment {
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void onItemClick(String name, String plan, String payment, String profileurl, String phone) {
+        Intent i = new Intent(getActivity(), MemberDetails.class);
+        i.putExtra("name", name);
+        i.putExtra("plan", plan);
+        i.putExtra("payment", payment);
+        i.putExtra("profileurl", profileurl);
+        i.putExtra("phone", phone);
+        startActivity(i);
+    }
+
+    @Override
+    public void callItem(String phone) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        Toast.makeText(getContext(), phone, Toast.LENGTH_LONG).show();
+        callIntent.setData(Uri.parse("tel:"+phone));
+
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        startActivity(callIntent);
     }
 }
