@@ -62,7 +62,7 @@ public class NewMembFrag1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View NewMembView1 = inflater.inflate(R.layout.newmemb_frag1, container, false);
         mAuth = FirebaseAuth.getInstance();
-        progressDialog = new ProgressDialog(getContext());
+        progressDialog = new ProgressDialog(getContext(), R.style.ProgressDialogStyle);
         firstName = NewMembView1.findViewById(R.id.newMembFN);
         avatar = NewMembView1.findViewById(R.id.newMembAvatar);
         lastName = NewMembView1.findViewById(R.id.newMembLN);

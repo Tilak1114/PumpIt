@@ -34,5 +34,21 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="AlertDialogStyle" parent="Base.Theme.AppCompat.Dialog.Alert">
+        <item name="android:colorAccent">#f3f3f3</item>
+        <item name="android:textColor">@color/gtstrtbck</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:fontFamily">@font/product_sans_reg</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProgressDialogStyle" parent="android:Theme.DeviceDefault.Light.Dialog">
+        <item name="android:colorAccent">#f3f3f3</item>
+        <item name="android:textColor">@color/gtstrtbck</item>
+        <item name="android:textColorPrimary">#000000</item>
+        <item name="android:fontFamily">@font/product_sans_reg</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 
 </resources>

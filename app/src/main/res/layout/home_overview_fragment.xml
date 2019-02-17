@@ -13,7 +13,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/helvetica_neue_lightext"
+        android:fontFamily="@font/product_sans_reg"
         android:text="@string/members"
         android:textColor="@android:color/black"
         android:textSize="16sp"
@@ -35,7 +35,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/helvetica_neue_lightext"
+        android:fontFamily="@font/product_sans_reg"
         android:elevation="4dp"
         android:translationZ="5dp"
         android:textStyle="bold"
@@ -86,7 +86,7 @@
                 android:background="@drawable/memb_btn_rect_grad"
                 android:elevation="4dp"
                 android:textStyle="bold"
-                android:fontFamily="@font/helvetica_neue_lightext"
+                android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
                 android:text="Active"
                 android:textColor="@color/typography_black"
@@ -100,7 +100,7 @@
                 android:background="@drawable/gradientcir"
                 android:elevation="4dp"
                 android:textStyle="bold"
-                android:fontFamily="@font/helvetica_neue_lightext"
+                android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
                 android:text="24"
                 android:textColor="@color/primary_rust"
@@ -122,7 +122,7 @@
                 android:layout_gravity="bottom"
                 android:background="@drawable/memb_btn_rect_grad"
                 android:elevation="4dp"
-                android:fontFamily="@font/helvetica_neue_lightext"
+                android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:text="Overdue"
@@ -136,7 +136,7 @@
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/gradientcir"
                 android:elevation="4dp"
-                android:fontFamily="@font/helvetica_neue_lightext"
+                android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
                 android:textStyle="bold"
                 android:text="1"
@@ -154,7 +154,7 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/helvetica_neue_lightext"
+        android:fontFamily="@font/product_sans_reg"
         android:text="Quick links"
         android:textColor="@android:color/black"
         android:textSize="16sp"
@@ -184,104 +184,88 @@
         app:layout_constraintTop_toBottomOf="@+id/qcklnks"
         app:layout_constraintVertical_bias="0.003">
 
-        <RelativeLayout
-            android:id="@+id/addmembfab"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/customfab"
-            tools:layout_editor_absoluteX="26dp"
-            tools:layout_editor_absoluteY="342dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:layout_weight="90"
+                android:id="@+id/addmembfab"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/customfab"
+                tools:layout_editor_absoluteX="26dp"
+                tools:layout_editor_absoluteY="342dp">
 
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:elevation="10dp"
-                android:translationZ="12dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="13dp"
-                android:background="@drawable/newusr"
-                android:backgroundTint="@android:color/white" />
-        </RelativeLayout>
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:elevation="10dp"
+                    android:translationZ="12dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@drawable/newusr"
+                    android:backgroundTint="@android:color/white" />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="75dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="11dp"
+                android:layout_height="wrap_content"
+                android:text="Add Member"
+                android:fontFamily="@font/product_sans_reg"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:layout_weight="10"/>
+        </LinearLayout>
 
-        <RelativeLayout
-            android:id="@+id/announcerfab"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/customfab"
-            android:backgroundTint="@android:color/holo_blue_dark"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="342dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:id="@+id/announcerfab"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/customfab"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                tools:layout_editor_absoluteX="116dp"
+                tools:layout_editor_absoluteY="342dp">
 
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:elevation="10dp"
-                android:translationZ="12dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="12dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="13dp"
-                android:layout_marginBottom="13dp"
-                android:background="@drawable/ic_message"
-                android:backgroundTint="@android:color/white"  />
-        </RelativeLayout>
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:elevation="10dp"
+                    android:translationZ="12dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="13dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@drawable/ic_message"
+                    android:backgroundTint="@android:color/white"  />
+            </RelativeLayout>
+            <TextView
+                android:layout_width="75dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="11dp"
+                android:layout_height="wrap_content"
+                android:text="Message"
+                android:fontFamily="@font/product_sans_reg"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:layout_weight="10"/>
+        </LinearLayout>
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/addmembtv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/qcklnkslayout"
-        android:layout_marginStart="18dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:fontFamily="@font/helvetica_neue_lightext"
-        android:elevation="8dp"
-        android:translationZ="10dp"
-        android:text="Add Member"
-        android:textColor="@color/gtstrtbck"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/qcklnkslayout"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="19dp"
-        android:layout_below="@id/qcklnkslayout"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:translationZ="10dp"
-        android:elevation="8dp"
-        android:layout_toEndOf="@id/qcklnkslayout"
-        android:fontFamily="@font/helvetica_neue_lightext"
-        android:text="Message"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toEndOf="@+id/addmembtv"
-        app:layout_constraintTop_toBottomOf="@+id/qcklnkslayout"
-        app:layout_constraintVertical_bias="0.0" />
-
 </android.support.constraint.ConstraintLayout>

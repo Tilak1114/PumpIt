@@ -25,7 +25,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:text="Members"
             android:textColor="@color/typography_black"
-            android:textSize="28sp"
+            android:textSize="26sp"
             android:textStyle="bold"
             android:translationZ="10dp" />
 
@@ -41,7 +41,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:text="156 Active Members"
             android:textColor="@color/typography_slate"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="normal" />
     </RelativeLayout>
 

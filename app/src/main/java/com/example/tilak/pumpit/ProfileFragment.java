@@ -33,7 +33,8 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Context context;
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle);
+                builder.setTitle("Confirmation");
                 builder.setMessage("Are you sure you want to logout?");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override

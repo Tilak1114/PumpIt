@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp">
         <ImageView
-            android:id="@+id/cancel"
+            android:id="@+id/cancelmembprofile"
             android:layout_width="25dp"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_height="25dp"
             android:backgroundTint="@color/gtstrtbck"
             android:layout_alignParentEnd="true"
@@ -20,8 +22,9 @@
             android:layout_marginEnd="30dp"
             android:background="@drawable/icn_close"/>
         <ImageView
-            android:layout_toStartOf="@id/cancel"
+            android:layout_toStartOf="@id/cancelmembprofile"
             android:layout_width="28dp"
+            android:id="@+id/editmembprofile"
             android:layout_height="28dp"
             android:layout_centerVertical="true"
             android:layout_marginEnd="30dp"
@@ -53,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="90">
 
@@ -65,16 +68,18 @@
                     android:fontFamily="@font/product_sans_reg"
                     android:text="Example name"
                     android:textColor="@color/typography_snow"
-                    android:textSize="25sp"
+                    android:textSize="22sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:layout_marginTop="3dp"
                     android:id="@+id/activestatustv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/MemberNameDetails"
                     android:layout_gravity="center"
                     android:layout_weight="3"
+                    android:layout_marginBottom="3dp"
                     android:fontFamily="@font/product_sans_reg"
                     android:text="Active"
                     android:textColor="@android:color/holo_blue_dark"
@@ -84,18 +89,26 @@
                     android:layout_width="160dp"
                     android:layout_height="40dp"
                     android:layout_below="@id/activestatustv"
-                    android:layout_marginTop="5dp"
                     android:background="@drawable/roundedbtncolor">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_centerVertical="true"
                         android:fontFamily="@font/product_sans_reg"
                         android:text="Send Message"
+                        android:layout_marginStart="10dp"
+                        android:textSize="16sp"
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
+                    <ImageView
+                        android:layout_height="20dp"
+                        android:layout_width="20dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/mess"
+                        android:backgroundTint="@android:color/white"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="5dp"/>
                 </RelativeLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -112,7 +125,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="30dp"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal"
             android:text="Course Details"/>
         <TextView
@@ -123,9 +136,9 @@
             android:id="@+id/monthstv"
             android:textStyle="bold"
             android:fontFamily="@font/product_sans_reg"
-            android:textColor="#AFAFAF"
+            android:textColor="@color/typography_snow"
             android:text="3 Months Plan"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_below="@id/monthstv"
@@ -137,7 +150,7 @@
             android:textColor="@color/typography_snow"
             android:fontFamily="@font/product_sans_reg"
             android:text="Start Date"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_below="@id/monthstv"
@@ -150,7 +163,7 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="12/03/2019"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
         <TextView
@@ -163,7 +176,7 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="End Date"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_below="@id/startdatetv"
@@ -176,7 +189,7 @@
             android:textColor="@color/typography_snow"
             android:fontFamily="@font/product_sans_reg"
             android:text="12/06/2019"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
         <EditText
@@ -187,7 +200,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="45dp"
             android:fontFamily="@font/product_sans_reg"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/pdd"
@@ -199,7 +212,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="30dp"
             android:textStyle="normal"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:text="Payment Details"/>
         <TextView
             android:textColor="@color/typography_snow"
@@ -211,7 +224,7 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="Fees Paid"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <EditText
             android:visibility="gone"
@@ -221,7 +234,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginStart="45dp"
             android:fontFamily="@font/product_sans_reg"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/pid"
@@ -232,7 +245,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="30dp"
-            android:textSize="22sp"
+            android:textSize="20sp"
             android:textStyle="normal"
             android:text="Member Information"/>
         <TextView
@@ -245,7 +258,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:text="E Mail"
             android:textStyle="normal"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:textColor="@color/typography_snow"
@@ -258,7 +271,7 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="example@gmail.com"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
         <TextView
@@ -271,7 +284,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:text="Phone"
             android:textStyle="normal"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:layout_height="wrap_content"/>
         <TextView
             android:textColor="@color/typography_snow"
@@ -284,8 +297,26 @@
             android:text="7684857647"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="40dp"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/deletememb"
+        android:visibility="invisible"
+        android:clickable="false"
+        android:elevation="8dp"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/delete_icon"
+            android:layout_centerVertical="true"
+            android:backgroundTint="@android:color/white"
+            android:layout_centerHorizontal="true"/>
     </RelativeLayout>
 </RelativeLayout>
