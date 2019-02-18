@@ -68,7 +68,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     RelativeLayout addNewMembFab;
     RecyclerView recyclerView;
     SearchView searchView;
-    TextView activemembs;
+    TextView membcount;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -86,7 +86,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
         searchView = MemberManage.findViewById(R.id.searchmemb);
-        activemembs = MemberManage.findViewById(R.id.mngmmbcnt);
+        membcount = MemberManage.findViewById(R.id.mngmmbcnt);
         recyclerView = MemberManage.findViewById(R.id.membRecyclerview);
 
         return MemberManage;
@@ -94,6 +94,15 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
+
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String cnt = documentSnapshot.getString("allmembcount");
+                membcount.setText(cnt+" Members");
+            }
+        });
 
         setUpRecyclerView();
         
@@ -129,7 +138,6 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
         Query query = memberref;
         FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(query, Member.class).build();
         adapter = new MemberAdapter(options, getContext(), this);
-        activemembs.setText(String.valueOf(adapter.getMembCount())+" Active Members");
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
@@ -144,6 +152,19 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     public void onStop() {
         super.onStop();
         adapter.stopListening();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String cnt = documentSnapshot.getString("allmembcount");
+                membcount.setText(cnt+" Members");
+            }
+        });
     }
 
     @Override

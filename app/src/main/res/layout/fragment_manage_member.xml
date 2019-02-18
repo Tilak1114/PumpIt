@@ -39,7 +39,7 @@
             android:translationZ="10dp"
             android:elevation="8dp"
             android:fontFamily="@font/product_sans_reg"
-            android:text="156 Active Members"
+            android:text=" Members"
             android:textColor="@color/typography_slate"
             android:textSize="16sp"
             android:textStyle="normal" />

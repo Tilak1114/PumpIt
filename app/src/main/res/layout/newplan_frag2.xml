@@ -42,7 +42,7 @@
         android:drawSelectorOnTop="true"
         android:gravity="center"
         android:layout_above="@id/newPlanNext2"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="20dp"
         android:numColumns="2"
         android:horizontalSpacing="5dp"
         android:stretchMode="columnWidth"

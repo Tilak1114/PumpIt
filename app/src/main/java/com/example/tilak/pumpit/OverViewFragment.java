@@ -19,21 +19,27 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class OverViewFragment extends Fragment {
     Dialog myDialog;
     RelativeLayout addmemb;
     FirebaseAuth firebaseAuth;
     ImageView cancel;
-    TextView allmembs;
+    TextView allmembs, activememb, odmemb;
     Button testlogout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
+        activememb = ovfragview.findViewById(R.id.activecount);
+        odmemb = ovfragview.findViewById(R.id.odcount);
         myDialog = new Dialog(ovfragview.getContext(), android.R.style.Theme_Light_NoTitleBar);
         myDialog.setContentView(R.layout.newmemb_popup);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -45,6 +51,18 @@ public class OverViewFragment extends Fragment {
         addmemb = ovfragview.findViewById(R.id.addmembfab);
         cancel = myDialog.findViewById(R.id.cancelpopup);
         testlogout = myDialog.findViewById(R.id.testlogout);
+
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String actcnt = documentSnapshot.getString("activemembcount");
+                String odcnt = documentSnapshot.getString("overduemembcount");
+                activememb.setText(actcnt);
+                odmemb.setText(odcnt);
+            }
+        });
+
         return ovfragview;
     }
 

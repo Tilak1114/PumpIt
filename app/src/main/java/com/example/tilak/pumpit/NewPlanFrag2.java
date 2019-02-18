@@ -17,11 +17,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,9 +32,9 @@ public class NewPlanFrag2 extends Fragment {
     RelativeLayout next;
     GridView gridView;
     String PlanTitle;
-    Integer coverId;
+    Integer coverId = R.drawable.gridwlp6;
+    CustomAdapter adapter;
     NewPlanFrag2.NextBtnListener nextBtnListener;
-
     private Integer[] mThumbIds = {
             R.drawable.gridwlp1, R.drawable.gridwlp2,
             R.drawable.gridwlp3, R.drawable.gridwlp4,
@@ -56,8 +58,20 @@ public class NewPlanFrag2 extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        gridView.setAdapter(new CustomAdapter());
-        coverId = R.drawable.gridwlp5;
+        adapter = new CustomAdapter();
+        gridView.setAdapter(adapter);
+        gridView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                coverId = Integer.parseInt(adapter.getItem(position).toString());
+                Toast.makeText(getContext(), coverId.toString(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,20 +114,20 @@ public class NewPlanFrag2 extends Fragment {
 
         @Override
         public Object getItem(int i) {
-            return null;
+            return mThumbIds[i];
         }
 
         @Override
         public long getItemId(int i) {
-            return 0;
+            return i;
         }
 
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             View view1 = getLayoutInflater().inflate(R.layout.grid_cust_lay,null);
             //getting view in row_data
-            RelativeLayout image = view1.findViewById(R.id.gridImg);
-            image.setBackgroundResource(mThumbIds[i]);
+            ImageView image = view1.findViewById(R.id.gridImg);
+            Picasso.with(getContext()).load(mThumbIds[i]).resize(220, 180).into(image);
             return view1;
         }
     }

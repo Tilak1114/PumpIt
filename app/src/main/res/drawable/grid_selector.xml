@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- grid view item pressed state -->
+    <item
+        android:state_pressed="true"
+        android:color="@android:color/darker_gray"
+        />
+    <!-- grid view item selected state -->
+    <item
+        android:drawable="@color/gtstrtbck"
+        />
+</selector>

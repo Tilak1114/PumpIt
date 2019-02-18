@@ -100,9 +100,10 @@
                 android:background="@drawable/gradientcir"
                 android:elevation="4dp"
                 android:textStyle="bold"
+                android:id="@+id/activecount"
                 android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
-                android:text="24"
+                android:text=""
                 android:textColor="@color/primary_rust"
                 android:textSize="16sp"
                 android:layout_margin="3dp" />
@@ -138,8 +139,9 @@
                 android:elevation="4dp"
                 android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
+                android:id="@+id/odcount"
                 android:textStyle="bold"
-                android:text="1"
+                android:text=""
                 android:textColor="@color/primary_rust"
                 android:textSize="16sp"
                 android:layout_margin="3dp"/>

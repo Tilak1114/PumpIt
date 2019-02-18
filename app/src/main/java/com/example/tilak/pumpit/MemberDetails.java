@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
@@ -83,6 +85,16 @@ public class MemberDetails extends AppCompatActivity {
                                 document(membname.getText().toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
+                                final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+                                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        String cnt = documentSnapshot.getString("allmembcount");
+                                        Integer cnti = Integer.valueOf(cnt);
+                                        cnti = cnti -1;
+                                        dr.update("allmembcount", cnti.toString());
+                                    }
+                                });
                                 progressDialog.dismiss();
                                 finish();
                             }
