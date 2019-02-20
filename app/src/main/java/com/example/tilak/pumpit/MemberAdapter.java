@@ -48,8 +48,8 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull MemberHolder holder, int position, @NonNull final Member model) {
-        final String Fullname = model.getfName()+" "+model.getlName();
-        holder.membName.setText(Fullname);
+
+        holder.membName.setText(model.getFirstName()+" "+model.getLastName());
         holder.membPlan.setText(model.getMembPlan());
         if(model.getPayment().equals("Fees Paid")){
             holder.membPaymentStatus.setTextColor(context.getResources().getColor(android.R.color.holo_blue_dark));
@@ -61,13 +61,19 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
         holder.parentlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemclickListener.onItemClick(Fullname, model.getMembPlan(),
-                        model.getPayment(), model.getProfileUrl(), model.getPhoneNo());
+                itemclickListener.onItemClick( model.getFirstName()+" "+model.getLastName(),
+                        model.getMembPlan(), model.getPayment(), model.getProfileUrl(),
+                        model.getPhoneNo());
             }
         });
         holder.membPaymentStatus.setText(model.getPayment());
         if(model.getProfileUrl()!=null){
-            Picasso.with(context).load(model.getProfileUrl()).into(holder.membProfilePic);
+            if(model.getProfileUrl().equals(String.valueOf(R.drawable.avatar))){
+                Picasso.with(context).load(R.drawable.avatar).into(holder.membProfilePic);
+            }
+            else{
+                Picasso.with(context).load(model.getProfileUrl()).into(holder.membProfilePic);
+            }
         }
         else{
             Picasso.with(context).load(model.getProfileUrl())

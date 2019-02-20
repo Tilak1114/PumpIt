@@ -25,7 +25,7 @@ public class MemberDetails extends AppCompatActivity {
     TextView membname, plan, phone, payment;
     ImageView close, edit;
     ProgressDialog progressDialog;
-    RelativeLayout delmemb;
+    RelativeLayout editlay, editdef;
     CircleImageView membprofile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,11 @@ public class MemberDetails extends AppCompatActivity {
         plan = findViewById(R.id.monthstv);
         phone = findViewById(R.id.phonevaldet);
         payment = findViewById(R.id.pddtv);
+
+        editlay = findViewById(R.id.editlay);
+        editdef = findViewById(R.id.topmembmenu);
         membprofile = findViewById(R.id.membProfilepicDetails);
+
         Intent i= getIntent();
         Log.d("Intentchk", i.getStringExtra("name"));
         membname.setText(i.getStringExtra("name"));
@@ -50,7 +54,7 @@ public class MemberDetails extends AppCompatActivity {
         close = findViewById(R.id.cancelmembprofile);
         membname = findViewById(R.id.MemberNameDetails);
         edit = findViewById(R.id.editmembprofile);
-        delmemb = findViewById(R.id.deletememb);
+
         progressDialog = new ProgressDialog(MemberDetails.this, R.style.ProgressDialogStyle);
 
         close.setOnClickListener(new View.OnClickListener() {
@@ -63,51 +67,9 @@ public class MemberDetails extends AppCompatActivity {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delmemb.setVisibility(View.VISIBLE);
-                delmemb.setClickable(true);
-            }
-        });
-
-        delmemb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(MemberDetails.this, R.style.AlertDialogStyle);
-                builder.setTitle("Delete");
-                builder.setMessage("Do you want to delete this member?");
-                builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        progressDialog.setTitle("Deleting Member");
-                        progressDialog.show();
-                        FirebaseFirestore.getInstance().collection("Gyms/EvolveFitness/Members").
-                                document(membname.getText().toString()).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void aVoid) {
-                                final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
-                                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String cnt = documentSnapshot.getString("allmembcount");
-                                        Integer cnti = Integer.valueOf(cnt);
-                                        cnti = cnti -1;
-                                        dr.update("allmembcount", cnti.toString());
-                                    }
-                                });
-                                progressDialog.dismiss();
-                                finish();
-                            }
-                        });
-                        dialog.dismiss();
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
+                Intent editintent = new Intent(MemberDetails.this, MemberEdit.class);
+                editintent.putExtra("name", membname.getText().toString());
+                startActivity(editintent);
             }
         });
     }

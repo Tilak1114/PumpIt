@@ -144,6 +144,15 @@ public class NewMembFrag1 extends Fragment {
                 }
             });
         }
+        else if(uriProfileImage==null){
+            DocumentReference dr = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
+                    "/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
+            Map<String, Object> data = new HashMap<String, Object>();
+            Integer avatarid = R.drawable.avatar;
+            data.put("profileUrl", avatarid.toString());
+            dr.set(data, SetOptions.merge());
+            nextBtnListener.onNewMembBtnClicked1(true);
+        }
     }
     private void saveUserInfo() {
 

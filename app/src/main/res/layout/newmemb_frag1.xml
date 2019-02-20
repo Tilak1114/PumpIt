@@ -61,6 +61,8 @@
             android:id="@+id/newMembFN"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:singleLine="true"
+            android:maxLength="10"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="22dp"
             android:layout_marginEnd="22dp"
@@ -96,10 +98,12 @@
                 android:id="@+id/newMembLN"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
+                android:singleLine="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
+                android:maxLength="10"
                 android:background="@drawable/memb_btn_rect"
                 android:fontFamily="@font/roboto" />
         </RelativeLayout>
@@ -135,6 +139,9 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="22dp"
                 android:layout_marginEnd="22dp"
+                android:singleLine="true"
+                android:inputType="phone"
+                android:maxLength="10"
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/memb_btn_rect"
                 android:fontFamily="@font/roboto" />

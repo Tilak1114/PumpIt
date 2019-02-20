@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/list_memb_bck"
     android:elevation="1dp"
-
     android:layout_marginTop="5dp"
     android:layout_marginBottom="5dp"
     android:id="@+id/parent_lay"
@@ -37,7 +36,7 @@
             <TextView
                 android:id="@+id/MemberName"
                 android:text="Example name"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_width="wrap_content"
@@ -45,7 +44,7 @@
 
             <TextView
                 android:id="@+id/PlanDetails"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:text="6 months plan"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_below="@id/MemberName"
@@ -54,7 +53,7 @@
                 />
             <TextView
                 android:id="@+id/PaymentStatus"
-                android:textSize="15sp"
+                android:textSize="14sp"
                 android:layout_alignParentBottom="true"
                 android:text="Fees Paid"
                 android:fontFamily="@font/product_sans_reg"

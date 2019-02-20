@@ -105,6 +105,18 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
         });
 
         setUpRecyclerView();
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+                super.onScrolled(rv, dx, dy);
+                if (dy > 0 && addNewMembFab.getVisibility() == View.VISIBLE) {
+                    addNewMembFab.setVisibility(View.INVISIBLE);
+                } else if (dy < 0 && addNewMembFab.getVisibility() != View.VISIBLE) {
+                    addNewMembFab.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         
         addNewMembFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +124,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
                 startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

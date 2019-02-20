@@ -31,7 +31,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1.NextBtnListener, NewMembFrag2.NextBtnListener{
+public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1.NextBtnListener, NewMembFrag2.NextBtnListener, NewPlanFrag3.NextBtnListener{
 
     StepView stepView;
     FrameLayout newmembcont;
@@ -57,6 +57,14 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
 
     @Override
     public void onNewMembBtnClicked2(Boolean result) {
-        startActivity(new Intent(NewMemberActivity.this, InAppActivity.class));
+        if(result){
+            getSupportFragmentManager().beginTransaction().replace(R.id.newMemb_container,
+                    new NewMembFrag3()).commit();
+        }
+    }
+
+    @Override
+    public void onNewPlanBtnClicked3(Boolean result) {
+        finish();
     }
 }

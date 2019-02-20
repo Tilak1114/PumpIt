@@ -15,11 +15,11 @@ public class Member {
         this.profileUrl = profileUrl;
     }
 
-    public String getfName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public String getlName() {
+    public String getLastName() {
         return lastName;
     }
 
@@ -35,7 +35,7 @@ public class Member {
         return phoneNo;
     }
 
-    public String getProfileUrl(){
+    public String getProfileUrl() {
         return profileUrl;
     }
 }
