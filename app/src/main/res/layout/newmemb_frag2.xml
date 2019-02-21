@@ -30,6 +30,17 @@
 
     </RelativeLayout>
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@id/newmembtitle2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/planSelectorRecyclerview">
+
+    </android.support.v7.widget.RecyclerView>
+
     <RelativeLayout
         android:id="@+id/newMembNext2"
         android:elevation="8dp"
