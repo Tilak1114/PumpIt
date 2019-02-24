@@ -4,16 +4,27 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MemberEdit extends AppCompatActivity {
     ProgressDialog progressDialog;
@@ -66,6 +77,7 @@ public class MemberEdit extends AppCompatActivity {
                                     }
                                 });
                                 progressDialog.dismiss();
+                                setupPlansWithCount();
                                 finish();
                             }
                         });
@@ -80,5 +92,53 @@ public class MemberEdit extends AppCompatActivity {
                 }).create().show();
             }
         });
+    }
+    public void setupPlansWithCount(){
+        final ArrayList<String> planNameList = new ArrayList<>();
+        final ArrayList<Integer> planCountList = new ArrayList<>();
+        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/EvolveFitness/Plans");
+        cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    //Log.d("planArri", document.getId());
+                    if(!planNameList.contains(document.getId())){
+                        planNameList.add(document.getId());
+                    }
+                }
+                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/EvolveFitness/Members");
+                membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            Log.d("planNamelst", String.valueOf(planNameList.size()));
+                            for(int i = 0; i<planNameList.size(); i++){
+                                planCountList.add(0);
+                            }
+                            Log.d("plancntsize", String.valueOf(planCountList.size()));
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                for(int i = 0; i<planNameList.size(); i++){
+                                    if(planNameList.get(i).equals(document.getString("planName"))){
+                                        Integer cnt = planCountList.get(i);
+                                        cnt = cnt+1;
+                                        planCountList.set(i, cnt);
+                                    }
+                                }
+                            }
+                            for(int j = 0; j<planCountList.size();j++){
+                                Log.d("plancntval", String.valueOf(planCountList.get(j)));
+                            }
+                        }
+                    }
+                });
+            }
+        });
+        for(int i =0; i<planNameList.size(); i++){
+            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+                    "/Plans/"+planNameList.get(i));
+            Map<String, Object> data = new HashMap<String, Object>();
+            data.put("planMembCount", planCountList.get(i));
+            writeRef.set(data);
+        }
     }
 }

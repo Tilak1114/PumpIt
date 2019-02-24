@@ -4,18 +4,19 @@ import android.content.Intent;
 
 public class Plan {
     Integer coverId;
-    String planDuration, planFeatures, planName, planPrice;
+    String planDuration, planFeatures, planName, planPrice, planMembCount;
 
     public Plan(){
 
     }
 
-    public Plan(Integer coverId, String planDuration, String planFeatures, String planName, String planPrice) {
+    public Plan(Integer coverId, String planDuration, String planFeatures, String planMembCount, String planName, String planPrice) {
         this.coverId = coverId;
         this.planDuration = planDuration;
         this.planFeatures = planFeatures;
         this.planName = planName;
         this.planPrice = planPrice;
+        this.planMembCount = planMembCount;
     }
 
     public Integer getCoverId() {
@@ -36,5 +37,9 @@ public class Plan {
 
     public String getPlanPrice() {
         return planPrice;
+    }
+
+    public String getPlanMembCount() {
+        return planMembCount;
     }
 }

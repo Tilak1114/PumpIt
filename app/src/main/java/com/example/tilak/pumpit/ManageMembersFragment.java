@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -70,10 +71,16 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     SearchView searchView;
     TextView membcount;
 
+    ArrayList<String> planNameList = new ArrayList<>();
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     private CollectionReference memberref = db.collection("Gyms/EvolveFitness/Members");
     private MemberAdapter adapter;
+
+    public ManageMembersFragment(){
+
+    }
 
     @Nullable
     @Override
@@ -128,7 +135,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                filter(query);
+                //filter(query);
                 return false;
             }
 

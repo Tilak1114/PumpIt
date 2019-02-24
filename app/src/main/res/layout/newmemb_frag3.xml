@@ -145,8 +145,6 @@
         android:translationZ="10dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:clickable="false"
-        android:focusable="false"
         android:background="@drawable/getstartedbtn"
         android:layout_alignParentBottom="true">
         <TextView

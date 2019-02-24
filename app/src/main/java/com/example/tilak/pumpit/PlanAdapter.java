@@ -23,7 +23,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.PlanViewHolder> {
-
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
      * FirestoreRecyclerOptions} for configuration options.
@@ -39,7 +38,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
 
         holder.planDuration.setText(model.getPlanDuration());
         holder.coverLay.setBackgroundResource(model.getCoverId());
-
+        holder.planResMembCnt.setText(model.getPlanMembCount()+" Members");
         holder.coverLay.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -72,11 +71,12 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     }
 
     class PlanViewHolder extends RecyclerView.ViewHolder {
-        TextView planDuration;
+        TextView planDuration, planResMembCnt;
         RelativeLayout coverLay;
         RelativeLayout delete;
         public PlanViewHolder(View itemView) {
             super(itemView);
+            planResMembCnt = itemView.findViewById(R.id.newPlanmembCnt);
             planDuration = itemView.findViewById(R.id.newPlanDur);
             coverLay = itemView.findViewById(R.id.newPlanlay);
             delete = itemView.findViewById(R.id.deleteIcon);

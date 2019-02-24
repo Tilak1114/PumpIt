@@ -54,7 +54,7 @@ public class NewMembFrag1 extends Fragment {
     CircleImageView avatar;
 
     public interface NextBtnListener{
-        void onNewMembBtnClicked1(Boolean result);
+        void onNewMembBtnClicked1(Boolean result, String membName);
     }
 
     @Nullable
@@ -138,7 +138,7 @@ public class NewMembFrag1 extends Fragment {
                             Map<String, Object> data = new HashMap<String, Object>();
                             data.put("profileUrl", downloadUrl);
                             documentReference.set(data, SetOptions.merge());
-                            nextBtnListener.onNewMembBtnClicked1(true);
+                            nextBtnListener.onNewMembBtnClicked1(true, firstName.getText().toString()+" "+lastName.getText().toString());
                         }
                     });
                 }
@@ -151,7 +151,7 @@ public class NewMembFrag1 extends Fragment {
             Integer avatarid = R.drawable.avatar;
             data.put("profileUrl", avatarid.toString());
             dr.set(data, SetOptions.merge());
-            nextBtnListener.onNewMembBtnClicked1(true);
+            nextBtnListener.onNewMembBtnClicked1(true, firstName.getText().toString()+" "+lastName.getText().toString());
         }
     }
     private void saveUserInfo() {
@@ -186,6 +186,7 @@ public class NewMembFrag1 extends Fragment {
             data.put("lastName", MemberLN);
             data.put("membPlan", "");
             data.put("payment", "");
+            data.put("planName", "");
             data.put("phoneNo", MemberPhno);
             documentReference.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override

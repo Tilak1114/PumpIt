@@ -1,11 +1,13 @@
 package com.example.tilak.pumpit;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,16 +18,29 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapter.MemberHolder> {
     protected Context context;
     Integer count;
+    ArrayList<String> planNameList = new ArrayList<>();
+    ArrayList<String> planCountList = new ArrayList<>();
     ItemclickListener itemclickListener;
 
     /**
@@ -34,8 +49,10 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
      *
      * @param options
      */
-    public MemberAdapter(@NonNull FirestoreRecyclerOptions options, Context context, ItemclickListener itemclickListener) {
+    public MemberAdapter(@NonNull FirestoreRecyclerOptions options, Context context,
+                         ItemclickListener itemclickListener) {
         super(options);
+
         count = options.getSnapshots().toArray().length;
         this.context = context;
         this.itemclickListener = itemclickListener;
@@ -48,6 +65,26 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
 
     @Override
     protected void onBindViewHolder(@NonNull MemberHolder holder, int position, @NonNull final Member model) {
+
+        /*Integer planCnt = 0;
+        if(plnList.size()!=0){
+            for(int i=0; i<plnList.size(); i++){
+                if(model.getPlanName().equals(plnList.get(i))){
+                    if(planCountList.get(i)==null){
+                        planCountList.set(i, String.valueOf(1));
+                    }
+                    else if(planCountList.get(i)!=null){
+                        planCnt = Integer.valueOf(planCountList.get(i));
+                        planCnt = planCnt+1;
+                        planCountList.set(i, String.valueOf(planCnt));
+                    }
+                }
+            }
+            for(int j =0; j<planCountList.size();j++){
+                Log.d("countchk", planCountList.get(j));
+            }
+
+        }*/
 
         holder.membName.setText(model.getFirstName()+" "+model.getLastName());
         holder.membPlan.setText(model.getMembPlan());
