@@ -27,12 +27,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class OverViewFragment extends Fragment {
-    Dialog myDialog;
     RelativeLayout addmemb;
     FirebaseAuth firebaseAuth;
-    ImageView cancel;
     TextView allmembs, activememb, odmemb;
-    Button testlogout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
@@ -40,8 +37,6 @@ public class OverViewFragment extends Fragment {
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
         activememb = ovfragview.findViewById(R.id.activecount);
         odmemb = ovfragview.findViewById(R.id.odcount);
-        myDialog = new Dialog(ovfragview.getContext(), android.R.style.Theme_Light_NoTitleBar);
-        myDialog.setContentView(R.layout.newmemb_popup);
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user==null){
@@ -49,8 +44,6 @@ public class OverViewFragment extends Fragment {
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         addmemb = ovfragview.findViewById(R.id.addmembfab);
-        cancel = myDialog.findViewById(R.id.cancelpopup);
-        testlogout = myDialog.findViewById(R.id.testlogout);
 
         DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
         dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -79,36 +72,6 @@ public class OverViewFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frag_container, new ManageMembersFragment()).addToBackStack(null).commit();
-            }
-        });
-    }
-    public void showPopup()
-    {
-        myDialog.show();
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
-            }
-        });
-        testlogout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getView().getContext());
-                builder.setTitle("Confirm Sign out").setMessage("Are you sure you want to sign out?");
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        firebaseAuth.signOut();
-                        startActivity(new Intent(getActivity(), Activity2.class));
-                    }
-                }).setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builder.show();
             }
         });
     }
