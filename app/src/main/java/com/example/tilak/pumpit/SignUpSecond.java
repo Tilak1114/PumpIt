@@ -38,8 +38,11 @@ public class SignUpSecond extends Fragment {
     RelativeLayout next;
     CircleImageView Avatar;
     EditText gymName, gymPhone;
+
+    GymBasicInfo info;
+
     public interface NextBtnListener{
-        void onBtnClick(Boolean result);
+        void onBtnClick(Boolean result, GymBasicInfo ob);
     }
 
     @Nullable
@@ -60,6 +63,8 @@ public class SignUpSecond extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         String GymName = gymName.getText().toString();
         String GymPhone = gymPhone.getText().toString();
+        info = new GymBasicInfo(GymName, GymPhone);
+
         Avatar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +74,7 @@ public class SignUpSecond extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadToFireBase();
+                uploadToFireBase(info);
             }
         });
     }
@@ -109,7 +114,8 @@ public class SignUpSecond extends Fragment {
         startActivityForResult(Intent.createChooser(imgSelect, "Select Profile Image"), CHOOSE_IMAGE);
     }
 
-    private void uploadToFireBase() {
+    private void uploadToFireBase(GymBasicInfo info) {
+        final GymBasicInfo gymBasicInfo = info;
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("profilepic" + System.currentTimeMillis() + ".jpg");
         if (uriProfileImage != null) {
@@ -121,7 +127,7 @@ public class SignUpSecond extends Fragment {
                     progressDialog.dismiss();
                     profileImgUrl = taskSnapshot.toString();
                     Log.d("Url", profileImgUrl);
-                    nextBtnListener.onBtnClick(true);
+                    nextBtnListener.onBtnClick(true, gymBasicInfo);
                 }
             });
         }

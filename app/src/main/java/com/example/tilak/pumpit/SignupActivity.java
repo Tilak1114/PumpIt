@@ -13,6 +13,9 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -49,8 +52,15 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
     }
 
     @Override
-    public void onBtnClick(Boolean result) {
+    public void onBtnClick(Boolean result, GymBasicInfo ob) {
         if(result){
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if(user!=null){
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(ob.getGymName()).build();
+
+                user.updateProfile(profileUpdates);
+            }
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.signup_container, new SignUpThird()).commit();
             stepView.go(3, true);
@@ -93,4 +103,5 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
                     }
                 });
     }
+
 }

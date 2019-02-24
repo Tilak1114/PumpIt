@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,11 +30,27 @@ import java.util.Map;
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Boolean firstTime = true;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    //remove later
+    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+            .setDisplayName("EvolveFitness").build();
+
+
+    String GymName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        user.updateProfile(profileUpdates);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo", GymName);
 
         defaultPlans();
 
@@ -62,7 +81,7 @@ public class InAppActivity extends AppCompatActivity {
         });
     }
     private void defaultPlans() {
-        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan1");
         Map<String, Object> data1 = new HashMap<String, Object>();
         data1.put("planName", "Plan1");
@@ -73,7 +92,7 @@ public class InAppActivity extends AppCompatActivity {
         data1.put("coverId", R.drawable.plan1);
         planDoc1.set(data1);
 
-        DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+        DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan2");
         Map<String, Object> data2 = new HashMap<String, Object>();
         data2.put("planName", "Plan2");
@@ -84,7 +103,7 @@ public class InAppActivity extends AppCompatActivity {
         data2.put("coverId", R.drawable.plan2);
         planDoc2.set(data2);
 
-        DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+        DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan3");
         Map<String, Object> data3 = new HashMap<String, Object>();
         data3.put("planName", "Plan3");
@@ -107,7 +126,7 @@ public class InAppActivity extends AppCompatActivity {
     public void setupPlansWithCount(){
         final ArrayList<String> planNameList = new ArrayList<>();
         final ArrayList<Integer> planCountList = new ArrayList<>();
-        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/EvolveFitness/Plans");
+        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans");
         cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -117,7 +136,7 @@ public class InAppActivity extends AppCompatActivity {
                         planNameList.add(document.getId());
                     }
                 }
-                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/EvolveFitness/Members");
+                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
                 membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -145,7 +164,7 @@ public class InAppActivity extends AppCompatActivity {
             }
         });
         for(int i =0; i<planNameList.size(); i++){
-            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                     "/Plans/"+planNameList.get(i));
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("planMembCount", planCountList.get(i));
