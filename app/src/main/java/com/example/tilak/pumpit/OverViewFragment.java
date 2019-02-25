@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,19 @@ public class OverViewFragment extends Fragment {
     RelativeLayout addmemb;
     FirebaseAuth firebaseAuth;
     TextView allmembs, activememb, odmemb;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_ov", GymName);
+
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
         activememb = ovfragview.findViewById(R.id.activecount);
         odmemb = ovfragview.findViewById(R.id.odcount);
@@ -45,7 +55,7 @@ public class OverViewFragment extends Fragment {
         }
         addmemb = ovfragview.findViewById(R.id.addmembfab);
 
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
         dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

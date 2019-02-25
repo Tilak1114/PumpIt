@@ -2,6 +2,7 @@ package com.example.tilak.pumpit;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapter.PlanViewHolder> {
@@ -20,12 +23,20 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
      *
      * @param options
      */
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
     public PlanSelAdapter(@NonNull FirestoreRecyclerOptions<Plan> options) {
         super(options);
     }
 
     @Override
     protected void onBindViewHolder(@NonNull final PlanViewHolder holder, int position, @NonNull final Plan model) {
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_planseladap", GymName);
 
         holder.planDuration.setText(model.getPlanDuration());
         holder.coverLay.setBackgroundResource(model.getCoverId());
@@ -39,7 +50,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
                     @Override
                     public void onClick(View v) {
                         FirebaseFirestore.getInstance().
-                                collection("Gyms/EvolveFitness/Plans").document(model.planName).delete();
+                                collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
                     }
                 });
                 holder.coverLay.setOnClickListener(new View.OnClickListener() {

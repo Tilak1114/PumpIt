@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -35,6 +38,10 @@ public class NewPlanFrag2 extends Fragment {
     Integer coverId = R.drawable.gridwlp6;
     CustomAdapter adapter;
     NewPlanFrag2.NextBtnListener nextBtnListener;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
     private Integer[] mThumbIds = {
             R.drawable.gridwlp1, R.drawable.gridwlp2,
             R.drawable.gridwlp3, R.drawable.gridwlp4,
@@ -52,6 +59,10 @@ public class NewPlanFrag2 extends Fragment {
 
         gridView = NewPlanView2.findViewById(R.id.gridView);
         next = NewPlanView2.findViewById(R.id.newPlanNext2);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_npf2", GymName);
 
         return NewPlanView2;
     }
@@ -75,7 +86,7 @@ public class NewPlanFrag2 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data2 = new HashMap<String, Object>();
                 data2.put("coverId", coverId); // later change to user input

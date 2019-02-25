@@ -34,9 +34,6 @@ public class InAppActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     //remove later
-    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-            .setDisplayName("EvolveFitness").build();
-
 
     String GymName;
 
@@ -45,6 +42,10 @@ public class InAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName("EvolveFitness").build();
+
 
         user.updateProfile(profileUpdates);
 

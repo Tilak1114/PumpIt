@@ -36,6 +36,8 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -63,6 +65,9 @@ public class ManagePlansFragment extends Fragment {
     Context context;
 
     PlanAdapter adapter;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
     
     @Nullable
     @Override
@@ -82,6 +87,10 @@ public class ManagePlansFragment extends Fragment {
         addplanfab = mngplans.findViewById(R.id.addplanfab);
         planRv = mngplans.findViewById(R.id.newplanrv);
 
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_Plans", GymName);
+
         return mngplans;
     }
 
@@ -99,7 +108,7 @@ public class ManagePlansFragment extends Fragment {
 
     private void setupRecyclerView() {
         CollectionReference planCollection = FirebaseFirestore.getInstance()
-                .collection("Gyms/EvolveFitness/Plans");
+                .collection("Gyms/"+GymName+"/Plans");
         Query query = planCollection;
         FirestoreRecyclerOptions<Plan> options = new FirestoreRecyclerOptions.Builder<Plan>().
                 setQuery(query, Plan.class).build();

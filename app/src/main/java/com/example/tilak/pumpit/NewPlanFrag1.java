@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.RelativeLayout;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,6 +29,10 @@ public class NewPlanFrag1 extends Fragment {
     ProgressDialog progressDialog;
     EditText planTitle, planDur, planPrice;
     NewPlanFrag1.NextBtnListener nextBtnListener;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
 
     public interface NextBtnListener{
         void onNewPlanBtnClicked1(Boolean result, String title);
@@ -41,6 +47,10 @@ public class NewPlanFrag1 extends Fragment {
         planPrice = NewPlanView1.findViewById(R.id.planPrice);
         planTitle = NewPlanView1.findViewById(R.id.plntitle);
         next = NewPlanView1.findViewById(R.id.newPlanNext);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_npf1", GymName);
 
         return NewPlanView1;
     }
@@ -58,7 +68,7 @@ public class NewPlanFrag1 extends Fragment {
                 progressDialog.setMessage("Adding Data...");
                 progressDialog.show();
 
-                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
+                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data1 = new HashMap<String, Object>();
                 data1.put("planName", PlanTitle);

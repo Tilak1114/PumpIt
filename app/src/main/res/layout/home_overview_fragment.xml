@@ -210,8 +210,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="12dp"
-                    android:background="@drawable/add_memb"
-                    android:backgroundTint="@color/gtstrtbck" />
+                    android:background="@drawable/add_memb1" />
             </RelativeLayout>
             <TextView
                 android:layout_width="75dp"
@@ -219,6 +218,8 @@
                 android:layout_marginStart="11dp"
                 android:layout_height="wrap_content"
                 android:text="Add Member"
+                android:textColor="@color/primary_drab"
+                android:textStyle="bold"
                 android:fontFamily="@font/product_sans_reg"
                 android:textSize="12sp"
                 android:textAlignment="center"
@@ -234,7 +235,7 @@
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="20dp"
-                android:background="@drawable/gradientcir"
+                android:background="@drawable/customfab"
                 tools:layout_editor_absoluteX="116dp"
                 tools:layout_editor_absoluteY="342dp">
 
@@ -248,8 +249,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="12dp"
-                    android:background="@drawable/chat"
-                    android:backgroundTint="@color/gtstrtbck"  />
+                    android:background="@drawable/chatgrad"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="75dp"
@@ -257,6 +257,8 @@
                 android:layout_marginStart="11dp"
                 android:layout_height="wrap_content"
                 android:text="Message"
+                android:textColor="@color/primary_drab"
+                android:textStyle="bold"
                 android:fontFamily="@font/product_sans_reg"
                 android:textSize="12sp"
                 android:textAlignment="center"

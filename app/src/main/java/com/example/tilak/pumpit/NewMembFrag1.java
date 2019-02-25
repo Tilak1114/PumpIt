@@ -10,6 +10,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,6 +54,9 @@ public class NewMembFrag1 extends Fragment {
     EditText firstName, lastName, phoneNo;
     CircleImageView avatar;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
     public interface NextBtnListener{
         void onNewMembBtnClicked1(Boolean result, String membName);
     }
@@ -70,6 +74,10 @@ public class NewMembFrag1 extends Fragment {
 
         next = NewMembView1.findViewById(R.id.newMembNext);
         next.setClickable(false);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_nmf1", GymName);
 
         return NewMembView1;
     }
@@ -120,7 +128,7 @@ public class NewMembFrag1 extends Fragment {
 
         final String memberName = firstName.getText().toString()+lastName.getText().toString();
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
-                .getReference("MemberUploads/EvolveFitness"+memberName+".jpg");
+                .getReference("MemberUploads/"+GymName+memberName+".jpg");
         if(uriProfileImage != null){
             progressDialog.setTitle("Uploading Profile Picture");
             progressDialog.show();
@@ -129,8 +137,7 @@ public class NewMembFrag1 extends Fragment {
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     profileImgUrl = taskSnapshot.toString();
                     progressDialog.dismiss();
-                    final DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
-                            "/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
+                    final DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
                     profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -145,8 +152,7 @@ public class NewMembFrag1 extends Fragment {
             });
         }
         else if(uriProfileImage==null){
-            DocumentReference dr = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
-                    "/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
+            DocumentReference dr = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
             Map<String, Object> data = new HashMap<String, Object>();
             Integer avatarid = R.drawable.avatar;
             data.put("profileUrl", avatarid.toString());
@@ -178,8 +184,7 @@ public class NewMembFrag1 extends Fragment {
             next.setClickable(true);
             progressDialog.show();
 
-            DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
-                    "/Members/"+MemberFN+" "+MemberLN);
+            DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+MemberFN+" "+MemberLN);
 
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("firstName", MemberFN);

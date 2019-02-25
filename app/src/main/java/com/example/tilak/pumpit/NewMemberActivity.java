@@ -42,6 +42,9 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
     StepView stepView;
     FrameLayout newmembcont;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,11 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
         setContentView(R.layout.activity_new_member);
         stepView = findViewById(R.id.stepViewMemb);
         newmembcont = findViewById(R.id.newMemb_container);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_nma", GymName);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.newMemb_container, new NewMembFrag1()).commit();
     }
@@ -77,7 +85,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
     @Override
     public void onNewPlanBtnClicked3(Boolean result) {
         if(result){
-            final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+            final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
             dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                 @Override
                 public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -93,7 +101,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
     public void setupPlansWithCount(){
         final ArrayList<String> planNameList = new ArrayList<>();
         final ArrayList<Integer> planCountList = new ArrayList<>();
-        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/EvolveFitness/Plans");
+        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans");
         cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -103,7 +111,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
                         planNameList.add(document.getId());
                     }
                 }
-                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/EvolveFitness/Members");
+                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
                 membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -131,8 +139,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
             }
         });
         for(int i =0; i<planNameList.size(); i++){
-            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness"+
-                    "/Plans/"+planNameList.get(i));
+            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Plans/"+planNameList.get(i));
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("planMembCount", planCountList.get(i));
             writeRef.set(data);

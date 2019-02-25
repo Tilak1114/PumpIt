@@ -18,6 +18,7 @@ import android.widget.RelativeLayout;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,6 +41,9 @@ public class NewMembFrag2 extends Fragment {
     RecyclerView planRv;
     FirebaseAuth mAuth;
 
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
     public interface NextBtnListener{
         void onNewMembBtnClicked2(Boolean result);
     }
@@ -54,6 +58,10 @@ public class NewMembFrag2 extends Fragment {
         planRv = NewMembView1.findViewById(R.id.planSelectorRecyclerview);
         next = NewMembView1.findViewById(R.id.newMembNext2);
 
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_nmf2", GymName);
+
         return NewMembView1;
     }
 
@@ -65,8 +73,7 @@ public class NewMembFrag2 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/EvolveFitness" +
-                        "/Members/"+membName);
+                DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
 
                 Map<String, Object> data = new HashMap<String, Object>();
                 data.put("membPlan", "3 Months Plan");
@@ -79,7 +86,7 @@ public class NewMembFrag2 extends Fragment {
     }
     private void setupRecyclerView() {
         CollectionReference planCollection = FirebaseFirestore.getInstance()
-                .collection("Gyms/EvolveFitness/Plans");
+                .collection("Gyms/"+GymName+"/Plans");
         Log.d("recychk", "entered recycler");
         Query query = planCollection;
         FirestoreRecyclerOptions<Plan> options = new FirestoreRecyclerOptions.Builder<Plan>().

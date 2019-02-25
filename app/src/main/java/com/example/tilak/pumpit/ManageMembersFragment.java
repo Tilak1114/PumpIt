@@ -75,17 +75,22 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private CollectionReference memberref = db.collection("Gyms/EvolveFitness/Members");
     private MemberAdapter adapter;
 
-    public ManageMembersFragment(){
-
-    }
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+    CollectionReference memberref;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View MemberManage = inflater.inflate(R.layout.fragment_manage_member, container, false);
+
+        GymName = user.getDisplayName();
+
+        Log.d("GymMetainfo_MMF", GymName);
+
+       memberref = db.collection("Gyms/"+GymName+"/Members");
 
         //FragmentManager fm =
         //getFragmentManager().beginTransaction()
@@ -102,7 +107,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
 
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
         dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -177,7 +182,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     @Override
     public void onResume() {
         super.onResume();
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/EvolveFitness/MetaData/members");
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
         dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
