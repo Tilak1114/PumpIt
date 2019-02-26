@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -64,8 +65,8 @@ public class SignUpEmailPassword extends Fragment {
                 }
                 if(pwd.getText().toString().equals(cpwd.getText().toString()) &&
                         !email.getText().toString().isEmpty()){
-                    String GymEmail = email.getText().toString();
-                    String GymPwd = pwd.getText().toString();
+                    final String GymEmail = email.getText().toString();
+                    final String GymPwd = pwd.getText().toString();
                     progressDialog.setTitle("Creating New Account.");
                     progressDialog.setMessage("Please Wait...");
                     progressDialog.show();
@@ -73,8 +74,13 @@ public class SignUpEmailPassword extends Fragment {
                         @Override
                         public void onSuccess(AuthResult authResult) {
                             progressDialog.dismiss();
-                            Boolean res = true;
-                            nextBtnListener.onBtnClicked(res);
+                            mAuth.signInWithEmailAndPassword(GymEmail, GymPwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    Boolean res = true;
+                                    nextBtnListener.onBtnClicked(res);
+                                }
+                            });
                         }
                     });
                 }

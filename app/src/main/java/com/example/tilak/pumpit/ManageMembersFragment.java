@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.provider.Telephony;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -17,19 +18,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.telephony.PhoneNumberUtils;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,6 +55,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -70,6 +67,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     RecyclerView recyclerView;
     SearchView searchView;
     TextView membcount;
+    TelephonyManager telephonyManager;
 
     ArrayList<String> planNameList = new ArrayList<>();
 
@@ -205,14 +203,16 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
     @Override
     public void callItem(String phone) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
         Toast.makeText(getContext(), phone, Toast.LENGTH_LONG).show();
-        callIntent.setData(Uri.parse("tel:"+phone));
-
-        if (ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            return;
+        telephonyManager = (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        Intent dialIntent = new Intent(Intent.ACTION_CALL);
+        // Set the data for the intent as the phone number.
+        dialIntent.setData(Uri.parse(phone));
+        // If package resolves to an app, send intent.
+        if (dialIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+            startActivity(dialIntent);
+        } else {
+            Log.e("call", "Can't resolve app for ACTION_DIAL Intent.");
         }
-        startActivity(callIntent);
     }
 }

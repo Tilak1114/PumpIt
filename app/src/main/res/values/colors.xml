@@ -22,6 +22,8 @@
     <color name="typography_slate">#6E8CA0</color>
     <color name="typography_snow">#fff</color>
 
+    <color name="gray">#AFB1B3</color>
+
 
 
 </resources>

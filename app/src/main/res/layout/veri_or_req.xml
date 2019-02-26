@@ -12,7 +12,7 @@
         android:hapticFeedbackEnabled="true"
         android:textColor="@android:color/white"
         android:text="Request a Demo"
-        android:background="@drawable/button_states1" />
+        android:background="@drawable/reqdemoinactive" />
     <TextView
         android:id="@+id/gotcodetv"
         android:layout_marginTop="20dp"

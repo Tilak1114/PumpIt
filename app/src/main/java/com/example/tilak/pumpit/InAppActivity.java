@@ -1,6 +1,7 @@
 package com.example.tilak.pumpit;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -29,12 +30,9 @@ import java.util.Map;
 
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-    Boolean firstTime = true;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
     //remove later
-
     String GymName;
 
     @Override
@@ -43,11 +41,10 @@ public class InAppActivity extends AppCompatActivity {
         setContentView(R.layout.activity_in_app);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                .setDisplayName("EvolveFitness").build();
-
-
-        user.updateProfile(profileUpdates);
+        if(user==null){
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
 
         GymName = user.getDisplayName();
 

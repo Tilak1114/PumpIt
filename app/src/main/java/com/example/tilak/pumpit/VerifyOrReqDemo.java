@@ -38,12 +38,15 @@ public class VerifyOrReqDemo extends Fragment {
         View veriorreqView = inflater.inflate(R.layout.veri_or_req, container, false);
 
         reqDemo = veriorreqView.findViewById(R.id.reqdemo);
+        reqDemo.setClickable(false);
         veriCode = veriorreqView.findViewById(R.id.validcode);
         validateBtn = veriorreqView.findViewById(R.id.validateBtn);
 
         mAuth.signInWithEmailAndPassword("pumpit@pumpit.com", "pumpitpumpit123").addOnSuccessListener(new OnSuccessListener<AuthResult>() {
             @Override
             public void onSuccess(AuthResult authResult) {
+                reqDemo.setClickable(true);
+                reqDemo.setBackgroundResource(R.drawable.button_states1);
                 reqDemo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

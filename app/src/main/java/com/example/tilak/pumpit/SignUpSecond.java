@@ -42,7 +42,7 @@ public class SignUpSecond extends Fragment {
     GymBasicInfo info;
 
     public interface NextBtnListener{
-        void onBtnClick(Boolean result, GymBasicInfo ob);
+        void onBtnClick(Boolean result, String Gymname);
     }
 
     @Nullable
@@ -61,9 +61,6 @@ public class SignUpSecond extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        String GymName = gymName.getText().toString();
-        String GymPhone = gymPhone.getText().toString();
-        info = new GymBasicInfo(GymName, GymPhone);
 
         Avatar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +71,13 @@ public class SignUpSecond extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadToFireBase(info);
+                if(!gymPhone.getText().toString().isEmpty()&&!gymPhone.getText().toString().isEmpty()){
+                    String GymName = gymName.getText().toString();
+                    String GymPhone = gymPhone.getText().toString();
+                    info = new GymBasicInfo(GymName, GymPhone);
+                    uploadToFireBase();
+                    nextBtnListener.onBtnClick(true, GymName);
+                }
             }
         });
     }
@@ -114,8 +117,7 @@ public class SignUpSecond extends Fragment {
         startActivityForResult(Intent.createChooser(imgSelect, "Select Profile Image"), CHOOSE_IMAGE);
     }
 
-    private void uploadToFireBase(GymBasicInfo info) {
-        final GymBasicInfo gymBasicInfo = info;
+    private void uploadToFireBase() {
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("profilepic" + System.currentTimeMillis() + ".jpg");
         if (uriProfileImage != null) {
@@ -127,7 +129,6 @@ public class SignUpSecond extends Fragment {
                     progressDialog.dismiss();
                     profileImgUrl = taskSnapshot.toString();
                     Log.d("Url", profileImgUrl);
-                    nextBtnListener.onBtnClick(true, gymBasicInfo);
                 }
             });
         }

@@ -52,12 +52,12 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
     }
 
     @Override
-    public void onBtnClick(Boolean result, GymBasicInfo ob) {
+    public void onBtnClick(Boolean result, String Gymname) {
         if(result){
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             if(user!=null){
                 UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(ob.getGymName()).build();
+                        .setDisplayName(Gymname).build();
 
                 user.updateProfile(profileUpdates);
             }
