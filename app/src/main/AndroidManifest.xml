@@ -13,29 +13,38 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true">
         <activity android:name=".MemberEdit"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"></activity>
-        <activity android:name=".SplashScr" />
+        <activity android:name=".SplashScr"
+            android:screenOrientation="portrait"/>
         <activity
+            android:screenOrientation="portrait"
             android:name=".MemberDetails"
             android:theme="@style/AppTheme2" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".RequestADemo"
             android:theme="@style/AppTheme" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".NewPlanActivity"
             android:theme="@style/AppTheme" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".NewMemberActivity"
             android:theme="@style/AppTheme" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".SignupActivity"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".InAppActivity"
             android:theme="@style/AppTheme3"
             android:windowSoftInputMode="adjustPan" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".MainActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -45,6 +54,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
             android:name=".Activity2"
             android:theme="@style/AppTheme2" />
     </application>

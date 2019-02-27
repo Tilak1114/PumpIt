@@ -121,6 +121,7 @@ public class SignUpSecond extends Fragment {
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("profilepic" + System.currentTimeMillis() + ".jpg");
         if (uriProfileImage != null) {
+            progressDialog.setCancelable(false);
             progressDialog.setMessage("Uploading Profile Picture");
             progressDialog.show();
             profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
