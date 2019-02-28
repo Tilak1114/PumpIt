@@ -203,16 +203,12 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
     @Override
     public void callItem(String phone) {
-        Toast.makeText(getContext(), phone, Toast.LENGTH_LONG).show();
+        String phonenum = String.format("tel: %s", phone);
         telephonyManager = (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
-        Intent dialIntent = new Intent(Intent.ACTION_CALL);
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         // Set the data for the intent as the phone number.
-        dialIntent.setData(Uri.parse(phone));
+        dialIntent.setData(Uri.parse(phonenum));
+        startActivity(dialIntent);
         // If package resolves to an app, send intent.
-        if (dialIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivity(dialIntent);
-        } else {
-            Log.e("call", "Can't resolve app for ACTION_DIAL Intent.");
-        }
     }
 }
