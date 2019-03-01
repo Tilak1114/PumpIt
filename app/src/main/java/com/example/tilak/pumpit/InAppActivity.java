@@ -80,7 +80,7 @@ public class InAppActivity extends AppCompatActivity {
     }
     private void defaultSetup() {
 
-        DocumentReference Metadatamemb = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+        /*DocumentReference Metadatamemb = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/MetaData/members");
 
         Map<String, Object> metadata = new HashMap<String, Object>();
@@ -96,9 +96,7 @@ public class InAppActivity extends AppCompatActivity {
         Map<String, Object> metadata1 = new HashMap<String, Object>();
         metadata1.put("plancount", "3");
 
-        Metadatamemb.set(metadata);
-
-
+        Metadatamemb.set(metadata);*/
 
         DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan1");

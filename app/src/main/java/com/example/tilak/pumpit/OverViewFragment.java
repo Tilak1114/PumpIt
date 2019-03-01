@@ -30,7 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 public class OverViewFragment extends Fragment {
     RelativeLayout addmemb;
     FirebaseAuth firebaseAuth;
-    TextView allmembs, activememb, odmemb;
+    TextView allmembs, activememb, odmemb, activerect, odrect;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
@@ -47,6 +47,9 @@ public class OverViewFragment extends Fragment {
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
         activememb = ovfragview.findViewById(R.id.activecount);
         odmemb = ovfragview.findViewById(R.id.odcount);
+        activerect = ovfragview.findViewById(R.id.activerectbtn);
+        odrect = ovfragview.findViewById(R.id.odtv);
+
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user==null){
@@ -63,6 +66,24 @@ public class OverViewFragment extends Fragment {
                 String odcnt = documentSnapshot.getString("overduemembcount");
                 activememb.setText(actcnt);
                 odmemb.setText(odcnt);
+            }
+        });
+
+        activerect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction().replace(R.id.frag_container, new ActiveMembFrag())
+                        .addToBackStack(null).commit();
+            }
+        });
+
+        odrect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().getSupportFragmentManager()
+                        .beginTransaction().replace(R.id.frag_container, new OverDueMembFrag())
+                        .addToBackStack(null).commit();
             }
         });
 

@@ -1,120 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_centerInParent="true"
     android:background="@android:color/white"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-        <TextView
-            android:id="@+id/NewMembpopup"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Login"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="30dp"
-            android:textSize="30sp"
-            android:textColor="#1B1C20"/>
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="Use Your Admin Credentials"
-            android:layout_below="@id/NewMembpopup"
-            android:layout_marginTop="0dp"
-            android:layout_marginStart="30dp"
-            android:textSize="16sp"
-            android:textColor="#1B1C20"/>
-        <ImageView
-            android:id="@+id/cancellogin"
-            android:layout_height="30dp"
-            android:layout_width="30dp"
-            android:backgroundTint="@color/gtstrtbck"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/cancelbtn"
-            android:layout_alignParentEnd="true"/>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_marginTop="30dp"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
         <RelativeLayout
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/textfieldsbck"
-            android:layout_height="60dp">
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/loginTitleLay"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/adminLogin"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Login"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/myraidprolight"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="35sp"
+                    android:textColor="#1B1C20"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Use Your Admin Credentials"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/myraidprolight"
+                    android:layout_below="@id/adminLogin"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="18sp"
+                    android:textColor="#1B1C20"/>
 
-            <EditText
-                android:id="@+id/adminemail"
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/loginTitleLay"
+                android:layout_marginTop="90dp"
+                android:id="@+id/lgnead"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto"
-                android:inputType="textEmailAddress" />
-        </RelativeLayout>
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/textfieldsbck"
+                    android:layout_height="60dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff"
-            android:text=" E-mail Address "
-            android:textSize="18sp" />
-    </RelativeLayout>
+                    <EditText
+                        android:id="@+id/adminemail"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="textEmailAddress" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#ffffff"
+                    android:text=" E-mail Address "
+                    android:textSize="18sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/lgnead"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/textfieldsbck"
+                    android:layout_height="60dp">
+
+                    <EditText
+                        android:id="@+id/adminpwd"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/roboto"
+                        android:inputType="textPassword" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#ffffff"
+                    android:text=" Password "
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
     <RelativeLayout
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/textfieldsbck"
-            android:layout_height="60dp">
-
-            <EditText
-                android:id="@+id/adminpwd"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto"
-                android:inputType="textPassword" />
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff"
-            android:text=" Password "
-            android:textSize="18sp" />
-    </RelativeLayout>
-    <Button
-        android:layout_marginTop="40dp"
-        android:text="Login"
         android:id="@+id/lgn_dialog_btn"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:background="@drawable/memb_btn_rect"
+        android:elevation="8dp"
+        android:translationZ="10dp"
         android:layout_width="match_parent"
-        android:layout_marginStart="20dp"
-        android:elevation="4dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="20dp"
-        android:layout_height="60dp"/>
-</LinearLayout>
+        android:layout_height="60dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Login"
+            android:textStyle="bold"
+            android:layout_marginStart="160dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/myraidprolight"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

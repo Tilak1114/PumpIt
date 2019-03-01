@@ -12,9 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,8 +29,7 @@ public class LoginFragment extends Fragment {
     Button lgn;
     Dialog myDialog;
     EditText em_inp, pwd_inp;
-    ImageView cancel;
-    Button dialog_login;
+    RelativeLayout dialog_login;
     ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
     @Nullable
@@ -38,7 +39,6 @@ public class LoginFragment extends Fragment {
         myDialog = new Dialog(login.getContext(), android.R.style.Theme_Light_NoTitleBar);
         myDialog.setContentView(R.layout.logindialog);
         em_inp = myDialog.findViewById(R.id.adminemail);
-        cancel = myDialog.findViewById(R.id.cancellogin);
         pwd_inp = myDialog.findViewById(R.id.adminpwd);
         dialog_login = myDialog.findViewById(R.id.lgn_dialog_btn);
         return login;
@@ -72,12 +72,6 @@ public class LoginFragment extends Fragment {
                 String email = em_inp.getText().toString();
                 String  pwd = pwd_inp.getText().toString();
                 validate(email, pwd);
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                myDialog.dismiss();
             }
         });
     }
