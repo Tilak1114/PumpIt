@@ -138,21 +138,22 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.d("SearchText", query);
                 searchFilter(query);
+                adapter.startListening();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
                 searchFilter(newText);
+                adapter.startListening();
                 return false;
             }
         });
     }
 
     private void searchFilter(String query) {
-        Query searchQ = memberref.orderBy("firstName").startAt(query).endAt(query + "\uf8ff");
+        Query searchQ = memberref.orderBy("firstName").orderBy("lastName").startAt(query).endAt(query + "\uf8ff");
         FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(searchQ, Member.class).build();
         adapter = new MemberAdapter(options, getContext(), this);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

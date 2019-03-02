@@ -28,7 +28,7 @@
             android:translationZ="10dp" />
 
         <TextView
-            android:id="@+id/mngmmbcnt"
+            android:id="@+id/odmmbcnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -50,7 +50,7 @@
         android:layout_below="@id/activetitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/activemembRecyclerview">
+        android:id="@+id/odmembRecyclerview">
 
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

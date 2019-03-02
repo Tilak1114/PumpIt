@@ -109,4 +109,16 @@ public class NewMembFrag2 extends Fragment {
         super.onDetach();
         nextBtnListener = null;
     }
+
+    @Override
+    public void onStart() {
+        adapter.startListening();
+        super.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        adapter.stopListening();
+        super.onStop();
+    }
 }

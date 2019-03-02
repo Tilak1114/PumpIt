@@ -16,12 +16,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 
@@ -30,33 +34,45 @@ public class ActiveMembFrag extends Fragment implements MemberAdapter.ItemclickL
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    CollectionReference memberref;
+    CollectionReference actmemberref;
+
+    TextView activemembcnt;
 
     TelephonyManager telephonyManager;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
+    MemberAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View activeFragV = inflater.inflate(R.layout.fragment_activememb, container, false);
         activeRv = activeFragV.findViewById(R.id.activemembRecyclerview);
+        activemembcnt = activeFragV.findViewById(R.id.actmmbcnt);
         GymName = user.getDisplayName();
         Log.d("GymNameActive", GymName);
-        memberref = db.collection("Gyms/"+GymName+"/Members");
+        actmemberref = db.collection("Gyms/"+GymName+"/Members");
         return activeFragV;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String cnt = documentSnapshot.getString("activemembcount");
+                activemembcnt.setText(cnt+" Members");
+            }
+        });
         setUpActiveRecyclerView();
     }
 
     private void setUpActiveRecyclerView() {
-        Query query = memberref;
+        Query query = actmemberref.whereEqualTo("payment", "Fees Paid");
         FirestoreRecyclerOptions<Member> options = new FirestoreRecyclerOptions.Builder<Member>().setQuery(query, Member.class).build();
-        MemberAdapter adapter = new MemberAdapter(options, getContext(), this);
+        adapter = new MemberAdapter(options, getContext(), this);
         activeRv.setLayoutManager(new LinearLayoutManager(getContext()));
         activeRv.setAdapter(adapter);
         Log.d("ActiveRv", "finished rv");
@@ -82,5 +98,16 @@ public class ActiveMembFrag extends Fragment implements MemberAdapter.ItemclickL
         dialIntent.setData(Uri.parse(phonenum));
         startActivity(dialIntent);
         // If package resolves to an app, send intent.
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
     }
 }
