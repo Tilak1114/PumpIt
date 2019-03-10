@@ -71,7 +71,9 @@ public class LoginFragment extends Fragment {
             public void onClick(View v) {
                 String email = em_inp.getText().toString();
                 String  pwd = pwd_inp.getText().toString();
-                validate(email, pwd);
+                if(!pwd.isEmpty()&&!email.isEmpty()){
+                    validate(email, pwd);
+                }
             }
         });
     }

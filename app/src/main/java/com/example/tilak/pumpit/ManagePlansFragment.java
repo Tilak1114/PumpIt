@@ -51,8 +51,6 @@ import java.util.Map;
 
 public class ManagePlansFragment extends Fragment {
 
-    ScrollView scrollView;
-    LinearLayout planListLL;
     Dialog addplanDialog;
     RelativeLayout addplanfab;
     ImageView cancelpopup;
@@ -60,8 +58,6 @@ public class ManagePlansFragment extends Fragment {
 
     Button addplanbtn;
     EditText planDur, planPrice, planDesc, planTitle;
-    TextView newPlan, newPlanMembers;
-    CardView cardView;
     Context context;
 
     PlanAdapter adapter;

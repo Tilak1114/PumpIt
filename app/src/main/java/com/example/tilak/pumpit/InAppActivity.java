@@ -32,7 +32,6 @@ public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    //remove later
     String GymName;
 
     @Override
@@ -49,6 +48,10 @@ public class InAppActivity extends AppCompatActivity {
         GymName = user.getDisplayName();
 
         Log.d("GymMetainfo", GymName);
+
+        if(GymName.isEmpty()){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
 
         defaultSetup();
 

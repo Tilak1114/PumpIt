@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,39 +9,53 @@
     <RelativeLayout
         android:id="@+id/coverbck"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@drawable/profilecover">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/gymprofilepic"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="30dp"
-            android:background="@drawable/avatar" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:id="@+id/profilename"
-            android:layout_marginTop="70dp"
-            android:layout_toEndOf="@id/gymprofilepic"
-            android:fontFamily="@font/helvetica_neue_lightext"
-            android:text=""
-            android:textColor="@android:color/white"
-            android:textSize="26sp"
-            android:textStyle="bold" />
+        android:layout_height="220dp"
+        android:background="@drawable/profilebck">
     </RelativeLayout>
-
+    <RelativeLayout
+        android:id="@+id/profilelay"
+        android:layout_width="match_parent"
+        android:layout_marginTop="150dp"
+        android:layout_height="140dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="125dp"
+            android:elevation="4dp"
+            android:translationZ="6dp"
+            android:id="@+id/adminprofilepic"
+            android:layout_height="125dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/avatar"/>
+        <ImageView
+            android:layout_width="125dp"
+            android:layout_height="125dp"
+            android:elevation="10dp"
+            android:translationZ="12dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circleborder1"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profilelay"
+        android:id="@+id/infolay">
+        <TextView
+            android:layout_width="140dp"
+            android:textSize="22sp"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:id="@+id/profilenametv"
+            android:text=""
+            android:fontFamily="@font/product_sans_reg"
+            android:textColor="@color/typography_black"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="230px"
-        android:layout_marginBottom="50px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
         android:orientation="vertical"
-        android:paddingLeft="30px"
-        android:paddingRight="30px"
         android:gravity="center">
 
         <Button
@@ -60,8 +74,4 @@
             android:text="Version 1.0.0" />
 
     </LinearLayout>
-
-
-
-
-</LinearLayout>
+</RelativeLayout>
