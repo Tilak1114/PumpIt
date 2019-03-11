@@ -70,6 +70,8 @@ public class NewMembFrag2 extends Fragment {
 
         setupRecyclerView();
 
+
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,7 +89,6 @@ public class NewMembFrag2 extends Fragment {
     private void setupRecyclerView() {
         CollectionReference planCollection = FirebaseFirestore.getInstance()
                 .collection("Gyms/"+GymName+"/Plans");
-        Log.d("recychk", "entered recycler");
         Query query = planCollection;
         FirestoreRecyclerOptions<Plan> options = new FirestoreRecyclerOptions.Builder<Plan>().
                 setQuery(query, Plan.class).build();

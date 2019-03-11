@@ -17,10 +17,11 @@
                 android:id="@+id/mngpln"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:textSize="30sp"
-                android:fontFamily="@font/helvetica_neue_lightext"
+                android:textSize="28sp"
+                android:fontFamily="@font/product_sans_reg"
                 android:textStyle="bold"
                 android:text="Plans"
+                android:layout_marginTop="0dp"
                 android:elevation="14dp"
                 android:translationZ="10dp"
                 android:textColor="@color/typography_black"
@@ -29,7 +30,7 @@
                 />
             <TextView
                 android:id="@+id/mngplncnt"
-                android:fontFamily="@font/helvetica_neue_lightext"
+                android:fontFamily="@font/product_sans_reg"
                 android:textStyle="normal"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"

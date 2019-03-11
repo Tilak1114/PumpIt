@@ -131,6 +131,7 @@ public class NewMembFrag1 extends Fragment {
                 .getReference("MemberUploads/"+GymName+memberName+".jpg");
         if(uriProfileImage != null){
             progressDialog.setTitle("Uploading Profile Picture");
+            progressDialog.setCancelable(false);
             progressDialog.show();
             profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -164,6 +165,7 @@ public class NewMembFrag1 extends Fragment {
 
         progressDialog.setTitle("Uploading To Database");
         progressDialog.setMessage("Adding Member Data");
+        progressDialog.setCancelable(false);
         String MemberFN, MemberLN, MemberPhno;
         MemberFN = firstName.getText().toString();
         MemberLN = lastName.getText().toString();

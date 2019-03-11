@@ -6,7 +6,7 @@
     >
 
     <RelativeLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/memblay"
         android:layout_width="match_parent"
         android:layout_height="60dp"

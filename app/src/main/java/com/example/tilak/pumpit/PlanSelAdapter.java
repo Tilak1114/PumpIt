@@ -39,48 +39,25 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
         Log.d("GymMetainfo_planseladap", GymName);
 
         holder.planDuration.setText(model.getPlanDuration());
+        holder.planRate.setText("\u20B9"+model.getPlanPrice());
         holder.coverLay.setBackgroundResource(model.getCoverId());
-
-        holder.coverLay.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                holder.delete.setVisibility(View.VISIBLE);
-                holder.delete.setClickable(true);
-                holder.delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        FirebaseFirestore.getInstance().
-                                collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
-                    }
-                });
-                holder.coverLay.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder.delete.setVisibility(View.INVISIBLE);
-                        holder.delete.setClickable(false);
-                    }
-                });
-                return true;
-            }
-        });
     }
 
     @NonNull
     @Override
     public PlanViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_plan_recyclerlayout, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.custom_plansel_recyclerlayout, viewGroup, false);
         return new PlanViewHolder(v);
     }
 
     class PlanViewHolder extends RecyclerView.ViewHolder {
-        TextView planDuration;
+        TextView planDuration, planRate;
         RelativeLayout coverLay;
-        RelativeLayout delete;
         public PlanViewHolder(View itemView) {
             super(itemView);
             planDuration = itemView.findViewById(R.id.newPlanDur);
-            coverLay = itemView.findViewById(R.id.newPlanlay);
-            delete = itemView.findViewById(R.id.deleteIcon);
+            planRate = itemView.findViewById(R.id.planratesel);
+            coverLay = itemView.findViewById(R.id.newPlanlaysel);
         }
     }
 }
