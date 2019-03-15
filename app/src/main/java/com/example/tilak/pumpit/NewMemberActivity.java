@@ -37,7 +37,7 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1.NextBtnListener, NewMembFrag2.NextBtnListener, NewPlanFrag3.NextBtnListener{
+public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1.NextBtnListener, NewMembFrag2.NextBtnListener, NewMembFrag3.NextBtnListener{
 
     StepView stepView;
     FrameLayout newmembcont;
@@ -82,22 +82,6 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
         }
     }
 
-    @Override
-    public void onNewPlanBtnClicked3(Boolean result) {
-        if(result){
-            final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-            dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    String cnt = documentSnapshot.getString("allmembcount");
-                    Integer cnti = Integer.valueOf(cnt);
-                    cnti = cnti + 1;
-                    dr.update("allmembcount", cnti.toString());
-                }
-            });
-            finish();
-        }
-    }
     public void setupPlansWithCount(){
         final ArrayList<String> planNameList = new ArrayList<>();
         final ArrayList<Integer> planCountList = new ArrayList<>();
@@ -144,5 +128,22 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
             data.put("planMembCount", planCountList.get(i));
             writeRef.set(data);
         }
+    }
+
+    @Override
+    public void onNewMembBtnClicked3() {
+        Log.d("next3check", "entered next3");
+        final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String cnt = documentSnapshot.getString("allmembcount");
+                Integer cnti = Integer.valueOf(cnt);
+                cnti = cnti + 1;
+                dr.update("allmembcount", cnti.toString());
+            }
+        });
+        Log.d("next3click", "nextfinish");
+        finish();
     }
 }

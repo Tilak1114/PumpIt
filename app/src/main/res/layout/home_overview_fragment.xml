@@ -158,16 +158,16 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="@font/product_sans_reg"
-        android:text="Quick links"
+        android:text="Tasks"
         android:textColor="@android:color/black"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.027"
+        app:layout_constraintHorizontal_bias="0.015"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/actpplay"
-        app:layout_constraintVertical_bias="0.055" />
+        app:layout_constraintVertical_bias="0.048" />
 
     <LinearLayout
         android:id="@+id/qcklnkslayout"
@@ -209,9 +209,10 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
+                    android:backgroundTint="@android:color/white"
                     android:layout_alignParentBottom="true"
                     android:layout_margin="12dp"
-                    android:background="@drawable/add_memb1" />
+                    android:background="@drawable/add_memb" />
             </RelativeLayout>
             <TextView
                 android:layout_width="75dp"
@@ -232,6 +233,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <RelativeLayout
+                android:clickable="true"
+                android:focusable="true"
                 android:id="@+id/announcerfab"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
@@ -249,8 +252,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"
+                    android:backgroundTint="@android:color/white"
                     android:layout_margin="12dp"
-                    android:background="@drawable/chatgrad"/>
+                    android:background="@drawable/chat"/>
             </RelativeLayout>
             <TextView
                 android:layout_width="75dp"
@@ -265,5 +269,50 @@
                 android:textAlignment="center"
                 android:layout_weight="10"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RelativeLayout
+                android:clickable="true"
+                android:focusable="true"
+                android:id="@+id/leadsfab"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/customfab"
+                tools:layout_editor_absoluteX="116dp"
+                tools:layout_editor_absoluteY="342dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
+                    android:elevation="10dp"
+                    android:translationZ="12dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="12dp"
+                    android:backgroundTint="@android:color/white"
+                    android:background="@drawable/leads"/>
+            </RelativeLayout>
+            <TextView
+                android:layout_width="75dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="11dp"
+                android:layout_height="wrap_content"
+                android:text="Leads"
+                android:textColor="@color/primary_drab"
+                android:textStyle="bold"
+                android:fontFamily="@font/product_sans_reg"
+                android:textSize="12sp"
+                android:textAlignment="center"
+                android:layout_weight="10"/>
+        </LinearLayout>
     </LinearLayout>
+
+
+
 </android.support.constraint.ConstraintLayout>

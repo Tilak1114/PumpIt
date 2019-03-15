@@ -15,8 +15,10 @@
         android:theme="@style/tabtheme"
         app:tabBackground="@drawable/membtabs_selector"
         app:tabGravity="fill"
-        app:tabIndicatorColor="#00FFFFFF"
-        app:tabIndicatorHeight="1dp"
+        app:tabIndicatorColor="@color/gtstrtbck"
+        app:tabIndicatorFullWidth="false"
+        android:scrollbarAlwaysDrawHorizontalTrack="true"
+        app:tabIndicatorHeight="3dp"
         app:tabSelectedTextColor="@android:color/black"
         app:tabTextColor="@android:color/darker_gray">
 

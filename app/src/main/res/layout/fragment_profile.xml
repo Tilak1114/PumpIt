@@ -9,13 +9,14 @@
     <RelativeLayout
         android:id="@+id/coverbck"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         android:background="@drawable/profilebck">
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/profilelay"
         android:layout_width="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
         android:layout_height="140dp">
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="125dp"
@@ -32,6 +33,7 @@
             android:translationZ="12dp"
             android:layout_centerInParent="true"
             android:background="@drawable/circleborder1"/>
+
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

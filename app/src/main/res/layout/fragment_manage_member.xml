@@ -53,8 +53,8 @@
         android:layout_marginEnd="20dp"
         android:layout_marginStart="20dp"
         android:background="@drawable/memb_btn_rect"
-        android:elevation="8dp"
-        android:translationZ="10dp">
+        android:elevation="2dp"
+        android:translationZ="4dp">
 
         <SearchView
             android:id="@+id/searchmemb"

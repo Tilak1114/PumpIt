@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class NewMembFrag3 extends Fragment {
     NextBtnListener nextBtnListener;
 
     public interface NextBtnListener{
-        void onNewMembBtnClicked3(Boolean result);
+        void onNewMembBtnClicked3();
     }
 
     @Nullable
@@ -33,6 +34,7 @@ public class NewMembFrag3 extends Fragment {
         cc = NewMembView3.findViewById(R.id.creditlay);
         upi = NewMembView3.findViewById(R.id.upilay);
         next = NewMembView3.findViewById(R.id.newMembNext3);
+        next.setClickable(false);
         return NewMembView3;
     }
 
@@ -46,6 +48,13 @@ public class NewMembFrag3 extends Fragment {
                 dc.setBackgroundResource(R.drawable.roundedbtnpayment);
                 csh.setBackgroundResource(R.drawable.roundedbtnpayment);
                 next.setClickable(true);
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("onclicknext3", "clicked");
+                        nextBtnListener.onNewMembBtnClicked3();
+                    }
+                });
             }
         });
         csh.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +65,13 @@ public class NewMembFrag3 extends Fragment {
                 dc.setBackgroundResource(R.drawable.roundedbtnpayment);
                 csh.setBackgroundResource(R.drawable.roundedbtnpaymentsel);
                 next.setClickable(true);
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("onclicknext3", "clicked");
+                        nextBtnListener.onNewMembBtnClicked3();
+                    }
+                });
             }
         });
         cc.setOnClickListener(new View.OnClickListener() {
@@ -66,6 +82,13 @@ public class NewMembFrag3 extends Fragment {
                 dc.setBackgroundResource(R.drawable.roundedbtnpayment);
                 csh.setBackgroundResource(R.drawable.roundedbtnpayment);
                 next.setClickable(true);
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("onclicknext3", "clicked");
+                        nextBtnListener.onNewMembBtnClicked3();
+                    }
+                });
             }
         });
         dc.setOnClickListener(new View.OnClickListener() {
@@ -76,17 +99,15 @@ public class NewMembFrag3 extends Fragment {
                 dc.setBackgroundResource(R.drawable.roundedbtnpaymentsel);
                 csh.setBackgroundResource(R.drawable.roundedbtnpayment);
                 next.setClickable(true);
+                next.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Log.d("onclicknext3", "clicked");
+                        nextBtnListener.onNewMembBtnClicked3();
+                    }
+                });
             }
         });
-
-        if(next.isClickable()){
-            next.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    nextBtnListener.onNewMembBtnClicked3(true);
-                }
-            });
-        }
     }
 
     @Override

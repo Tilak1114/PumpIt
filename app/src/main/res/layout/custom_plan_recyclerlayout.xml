@@ -19,25 +19,53 @@
             >
             <RelativeLayout
                 android:layout_width="30dp"
+                android:visibility="invisible"
                 android:layout_height="30dp"
-                android:elevation="12dp"
-                android:translationZ="14dp"
-                android:id="@+id/deleteIcon"
+                android:id="@+id/editIconlay"
+                android:clickable="false"
+                android:layout_toStartOf="@id/deleteIconlay"
+                android:layout_margin="10dp">
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:alpha="0.9"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/typography_black"
+                    />
+                <ImageView
+                    android:elevation="14dp"
+                    android:translationZ="16dp"
+                    android:layout_width="21dp"
+                    android:layout_centerInParent="true"
+                    android:layout_height="21dp"
+                    android:background = "@drawable/edit_icon"
+                    android:layout_margin="2dp"
+                    />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="30dp"
+                android:visibility="invisible"
+                android:layout_height="30dp"
+                android:id="@+id/deleteIconlay"
                 android:layout_alignParentEnd="true"
                 android:clickable="false"
-                android:visibility="invisible"
-                android:background="@drawable/circle"
-                android:backgroundTint="@color/typography_black"
-                android:alpha="0.7"
-                android:layout_margin="10dp"
-                >
-            <ImageView
-                android:layout_width="22dp"
-                android:layout_centerInParent="true"
-                android:layout_height="22dp"
-                android:background = "@drawable/delete_icon"
-                android:layout_margin="2dp"
-                />
+                android:layout_margin="10dp">
+                <RelativeLayout
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:alpha="0.9"
+                    android:background="@drawable/circle"
+                    android:backgroundTint="@color/typography_black"
+                    />
+                <ImageView
+                    android:elevation="14dp"
+                    android:translationZ="16dp"
+                    android:layout_width="21dp"
+                    android:layout_centerInParent="true"
+                    android:layout_height="21dp"
+                    android:background = "@drawable/delete_icon"
+                    android:layout_margin="2dp"
+                    />
             </RelativeLayout>
 
             <TextView
@@ -51,6 +79,20 @@
                 android:text="12 Months Plan"
                 android:textColor="@android:color/white"
                 android:layout_above="@id/newPlanmembCnt"
+                android:layout_marginStart="20dp"
+                />
+            <TextView
+                android:id="@+id/newPlanDurtop"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textSize="22sp"
+                android:elevation="12dp"
+                android:translationZ="14dp"
+                android:visibility="invisible"
+                android:text="12 Months Plan"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="10dp"
                 android:layout_marginStart="20dp"
                 />
             <TextView
@@ -69,6 +111,7 @@
                 android:layout_marginBottom="20dp"/>
 
            <RelativeLayout
+               android:id="@+id/blacktemplate"
                android:background="@android:color/black"
                android:alpha="0.4"
                android:layout_width="match_parent"

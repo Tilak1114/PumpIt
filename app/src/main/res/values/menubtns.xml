@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="menuicons">
+        <item>@drawable/ic_camera</item>
+        <item>@drawable/user</item>
+        <item>@drawable/finicon</item>
+        <item>@drawable/ic_message_white</item>
+    </array>
+    <array name="menucolors">
+        <item>@android:color/holo_blue_light</item>
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/holo_orange_light</item>
+        <item>@android:color/holo_purple</item>
+    </array>
+</resources>

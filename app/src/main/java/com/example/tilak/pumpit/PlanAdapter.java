@@ -1,12 +1,16 @@
 package com.example.tilak.pumpit;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -35,47 +39,92 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
      */
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
+    Context context;
 
-    public PlanAdapter(@NonNull FirestoreRecyclerOptions<Plan> options) {
+    public PlanAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
         super(options);
+        this.context = context;
     }
 
     @Override
     protected void onBindViewHolder(@NonNull final PlanViewHolder holder, int position, @NonNull final Plan model) {
-
         GymName = user.getDisplayName();
 
         Log.d("GymMetainfo_planadap", GymName);
 
         holder.planDuration.setText(model.getPlanDuration());
+        holder.planDurTop.setText(model.getPlanDuration());
         holder.coverLay.setBackgroundResource(model.getCoverId());
         holder.planResMembCnt.setText(model.getPlanMembCount()+" Members");
         holder.coverLay.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
                 holder.delete.setVisibility(View.VISIBLE);
+                holder.edit.setVisibility(View.VISIBLE);
                 holder.delete.setClickable(true);
+                holder.edit.setClickable(true);
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        FirebaseFirestore.getInstance().
-                                collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
-                    }
-                });
-                holder.coverLay.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        holder.delete.setVisibility(View.INVISIBLE);
-                        holder.delete.setClickable(false);
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+                        builder.setTitle("Confirm Deletion").setMessage("Are you sure you want to delete this plan?");
+                        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                FirebaseFirestore.getInstance().
+                                        collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).create().show();
                     }
                 });
                 return true;
             }
         });
+
         holder.coverLay.setOnClickListener(new View.OnClickListener() {
+            Integer clickRegister = 1;
             @Override
             public void onClick(View v) {
-
+                if(clickRegister.equals(1)){
+                    holder.edit.setVisibility(View.INVISIBLE);
+                    holder.edit.setClickable(false);
+                    holder.delete.setVisibility(View.INVISIBLE);
+                    holder.delete.setClickable(false);
+                    Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
+                    Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+                    holder.blacktemp.startAnimation(aniFadeOut);
+                    holder.blacktemp.setVisibility(View.INVISIBLE);
+                    holder.planResMembCnt.startAnimation(aniFadeOut);
+                    holder.planResMembCnt.setVisibility(View.INVISIBLE);
+                    holder.planDuration.startAnimation(aniFadeOut);
+                    holder.planDuration.setVisibility(View.INVISIBLE);
+                    holder.planDurTop.setAnimation(aniFadeIn);
+                    holder.planDurTop.setVisibility(View.VISIBLE);
+                    clickRegister = 2;
+                }
+                else if(clickRegister.equals(2))
+                {
+                    holder.delete.setVisibility(View.INVISIBLE);
+                    holder.delete.setClickable(false);
+                    holder.edit.setVisibility(View.INVISIBLE);
+                    holder.edit.setClickable(false);
+                    Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+                    Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
+                    holder.blacktemp.startAnimation(aniFadeIn);
+                    holder.blacktemp.setVisibility(View.VISIBLE);
+                    holder.planResMembCnt.startAnimation(aniFadeIn);
+                    holder.planResMembCnt.setVisibility(View.VISIBLE);
+                    holder.planDuration.startAnimation(aniFadeIn);
+                    holder.planDuration.setVisibility(View.VISIBLE);
+                    holder.planDurTop.setAnimation(aniFadeOut);
+                    holder.planDurTop.setVisibility(View.INVISIBLE);
+                    clickRegister = 1;
+                }
             }
         });
     }
@@ -88,15 +137,18 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     }
 
     class PlanViewHolder extends RecyclerView.ViewHolder {
-        TextView planDuration, planResMembCnt;
-        RelativeLayout coverLay;
-        RelativeLayout delete;
+        TextView planDuration, planResMembCnt, planDurTop;
+        RelativeLayout coverLay, blacktemp;
+        RelativeLayout delete, edit;
         public PlanViewHolder(View itemView) {
             super(itemView);
             planResMembCnt = itemView.findViewById(R.id.newPlanmembCnt);
             planDuration = itemView.findViewById(R.id.newPlanDur);
             coverLay = itemView.findViewById(R.id.newPlanlay);
-            delete = itemView.findViewById(R.id.deleteIcon);
+            delete = itemView.findViewById(R.id.deleteIconlay);
+            edit = itemView.findViewById(R.id.editIconlay);
+            planDurTop = itemView.findViewById(R.id.newPlanDurtop);
+            blacktemp = itemView.findViewById(R.id.blacktemplate);
         }
     }
 }

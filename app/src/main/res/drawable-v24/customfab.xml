@@ -5,6 +5,9 @@
             <solid android:color="@color/bckprimary"/>
         </shape>
     </item>
-    <item android:state_pressed="true" android:drawable="@drawable/gradientcir">
+    <item android:state_pressed="true">
+        <shape android:shape="oval">
+            <solid android:color="@color/gtstrtbck"/>
+        </shape>
     </item>
 </selector>

@@ -108,7 +108,7 @@ public class ManagePlansFragment extends Fragment {
         Query query = planCollection;
         FirestoreRecyclerOptions<Plan> options = new FirestoreRecyclerOptions.Builder<Plan>().
                 setQuery(query, Plan.class).build();
-        adapter = new PlanAdapter(options);
+        adapter = new PlanAdapter(options, getContext());
         planRv.setAdapter(adapter);
         planRv.setLayoutManager(new LinearLayoutManager(getContext()));
 
