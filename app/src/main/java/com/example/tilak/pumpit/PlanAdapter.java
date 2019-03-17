@@ -41,6 +41,8 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     String GymName;
     Context context;
 
+    private int lastSelectedPosition = -1;
+
     public PlanAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
         super(options);
         this.context = context;
@@ -85,48 +87,22 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
                 return true;
             }
         });
-
-        holder.coverLay.setOnClickListener(new View.OnClickListener() {
-            Integer clickRegister = 1;
-            @Override
-            public void onClick(View v) {
-                if(clickRegister.equals(1)){
-                    holder.edit.setVisibility(View.INVISIBLE);
-                    holder.edit.setClickable(false);
-                    holder.delete.setVisibility(View.INVISIBLE);
-                    holder.delete.setClickable(false);
-                    Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
-                    Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
-                    holder.blacktemp.startAnimation(aniFadeOut);
-                    holder.blacktemp.setVisibility(View.INVISIBLE);
-                    holder.planResMembCnt.startAnimation(aniFadeOut);
-                    holder.planResMembCnt.setVisibility(View.INVISIBLE);
-                    holder.planDuration.startAnimation(aniFadeOut);
-                    holder.planDuration.setVisibility(View.INVISIBLE);
-                    holder.planDurTop.setAnimation(aniFadeIn);
-                    holder.planDurTop.setVisibility(View.VISIBLE);
-                    clickRegister = 2;
-                }
-                else if(clickRegister.equals(2))
-                {
-                    holder.delete.setVisibility(View.INVISIBLE);
-                    holder.delete.setClickable(false);
-                    holder.edit.setVisibility(View.INVISIBLE);
-                    holder.edit.setClickable(false);
-                    Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
-                    Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
-                    holder.blacktemp.startAnimation(aniFadeIn);
-                    holder.blacktemp.setVisibility(View.VISIBLE);
-                    holder.planResMembCnt.startAnimation(aniFadeIn);
-                    holder.planResMembCnt.setVisibility(View.VISIBLE);
-                    holder.planDuration.startAnimation(aniFadeIn);
-                    holder.planDuration.setVisibility(View.VISIBLE);
-                    holder.planDurTop.setAnimation(aniFadeOut);
-                    holder.planDurTop.setVisibility(View.INVISIBLE);
-                    clickRegister = 1;
-                }
-            }
-        });
+        if(lastSelectedPosition != position){
+           /* holder.delete.setVisibility(View.INVISIBLE);
+            holder.delete.setClickable(false);
+            holder.edit.setVisibility(View.INVISIBLE);
+            holder.edit.setClickable(false);
+            Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+            Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
+            holder.blacktemp.startAnimation(aniFadeIn);
+            holder.blacktemp.setVisibility(View.VISIBLE);
+            holder.planResMembCnt.startAnimation(aniFadeIn);
+            holder.planResMembCnt.setVisibility(View.VISIBLE);
+            holder.planDuration.startAnimation(aniFadeIn);
+            holder.planDuration.setVisibility(View.VISIBLE);
+            holder.planDurTop.setAnimation(aniFadeOut);
+            holder.planDurTop.setVisibility(View.INVISIBLE);*/
+        }
     }
 
     @NonNull
@@ -149,6 +125,50 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
             edit = itemView.findViewById(R.id.editIconlay);
             planDurTop = itemView.findViewById(R.id.newPlanDurtop);
             blacktemp = itemView.findViewById(R.id.blacktemplate);
+
+            coverLay.setOnClickListener(new View.OnClickListener() {
+                Integer clickRegister = 1;
+                @Override
+                public void onClick(View v) {
+                    lastSelectedPosition = getAdapterPosition();
+                    notifyDataSetChanged();
+                    if(clickRegister.equals(1)){
+                        edit.setVisibility(View.INVISIBLE);
+                        edit.setClickable(false);
+                        delete.setVisibility(View.INVISIBLE);
+                        delete.setClickable(false);
+                        Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
+                        Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+                        blacktemp.startAnimation(aniFadeOut);
+                        blacktemp.setVisibility(View.INVISIBLE);
+                        planResMembCnt.startAnimation(aniFadeOut);
+                        planResMembCnt.setVisibility(View.INVISIBLE);
+                        planDuration.startAnimation(aniFadeOut);
+                        planDuration.setVisibility(View.INVISIBLE);
+                        planDurTop.setAnimation(aniFadeIn);
+                        planDurTop.setVisibility(View.VISIBLE);
+                        clickRegister = 2;
+                    }
+                    else if(clickRegister.equals(2))
+                    {
+                        delete.setVisibility(View.INVISIBLE);
+                        delete.setClickable(false);
+                        edit.setVisibility(View.INVISIBLE);
+                        edit.setClickable(false);
+                        Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+                        Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
+                        blacktemp.startAnimation(aniFadeIn);
+                        blacktemp.setVisibility(View.VISIBLE);
+                        planResMembCnt.startAnimation(aniFadeIn);
+                        planResMembCnt.setVisibility(View.VISIBLE);
+                        planDuration.startAnimation(aniFadeIn);
+                        planDuration.setVisibility(View.VISIBLE);
+                        planDurTop.setAnimation(aniFadeOut);
+                        planDurTop.setVisibility(View.INVISIBLE);
+                        clickRegister = 1;
+                    }
+                }
+            });
         }
     }
 }

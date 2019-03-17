@@ -60,28 +60,41 @@ public class NewPlanFrag1 extends Fragment {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String PlanDur = planDur.getText().toString()+" Months Plan";
-                final String PlanTitle = planTitle.getText().toString();
-                String PlanPrice = planPrice.getText().toString();
 
-                progressDialog.setTitle("Creating New Plan");
-                progressDialog.setMessage("Adding Data...");
-                progressDialog.show();
+                if (planTitle.getText().toString().isEmpty()) {
+                    planTitle.setError("Field Required");
+                }
+                if (planDur.getText().toString().isEmpty()) {
+                    planDur.setError("Field Required");
+                }
+                if (planPrice.getText().toString().isEmpty()) {
+                    planPrice.setError("Field Required");
+                }
+                if(!planDur.getText().toString().isEmpty()&&!planPrice.getText().toString().isEmpty()&&
+                        !planTitle.getText().toString().isEmpty()){
+                    String PlanDur = planDur.getText().toString() + " Months Plan";
+                    final String PlanTitle = planTitle.getText().toString();
+                    String PlanPrice = planPrice.getText().toString();
 
-                DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                        "/Plans/"+PlanTitle);
-                Map<String, Object> data1 = new HashMap<String, Object>();
-                data1.put("planName", PlanTitle);
-                data1.put("planDuration", PlanDur);
-                data1.put("planPrice", PlanPrice);
-                data1.put("planFeatures", "Cardio, Strength");
-                newPlan.set(data1).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        nextBtnListener.onNewPlanBtnClicked1(true, PlanTitle);
-                        progressDialog.dismiss();
-                    }
-                });
+                    progressDialog.setTitle("Creating New Plan");
+                    progressDialog.setMessage("Adding Data...");
+                    progressDialog.show();
+
+                    DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+                            "/Plans/"+PlanTitle);
+                    Map<String, Object> data1 = new HashMap<String, Object>();
+                    data1.put("planName", PlanTitle);
+                    data1.put("planDuration", PlanDur);
+                    data1.put("planPrice", PlanPrice);
+                    data1.put("planFeatures", "Cardio, Strength");
+                    newPlan.set(data1).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            nextBtnListener.onNewPlanBtnClicked1(true, PlanTitle);
+                            progressDialog.dismiss();
+                        }
+                    });
+                }
             }
         });
     }

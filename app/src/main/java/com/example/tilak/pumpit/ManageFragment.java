@@ -18,9 +18,9 @@ public class ManageFragment extends Fragment {
     private TabLayout dbtabs;
     private ViewPager dbviewPager;
     private int[] tabIcons = {
-            R.drawable.membicon,
-            R.drawable.planicon,
-            R.drawable.finicon
+            R.drawable.membicon1,
+            R.drawable.plansicon,
+            R.drawable.arm
     };
     @Nullable
     @Override

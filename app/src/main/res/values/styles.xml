@@ -50,5 +50,9 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="switchtheme" parent="Theme.AppCompat.Light">
+        <item name="android:colorControlActivated">@color/gtstrtbck</item>
+        <item name="android:colorControlNormal">@color/typography_black</item>
+    </style>
 
 </resources>

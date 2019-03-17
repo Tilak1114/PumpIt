@@ -19,7 +19,7 @@ public class DashBoardFragmentPagerAdapter extends FragmentPagerAdapter {
         else if(position == 1)
             return new ManagePlansFragment();
         else
-            return new ManageMoneyFragment();
+            return new ManageTrainersFragment();
     }
 
     @Override

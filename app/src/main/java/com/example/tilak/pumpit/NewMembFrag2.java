@@ -92,7 +92,7 @@ public class NewMembFrag2 extends Fragment {
         Query query = planCollection;
         FirestoreRecyclerOptions<Plan> options = new FirestoreRecyclerOptions.Builder<Plan>().
                 setQuery(query, Plan.class).build();
-        adapter = new PlanSelAdapter(options);
+        adapter = new PlanSelAdapter(options, getContext());
         planRv.setAdapter(adapter);
         planRv.setLayoutManager(new LinearLayoutManager(getContext()));
     }

@@ -64,6 +64,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
     @Override
     public void onNewMembBtnClicked1(Boolean result, String membName) {
         if(result){
+            stepView.go(1, true);
             setupPlansWithCount();
             NewMembFrag2 newMembFrag2 = new NewMembFrag2();
             Bundle bundle =  new Bundle();
@@ -79,6 +80,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
         if(result){
             getSupportFragmentManager().beginTransaction().replace(R.id.newMemb_container,
                     new NewMembFrag3()).addToBackStack(null).commit();
+            stepView.go(2, true);
         }
     }
 
@@ -132,6 +134,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
 
     @Override
     public void onNewMembBtnClicked3() {
+        stepView.done(true);
         Log.d("next3check", "entered next3");
         final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
         dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

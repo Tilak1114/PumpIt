@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_height="300dp">
+        <ImageView
+            android:layout_width="120dp"
+            android:id="@+id/storeimgchange"
+            android:layout_height="120dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:backgroundTint="@color/bckprimary"
+            android:background="@drawable/boxingeq"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coming Soon"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="28sp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@id/storeimgchange"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/lato"/>
+    </RelativeLayout>
+
+</RelativeLayout>
