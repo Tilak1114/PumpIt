@@ -28,26 +28,10 @@ public class StoreFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        //animateStoreImages();
+        animateStoreImages();
     }
 
     public void animateStoreImages(){
-        Animation aniFadeOut = AnimationUtils.loadAnimation(getContext(),R.anim.fade_out);
-        Animation aniFadeIn = AnimationUtils.loadAnimation(getContext(),R.anim.fade_in);
-        while(true){
-            for(int j = 0; j<4; j++)
-            {
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Do something after 100ms
-                    }
-                }, 2000);
-                imageChange.startAnimation(aniFadeOut);
-                imageChange.setImageResource(images[j]);
-                imageChange.startAnimation(aniFadeIn);
-            }
-        }
+
     }
 }

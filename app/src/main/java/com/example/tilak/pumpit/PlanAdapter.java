@@ -137,15 +137,15 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
                         edit.setClickable(false);
                         delete.setVisibility(View.INVISIBLE);
                         delete.setClickable(false);
-                        Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
                         Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
+                        Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
                         blacktemp.startAnimation(aniFadeOut);
                         blacktemp.setVisibility(View.INVISIBLE);
                         planResMembCnt.startAnimation(aniFadeOut);
                         planResMembCnt.setVisibility(View.INVISIBLE);
                         planDuration.startAnimation(aniFadeOut);
                         planDuration.setVisibility(View.INVISIBLE);
-                        planDurTop.setAnimation(aniFadeIn);
+                        planDurTop.startAnimation(aniFadeIn);
                         planDurTop.setVisibility(View.VISIBLE);
                         clickRegister = 2;
                     }
@@ -163,7 +163,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
                         planResMembCnt.setVisibility(View.VISIBLE);
                         planDuration.startAnimation(aniFadeIn);
                         planDuration.setVisibility(View.VISIBLE);
-                        planDurTop.setAnimation(aniFadeOut);
+                        planDurTop.startAnimation(aniFadeOut);
                         planDurTop.setVisibility(View.INVISIBLE);
                         clickRegister = 1;
                     }

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    >
+
     <RelativeLayout
         android:layout_marginTop="20dp"
-        android:id="@+id/trainerlay"
+        android:id="@+id/leadslay"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="10dp"
@@ -11,7 +15,7 @@
         android:translationZ="0dp">
 
         <TextView
-            android:id="@+id/mngtrainers"
+            android:id="@+id/leads"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@id/mngmmbcnt"
@@ -19,14 +23,14 @@
             android:layout_marginTop="0dp"
             android:elevation="14dp"
             android:fontFamily="@font/product_sans_reg"
-            android:text="Trainers"
+            android:text="Leads"
             android:textColor="@color/typography_black"
             android:textSize="26sp"
             android:textStyle="bold"
             android:translationZ="10dp" />
 
         <TextView
-            android:id="@+id/mngtrainerscnt"
+            android:id="@+id/leadcnt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -35,42 +39,36 @@
             android:translationZ="10dp"
             android:elevation="8dp"
             android:fontFamily="@font/product_sans_reg"
-            android:text=" Trainers"
+            android:text=" Enquiries"
             android:textColor="@color/typography_slate"
             android:textSize="16sp"
             android:textStyle="normal" />
+
+        <ImageView
+            android:id="@+id/cancelleadsmain"
+            android:layout_width="25dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_height="25dp"
+            android:backgroundTint="@color/gtstrtbck"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="30dp"
+            android:background="@drawable/icn_close"/>
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/trainersearchlay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/trainerlay"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/memb_btn_rect"
-        android:elevation="2dp"
-        android:translationZ="4dp">
-
-        <SearchView
-            android:id="@+id/trainersearchmemb"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_centerInParent="true"
-            android:queryHint="Search Trainers" />
-    </RelativeLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_below="@id/trainersearchlay"
+        android:layout_below="@id/leadslay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/trainerRecyclerview">
+        android:id="@+id/leadsrv">
 
     </android.support.v7.widget.RecyclerView>
     <RelativeLayout
-        android:id="@+id/addTrainerfab"
+        android:id="@+id/addenqfab"
         android:layout_height="55dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"

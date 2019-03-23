@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/tolay"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/msgback"
+        android:layout_marginTop="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginStart="10dp"
+            android:id="@+id/totv"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/product_sans_reg"
+            android:textColor="#585656"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:text="To"/>
+
+        <com.doodle.android.chips.ChipsView
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/totv"
+            android:id="@+id/chipsView_contacts"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="3dp"
+            android:layout_height="wrap_content"
+            app:cv_max_height="50dp"
+            app:cv_vertical_spacing="2dp"
+            app:cv_bg_color="#615F5F"
+            app:cv_bg_color_clicked="#FF3F3D3D"
+            app:cv_color="@color/gray"
+            app:cv_color_clicked="@color/gray"
+            app:cv_text_color="@android:color/white"
+            app:cv_text_color_clicked="@color/gray"
+            app:cv_icon_delete="@drawable/ic_close_24dp"
+            app:cv_chips_margin="2dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="5dp"
+        android:id="@+id/composelay"
+        android:layout_above="@id/sendmsglay"
+        android:layout_marginEnd="5dp"
+        android:background="@drawable/msgback"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/tolay">
+        <RelativeLayout
+            android:id="@+id/mailtitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:id="@+id/mailtxt"
+                android:layout_marginStart="10dp"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/mngmmbcnt"
+                android:elevation="14dp"
+                android:fontFamily="@font/product_sans_reg"
+                android:text="Compose Message"
+                android:textColor="#585656"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:translationZ="10dp" />
+
+        </RelativeLayout>
+        <EditText
+            android:layout_below="@id/mailtitle"
+            android:background="@null"
+            android:gravity="start"
+            android:id="@+id/composemsget"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="10dp"
+            android:textSize="18sp"
+            android:inputType="textMultiLine"
+            android:fontFamily="@font/product_sans_reg"
+            android:layout_marginStart="10dp" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/sendmsglay"
+        android:elevation="8dp"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Send"
+            android:layout_marginStart="160dp"
+            android:textSize="20sp"
+            android:fontFamily="@font/ubuntu_b"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="50dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:tint="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/mess"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

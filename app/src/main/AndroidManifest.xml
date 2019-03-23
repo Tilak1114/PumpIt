@@ -59,6 +59,19 @@
             android:screenOrientation="portrait"
             android:name=".Activity2"
             android:theme="@style/AppTheme2" />
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".LeadsActivity"
+            android:theme="@style/AppTheme2"/>
+        <activity
+            android:name=".MessageActivity"
+            android:windowSoftInputMode="adjustPan"
+            android:theme="@style/AppTheme2"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".NewLeadActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme2"/>
     </application>
 
 </manifest>

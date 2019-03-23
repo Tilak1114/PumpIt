@@ -235,7 +235,7 @@
             <RelativeLayout
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/announcerfab"
+                android:id="@+id/messagetsk"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="20dp"
@@ -277,7 +277,7 @@
             <RelativeLayout
                 android:clickable="true"
                 android:focusable="true"
-                android:id="@+id/leadsfab"
+                android:id="@+id/leadstsk"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginStart="20dp"

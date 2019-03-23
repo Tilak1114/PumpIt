@@ -28,7 +28,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class OverViewFragment extends Fragment {
-    RelativeLayout addmemb;
+    RelativeLayout addmemb, messages, leads;
     FirebaseAuth firebaseAuth;
     TextView allmembs, activememb, odmemb, activerect, odrect;
 
@@ -45,6 +45,8 @@ public class OverViewFragment extends Fragment {
         Log.d("GymMetainfo_ov", GymName);
 
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
+        leads = ovfragview.findViewById(R.id.leadstsk);
+        messages = ovfragview.findViewById(R.id.messagetsk);
         activememb = ovfragview.findViewById(R.id.activecount);
         odmemb = ovfragview.findViewById(R.id.odcount);
         activerect = ovfragview.findViewById(R.id.activerectbtn);
@@ -98,6 +100,21 @@ public class OverViewFragment extends Fragment {
                 startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
+
+        messages.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), MessageActivity.class));
+            }
+        });
+
+        leads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LeadsActivity.class));
+            }
+        });
+
         allmembs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
