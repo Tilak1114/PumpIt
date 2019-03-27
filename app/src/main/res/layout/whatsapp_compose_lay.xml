@@ -104,18 +104,18 @@
         android:layout_alignParentBottom="true">
         <TextView
             android:id="@+id/tvgetstrt"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Send"
-            android:layout_marginStart="160dp"
+            android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/ubuntu_b"
             android:textColor="@android:color/white"
             />
         <RelativeLayout
             android:layout_height="50dp"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:background="@color/gtstrtbck1"
             android:layout_alignParentRight="true">
             <ImageView

@@ -25,25 +25,6 @@
             android:layout_height="wrap_content"
             android:text="To"/>
 
-        <com.doodle.android.chips.ChipsView
-            android:layout_marginStart="10dp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/totv"
-            android:id="@+id/chipsView_contacts"
-            android:layout_width="wrap_content"
-            android:layout_marginEnd="3dp"
-            android:layout_height="wrap_content"
-            app:cv_max_height="50dp"
-            app:cv_vertical_spacing="2dp"
-            app:cv_bg_color="#615F5F"
-            app:cv_bg_color_clicked="#FF3F3D3D"
-            app:cv_color="@color/gray"
-            app:cv_color_clicked="@color/gray"
-            app:cv_text_color="@android:color/white"
-            app:cv_text_color_clicked="@color/gray"
-            app:cv_icon_delete="@drawable/ic_close_24dp"
-            app:cv_chips_margin="2dp"/>
-
     </RelativeLayout>
 
     <RelativeLayout
@@ -104,18 +85,18 @@
         android:layout_alignParentBottom="true">
         <TextView
             android:id="@+id/tvgetstrt"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Send"
-            android:layout_marginStart="160dp"
+            android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/ubuntu_b"
             android:textColor="@android:color/white"
             />
         <RelativeLayout
             android:layout_height="50dp"
-            android:layout_width="80dp"
+            android:layout_width="60dp"
             android:background="@color/gtstrtbck1"
             android:layout_alignParentRight="true">
             <ImageView

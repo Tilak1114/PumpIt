@@ -79,12 +79,14 @@ public class ActiveMembFrag extends Fragment implements MemberAdapter.ItemclickL
     }
 
     @Override
-    public void onItemClick(String name, String plan, String payment, String profileurl, String phone) {
+    public void onItemClick(String name, String plan, String payment, String profileurl, String phone, String start_date, String end_date) {
         Intent i = new Intent(getActivity(), MemberDetails.class);
         i.putExtra("name", name);
         i.putExtra("plan", plan);
         i.putExtra("payment", payment);
         i.putExtra("profileurl", profileurl);
+        i.putExtra("start_date", start_date);
+        i.putExtra("end_date", end_date);
         i.putExtra("phone", phone);
         startActivity(i);
     }

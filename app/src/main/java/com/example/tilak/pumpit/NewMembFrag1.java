@@ -190,7 +190,10 @@ public class NewMembFrag1 extends Fragment {
 
             Map<String, Object> data = new HashMap<String, Object>();
             data.put("firstName", MemberFN);
+            data.put("fullname_lc", MemberFN.toLowerCase()+" "+MemberLN.toLowerCase());
             data.put("lastName", MemberLN);
+            data.put("start_date", "");
+            data.put("end_date", "");
             data.put("membPlan", "");
             data.put("payment", "");
             data.put("planName", "");

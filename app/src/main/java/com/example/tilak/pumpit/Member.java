@@ -1,19 +1,24 @@
 package com.example.tilak.pumpit;
 
 public class Member {
-    String firstName, lastName, membPlan, payment, phoneNo, planName, profileUrl;
+    String firstName, lastName, membPlan, payment, phoneNo, planName, profileUrl, fullname_lc,
+            end_date, start_date;
     public Member(){
 
     }
 
-    public Member(String firstName, String lastName, String membPlan, String payment, String phoneNo, String planName, String profileUrl) {
+    public Member(String end_date, String firstName, String fullname_lc, String lastName, String membPlan,
+                  String payment, String phoneNo, String planName, String profileUrl, String start_date) {
+        this.end_date = end_date;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.fullname_lc = fullname_lc;
         this.membPlan = membPlan;
         this.payment = payment;
         this.phoneNo = phoneNo;
         this.planName = planName;
         this.profileUrl = profileUrl;
+        this.start_date = start_date;
     }
 
     public String getFirstName() {
@@ -42,5 +47,17 @@ public class Member {
 
     public String getProfileUrl() {
         return profileUrl;
+    }
+
+    public String getFullname_lc(){
+        return fullname_lc;
+    }
+
+    public String getEnd_date(){
+        return end_date;
+    }
+
+    public String getStart_date(){
+        return start_date;
     }
 }

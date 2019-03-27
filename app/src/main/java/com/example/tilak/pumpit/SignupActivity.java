@@ -21,16 +21,20 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 import com.shuhart.stepview.StepView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SignupActivity extends AppCompatActivity implements SignUpEmailPassword.NextBtnListener,
         SignUpSecond.NextBtnListener, SignUpThird.NextBtnListener, VerifyOrReqDemo.ValidateBtnClick {
 
     StepView stepView;
     FrameLayout snpcont;
+    String GymName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         setContentView(R.layout.activity_signup);
         stepView = findViewById(R.id.stepView);
         snpcont = findViewById(R.id.signup_container);
+
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.signup_container, new VerifyOrReqDemo()).commit();
     }
@@ -72,8 +77,91 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         if(result){
             stepView.go(4, true);
             stepView.done(true);
+            initSetup();
             startActivity(new Intent(getApplicationContext(), InAppActivity.class));
         }
+    }
+
+    public void initSetup(){
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        GymName = user.getDisplayName();
+
+        DocumentReference membmeta = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
+
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("activemembcount", "0");
+        data.put("allmembcount", "0");
+        data.put("overduemembcount", "0");
+        membmeta.set(data, SetOptions.merge());
+
+        defaultPlanSetup();
+
+        DocumentReference planmeta = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/plans");
+
+        Map<String, Object> data1 = new HashMap<String, Object>();
+        data1.put("plancount", "3");
+        planmeta.set(data1, SetOptions.merge());
+
+        DocumentReference trainermeta = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/trainers");
+
+        Map<String, Object> data2 = new HashMap<String, Object>();
+        data1.put("trainercnt", "0");
+        trainermeta.set(data2, SetOptions.merge());
+    }
+
+    private void defaultPlanSetup() {
+
+        /*DocumentReference Metadatamemb = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+                "/MetaData/members");
+
+        Map<String, Object> metadata = new HashMap<String, Object>();
+        metadata.put("activemembcount", "0");
+        metadata.put("allmembcount", "0");
+        metadata.put("overduemembcount", "0");
+
+        Metadatamemb.set(metadata);
+
+        DocumentReference MetadataPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+                "/MetaData/plans");
+
+        Map<String, Object> metadata1 = new HashMap<String, Object>();
+        metadata1.put("plancount", "3");
+
+        Metadatamemb.set(metadata);*/
+
+        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+                "/Plans/Plan1");
+        Map<String, Object> data1 = new HashMap<String, Object>();
+        data1.put("planName", "Plan1");
+        data1.put("planPrice", "2500");
+        data1.put("planDuration", "3 Months Plan");
+        data1.put("planMembCount", "5");
+        data1.put("planFeatures", "Cardio, Strength");
+        data1.put("coverId", R.drawable.plan1);
+        planDoc1.set(data1);
+
+        DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+                "/Plans/Plan2");
+        Map<String, Object> data2 = new HashMap<String, Object>();
+        data2.put("planName", "Plan2");
+        data2.put("planPrice", "5000");
+        data2.put("planMembCount", "3");
+        data2.put("planDuration", "6 Months Plan");
+        data2.put("planFeatures", "Cardio, Strength");
+        data2.put("coverId", R.drawable.plan2);
+        planDoc2.set(data2);
+
+        DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+                "/Plans/Plan3");
+        Map<String, Object> data3 = new HashMap<String, Object>();
+        data3.put("planName", "Plan3");
+        data3.put("planPrice", "12000");
+        data3.put("planMembCount", "2");
+        data3.put("planDuration", "12 Months Plan");
+        data3.put("planFeatures", "Cardio, Strength");
+        data3.put("coverId", R.drawable.plan3);
+        planDoc3.set(data3);
     }
 
     @Override
