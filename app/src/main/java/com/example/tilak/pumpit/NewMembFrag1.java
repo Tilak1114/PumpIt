@@ -16,6 +16,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+
+import java.util.Calendar;
+import java.util.Date;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -192,8 +195,8 @@ public class NewMembFrag1 extends Fragment {
             data.put("firstName", MemberFN);
             data.put("fullname_lc", MemberFN.toLowerCase()+" "+MemberLN.toLowerCase());
             data.put("lastName", MemberLN);
-            data.put("start_date", "");
-            data.put("end_date", "");
+            //data.put("start_date", "");
+            //data.put("end_date", "");
             data.put("membPlan", "");
             data.put("payment", "");
             data.put("planName", "");

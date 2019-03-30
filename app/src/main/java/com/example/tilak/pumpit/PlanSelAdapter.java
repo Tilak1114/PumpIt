@@ -36,11 +36,15 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
     private int lastSelectedPosition = -1;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String GymName;
+    String GymName, planSel, planName;
 
     public PlanSelAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
         super(options);
         this.mContext = context;
+    }
+
+    public interface RvSelectedListener{
+        void onItemSelected(int position);
     }
 
     @Override
@@ -81,10 +85,25 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
                 public void onClick(View v) {
                     lastSelectedPosition = getAdapterPosition();
                     notifyDataSetChanged();
+                    planSel = planDuration.getText().toString();
+                    Toast.makeText(mContext, "Selected " + planDuration.getText(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            selSwicth.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    lastSelectedPosition = getAdapterPosition();
+                    notifyDataSetChanged();
+                    planSel = planDuration.getText().toString();
                     Toast.makeText(mContext, "Selected " + planDuration.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
         }
+    }
+
+    public String getPlanSel(){
+        return planSel;
     }
 
 }
