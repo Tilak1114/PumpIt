@@ -99,6 +99,7 @@ public class NewMembFrag2 extends Fragment {
                 data.put("payment", "Fees Paid");// later move this to frag three
                 data.put("start_date", startDate);
                 data.put("end_date", endDate);
+                data.put("email", "");
                 documentReference.set(data, SetOptions.merge());
                 nextBtnListener.onNewMembBtnClicked2(true);
             }
