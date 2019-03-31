@@ -15,6 +15,7 @@ import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -24,11 +25,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.PlanViewHolder> {
     /**
@@ -41,7 +47,6 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     String GymName;
     Context context;
 
-    private int lastSelectedPosition = -1;
 
     public PlanAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
         super(options);
@@ -55,7 +60,6 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
         Log.d("GymMetainfo_planadap", GymName);
 
         holder.planDuration.setText(model.getPlanDuration());
-        holder.planDurTop.setText(model.getPlanDuration());
         holder.coverLay.setBackgroundResource(model.getCoverId());
         holder.planResMembCnt.setText(model.getPlanMembCount()+" Members");
         holder.coverLay.setOnLongClickListener(new View.OnLongClickListener() {
@@ -65,44 +69,66 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
                 holder.edit.setVisibility(View.VISIBLE);
                 holder.delete.setClickable(true);
                 holder.edit.setClickable(true);
+
+                holder.coverLay.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        holder.delete.setVisibility(View.INVISIBLE);
+                        holder.delete.setClickable(false);
+                        holder.edit.setVisibility(View.INVISIBLE);
+                        holder.edit.setClickable(false);
+                    }
+                });
+
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
-                        builder.setTitle("Confirm Deletion").setMessage("Are you sure you want to delete this plan?");
-                        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                FirebaseFirestore.getInstance().
-                                        collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).create().show();
+                        if(Integer.parseInt(model.getPlanMembCount())!=0){
+                            AlertDialog.Builder builder1 = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+                            builder1.setTitle("Deletion Not Allowed");
+                            builder1.setMessage("Cannot delete this plan as it is in use");
+                            builder1.setCancelable(true);
+                            builder1.setNeutralButton("OK",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                        }
+                                    }).create().show();
+                        }
+                        else{
+                            final AlertDialog.Builder builder = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
+                            builder.setTitle("Confirm Deletion").setMessage("Are you sure you want to delete this plan?");
+                            builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    FirebaseFirestore.getInstance().
+                                            collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
+                                    final DocumentReference plncntref = FirebaseFirestore.getInstance()
+                                            .document("Gyms/"+GymName+"/MetaData/plans");
+                                    plncntref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                        @Override
+                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                            String plncnt = documentSnapshot.getString("plancount");
+                                            int plncntint = Integer.parseInt(plncnt);
+                                            plncntint = plncntint-1;
+                                            Map<String, Object> data = new HashMap<String, Object>();
+                                            data.put("plancount", String.valueOf(plncntint));
+                                            plncntref.set(data, SetOptions.merge());
+                                        }
+                                    });
+                                }
+                            }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).create().show();
+                        }
                     }
                 });
                 return true;
             }
         });
-        if(lastSelectedPosition != position){
-           /* holder.delete.setVisibility(View.INVISIBLE);
-            holder.delete.setClickable(false);
-            holder.edit.setVisibility(View.INVISIBLE);
-            holder.edit.setClickable(false);
-            Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
-            Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
-            holder.blacktemp.startAnimation(aniFadeIn);
-            holder.blacktemp.setVisibility(View.VISIBLE);
-            holder.planResMembCnt.startAnimation(aniFadeIn);
-            holder.planResMembCnt.setVisibility(View.VISIBLE);
-            holder.planDuration.startAnimation(aniFadeIn);
-            holder.planDuration.setVisibility(View.VISIBLE);
-            holder.planDurTop.setAnimation(aniFadeOut);
-            holder.planDurTop.setVisibility(View.INVISIBLE);*/
-        }
     }
 
     @NonNull
@@ -114,7 +140,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
 
     class PlanViewHolder extends RecyclerView.ViewHolder {
         TextView planDuration, planResMembCnt, planDurTop;
-        RelativeLayout coverLay, blacktemp;
+        RelativeLayout coverLay;
         RelativeLayout delete, edit;
         public PlanViewHolder(View itemView) {
             super(itemView);
@@ -123,50 +149,12 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
             coverLay = itemView.findViewById(R.id.newPlanlay);
             delete = itemView.findViewById(R.id.deleteIconlay);
             edit = itemView.findViewById(R.id.editIconlay);
-            planDurTop = itemView.findViewById(R.id.newPlanDurtop);
-            blacktemp = itemView.findViewById(R.id.blacktemplate);
+
 
             coverLay.setOnClickListener(new View.OnClickListener() {
-                Integer clickRegister = 1;
                 @Override
                 public void onClick(View v) {
-                    lastSelectedPosition = getAdapterPosition();
-                    notifyDataSetChanged();
-                    if(clickRegister.equals(1)){
-                        edit.setVisibility(View.INVISIBLE);
-                        edit.setClickable(false);
-                        delete.setVisibility(View.INVISIBLE);
-                        delete.setClickable(false);
-                        Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
-                        Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
-                        blacktemp.startAnimation(aniFadeOut);
-                        blacktemp.setVisibility(View.INVISIBLE);
-                        planResMembCnt.startAnimation(aniFadeOut);
-                        planResMembCnt.setVisibility(View.INVISIBLE);
-                        planDuration.startAnimation(aniFadeOut);
-                        planDuration.setVisibility(View.INVISIBLE);
-                        planDurTop.startAnimation(aniFadeIn);
-                        planDurTop.setVisibility(View.VISIBLE);
-                        clickRegister = 2;
-                    }
-                    else if(clickRegister.equals(2))
-                    {
-                        delete.setVisibility(View.INVISIBLE);
-                        delete.setClickable(false);
-                        edit.setVisibility(View.INVISIBLE);
-                        edit.setClickable(false);
-                        Animation aniFadeIn = AnimationUtils.loadAnimation(context,R.anim.fade_in);
-                        Animation aniFadeOut = AnimationUtils.loadAnimation(context,R.anim.fade_out);
-                        blacktemp.startAnimation(aniFadeIn);
-                        blacktemp.setVisibility(View.VISIBLE);
-                        planResMembCnt.startAnimation(aniFadeIn);
-                        planResMembCnt.setVisibility(View.VISIBLE);
-                        planDuration.startAnimation(aniFadeIn);
-                        planDuration.setVisibility(View.VISIBLE);
-                        planDurTop.startAnimation(aniFadeOut);
-                        planDurTop.setVisibility(View.INVISIBLE);
-                        clickRegister = 1;
-                    }
+
                 }
             });
         }

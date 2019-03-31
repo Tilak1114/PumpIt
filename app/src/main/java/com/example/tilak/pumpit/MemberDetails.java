@@ -22,7 +22,7 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberDetails extends AppCompatActivity {
-    TextView membname, plan, phone, payment, startdate, enddate;
+    TextView membname, plan, phone, payment, startdate, enddate, email;
     ImageView close, edit;
     ProgressDialog progressDialog;
     RelativeLayout editlay, editdef;
@@ -34,6 +34,7 @@ public class MemberDetails extends AppCompatActivity {
         membname = findViewById(R.id.MemberNameDetails);
         plan = findViewById(R.id.monthstv);
         phone = findViewById(R.id.phonevaldet);
+        email = findViewById(R.id.emailvaldet);
         payment = findViewById(R.id.pddtv);
 
         editlay = findViewById(R.id.editlay);
@@ -50,6 +51,7 @@ public class MemberDetails extends AppCompatActivity {
         Log.d("Intentchk", i.getStringExtra("phone"));
         phone.setText(i.getStringExtra("phone"));
         payment.setText(i.getStringExtra("payment"));
+        email.setText(i.getStringExtra("email"));
         Picasso.with(getApplicationContext()).load(i.getStringExtra("profileurl"))
                .into(membprofile);
 

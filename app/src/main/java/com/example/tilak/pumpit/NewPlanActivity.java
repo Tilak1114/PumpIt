@@ -6,7 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 import com.shuhart.stepview.StepView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class NewPlanActivity extends AppCompatActivity implements NewPlanFrag1.NextBtnListener, NewPlanFrag2.NextBtnListener, NewPlanFrag3.NextBtnListener {
 
@@ -15,6 +25,9 @@ public class NewPlanActivity extends AppCompatActivity implements NewPlanFrag1.N
     NewPlanFrag1 newPlanFrag1 = new NewPlanFrag1();
     NewPlanFrag2 newPlanFrag2 = new NewPlanFrag2();
     NewPlanFrag3 newPlanFrag3 = new NewPlanFrag3();
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +63,6 @@ public class NewPlanActivity extends AppCompatActivity implements NewPlanFrag1.N
     @Override
     public void onNewPlanBtnClicked3(Boolean result) {
         stepView.done(true);
-        Intent backToInApp = new Intent(NewPlanActivity.this, InAppActivity.class);
-        startActivity(backToInApp);
+        finish();
     }
 }

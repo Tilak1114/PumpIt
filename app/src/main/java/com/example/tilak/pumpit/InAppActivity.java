@@ -53,7 +53,6 @@ public class InAppActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
-        //defaultSetup();
 
         setupPlansWithCount();
 
@@ -81,6 +80,7 @@ public class InAppActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     public void onBackPressed() {

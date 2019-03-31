@@ -24,6 +24,30 @@
             android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="To"/>
+        <RelativeLayout
+            android:layout_width="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_toRightOf="@id/totv"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/chip">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All"
+                android:fontFamily="@font/product_sans_reg"
+                android:textColor="#fff"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/filterlist"/>
 
     </RelativeLayout>
 
@@ -68,6 +92,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginEnd="10dp"
+            android:layout_marginBottom="20dp"
             android:textSize="18sp"
             android:inputType="textMultiLine"
             android:fontFamily="@font/product_sans_reg"

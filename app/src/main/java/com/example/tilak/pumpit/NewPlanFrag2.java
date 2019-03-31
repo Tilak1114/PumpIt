@@ -71,25 +71,14 @@ public class NewPlanFrag2 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         adapter = new CustomAdapter();
         gridView.setAdapter(adapter);
-        gridView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                coverId = Integer.parseInt(adapter.getItem(position).toString());
-                Toast.makeText(getContext(), coverId.toString(), Toast.LENGTH_LONG).show();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data2 = new HashMap<String, Object>();
-                data2.put("coverId", coverId); // later change to user input
+                data2.put("coverId", coverId);
+                data2.put("planMembCount", "0");// later change to user input
                 newPlan.set(data2, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

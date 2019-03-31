@@ -112,24 +112,6 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
 
     private void defaultPlanSetup() {
 
-        /*DocumentReference Metadatamemb = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                "/MetaData/members");
-
-        Map<String, Object> metadata = new HashMap<String, Object>();
-        metadata.put("activemembcount", "0");
-        metadata.put("allmembcount", "0");
-        metadata.put("overduemembcount", "0");
-
-        Metadatamemb.set(metadata);
-
-        DocumentReference MetadataPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                "/MetaData/plans");
-
-        Map<String, Object> metadata1 = new HashMap<String, Object>();
-        metadata1.put("plancount", "3");
-
-        Metadatamemb.set(metadata);*/
-
         DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan1");
         Map<String, Object> data1 = new HashMap<String, Object>();

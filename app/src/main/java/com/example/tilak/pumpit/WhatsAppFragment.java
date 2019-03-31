@@ -12,7 +12,7 @@ public class WhatsAppFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View whatsAppView = inflater.inflate(R.layout.whatsapp_compose_lay, container, false);
+        View whatsAppView = inflater.inflate(R.layout.whatsappcmsoon, container, false);
         return whatsAppView;
     }
 }

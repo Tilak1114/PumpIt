@@ -198,7 +198,20 @@
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
                     android:layout_height="60dp">
-
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:id="@+id/selectdatetv"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginBottom="3dp"
+                        android:gravity="center_vertical"
+                        android:textSize="16sp"
+                        android:text="Select a Date"
+                        android:textColor="#000"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/roboto"/>
                 </RelativeLayout>
 
                 <TextView

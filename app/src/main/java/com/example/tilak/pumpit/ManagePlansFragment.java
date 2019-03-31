@@ -40,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -54,6 +55,7 @@ public class ManagePlansFragment extends Fragment {
     Dialog addplanDialog;
     RelativeLayout addplanfab;
     ImageView cancelpopup;
+    TextView plancount;
     RecyclerView planRv;
 
     Button addplanbtn;
@@ -81,12 +83,22 @@ public class ManagePlansFragment extends Fragment {
         cancelpopup = addplanDialog.findViewById(R.id.cancelplanpopup);
         addplanbtn = addplanDialog.findViewById(R.id.addnewplan);
         addplanfab = mngplans.findViewById(R.id.addplanfab);
+        plancount = mngplans.findViewById(R.id.mngplncnt);
         planRv = mngplans.findViewById(R.id.newplanrv);
 
         GymName = user.getDisplayName();
 
         Log.d("GymMetainfo_Plans", GymName);
 
+        DocumentReference plncnt = FirebaseFirestore.getInstance()
+                .document("Gyms/"+GymName+"/MetaData/plans/");
+        plncnt.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String plncnt = documentSnapshot.getString("plancount");
+                plancount.setText(plncnt+" Active Plans");
+            }
+        });
         return mngplans;
     }
 
@@ -125,39 +137,4 @@ public class ManagePlansFragment extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
-    /*
-    public void initData(){
-        CollectionReference planCollection = FirebaseFirestore.getInstance()
-                .collection("Gyms/EvolveFitness/Plans");
-        planCollection.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        String PlanDuration =(String) document.getData().get("PlanDuration");
-                        planDurList.add(PlanDuration);
-                        planCover.add(R.drawable.gridwlp4);
-                        Log.d("FsData", document.getId() + " => " + document.getData().get("PlanDuration"));
-                    }
-                } else {
-                    Log.d("FsData", "Error getting documents: ", task.getException());
-                }
-            }
-        });
-        planDurList.add("3 Months Plan");
-        planCover.add(R.drawable.plan1);
-        planDurList.add("6 Months Plan");
-        planCover.add(R.drawable.plan2);
-        planDurList.add("12 Months Plan");
-        planCover.add(R.drawable.plan3);
-
-    }
-
-    public void loadPlanRv(){
-        RecyclerViewPlanAdapter adapter = new
-                RecyclerViewPlanAdapter(getContext(), planDurList, planCover);
-        planRv.setAdapter(adapter);
-        planRv.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-    */
 }

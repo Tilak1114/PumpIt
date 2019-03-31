@@ -75,7 +75,7 @@ public class OverDueMembFrag extends Fragment implements  MemberAdapter.Itemclic
 
     @Override
     public void onItemClick(String name, String plan, String payment, String profileurl, String phone, String start_date,
-    String end_date) {
+    String end_date, String email) {
         Intent i = new Intent(getActivity(), MemberDetails.class);
         i.putExtra("name", name);
         i.putExtra("plan", plan);
@@ -84,6 +84,7 @@ public class OverDueMembFrag extends Fragment implements  MemberAdapter.Itemclic
         i.putExtra("start_date", start_date);
         i.putExtra("end_date", end_date);
         i.putExtra("phone", phone);
+        i.putExtra("email", email);
         startActivity(i);
     }
 

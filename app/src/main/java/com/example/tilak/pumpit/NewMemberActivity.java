@@ -127,7 +127,11 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
         for(int i =0; i<planNameList.size(); i++){
             DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Plans/"+planNameList.get(i));
             Map<String, Object> data = new HashMap<String, Object>();
-            data.put("planMembCount", planCountList.get(i));
+            if(planCountList.get(i)==null){
+                data.put("planMembCount", "0");
+            }
+            else
+                data.put("planMembCount", planCountList.get(i));
             writeRef.set(data);
         }
     }

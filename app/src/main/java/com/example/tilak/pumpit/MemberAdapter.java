@@ -59,7 +59,7 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
     }
     public interface ItemclickListener{
         public void onItemClick(String name, String plan, String payment,
-                                String profileurl, String phone, String start_date, String end_date);
+                                String profileurl, String phone, String start_date, String end_date, String email);
         public void callItem(String phone);
     }
 
@@ -100,7 +100,7 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
             public void onClick(View v) {
                 itemclickListener.onItemClick( model.getFirstName()+" "+model.getLastName(),
                         model.getMembPlan(), model.getPayment(), model.getProfileUrl(),
-                        model.getPhoneNo(), model.getStart_date(), model.getEnd_date());
+                        model.getPhoneNo(), model.getStart_date(), model.getEnd_date(), model.getEmail());
             }
         });
         holder.membPaymentStatus.setText(model.getPayment());
