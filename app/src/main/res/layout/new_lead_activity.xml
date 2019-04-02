@@ -267,6 +267,8 @@
 
     <RelativeLayout
         android:id="@+id/newLeadCreate"
+        android:clickable="true"
+        android:focusable="true"
         android:elevation="8dp"
         android:translationZ="10dp"
         android:layout_width="match_parent"
