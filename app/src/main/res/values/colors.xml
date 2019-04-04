@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#324755</color>
+    <color name="colorPrimaryDark">#324755</color>
+    <color name="colorAccent">#D97D54</color>
     <color name="vlblue">#86B3C7</color>
     <color name="bckprimary">#324755</color>
     <color name="gtstrtbck">#D97D54</color>
-    <color name="gtstrtbck1">#C4714B</color>\
+    <color name="gtstrtbck1">#C4714B</color>
+    <color name="green">#4CAF50</color>
 
 
     <color name="primary_sage">#87BCBF</color>

@@ -57,7 +57,7 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="30dp"
                 android:layout_marginEnd="30dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="90">
 
@@ -73,23 +73,35 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:layout_marginTop="3dp"
+                    android:layout_marginTop="5dp"
                     android:id="@+id/activestatustv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/MemberNameDetails"
-                    android:layout_gravity="center"
-                    android:layout_weight="3"
+                    android:gravity="center_vertical"
                     android:layout_marginBottom="3dp"
                     android:fontFamily="@font/product_sans_reg"
                     android:text="Active"
-                    android:textColor="@android:color/holo_blue_dark"
+                    android:textColor="#4CAF50"
                     android:textSize="18sp" />
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_below="@id/MemberNameDetails"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:id="@+id/activitySwitch"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:visibility="invisible"
+                    android:layout_toRightOf="@id/activestatustv"
+                    android:layout_marginStart="5dp"
+                    android:theme="@style/greenswitch"/>
 
                 <RelativeLayout
                     android:layout_width="160dp"
                     android:layout_height="40dp"
                     android:layout_below="@id/activestatustv"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/roundedbtncolor">
 
                     <TextView
@@ -270,6 +282,7 @@
             android:layout_marginEnd="40dp"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="40dp"
+            android:textIsSelectable="true"
             android:fontFamily="@font/product_sans_reg"
             android:text="example@gmail.com"
             android:textSize="15sp"
@@ -296,6 +309,7 @@
             android:layout_marginStart="40dp"
             android:fontFamily="@font/product_sans_reg"
             android:text="7684857647"
+            android:textIsSelectable="true"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="40dp"
             android:textSize="15sp"

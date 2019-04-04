@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -23,14 +24,19 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class MemberEdit extends AppCompatActivity {
     ProgressDialog progressDialog;
     ImageView editdone, editcancel;
+    CircleImageView avatar;
+    EditText nameedit, phoneedit, emailedit;
     RelativeLayout delmemb;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -43,14 +49,27 @@ public class MemberEdit extends AppCompatActivity {
         Intent i = getIntent();
         final String name = i.getStringExtra("name");
         delmemb = findViewById(R.id.deletememb);
+        avatar = findViewById(R.id.cirImgAvatarEdit);
         editdone = findViewById(R.id.done);
         editcancel = findViewById(R.id.canceledit);
+        nameedit = findViewById(R.id.nameedit);
+        phoneedit = findViewById(R.id.phoneedit);
+        emailedit = findViewById(R.id.emailedit);
+
+        nameedit.setText(i.getStringExtra("name"));
+        phoneedit.setText(i.getStringExtra("phone"));
+        emailedit.setText(i.getStringExtra("email"));
+        Picasso.with(getApplicationContext()).load(i.getStringExtra("profileurl"))
+                .into(avatar);
+
 
         GymName = user.getDisplayName();
 
         Log.d("GymMetainfo_MemberEdit", GymName);
 
         progressDialog = new ProgressDialog(MemberEdit.this, R.style.ProgressDialogStyle);
+
+
 
         editcancel.setOnClickListener(new View.OnClickListener() {
             @Override
