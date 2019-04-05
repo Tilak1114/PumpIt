@@ -113,7 +113,7 @@
         </RelativeLayout>
     </ScrollView>
     <RelativeLayout
-        android:id="@+id/lgn_dialog_btn"
+        android:id="@+id/lgn_btn"
         android:elevation="8dp"
         android:translationZ="10dp"
         android:layout_width="match_parent"
