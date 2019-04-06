@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,51 @@
     tools:context=".MainActivity"
     android:orientation="vertical"
     android:background="@color/bckprimary">
-    <ImageView
-        android:layout_width="240dp"
-        android:layout_height="240dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/splashscrn"/>
 
-</RelativeLayout>
+    <ImageView
+        android:id="@+id/pumpitimglogo"
+        android:layout_width="220dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/pumpitsplash"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/splashtv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pumpitimglogo"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/ubuntu_l"
+        android:text="Empowering"
+        android:textColor="@color/base10"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.434"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pumpitimglogo"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pumpitimglogo"
+        android:fontFamily="@font/ubuntu_l"
+        android:text=" tool"
+        android:id="@+id/splashtv2"
+        android:textColor="#F27A45"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/splashtv1"
+        app:layout_constraintTop_toBottomOf="@+id/pumpitimglogo"
+        app:layout_constraintVertical_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>
