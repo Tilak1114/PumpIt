@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -46,7 +47,7 @@ public class NewMembFrag2 extends Fragment {
     String GymName;
 
     public interface NextBtnListener{
-        void onNewMembBtnClicked2(Boolean result);
+        void onNewMembBtnClicked2(Boolean result, String planPrice);
     }
 
     @Nullable
@@ -75,33 +76,38 @@ public class NewMembFrag2 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String startDate, endDate, edateyr, sdateyr;
+                if(adapter.getPlanSel().isEmpty()&&adapter.getPlanRate().isEmpty()){
+                    Toast.makeText(getContext(), "Select a Plan", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    String startDate, endDate, edateyr, sdateyr;
 
-                Calendar sdate = Calendar.getInstance();
-                Calendar edate = Calendar.getInstance();
+                    Calendar sdate = Calendar.getInstance();
+                    Calendar edate = Calendar.getInstance();
 
-                String duration = adapter.getPlanSel().replaceAll("[^\\d.]", "");
+                    String duration = adapter.getPlanSel().replaceAll("[^\\d.]", "");
 
-                startDate = sdate.getTime().toString().substring(4, 10);
-                sdateyr = sdate.getTime().toString().substring(29, 34);
-                startDate = startDate + sdateyr;
+                    startDate = sdate.getTime().toString().substring(4, 10);
+                    sdateyr = sdate.getTime().toString().substring(29, 34);
+                    startDate = startDate + sdateyr;
 
-                edate.add(Calendar.MONTH, Integer.parseInt(duration));
+                    edate.add(Calendar.MONTH, Integer.parseInt(duration));
 
-                endDate = edate.getTime().toString().substring(4, 10);
-                edateyr = edate.getTime().toString().substring(29, 34);
-                endDate = endDate + edateyr;
+                    endDate = edate.getTime().toString().substring(4, 10);
+                    edateyr = edate.getTime().toString().substring(29, 34);
+                    endDate = endDate + edateyr;
 
-                DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
+                    DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
 
-                Map<String, Object> data = new HashMap<String, Object>();
-                data.put("membPlan", adapter.getPlanSel());
-                data.put("payment", "Fees Paid");// later move this to frag three
-                data.put("start_date", startDate);
-                data.put("end_date", endDate);
-                data.put("email", "");
-                documentReference.set(data, SetOptions.merge());
-                nextBtnListener.onNewMembBtnClicked2(true);
+                    Map<String, Object> data = new HashMap<String, Object>();
+                    data.put("membPlan", adapter.getPlanSel());
+                    data.put("payment", "Fees Paid");// later move this to frag three
+                    data.put("start_date", startDate);
+                    data.put("end_date", endDate);
+                    data.put("email", "");
+                    documentReference.set(data, SetOptions.merge());
+                    nextBtnListener.onNewMembBtnClicked2(true, adapter.getPlanRate());
+                }
             }
         });
     }

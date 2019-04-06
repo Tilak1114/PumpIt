@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -19,6 +20,7 @@ public class NewMembFrag3 extends Fragment {
     RelativeLayout next, upi, cc, dc, csh;
     ProgressDialog progressDialog;
     NextBtnListener nextBtnListener;
+    TextView invoiceTotal;
 
     public interface NextBtnListener{
         void onNewMembBtnClicked3();
@@ -34,7 +36,12 @@ public class NewMembFrag3 extends Fragment {
         cc = NewMembView3.findViewById(R.id.creditlay);
         upi = NewMembView3.findViewById(R.id.upilay);
         next = NewMembView3.findViewById(R.id.newMembNext3);
+        invoiceTotal = NewMembView3.findViewById(R.id.invoicetotal);
         next.setClickable(false);
+        String price = getArguments().getString("planPrice");
+
+        invoiceTotal.setText(price);
+
         return NewMembView3;
     }
 

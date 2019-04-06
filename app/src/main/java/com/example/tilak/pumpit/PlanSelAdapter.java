@@ -36,8 +36,9 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
     private int lastSelectedPosition = -1;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String GymName, planSel, planName;
-
+    String GymName, planName;
+    String planSel = "";
+    String planPrice = "";
     public PlanSelAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
         super(options);
         this.mContext = context;
@@ -86,6 +87,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
                     lastSelectedPosition = getAdapterPosition();
                     notifyDataSetChanged();
                     planSel = planDuration.getText().toString();
+                    planPrice = planRate.getText().toString();
                     Toast.makeText(mContext, "Selected " + planDuration.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -96,6 +98,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
                     lastSelectedPosition = getAdapterPosition();
                     notifyDataSetChanged();
                     planSel = planDuration.getText().toString();
+                    planPrice = planRate.getText().toString();
                     Toast.makeText(mContext, "Selected " + planDuration.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -104,6 +107,10 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
 
     public String getPlanSel(){
         return planSel;
+    }
+
+    public String getPlanRate(){
+        return planPrice;
     }
 
 }

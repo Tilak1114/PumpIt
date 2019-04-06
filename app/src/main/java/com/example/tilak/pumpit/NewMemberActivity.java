@@ -70,16 +70,30 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
             Bundle bundle =  new Bundle();
             bundle.putString("membName", membName);
             newMembFrag2.setArguments(bundle);
+            final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+            dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    String cnt = documentSnapshot.getString("allmembcount");
+                    Integer cnti = Integer.valueOf(cnt);
+                    cnti = cnti + 1;
+                    dr.update("allmembcount", cnti.toString());
+                }
+            });
             getSupportFragmentManager().beginTransaction().replace(R.id.newMemb_container,
                     newMembFrag2).addToBackStack(null).commit();
         }
     }
 
     @Override
-    public void onNewMembBtnClicked2(Boolean result) {
+    public void onNewMembBtnClicked2(Boolean result, String planPrice) {
         if(result){
+            Bundle bundle = new Bundle();
+            bundle.putString("planPrice", planPrice);
+            NewMembFrag3 frag3 = new NewMembFrag3();
+            frag3.setArguments(bundle);
             getSupportFragmentManager().beginTransaction().replace(R.id.newMemb_container,
-                    new NewMembFrag3()).addToBackStack(null).commit();
+                    frag3).addToBackStack(null).commit();
             stepView.go(2, true);
         }
     }
@@ -140,16 +154,6 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
     public void onNewMembBtnClicked3() {
         stepView.done(true);
         Log.d("next3check", "entered next3");
-        final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("allmembcount");
-                Integer cnti = Integer.valueOf(cnt);
-                cnti = cnti + 1;
-                dr.update("allmembcount", cnti.toString());
-            }
-        });
         Log.d("next3click", "nextfinish");
         finish();
     }
