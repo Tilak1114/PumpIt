@@ -88,6 +88,7 @@ public class InAppActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         if(getSupportFragmentManager().getBackStackEntryCount()==0){
             AlertDialog.Builder builder = new AlertDialog.Builder(InAppActivity.this, R.style.AlertDialogStyle);
             builder.setTitle("Exit");
