@@ -1,5 +1,6 @@
 package com.example.tilak.pumpit;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -17,7 +18,9 @@ import java.util.List;
 
 public class StoreFragment extends Fragment {
     ImageView imageChange;
+    Handler handler = new Handler();
     int images[] = {R.drawable.boxingeq, R.drawable.water, R.drawable.proteins, R.drawable.dumbbell};
+    int imgId;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
@@ -32,6 +35,33 @@ public class StoreFragment extends Fragment {
     }
 
     public void animateStoreImages(){
-
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    for(int i=0; i< images.length; i++){
+                        imgId = images[i];
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                Animation animationOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_outtwosec);
+                                Animation animationIn = AnimationUtils.loadAnimation(getContext(), R.anim.fade_intwosec);
+                                imageChange.setAnimation(animationOut);
+                                imageChange.setVisibility(View.INVISIBLE);
+                                imageChange.setImageResource(imgId);
+                                imageChange.setAnimation(animationIn);
+                                imageChange.setVisibility(View.VISIBLE);
+                            }
+                        });
+                        try {
+                            Thread.sleep(3000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            }
+        });
+        thread.start();
     }
 }
