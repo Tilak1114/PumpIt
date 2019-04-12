@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/textfieldsbck"
+                    android:background="@drawable/etbckfields"
                     android:layout_height="60dp">
 
                     <EditText
@@ -62,7 +62,7 @@
                         android:layout_marginEnd="22dp"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto"
+                        android:fontFamily="@font/product_sans_reg"
                         android:inputType="textEmailAddress" />
                 </RelativeLayout>
 
@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/textfieldsbck"
+                    android:background="@drawable/etbckfields"
                     android:layout_height="60dp">
 
                     <EditText
@@ -97,7 +97,7 @@
                         android:layout_marginEnd="22dp"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto"
+                        android:fontFamily="@font/product_sans_reg"
                         android:inputType="textPassword" />
                 </RelativeLayout>
 

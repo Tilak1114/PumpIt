@@ -59,38 +59,6 @@ public class InAppActivity extends AppCompatActivity {
 
 
         setupPlansWithCount();
-        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                "/Plans/Plan1");
-        Map<String, Object> data1 = new HashMap<String, Object>();
-        data1.put("planName", "Plan1");
-        data1.put("planPrice", "2500");
-        data1.put("planDuration", "3 Months Plan");
-        data1.put("planMembCount", "5");
-        data1.put("planFeatures", "Cardio, Strength");
-        data1.put("coverId", R.drawable.plan1);
-        planDoc1.set(data1);
-
-        DocumentReference planDoc2 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                "/Plans/Plan2");
-        Map<String, Object> data2 = new HashMap<String, Object>();
-        data2.put("planName", "Plan2");
-        data2.put("planPrice", "5000");
-        data2.put("planMembCount", "3");
-        data2.put("planDuration", "6 Months Plan");
-        data2.put("planFeatures", "Cardio, Strength");
-        data2.put("coverId", R.drawable.plan2);
-        planDoc2.set(data2);
-
-        DocumentReference planDoc3 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                "/Plans/Plan3");
-        Map<String, Object> data3 = new HashMap<String, Object>();
-        data3.put("planName", "Plan3");
-        data3.put("planPrice", "12000");
-        data3.put("planMembCount", "2");
-        data3.put("planDuration", "12 Months Plan");
-        data3.put("planFeatures", "Cardio, Strength");
-        data3.put("coverId", R.drawable.plan3);
-        planDoc3.set(data3);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -120,7 +88,6 @@ public class InAppActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         if(getSupportFragmentManager().getBackStackEntryCount()==0){
             AlertDialog.Builder builder = new AlertDialog.Builder(InAppActivity.this, R.style.AlertDialogStyle);
             builder.setTitle("Exit");
@@ -140,6 +107,8 @@ public class InAppActivity extends AppCompatActivity {
                 }
             }).create().show();
         }
+        else
+            super.onBackPressed();
     }
 
     public void setupPlansWithCount(){

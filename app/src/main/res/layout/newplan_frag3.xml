@@ -3,7 +3,31 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-
+    <RelativeLayout
+        android:id="@+id/plandetailstitle"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+        <TextView
+            android:id="@+id/newPlanDetails"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="New Plan"
+            android:fontFamily="@font/product_sans_reg"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="30dp"
+            android:textSize="26sp"
+            android:textColor="#1B1C20"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Plan Details"
+            android:fontFamily="@font/product_sans_reg"
+            android:layout_below="@id/newPlanDetails"
+            android:layout_marginTop="0dp"
+            android:layout_marginStart="30dp"
+            android:textSize="16sp"
+            android:textColor="#1B1C20"/>
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/newPlanNext3"
         android:elevation="8dp"
@@ -21,7 +45,7 @@
             android:textStyle="bold"
             android:layout_marginStart="160dp"
             android:textSize="24sp"
-            android:fontFamily="@font/myraidprolight"
+            android:fontFamily="@font/product_sans_reg"
             android:textColor="@android:color/white"
             />
         <RelativeLayout

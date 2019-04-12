@@ -47,7 +47,7 @@ public class NewMembFrag2 extends Fragment {
     String GymName;
 
     public interface NextBtnListener{
-        void onNewMembBtnClicked2(Boolean result, String planPrice);
+        void onNewMembBtnClicked2(Boolean result, String planPrice, String planName);
     }
 
     @Nullable
@@ -106,7 +106,7 @@ public class NewMembFrag2 extends Fragment {
                     data.put("end_date", endDate);
                     data.put("email", "");
                     documentReference.set(data, SetOptions.merge());
-                    nextBtnListener.onNewMembBtnClicked2(true, adapter.getPlanRate());
+                    nextBtnListener.onNewMembBtnClicked2(true, adapter.getPlanRate(), adapter.getPlanName());
                 }
             }
         });

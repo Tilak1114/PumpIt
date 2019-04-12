@@ -44,8 +44,8 @@ public class StoreFragment extends Fragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Animation animationOut = AnimationUtils.loadAnimation(getContext(), R.anim.fade_outtwosec);
-                                Animation animationIn = AnimationUtils.loadAnimation(getContext(), R.anim.fade_intwosec);
+                                Animation animationOut = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.fade_outtwosec);
+                                Animation animationIn = AnimationUtils.loadAnimation(getContext().getApplicationContext(), R.anim.fade_intwosec);
                                 imageChange.setAnimation(animationOut);
                                 imageChange.setVisibility(View.INVISIBLE);
                                 imageChange.setImageResource(imgId);

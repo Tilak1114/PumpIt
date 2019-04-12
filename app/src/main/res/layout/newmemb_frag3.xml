@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="New Member"
-        android:fontFamily="@font/lato"
+        android:fontFamily="@font/product_sans_reg"
         android:layout_marginTop="20dp"
         android:layout_marginStart="30dp"
         android:textSize="30sp"
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Payment"
-        android:fontFamily="@font/lato"
+        android:fontFamily="@font/product_sans_reg"
         android:layout_below="@id/NewMembpopup"
         android:layout_marginTop="0dp"
         android:layout_marginStart="30dp"
@@ -40,7 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Invoice Total"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="22sp"
             android:layout_marginStart="30dp"
             android:layout_centerVertical="true"/>
@@ -69,7 +69,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="20sp"
             android:text="Debit Card"
             android:layout_centerVertical="true"
@@ -90,7 +90,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="20sp"
             android:text="UPI Transfer"
             android:layout_centerVertical="true"
@@ -111,7 +111,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="20sp"
             android:text="Credit Card"
             android:layout_centerVertical="true"
@@ -132,7 +132,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/lato"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="20sp"
             android:text="Cash"
             android:layout_centerVertical="true"

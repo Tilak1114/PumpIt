@@ -19,6 +19,7 @@ import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -58,8 +59,8 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
         holder.planDuration.setText(model.getPlanDuration());
         holder.planRate.setText("\u20B9"+model.getPlanPrice());
         holder.coverLay.setBackgroundResource(model.getCoverId());
-
         holder.selSwicth.setChecked(lastSelectedPosition == position);
+        holder.pName = model.getPlanName();
     }
 
     @NonNull
@@ -73,6 +74,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
         TextView planDuration, planRate;
         RelativeLayout coverLay;
         Switch selSwicth;
+        String pName;
 
         public PlanViewHolder(View itemView) {
             super(itemView);
@@ -88,6 +90,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
                     notifyDataSetChanged();
                     planSel = planDuration.getText().toString();
                     planPrice = planRate.getText().toString();
+                    planName = pName;
                     Toast.makeText(mContext, "Selected " + planDuration.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -99,6 +102,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
                     notifyDataSetChanged();
                     planSel = planDuration.getText().toString();
                     planPrice = planRate.getText().toString();
+                    planName = pName;
                     Toast.makeText(mContext, "Selected " + planDuration.getText(), Toast.LENGTH_SHORT).show();
                 }
             });
@@ -112,5 +116,7 @@ public class PlanSelAdapter extends FirestoreRecyclerAdapter<Plan, PlanSelAdapte
     public String getPlanRate(){
         return planPrice;
     }
+
+    public String getPlanName(){return planName;}
 
 }

@@ -24,7 +24,6 @@
             android:text="Overdue Members"
             android:textColor="@color/typography_black"
             android:textSize="22sp"
-            android:textStyle="bold"
             android:translationZ="10dp" />
 
         <TextView

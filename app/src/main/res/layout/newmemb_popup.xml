@@ -59,7 +59,7 @@
         android:layout_width="match_parent"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
-        android:background="@drawable/textfieldsbck"
+        android:background="@drawable/etbckfields"
         android:layout_height="60dp">
 
         <EditText
@@ -71,7 +71,7 @@
             android:layout_marginEnd="22dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/memb_btn_rect"
-            android:fontFamily="@font/roboto" />
+            android:fontFamily="@font/product_sans_reg" />
     </RelativeLayout>
 
         <TextView
@@ -92,7 +92,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/textfieldsbck"
+            android:background="@drawable/etbckfields"
             android:layout_height="60dp">
 
             <EditText
@@ -104,7 +104,7 @@
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
+                android:fontFamily="@font/product_sans_reg" />
         </RelativeLayout>
 
         <TextView
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/textfieldsbck"
+            android:background="@drawable/etbckfields"
             android:layout_height="60dp">
 
             <EditText
@@ -137,7 +137,7 @@
                 android:layout_marginEnd="22dp"
                 android:layout_marginBottom="3dp"
                 android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
+                android:fontFamily="@font/product_sans_reg" />
         </RelativeLayout>
 
         <TextView
@@ -158,7 +158,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/textfieldsbck"
+            android:background="@drawable/etbckfields"
             android:layout_height="60dp">
 
             <Spinner

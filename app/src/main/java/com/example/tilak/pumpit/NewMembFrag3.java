@@ -21,9 +21,10 @@ public class NewMembFrag3 extends Fragment {
     ProgressDialog progressDialog;
     NextBtnListener nextBtnListener;
     TextView invoiceTotal;
+    String selPlanName;
 
     public interface NextBtnListener{
-        void onNewMembBtnClicked3();
+        void onNewMembBtnClicked3(String planName);
     }
 
     @Nullable
@@ -38,6 +39,7 @@ public class NewMembFrag3 extends Fragment {
         next = NewMembView3.findViewById(R.id.newMembNext3);
         invoiceTotal = NewMembView3.findViewById(R.id.invoicetotal);
         next.setClickable(false);
+        selPlanName = getArguments().getString("planName");
         String price = getArguments().getString("planPrice");
 
         invoiceTotal.setText(price);
@@ -59,7 +61,7 @@ public class NewMembFrag3 extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("onclicknext3", "clicked");
-                        nextBtnListener.onNewMembBtnClicked3();
+                        nextBtnListener.onNewMembBtnClicked3(selPlanName);
                     }
                 });
             }
@@ -76,7 +78,7 @@ public class NewMembFrag3 extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("onclicknext3", "clicked");
-                        nextBtnListener.onNewMembBtnClicked3();
+                        nextBtnListener.onNewMembBtnClicked3(selPlanName);
                     }
                 });
             }
@@ -93,7 +95,7 @@ public class NewMembFrag3 extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("onclicknext3", "clicked");
-                        nextBtnListener.onNewMembBtnClicked3();
+                        nextBtnListener.onNewMembBtnClicked3(selPlanName);
                     }
                 });
             }
@@ -110,7 +112,7 @@ public class NewMembFrag3 extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Log.d("onclicknext3", "clicked");
-                        nextBtnListener.onNewMembBtnClicked3();
+                        nextBtnListener.onNewMembBtnClicked3(selPlanName);
                     }
                 });
             }

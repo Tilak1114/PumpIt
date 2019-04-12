@@ -5,157 +5,171 @@
    android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:id="@+id/newmembtitle"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-    <TextView
-        android:id="@+id/NewMembpopup"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="New Member"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="30dp"
-        android:textSize="26sp"
-        android:textColor="#1B1C20"/>
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Create a new account"
-        android:layout_below="@id/NewMembpopup"
-        android:layout_marginTop="0dp"
-        android:layout_marginStart="30dp"
-        android:textSize="16sp"
-        android:textColor="#1B1C20"/>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_below="@id/newmembtitle"
-        android:layout_marginTop="20dp"
-        android:id="@+id/newMembAvatarlay"
+    <ScrollView
+        android:layout_above="@id/newMembNext"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_centerInParent="true"
-            android:id="@+id/newMembAvatar"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:background="@drawable/avatar"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:id="@+id/newMembFNlay"
-        android:layout_below="@id/newMembAvatarlay"
-        android:layout_marginTop="2dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-    <RelativeLayout
-        android:layout_marginTop="30dp"
-        android:layout_width="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/textfieldsbck"
-        android:layout_height="60dp">
+        android:layout_marginBottom="10dp"
+        android:layout_height="match_parent">
+        <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/newmembtitle"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/NewMembpopup"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="New Member"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="26sp"
+                    android:textColor="#1B1C20"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Create a new account"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:layout_below="@id/NewMembpopup"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="16sp"
+                    android:textColor="#1B1C20"/>
 
-        <EditText
-            android:id="@+id/newMembFN"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:singleLine="true"
-            android:maxLength="10"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
-            android:layout_marginBottom="3dp"
-            android:background="@drawable/memb_btn_rect"
-            android:fontFamily="@font/roboto" />
-    </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff"
-            android:text=" First Name "
-            android:textSize="16sp" />
-</RelativeLayout>
-    <RelativeLayout
-        android:layout_below="@id/newMembFNlay"
-        android:id="@+id/newMembLNlay"
-        android:layout_marginTop="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/textfieldsbck"
-            android:layout_height="60dp">
-
-            <EditText
-                android:id="@+id/newMembLN"
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/newmembtitle"
+                android:layout_marginTop="30dp"
+                android:id="@+id/newMembAvatarlay"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:singleLine="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:layout_marginBottom="3dp"
-                android:maxLength="10"
-                android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
-        </RelativeLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff"
-            android:text=" Last Name "
-            android:textSize="16sp" />
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_below="@id/newMembLNlay"
-        android:id="@+id/newMembPNOlay"
-        android:layout_marginTop="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <RelativeLayout
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="50dp"
-            android:layout_width="match_parent"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/textfieldsbck"
-            android:layout_height="60dp">
-
-            <EditText
+                android:layout_height="wrap_content">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_centerInParent="true"
+                    android:id="@+id/newMembAvatar"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:background="@drawable/avatar"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/newMembFNlay"
+                android:layout_below="@id/newMembAvatarlay"
+                android:layout_marginTop="2dp"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:id="@+id/newMembPNO"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="22dp"
-                android:layout_marginEnd="22dp"
-                android:singleLine="true"
-                android:inputType="phone"
-                android:maxLength="10"
-                android:layout_marginBottom="3dp"
-                android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
-        </RelativeLayout>
+                android:layout_height="wrap_content"
+                >
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/etbckfields"
+                    android:layout_height="60dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="18dp"
-            android:background="#ffffff"
-            android:text=" Phone Number "
-            android:textSize="16sp" />
-    </RelativeLayout>
+                    <EditText
+                        android:id="@+id/newMembFN"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:singleLine="true"
+                        android:maxLength="10"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/product_sans_reg" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#ffffff"
+                    android:text=" First Name "
+                    android:fontFamily="@font/product_sans_reg"
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/newMembFNlay"
+                android:id="@+id/newMembLNlay"
+                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/etbckfields"
+                    android:layout_height="60dp">
+
+                    <EditText
+                        android:id="@+id/newMembLN"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:singleLine="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginBottom="3dp"
+                        android:maxLength="10"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/product_sans_reg" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#ffffff"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:text=" Last Name "
+                    android:textSize="16sp" />
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_below="@id/newMembLNlay"
+                android:id="@+id/newMembPNOlay"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:layout_marginTop="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:background="@drawable/etbckfields"
+                    android:layout_height="60dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:id="@+id/newMembPNO"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="22dp"
+                        android:layout_marginEnd="22dp"
+                        android:singleLine="true"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:layout_marginBottom="3dp"
+                        android:background="@drawable/memb_btn_rect"
+                        android:fontFamily="@font/product_sans_reg" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginTop="18dp"
+                    android:background="#ffffff"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:text=" Phone Number "
+                    android:textSize="16sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
     <RelativeLayout
         android:id="@+id/newMembNext"
         android:elevation="8dp"
@@ -170,10 +184,10 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Next"
+            android:fontFamily="@font/product_sans_reg"
             android:textStyle="bold"
             android:layout_marginStart="160dp"
             android:textSize="24sp"
-            android:fontFamily="@font/myraidprolight"
             android:textColor="@android:color/white"
             />
         <RelativeLayout

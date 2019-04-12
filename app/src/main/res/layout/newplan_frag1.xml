@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="New Plan"
+            android:fontFamily="@font/product_sans_reg"
             android:layout_marginTop="20dp"
             android:layout_marginStart="30dp"
             android:textSize="30sp"
@@ -22,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="Create a new Plan"
+            android:fontFamily="@font/product_sans_reg"
             android:layout_below="@id/NewMembpopup"
             android:layout_marginTop="0dp"
             android:layout_marginStart="30dp"
@@ -40,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/textfieldsbck"
+            android:background="@drawable/etbckfields"
             android:layout_height="60dp">
 
             <EditText
@@ -53,12 +55,13 @@
                 android:layout_marginBottom="3dp"
                 android:inputType="text"
                 android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
+                android:fontFamily="@font/product_sans_reg" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Plan Title"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="18sp"
             android:layout_marginTop="18dp"
             android:layout_marginStart="50dp"
@@ -75,7 +78,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/textfieldsbck"
+            android:background="@drawable/etbckfields"
             android:layout_height="60dp">
 
             <EditText
@@ -89,12 +92,13 @@
                 android:layout_marginBottom="3dp"
                 android:inputType="number"
                 android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
+                android:fontFamily="@font/product_sans_reg" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Plan Duration"
+            android:fontFamily="@font/product_sans_reg"
             android:textSize="18sp"
             android:layout_marginTop="18dp"
             android:layout_marginStart="50dp"
@@ -111,7 +115,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/textfieldsbck"
+            android:background="@drawable/etbckfields"
             android:layout_height="60dp">
             <TextView
                 android:id="@+id/rupsym"
@@ -135,7 +139,7 @@
                 android:layout_marginBottom="3dp"
                 android:inputType="number"
                 android:background="@drawable/memb_btn_rect"
-                android:fontFamily="@font/roboto" />
+                android:fontFamily="@font/product_sans_reg" />
         </RelativeLayout>
         <TextView
             android:layout_width="wrap_content"
@@ -164,7 +168,7 @@
             android:textStyle="bold"
             android:layout_marginStart="160dp"
             android:textSize="24sp"
-            android:fontFamily="@font/myraidprolight"
+            android:fontFamily="@font/product_sans_reg"
             android:textColor="@android:color/white"
             />
         <RelativeLayout

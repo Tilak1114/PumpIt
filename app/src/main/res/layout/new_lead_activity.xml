@@ -62,7 +62,7 @@
                         android:layout_marginEnd="22dp"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto" />
+                        android:fontFamily="@font/product_sans_reg" />
                 </RelativeLayout>
 
                 <TextView
@@ -135,7 +135,7 @@
                         android:layout_marginBottom="3dp"
                         android:maxLength="10"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto" />
+                        android:fontFamily="@font/product_sans_reg" />
                 </RelativeLayout>
 
                 <TextView
@@ -173,7 +173,7 @@
                         android:maxLength="10"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto" />
+                        android:fontFamily="@font/product_sans_reg" />
                 </RelativeLayout>
 
                 <TextView
@@ -211,7 +211,7 @@
                         android:text="Select a Date"
                         android:textColor="#000"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto"/>
+                        android:fontFamily="@font/product_sans_reg"/>
                 </RelativeLayout>
 
                 <TextView
@@ -250,7 +250,7 @@
                         android:inputType="textMultiLine"
                         android:layout_marginBottom="3dp"
                         android:background="@drawable/memb_btn_rect"
-                        android:fontFamily="@font/roboto" />
+                        android:fontFamily="@font/product_sans_reg" />
                 </RelativeLayout>
 
                 <TextView
@@ -281,7 +281,6 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Create"
-            android:textStyle="bold"
             android:gravity="center"
             android:layout_centerInParent="true"
             android:textSize="24sp"
