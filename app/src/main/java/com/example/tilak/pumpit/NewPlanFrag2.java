@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,15 +30,21 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NewPlanFrag2 extends Fragment {
     RelativeLayout next;
-    GridView gridView;
+    RecyclerView planCoverRv;
     String PlanTitle;
-    Integer coverId = R.drawable.gridwlp6;
-    CustomAdapter adapter;
+    List<PlanCover> planCoverList;
+    long coverId;
+
+    PlanCoverAdapter adapter;
     NewPlanFrag2.NextBtnListener nextBtnListener;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -54,11 +62,12 @@ public class NewPlanFrag2 extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View NewPlanView2 = inflater.inflate(R.layout.newplan_frag2, container, false);
 
-        gridView = NewPlanView2.findViewById(R.id.gridView);
+        planCoverRv = NewPlanView2.findViewById(R.id.planCoverRv);
         next = NewPlanView2.findViewById(R.id.newPlanNext2);
+        planCoverList = new ArrayList<>();
 
         GymName = user.getDisplayName();
 
@@ -69,15 +78,22 @@ public class NewPlanFrag2 extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        adapter = new CustomAdapter();
-        gridView.setAdapter(adapter);
+
+        for(int i=0;i<mThumbIds.length;i++){
+            planCoverList.add(new PlanCover(mThumbIds[i]));
+        }
+
+        adapter = new PlanCoverAdapter(getContext(), planCoverList);
+        planCoverRv.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        planCoverRv.setAdapter(adapter);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data2 = new HashMap<String, Object>();
-                data2.put("coverId", coverId);
+                data2.put("coverId", adapter.getCoverId());
                 data2.put("planMembCount", "0");// later change to user input
                 newPlan.set(data2, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -104,32 +120,6 @@ public class NewPlanFrag2 extends Fragment {
     }
     public void getPlanTitle(String title){
         PlanTitle = title;
-    }
-
-    private class CustomAdapter extends BaseAdapter {
-        @Override
-        public int getCount() {
-            return mThumbIds.length;
-        }
-
-        @Override
-        public Object getItem(int i) {
-            return mThumbIds[i];
-        }
-
-        @Override
-        public long getItemId(int i) {
-            return i;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            View view1 = getLayoutInflater().inflate(R.layout.grid_cust_lay,null);
-            //getting view in row_data
-            ImageView image = view1.findViewById(R.id.gridImg);
-            Picasso.with(getContext()).load(mThumbIds[i]).resize(220, 180).into(image);
-            return view1;
-        }
     }
 }
 
