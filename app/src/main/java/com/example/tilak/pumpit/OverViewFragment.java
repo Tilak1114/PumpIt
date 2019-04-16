@@ -10,6 +10,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -27,9 +29,15 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
+
 public class OverViewFragment extends Fragment {
     RelativeLayout addmemb, messages, leads;
     FirebaseAuth firebaseAuth;
+    ProgressBar pb1, pb2;
+    SwipeRefreshLayout swipeRefreshLayout;
     TextView allmembs, activememb, odmemb, activerect, odrect;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -37,7 +45,7 @@ public class OverViewFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
 
         GymName = user.getDisplayName();
@@ -45,6 +53,8 @@ public class OverViewFragment extends Fragment {
         Log.d("GymMetainfo_ov", GymName);
 
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
+        pb1= ovfragview.findViewById(R.id.pb1);
+        pb2 = ovfragview.findViewById(R.id.pb2);
         leads = ovfragview.findViewById(R.id.leadstsk);
         messages = ovfragview.findViewById(R.id.messagetsk);
         activememb = ovfragview.findViewById(R.id.activecount);
@@ -52,29 +62,60 @@ public class OverViewFragment extends Fragment {
         activerect = ovfragview.findViewById(R.id.activerectbtn);
         odrect = ovfragview.findViewById(R.id.odtv);
 
+        swipeRefreshLayout = ovfragview.findViewById(R.id.pullToRefreshOv);
+
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user==null){
-            getActivity().finish();
+            Objects.requireNonNull(getActivity()).finish();
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         addmemb = ovfragview.findViewById(R.id.addmembfab);
 
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        if(activememb.getText().toString().equals("")&&odmemb.getText().toString().equals("")){
+            pb1.setVisibility(View.VISIBLE);
+            pb2.setVisibility(View.VISIBLE);
+            DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+            dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    String actcnt = documentSnapshot.getString("activemembcount");
+                    String odcnt = documentSnapshot.getString("overduemembcount");
+                    activememb.setText(actcnt);
+                    odmemb.setText(odcnt);
+                    pb1.setVisibility(View.INVISIBLE);
+                    pb2.setVisibility(View.INVISIBLE);
+                }
+            });
+        }
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String actcnt = documentSnapshot.getString("activemembcount");
-                String odcnt = documentSnapshot.getString("overduemembcount");
-                activememb.setText(actcnt);
-                odmemb.setText(odcnt);
+            public void onRefresh() {
+                activememb.setText("");
+                odmemb.setText("");
+                pb1.setVisibility(View.VISIBLE);
+                pb2.setVisibility(View.VISIBLE);
+                DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String actcnt = documentSnapshot.getString("activemembcount");
+                        String odcnt = documentSnapshot.getString("overduemembcount");
+                        activememb.setText(actcnt);
+                        odmemb.setText(odcnt);
+                        pb1.setVisibility(View.INVISIBLE);
+                        pb2.setVisibility(View.INVISIBLE);
+                    }
+                });
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
 
         activerect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager()
                         .beginTransaction().replace(R.id.frag_container, new ActiveMembFrag())
                         .addToBackStack(null).commit();
             }
@@ -83,7 +124,7 @@ public class OverViewFragment extends Fragment {
         odrect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager()
+                Objects.requireNonNull(getActivity()).getSupportFragmentManager()
                         .beginTransaction().replace(R.id.frag_container, new OverDueMembFrag())
                         .addToBackStack(null).commit();
             }
@@ -118,7 +159,7 @@ public class OverViewFragment extends Fragment {
         allmembs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.frag_container, new ManageMembersFragment()).addToBackStack(null).commit();
             }
         });
