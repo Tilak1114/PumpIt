@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,6 +41,8 @@ public class OverViewFragment extends Fragment {
     SwipeRefreshLayout swipeRefreshLayout;
     TextView allmembs, activememb, odmemb, activerect, odrect;
 
+    Handler handler;
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
 
@@ -48,6 +51,7 @@ public class OverViewFragment extends Fragment {
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View ovfragview = inflater.inflate(R.layout.home_overview_fragment, container, false);
 
+        handler = new Handler();
         GymName = user.getDisplayName();
 
         Log.d("GymMetainfo_ov", GymName);
@@ -73,41 +77,64 @@ public class OverViewFragment extends Fragment {
         addmemb = ovfragview.findViewById(R.id.addmembfab);
 
         if(activememb.getText().toString().equals("")&&odmemb.getText().toString().equals("")){
-            pb1.setVisibility(View.VISIBLE);
-            pb2.setVisibility(View.VISIBLE);
-            DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-            dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            Thread t1 = new Thread(new Runnable() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    String actcnt = documentSnapshot.getString("activemembcount");
-                    String odcnt = documentSnapshot.getString("overduemembcount");
-                    activememb.setText(actcnt);
-                    odmemb.setText(odcnt);
-                    pb1.setVisibility(View.INVISIBLE);
-                    pb2.setVisibility(View.INVISIBLE);
+                public void run() {
+                    handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            pb1.setVisibility(View.VISIBLE);
+                            pb2.setVisibility(View.VISIBLE);
+                            DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+                            dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    String actcnt = documentSnapshot.getString("activemembcount");
+                                    String odcnt = documentSnapshot.getString("overduemembcount");
+                                    activememb.setText(actcnt);
+                                    odmemb.setText(odcnt);
+                                    pb1.setVisibility(View.INVISIBLE);
+                                    pb2.setVisibility(View.INVISIBLE);
+                                }
+                            });
+                        }
+                    });
                 }
             });
+            t1.start();
         }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                activememb.setText("");
-                odmemb.setText("");
-                pb1.setVisibility(View.VISIBLE);
-                pb2.setVisibility(View.VISIBLE);
-                DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                Thread t2 = new Thread(new Runnable() {
                     @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String actcnt = documentSnapshot.getString("activemembcount");
-                        String odcnt = documentSnapshot.getString("overduemembcount");
-                        activememb.setText(actcnt);
-                        odmemb.setText(odcnt);
-                        pb1.setVisibility(View.INVISIBLE);
-                        pb2.setVisibility(View.INVISIBLE);
+                    public void run() {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                activememb.setText("");
+                                odmemb.setText("");
+                                pb1.setVisibility(View.VISIBLE);
+                                pb2.setVisibility(View.VISIBLE);
+                                DocumentReference dr = FirebaseFirestore.getInstance()
+                                        .document("/Gyms/"+GymName+"/MetaData/members");
+                                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        String actcnt = documentSnapshot.getString("activemembcount");
+                                        String odcnt = documentSnapshot.getString("overduemembcount");
+                                        activememb.setText(actcnt);
+                                        odmemb.setText(odcnt);
+                                        pb1.setVisibility(View.INVISIBLE);
+                                        pb2.setVisibility(View.INVISIBLE);
+                                    }
+                                });
+                            }
+                        });
                     }
                 });
+                t2.start();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
