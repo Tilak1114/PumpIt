@@ -35,7 +35,7 @@
         android:textSize="22sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.416"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pumpitimglogo"
         app:layout_constraintVertical_bias="0.0" />
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/pumpitimglogo"
         android:fontFamily="@font/ubuntu_l"
-        android:text=" tool"
+        android:text=" you"
         android:id="@+id/splashtv2"
         android:textColor="#F27A45"
         android:textSize="22sp"

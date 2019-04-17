@@ -99,17 +99,17 @@
                     android:layout_margin="2dp" />
 
                 <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:elevation="4dp"
                     android:translationZ="6dp"
+                    android:background="@drawable/gradientcir"
                     android:gravity="center"
                     android:layout_centerHorizontal="true">
                     <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_centerHorizontal="true"
-                        android:background="@drawable/gradientcir"
                         android:elevation="4dp"
                         android:translationZ="6dp"
                         android:id="@+id/activecount"
@@ -154,17 +154,17 @@
                     android:textSize="16sp"
                     android:layout_margin="2dp"/>
                 <RelativeLayout
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
                     android:elevation="4dp"
                     android:translationZ="6dp"
+                    android:background="@drawable/gradientcir"
                     android:gravity="center"
                     android:layout_centerHorizontal="true">
                     <TextView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_centerHorizontal="true"
-                        android:background="@drawable/gradientcir"
                         android:elevation="4dp"
                         android:fontFamily="@font/product_sans_reg"
                         android:gravity="center"
