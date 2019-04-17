@@ -182,8 +182,7 @@ public class OverViewFragment extends Fragment {
         allmembs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frag_container, new ManageMembersFragment()).addToBackStack(null).commit();
+                startActivity(new Intent(getActivity(), AllMembActivity.class));
             }
         });
     }

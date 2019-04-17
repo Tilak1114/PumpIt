@@ -13,6 +13,8 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +26,7 @@ public class StoreFragment extends Fragment {
     int imgId;
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View storeV = inflater.inflate(R.layout.fragment_store, container, false);
         imageChange = storeV.findViewById(R.id.storeimgchange);
         return storeV;
@@ -46,7 +48,7 @@ public class StoreFragment extends Fragment {
                             @Override
                             public void run() {
                                 Animation animationOut = AnimationUtils.loadAnimation(Objects.requireNonNull(getActivity()).getApplicationContext(), R.anim.fade_outtwosec);
-                                Animation animationIn = AnimationUtils.loadAnimation(Objects.requireNonNull(getContext()).getApplicationContext(), R.anim.fade_intwosec);
+                                Animation animationIn = AnimationUtils.loadAnimation(Objects.requireNonNull(getActivity()).getApplicationContext(), R.anim.fade_intwosec);
                                 imageChange.setAnimation(animationOut);
                                 imageChange.setVisibility(View.INVISIBLE);
                                 imageChange.setImageResource(imgId);
