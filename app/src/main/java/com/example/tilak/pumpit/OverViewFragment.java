@@ -142,18 +142,14 @@ public class OverViewFragment extends Fragment {
         activerect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Objects.requireNonNull(getActivity()).getSupportFragmentManager()
-                        .beginTransaction().replace(R.id.frag_container, new ActiveMembFrag())
-                        .addToBackStack(null).commit();
+                startActivity(new Intent(getActivity(), ActiveMembActivity.class));
             }
         });
 
         odrect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Objects.requireNonNull(getActivity()).getSupportFragmentManager()
-                        .beginTransaction().replace(R.id.frag_container, new OverDueMembFrag())
-                        .addToBackStack(null).commit();
+                startActivity(new Intent(getActivity(), OverdueMembActivity.class));
             }
         });
 
