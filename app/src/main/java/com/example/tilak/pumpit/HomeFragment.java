@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.jetbrains.annotations.NotNull;
+
 public class HomeFragment extends Fragment {
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -30,4 +32,5 @@ public class HomeFragment extends Fragment {
         tabLayout.setupWithViewPager(viewPager);
         super.onViewCreated(view, savedInstanceState);
     }
+
 }

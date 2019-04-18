@@ -34,14 +34,9 @@ import java.util.Map;
 
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
-
+    Fragment segmentSelected = null;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
-    Fragment homeFrag = new HomeFragment();
-    Fragment mngFrag = new ManageFragment();
-    Fragment storeFrag = new StoreFragment();
-    Fragment profileFrag = new ProfileFragment();
-    Fragment active = homeFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,39 +57,28 @@ public class InAppActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frag_container, mngFrag).hide(mngFrag).commit();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frag_container, storeFrag).hide(storeFrag).commit();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.frag_container, profileFrag).hide(profileFrag).commit();
-
-
         setupPlansWithCount();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.frag_container, homeFrag).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).addToBackStack(null).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Fragment segmentSelected = null;
                 switch(menuItem.getItemId()){
                     case R.id.action_home:
-                        getSupportFragmentManager().beginTransaction().hide(active).show(homeFrag).addToBackStack(null).commit();
-                        active = homeFrag;
+                        segmentSelected = new HomeFragment();
                         break;
                     case R.id.action_manage:
-                        getSupportFragmentManager().beginTransaction().hide(active).show(mngFrag).addToBackStack(null).commit();
-                        active = mngFrag;
+                        segmentSelected = new ManageFragment();
                         break;
                     case R.id.action_store:
-                        getSupportFragmentManager().beginTransaction().hide(active).show(storeFrag).addToBackStack(null).commit();
-                        active = storeFrag;
+                        segmentSelected = new StoreFragment();
                         break;
                     case R.id.action_profile:
-                        getSupportFragmentManager().beginTransaction().hide(active).show(profileFrag).addToBackStack(null).commit();
-                        active = profileFrag;
+                        segmentSelected = new ProfileFragment();
                         break;
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, segmentSelected, "simp_frag_tag")
+                        .addToBackStack(null).commit();
                 return true;
             }
         });

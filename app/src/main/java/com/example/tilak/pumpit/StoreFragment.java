@@ -22,6 +22,10 @@ import java.util.Objects;
 public class StoreFragment extends Fragment {
     ImageView imageChange;
     Handler handler = new Handler();
+
+    Animation animationOut;
+    Animation animationIn;
+
     int images[] = {R.drawable.boxingeq, R.drawable.water, R.drawable.proteins, R.drawable.dumbbell};
     int imgId;
     @Nullable
@@ -34,10 +38,10 @@ public class StoreFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        animateStoreImages();
+        animateStoreImages(view);
     }
 
-    public void animateStoreImages(){
+    public void animateStoreImages(final View storeV){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -47,8 +51,8 @@ public class StoreFragment extends Fragment {
                         handler.post(new Runnable() {
                             @Override
                             public void run() {
-                                Animation animationOut = AnimationUtils.loadAnimation(Objects.requireNonNull(getActivity()).getApplicationContext(), R.anim.fade_outtwosec);
-                                Animation animationIn = AnimationUtils.loadAnimation(Objects.requireNonNull(getActivity()).getApplicationContext(), R.anim.fade_intwosec);
+                                animationOut = AnimationUtils.loadAnimation(storeV.getContext(), R.anim.fade_outtwosec);
+                                animationIn = AnimationUtils.loadAnimation(storeV.getContext(), R.anim.fade_intwosec);
                                 imageChange.setAnimation(animationOut);
                                 imageChange.setVisibility(View.INVISIBLE);
                                 imageChange.setImageResource(imgId);
@@ -65,6 +69,10 @@ public class StoreFragment extends Fragment {
                 }
             }
         });
-        thread.start();
+        try {
+            thread.start();
+        }catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 }
