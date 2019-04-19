@@ -31,6 +31,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -57,6 +58,8 @@ public class InAppActivity extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
 
+        setupInitData();
+
         setupPlansWithCount();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).addToBackStack(null).commit();
@@ -80,6 +83,34 @@ public class InAppActivity extends AppCompatActivity {
                 getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, segmentSelected, "simp_frag_tag")
                         .addToBackStack(null).commit();
                 return true;
+            }
+        });
+    }
+
+    private void setupInitData() {
+        final ArrayList<Integer> membMetaInfo = new ArrayList<>();
+        membMetaInfo.add(0);
+        membMetaInfo.add(0);
+        CollectionReference fetchMemb = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
+        fetchMemb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    //Log.d("planArri", document.getId());
+                    if(document.get("payment").equals("Payment Pending")){
+                        Integer count = membMetaInfo.get(0);
+                        count++;
+                        membMetaInfo.set(0, count);
+                    }
+                    else if(document.get("payment").equals("Fees Paid")){
+                        Integer count1 = membMetaInfo.get(1);
+                        count1++;
+                        membMetaInfo.set(1, count1);
+                    }
+                }
+                DocumentReference updateInitData = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
+                updateInitData.update("activemembcount", String.valueOf(membMetaInfo.get(1)));
+                updateInitData.update("overduemembcount", String.valueOf(membMetaInfo.get(0)));
             }
         });
     }

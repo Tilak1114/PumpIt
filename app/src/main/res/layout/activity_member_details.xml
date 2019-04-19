@@ -316,4 +316,23 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"/>
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/save_Changes"
+        android:clickable="false"
+        android:elevation="8dp"
+        android:visibility="invisible"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18dp"
+            android:fontFamily="@font/proxima"
+            android:layout_centerInParent="true"
+            android:text="Save Changes"
+            android:textColor="@android:color/white"/>
+    </RelativeLayout>
 </RelativeLayout>

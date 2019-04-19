@@ -69,18 +69,13 @@ public class OverViewFragment extends Fragment {
         swipeRefreshLayout = ovfragview.findViewById(R.id.pullToRefreshOv);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user==null){
             Objects.requireNonNull(getActivity()).finish();
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         addmemb = ovfragview.findViewById(R.id.addmembfab);
-
-        if (SavedInstanceState != null) {
-            activememb.setText(SavedInstanceState.getString("activeCount"));
-            odmemb.setText(SavedInstanceState.getString("odCount"));
-            // Do something with value if needed
-        }
 
         if(activememb.getText().toString().equals("")&&odmemb.getText().toString().equals("")){
             Thread t1 = new Thread(new Runnable() {
@@ -191,12 +186,5 @@ public class OverViewFragment extends Fragment {
                 startActivity(new Intent(getActivity(), AllMembActivity.class));
             }
         });
-    }
-
-    @Override
-    public void onSaveInstanceState(@NotNull Bundle outState) {
-        outState.putString("activeCount", activememb.getText().toString());
-        outState.putString("odCount", odmemb.getText().toString());
-        super.onSaveInstanceState(outState);
     }
 }

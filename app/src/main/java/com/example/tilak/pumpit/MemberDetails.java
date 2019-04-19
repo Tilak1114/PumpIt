@@ -30,7 +30,7 @@ public class MemberDetails extends AppCompatActivity {
     String profileUrl;
     Switch activityswitch;
     ProgressDialog progressDialog;
-    RelativeLayout editlay, editdef;
+    RelativeLayout editlay, editdef, savechanges;
     CircleImageView membprofile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MemberDetails extends AppCompatActivity {
 
         editlay = findViewById(R.id.editlay);
         editdef = findViewById(R.id.topmembmenu);
+        savechanges = findViewById(R.id.save_Changes);
         startdate = findViewById(R.id.startdateval);
         enddate = findViewById(R.id.enddateval);
         membprofile = findViewById(R.id.membProfilepicDetails);
@@ -105,8 +106,33 @@ public class MemberDetails extends AppCompatActivity {
                     activeStatus.setTypeface(Typeface.DEFAULT_BOLD);
                     payment.setTextColor(getResources().getColor(R.color.gray));
                     activeStatus.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+                    savechanges.setVisibility(View.VISIBLE);
+                    savechanges.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MemberDetails.this, R.style.AlertDialogStyle);
+                            builder.setTitle("Update Changes");
+                            builder.setMessage("You are about to make this member " +
+                                    "Inactive. (Inactive members will be removed from overdue list but can later be renewed from the members section) CONTINUE?");
+                            builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    // perform updation
+                                    dialog.dismiss();
+                                    finish();
+                                }
+                            });
+                            builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).create().show();
+                        }
+                    });
                 }
                 else if(isChecked){
+                    savechanges.setVisibility(View.INVISIBLE);
                     activeStatus.setText("Active");
                     activeStatus.setTypeface(Typeface.DEFAULT_BOLD);
                     payment.setTextColor(getResources().getColor(R.color.typography_snow));
