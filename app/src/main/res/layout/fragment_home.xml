@@ -31,16 +31,21 @@
                 android:translationZ="14dp"
                 android:textColor="@color/gtstrtbck1"
                 android:textSize="18sp" />
-            <ImageButton
-                android:layout_height="22dp"
-                android:layout_width="22dp"
-                android:backgroundTint="@color/gtstrtbck"
+            <RelativeLayout
+                android:layout_width="25dp"
                 android:layout_alignParentRight="true"
-                android:layout_marginEnd="20dp"
-                android:layout_centerVertical="true"
                 android:elevation="14dp"
+                android:layout_centerVertical="true"
                 android:translationZ="12dp"
-                android:background="@drawable/notbell"/>
+                android:layout_marginEnd="20dp"
+                android:layout_height="25dp">
+                <ImageButton
+                    android:layout_height="22dp"
+                    android:layout_centerInParent="true"
+                    android:layout_width="22dp"
+                    android:backgroundTint="@color/gtstrtbck"
+                    android:background="@drawable/notbell"/>
+            </RelativeLayout>
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
