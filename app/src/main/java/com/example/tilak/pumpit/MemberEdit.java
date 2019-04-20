@@ -42,6 +42,10 @@ public class MemberEdit extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
 
+    public interface DismissListener{
+        public void isDeleted(Boolean deleted);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

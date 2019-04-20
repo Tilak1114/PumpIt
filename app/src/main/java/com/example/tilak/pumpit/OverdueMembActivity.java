@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -27,6 +29,7 @@ public class OverdueMembActivity extends AppCompatActivity implements MemberAdap
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     CollectionReference odmemberref;
+    ImageView cancel;
 
     TextView odmembcnt;
 
@@ -42,6 +45,7 @@ public class OverdueMembActivity extends AppCompatActivity implements MemberAdap
         odRv = findViewById(R.id.odmembRecyclerview);
         GymName = user.getDisplayName();
         odmembcnt = findViewById(R.id.odmmbcnt);
+        cancel = findViewById(R.id.closeOdmemb);
         Log.d("GymNameActive", GymName);
         odmemberref = db.collection("Gyms/"+GymName+"/Members");
 
@@ -54,6 +58,13 @@ public class OverdueMembActivity extends AppCompatActivity implements MemberAdap
             }
         });
         setUpActiveRecyclerView();
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void setUpActiveRecyclerView() {
         Query query = odmemberref.whereEqualTo("payment", "Payment Pending");

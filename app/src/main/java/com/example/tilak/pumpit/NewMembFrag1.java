@@ -2,6 +2,7 @@ package com.example.tilak.pumpit;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.Date;
 import android.widget.Toast;
@@ -38,6 +41,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -116,14 +120,24 @@ public class NewMembFrag1 extends Fragment {
     }
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == CHOOSE_IMAGE && data!=null && data.getData()!=null){
-            uriProfileImage = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),
-                        uriProfileImage);
-                avatar.setImageBitmap(bitmap);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+        switch (requestCode){
+            case 1: if(resultCode==getActivity().RESULT_OK && data!=null && data.getData()!=null){
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                avatar.setImageBitmap(imageBitmap);
+            }
+
+                break;
+            case 2: if(data!=null && data.getData()!=null){
+                uriProfileImage = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),
+                            uriProfileImage);
+                    avatar.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -211,9 +225,29 @@ public class NewMembFrag1 extends Fragment {
         }
     }
     private void showImageChooser(){
-        Intent imgSelect = new Intent();
-        imgSelect.setType("image/*");
-        imgSelect.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(imgSelect, "Select Profile Image"), CHOOSE_IMAGE);
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+        AlertDialog.Builder builder = new AlertDialog.Builder(Objects.requireNonNull(getContext()), R.style.AlertDialogStyle);
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePicture, 0);
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent imgSelect = new Intent();
+                    imgSelect.setType("image/*");
+                    imgSelect.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(imgSelect, "Select Profile Image"), 2);
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
     }
 }

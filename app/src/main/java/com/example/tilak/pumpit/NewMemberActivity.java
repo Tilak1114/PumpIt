@@ -36,6 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1.NextBtnListener, NewMembFrag2.NextBtnListener, NewMembFrag3.NextBtnListener{
 
@@ -169,6 +170,7 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
         });
         Log.d("next3check", "entered next3");
         Log.d("next3click", "nextfinish");
+        Toasty.success(getApplicationContext(), "Added new Member", Toasty.LENGTH_SHORT).show();
         finish();
     }
 

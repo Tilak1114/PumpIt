@@ -45,6 +45,7 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
+            android:id="@+id/closeOdmemb"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
             android:background="@drawable/icn_close"/>

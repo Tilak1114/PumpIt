@@ -16,6 +16,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoginActivity extends AppCompatActivity {
     EditText em_inp, pwd_inp;
     ProgressDialog progressDialog;
@@ -61,12 +63,12 @@ public class LoginActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     progressDialog.dismiss();
                     finish();
-                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    Toasty.success(LoginActivity.this, "Login Successful", Toasty.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), InAppActivity.class));
                 }
                 else{
                     progressDialog.dismiss();
-                    Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toasty.error(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }
             }
         });

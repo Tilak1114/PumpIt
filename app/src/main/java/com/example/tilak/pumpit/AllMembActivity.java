@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class AllMembActivity extends AppCompatActivity implements MemberAdapter.
     SearchView searchView;
     TextView membcount;
     TelephonyManager telephonyManager;
+    ImageView close;
 
     ArrayList<String> planNameList = new ArrayList<>();
 
@@ -48,6 +50,7 @@ public class AllMembActivity extends AppCompatActivity implements MemberAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_memb);
         GymName = user.getDisplayName();
+        close = findViewById(R.id.closeAllMemb);
 
         Log.d("GymMetainfo_MMF", GymName);
 
@@ -72,6 +75,13 @@ public class AllMembActivity extends AppCompatActivity implements MemberAdapter.
         });
 
         setUpRecyclerView();
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override

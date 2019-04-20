@@ -9,6 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -30,6 +32,8 @@ public class ActiveMembActivity extends AppCompatActivity implements MemberAdapt
 
     TextView activemembcnt;
 
+    ImageView close;
+
     TelephonyManager telephonyManager;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -42,6 +46,7 @@ public class ActiveMembActivity extends AppCompatActivity implements MemberAdapt
         activeRv = findViewById(R.id.activemembRecyclerview);
         activemembcnt = findViewById(R.id.actmmbcnt);
         GymName = user.getDisplayName();
+        close = findViewById(R.id.closeActiveMemb);
         Log.d("GymNameActive", GymName);
         actmemberref = db.collection("Gyms/"+GymName+"/Members");
         DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
@@ -53,6 +58,13 @@ public class ActiveMembActivity extends AppCompatActivity implements MemberAdapt
             }
         });
         setUpActiveRecyclerView();
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
     private void setUpActiveRecyclerView() {
         Query query = actmemberref.whereEqualTo("payment", "Fees Paid");
