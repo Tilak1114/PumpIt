@@ -142,33 +142,32 @@ public class NewMembFrag1 extends Fragment {
         }
     }
     private void uploadToFireBase() {
-
-        final String memberName = firstName.getText().toString()+lastName.getText().toString();
-        final StorageReference profilepicRef = FirebaseStorage.getInstance()
-                .getReference("MemberUploads/"+GymName+memberName+".jpg");
-        if(uriProfileImage != null){
-            progressDialog.setTitle("Uploading Profile Picture");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-            profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    profileImgUrl = taskSnapshot.toString();
-                    progressDialog.dismiss();
-                    final DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
-                    profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                            downloadUrl = uri.toString();
-                            Map<String, Object> data = new HashMap<String, Object>();
-                            data.put("profileUrl", downloadUrl);
-                            documentReference.set(data, SetOptions.merge());
-                            nextBtnListener.onNewMembBtnClicked1(true, firstName.getText().toString()+" "+lastName.getText().toString());
-                        }
-                    });
-                }
-            });
-        }
+            final String memberName = firstName.getText().toString()+lastName.getText().toString();
+            final StorageReference profilepicRef = FirebaseStorage.getInstance()
+                    .getReference("MemberUploads/"+GymName+memberName+".jpg");
+            if(uriProfileImage != null){
+                progressDialog.setTitle("Uploading Profile Picture");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
+                profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        profileImgUrl = taskSnapshot.toString();
+                        progressDialog.dismiss();
+                        final DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
+                        profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                downloadUrl = uri.toString();
+                                Map<String, Object> data = new HashMap<String, Object>();
+                                data.put("profileUrl", downloadUrl);
+                                documentReference.set(data, SetOptions.merge());
+                                nextBtnListener.onNewMembBtnClicked1(true, firstName.getText().toString()+" "+lastName.getText().toString());
+                            }
+                        });
+                    }
+                });
+            }
         else if(uriProfileImage==null){
             DocumentReference dr = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+firstName.getText().toString()+" "+lastName.getText().toString());
             Map<String, Object> data = new HashMap<String, Object>();

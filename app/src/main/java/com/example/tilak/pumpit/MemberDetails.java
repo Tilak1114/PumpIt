@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MemberDetails extends AppCompatActivity implements MemberEdit.DismissListener{
+public class MemberDetails extends AppCompatActivity{
     TextView membname, plan, phone, payment, startdate, enddate, email, activeStatus;
     ImageView close, edit;
     String profileUrl;
@@ -140,12 +140,5 @@ public class MemberDetails extends AppCompatActivity implements MemberEdit.Dismi
                 }
             }
         });
-    }
-
-    @Override
-    public void isDeleted(Boolean deleted) {
-        if(deleted){
-            finish();
-        }
     }
 }

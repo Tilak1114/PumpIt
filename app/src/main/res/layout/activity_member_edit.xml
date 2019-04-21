@@ -50,13 +50,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_centerHorizontal="true"
+            <RelativeLayout
+                android:layout_width="120dp"
+                android:layout_height="120dp"
                 android:layout_marginTop="30dp"
-                android:layout_height="100dp"
-                android:background="@drawable/avatar"
-                android:id="@+id/cirImgAvatarEdit"
-                android:layout_width="100dp"/>
+                android:id="@+id/cirImgAvatarEditlay"
+                android:layout_centerHorizontal="true">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_centerHorizontal="true"
+                    android:layout_height="120dp"
+                    android:background="@drawable/avatar"
+                    android:id="@+id/cirImgAvatarEdit"
+                    android:layout_width="120dp"/>
+            </RelativeLayout>
 
             <EditText
                 android:backgroundTint="#fff"
@@ -69,13 +75,14 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
                 android:textColorHint="@color/gray"
-                android:layout_below="@id/cirImgAvatarEdit"
+                android:layout_below="@id/cirImgAvatarEditlay"
                 android:layout_height="50dp"/>
             <EditText
                 android:backgroundTint="#fff"
                 android:layout_width="match_parent"
                 android:id="@+id/phoneedit"
                 android:hint="Phone"
+                android:maxLength="10"
                 android:textColorHint="@color/gray"
                 android:textColor="#fff"
                 android:fontFamily="@font/product_sans_reg"
@@ -91,6 +98,7 @@
                 android:hint="Whatsapp"
                 android:textColorHint="@color/gray"
                 android:textColor="#fff"
+                android:maxLength="10"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="20dp"

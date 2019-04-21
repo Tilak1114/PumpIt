@@ -1,19 +1,27 @@
 package com.example.tilak.pumpit;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.support.v7.app.AlertDialog;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,33 +32,42 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageException;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberEdit extends AppCompatActivity {
     ProgressDialog progressDialog;
     ImageView editdone, editcancel;
+
+    Uri uriProfileImage;
+    Boolean changed;
+    String downloadUrl, profileImgUrl;
+
     CircleImageView avatar;
     EditText nameedit, phoneedit, emailedit;
     RelativeLayout delmemb;
-
+    String membName, membNameWithoutSpace;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
-
-    public interface DismissListener{
-        public void isDeleted(Boolean deleted);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_edit);
         Intent i = getIntent();
+        changed = false;
         final String name = i.getStringExtra("name");
         delmemb = findViewById(R.id.deletememb);
         avatar = findViewById(R.id.cirImgAvatarEdit);
@@ -67,26 +84,128 @@ public class MemberEdit extends AppCompatActivity {
                 .into(avatar);
 
 
+        membName = i.getStringExtra("name");
+        membNameWithoutSpace = membName.replaceAll("\\s","");
+
         GymName = user.getDisplayName();
 
         Log.d("GymMetainfo_MemberEdit", GymName);
 
         progressDialog = new ProgressDialog(MemberEdit.this, R.style.ProgressDialogStyle);
 
+        nameedit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changed =true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        phoneedit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changed = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        emailedit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                changed = true;
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        avatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showImageChooser();
+            }
+        });
+
+        editdone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MemberEdit.this);
+                builder.setTitle("Update");
+                builder.setMessage("Do you want to apply changes?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteExisting(membNameWithoutSpace, membName);
+                        changed = false;
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).create().show();
+            }
+        });
 
         editcancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                if(changed){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MemberEdit.this);
+                    builder.setTitle("Exit");
+                    builder.setMessage("Exit before applying changes?");
+                    builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    }).create().show();
+                }
+                else{
+                    finish();
+                }
             }
         });
+
+
 
         delmemb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(MemberEdit.this, R.style.AlertDialogStyle);
+                AlertDialog.Builder builder = new AlertDialog.Builder(MemberEdit.this);
                 builder.setTitle("Delete");
                 builder.setMessage("Do you want to delete this member?");
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
@@ -199,6 +318,108 @@ public class MemberEdit extends AppCompatActivity {
                 DocumentReference updateInitData = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
                 updateInitData.update("activemembcount", String.valueOf(membMetaInfo.get(1)));
                 updateInitData.update("overduemembcount", String.valueOf(membMetaInfo.get(0)));
+            }
+        });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        switch (requestCode){
+            case 1: if(resultCode==RESULT_OK && data!=null && data.getData()!=null){
+                Bundle extras = data.getExtras();
+                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                avatar.setImageBitmap(imageBitmap);
+                changed = true;
+            }
+
+                break;
+            case 2: if(data!=null && data.getData()!=null){
+                uriProfileImage = data.getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),
+                            uriProfileImage);
+                    avatar.setImageBitmap(bitmap);
+                    changed = true;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void showImageChooser(){
+        final CharSequence[] options = { "Take Photo", "Choose from Gallery","Cancel" };
+        AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(MemberEdit.this, R.style.AlertDialogStyle);
+        builder.setTitle("Add Photo!");
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int item) {
+                if (options[item].equals("Take Photo"))
+                {
+                    Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                    startActivityForResult(takePicture, 0);
+                }
+                else if (options[item].equals("Choose from Gallery"))
+                {
+                    Intent imgSelect = new Intent();
+                    imgSelect.setType("image/*");
+                    imgSelect.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(imgSelect, "Select Profile Image"), 2);
+                }
+                else if (options[item].equals("Cancel")) {
+                    dialog.dismiss();
+                }
+            }
+        });
+        builder.show();
+    }
+
+    public void uploadToFireBase(final String membName, String membNameWithoutSpace){
+        final StorageReference profilepicRef = FirebaseStorage.getInstance()
+                .getReference("MemberUploads/"+GymName+membNameWithoutSpace+".jpg");
+        if(uriProfileImage != null){
+            progressDialog.setTitle("Uploading Profile Picture");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            profilepicRef.putFile(uriProfileImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    profileImgUrl = taskSnapshot.toString();
+                    progressDialog.dismiss();
+                    final DocumentReference membRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
+                    profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            downloadUrl = uri.toString();
+                            Map<String, Object> data = new HashMap<String, Object>();
+                            data.put("profileUrl", downloadUrl);
+                            membRef.set(data, SetOptions.merge());
+                        }
+                    });
+                }
+            });
+        }
+    }
+
+    public void deleteExisting(final String membNameWithoutSpace, final String membName){
+        final StorageReference profilepicRef = FirebaseStorage.getInstance()
+                .getReference("MemberUploads/"+GymName+membNameWithoutSpace+".jpg");
+        profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                profilepicRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        uploadToFireBase(membName, membNameWithoutSpace);
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.e("FNF", e.toString());
+                uploadToFireBase(membName, membNameWithoutSpace);
             }
         });
     }
