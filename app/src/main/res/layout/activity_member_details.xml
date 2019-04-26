@@ -12,15 +12,15 @@
         android:layout_height="60dp">
         <ImageView
             android:id="@+id/cancelmembprofile"
-            android:layout_width="25dp"
+            android:layout_width="28dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_height="25dp"
+            android:layout_height="30dp"
             android:backgroundTint="@color/gtstrtbck"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="30dp"
-            android:background="@drawable/icn_close"/>
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/icn_close_"/>
         <ImageView
             android:layout_toStartOf="@id/cancelmembprofile"
             android:layout_width="28dp"
@@ -102,6 +102,7 @@
                     android:layout_height="40dp"
                     android:layout_below="@id/activestatustv"
                     android:layout_marginTop="5dp"
+                    android:id="@+id/sendMessageIndividual"
                     android:background="@drawable/roundedbtncolor">
 
                     <TextView

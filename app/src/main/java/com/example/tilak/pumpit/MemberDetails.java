@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +31,9 @@ public class MemberDetails extends AppCompatActivity{
     String profileUrl;
     Switch activityswitch;
     ProgressDialog progressDialog;
-    RelativeLayout editlay, editdef, savechanges;
+    RelativeLayout editlay, editdef, savechanges, sendmsg;
     CircleImageView membprofile;
+    Intent i;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class MemberDetails extends AppCompatActivity{
         email = findViewById(R.id.emailvaldet);
         payment = findViewById(R.id.pddtv);
         activityswitch = findViewById(R.id.activitySwitch);
+        sendmsg = findViewById(R.id.sendMessageIndividual);
         activeStatus = findViewById(R.id.activestatustv);
 
         editlay = findViewById(R.id.editlay);
@@ -51,7 +54,7 @@ public class MemberDetails extends AppCompatActivity{
         enddate = findViewById(R.id.enddateval);
         membprofile = findViewById(R.id.membProfilepicDetails);
 
-        Intent i= getIntent();
+        i= getIntent();
         Log.d("Intentchk", i.getStringExtra("name"));
         membname.setText(i.getStringExtra("name"));
         Log.d("Intentchk", i.getStringExtra("plan"));
@@ -79,6 +82,16 @@ public class MemberDetails extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        sendmsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent smsIntent = new Intent(Intent.ACTION_SENDTO,
+                        Uri.parse("smsto:"+i.getStringExtra("phone")));
+                smsIntent.putExtra("sms_body", "\n \n Regards, ");
+                startActivity(smsIntent);
             }
         });
 

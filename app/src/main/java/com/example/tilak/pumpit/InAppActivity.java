@@ -1,12 +1,23 @@
 package com.example.tilak.pumpit;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Build;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,9 +40,12 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import static android.app.PendingIntent.FLAG_ONE_SHOT;
 
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -43,6 +57,8 @@ public class InAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app);
+
+        //startAlarm(true, true);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         if(user==null){
@@ -57,6 +73,10 @@ public class InAppActivity extends AppCompatActivity {
         if(GymName.isEmpty()){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
+
+        checkNoti();
+
+        //startAlarm(true, true);
 
         setupInitData();
 
@@ -188,5 +208,42 @@ public class InAppActivity extends AppCompatActivity {
             data.put("planMembCount", planCountList.get(i));
             writeRef.set(data);
         }
+    }
+
+    public void checkNoti(){
+        NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+
+        int notificationId = 1;
+        String channelId = "channel-01";
+        String channelName = "Channel Name";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel mChannel = new NotificationChannel(
+                    channelId, channelName, importance);
+            notificationManager.createNotificationChannel(mChannel);
+        }
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), channelId);
+
+        Intent myIntent = new Intent(getApplicationContext(), InAppActivity.class);
+        PendingIntent pendingIntent = PendingIntent.getActivity(
+                getApplicationContext(),
+                0,
+                myIntent,
+                FLAG_ONE_SHOT );
+
+        builder.setAutoCancel(true)
+                .setDefaults(Notification.DEFAULT_ALL)
+                .setWhen(System.currentTimeMillis())
+                .setContentTitle("Manage Gym")
+                .setSmallIcon(R.drawable.notificationicon)
+                .setColor(getResources().getColor(R.color.gtstrtbck))
+                //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.iconsplash))
+                .setContentIntent(pendingIntent)
+                .setContentText("Send intimation message to members approaching due date and overdue members")
+                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
+                .setContentInfo("Action");
+
+        notificationManager.notify(notificationId, builder.build());
     }
 }
