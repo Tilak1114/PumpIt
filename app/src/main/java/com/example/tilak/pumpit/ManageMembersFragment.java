@@ -16,6 +16,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.telephony.PhoneNumberUtils;
@@ -64,10 +65,12 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     private static final String TAG = "FIREBASE";
 
     RelativeLayout addNewMembFab;
+    SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     SearchView searchView;
     TextView membcount;
     TelephonyManager telephonyManager;
+    DocumentReference dr;
 
     ArrayList<String> planNameList = new ArrayList<>();
 
@@ -94,6 +97,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
         //getFragmentManager().beginTransaction()
               // .replace(R.id.newMemb_container, new NewMembFrag1()).commit();
 
+        swipeRefreshLayout = MemberManage.findViewById(R.id.membSwipetorefLay);
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
         searchView = MemberManage.findViewById(R.id.searchmemb);
         membcount = MemberManage.findViewById(R.id.mngmmbcnt);
@@ -105,7 +109,22 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
 
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+        dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        String cnt = documentSnapshot.getString("allmembcount");
+                        membcount.setText(cnt+" Members");
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                });
+            }
+        });
+
         dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {

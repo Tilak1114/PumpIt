@@ -211,7 +211,10 @@ public class MemberEdit extends AppCompatActivity {
                     }).create().show();
                 }
                 else{
-                    finish();
+                    Intent intent=new Intent();
+                    intent.putExtra("shouldFinish", false);
+                    setResult(69,intent);
+                    finish();//
                 }
             }
         });
