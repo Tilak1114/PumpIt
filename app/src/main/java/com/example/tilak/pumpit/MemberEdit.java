@@ -177,6 +177,7 @@ public class MemberEdit extends AppCompatActivity {
                         Intent intent=new Intent();
                         intent.putExtra("shouldFinish", true);
                         setResult(69,intent);
+                        dialog.dismiss();
                         finish();//
                     }
                 });
@@ -226,7 +227,7 @@ public class MemberEdit extends AppCompatActivity {
                 builder.setMessage("Do you want to delete this member?");
                 builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    public void onClick(final DialogInterface dialog, int which) {
                         dialog.dismiss();
                         progressDialog.setTitle("Deleting Member");
                         progressDialog.show();
@@ -251,6 +252,7 @@ public class MemberEdit extends AppCompatActivity {
                                 Intent intent=new Intent();
                                 intent.putExtra("shouldFinish", true);
                                 setResult(69,intent);
+                                dialog.dismiss();
                                 finish();//
                             }
                         });
@@ -421,7 +423,7 @@ public class MemberEdit extends AppCompatActivity {
         }
     }
 
-    public void deleteExisting(final String membNameWithoutSpace, final String membName){
+    /*public void deleteExisting(final String membNameWithoutSpace, final String membName){
         final StorageReference profilepicRef = FirebaseStorage.getInstance()
                 .getReference("MemberUploads/"+GymName+membNameWithoutSpace+".jpg");
         profilepicRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -441,5 +443,11 @@ public class MemberEdit extends AppCompatActivity {
                 uploadToFireBase(membName, membNameWithoutSpace);
             }
         });
+    }*/
+
+    @Override
+    protected void onDestroy() {
+        progressDialog.dismiss();
+        super.onDestroy();
     }
 }
