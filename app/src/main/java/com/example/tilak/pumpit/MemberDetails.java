@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -103,7 +104,7 @@ public class MemberDetails extends AppCompatActivity{
                 editintent.putExtra("phone", phone.getText().toString());
                 editintent.putExtra("email", email.getText().toString());
                 editintent.putExtra("profileurl", profileUrl);
-                startActivity(editintent);
+                startActivityForResult(editintent, 69);
             }
         });
         if(payment.getText().toString().equals("Payment Pending")){
@@ -153,5 +154,13 @@ public class MemberDetails extends AppCompatActivity{
                 }
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 69&&data.getBooleanExtra("shouldFinish", true)){
+            finish();
+        }
     }
 }

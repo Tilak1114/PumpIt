@@ -10,7 +10,7 @@
     android:translationZ="1dp"
     android:layout_width="match_parent"
     android:layout_height="80dp">
-    <LinearLayout
+    <RelativeLayout
         android:layout_margin="5dp"
         android:orientation="horizontal"
         android:layout_centerInParent="true"
@@ -21,18 +21,15 @@
             android:scaleType="centerCrop"
             android:layout_width="70dp"
             android:layout_marginStart="3dp"
-            android:layout_gravity="center"
             android:id="@+id/membProfilepic"
             android:layout_height="70dp"
             android:background="@drawable/avatar"/>
         <RelativeLayout
+            android:layout_toRightOf="@id/membProfilepic"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:layout_gravity="center"
-            android:layout_weight="90">
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp">
             <TextView
                 android:id="@+id/MemberName"
                 android:text="Example name"
@@ -54,25 +51,23 @@
             <TextView
                 android:id="@+id/PaymentStatus"
                 android:textSize="14sp"
-                android:layout_alignParentBottom="true"
                 android:text="Fees Paid"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_below="@id/PlanDetails"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:clickable="true"
-                android:focusable="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/call"
-                android:id="@+id/callmemb"
-                android:backgroundTint="@color/bckprimary"
-                android:layout_alignParentEnd="true"/>
         </RelativeLayout>
-
-    </LinearLayout>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/call"
+            android:id="@+id/callmemb"
+            android:backgroundTint="@color/bckprimary"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
 </RelativeLayout>

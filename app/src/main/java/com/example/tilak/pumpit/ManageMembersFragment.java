@@ -88,7 +88,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
         Log.d("GymMetainfo_MMF", GymName);
 
-       memberref = db.collection("Gyms/"+GymName+"/Members");
+        memberref = db.collection("Gyms/"+GymName+"/Members");
 
         //FragmentManager fm =
         //getFragmentManager().beginTransaction()

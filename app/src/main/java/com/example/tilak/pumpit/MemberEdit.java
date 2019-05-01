@@ -46,6 +46,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import es.dmoral.toasty.Toasty;
 
 public class MemberEdit extends AppCompatActivity {
     ProgressDialog progressDialog;
@@ -56,11 +57,13 @@ public class MemberEdit extends AppCompatActivity {
     String downloadUrl, profileImgUrl;
 
     CircleImageView avatar;
-    EditText nameedit, phoneedit, emailedit;
+    EditText nameedit, phoneedit, emailedit, whatsappEdit;
     RelativeLayout delmemb;
     String membName, membNameWithoutSpace;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
+    Boolean phoneUpdated, emailUpdated;
+    DocumentReference membUpdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,8 @@ public class MemberEdit extends AppCompatActivity {
         setContentView(R.layout.activity_member_edit);
         Intent i = getIntent();
         changed = false;
+        phoneUpdated = false;
+        emailUpdated = false;
         final String name = i.getStringExtra("name");
         delmemb = findViewById(R.id.deletememb);
         avatar = findViewById(R.id.cirImgAvatarEdit);
@@ -76,6 +81,7 @@ public class MemberEdit extends AppCompatActivity {
         nameedit = findViewById(R.id.nameedit);
         phoneedit = findViewById(R.id.phoneedit);
         emailedit = findViewById(R.id.emailedit);
+        whatsappEdit = findViewById(R.id.whatsappedit);
 
         nameedit.setText(i.getStringExtra("name"));
         phoneedit.setText(i.getStringExtra("phone"));
@@ -93,22 +99,7 @@ public class MemberEdit extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(MemberEdit.this, R.style.ProgressDialogStyle);
 
-        nameedit.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                changed =true;
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+        membUpdate = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
 
         phoneedit.addTextChangedListener(new TextWatcher() {
             @Override
@@ -160,8 +151,33 @@ public class MemberEdit extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        deleteExisting(membNameWithoutSpace, membName);
+                        //deleteExisting(membNameWithoutSpace, membName);
+                        uploadToFireBase(membName, membNameWithoutSpace);
+                        membUpdate.update("phoneNo", phoneedit.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                phoneUpdated = true;
+                            }
+                        });
+                        membUpdate.update("email", emailedit.getText().toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                emailUpdated = true;
+                            }
+                        });
+                        if(!whatsappEdit.getText().toString().isEmpty()){
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("whatsapp", whatsappEdit.getText().toString());
+                            membUpdate.set(data);
+                        }
+                        if(phoneUpdated||emailUpdated){
+                            Toasty.success(getApplicationContext(), "Updated Successfully", Toasty.LENGTH_LONG).show();
+                        }
                         changed = false;
+                        Intent intent=new Intent();
+                        intent.putExtra("shouldFinish", true);
+                        setResult(69,intent);
+                        finish();//
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -232,7 +248,10 @@ public class MemberEdit extends AppCompatActivity {
                                 });
                                 progressDialog.dismiss();
                                 setupPlansWithCount();
-                                finish();
+                                Intent intent=new Intent();
+                                intent.putExtra("shouldFinish", true);
+                                setResult(69,intent);
+                                finish();//
                             }
                         });
                         dialog.dismiss();
