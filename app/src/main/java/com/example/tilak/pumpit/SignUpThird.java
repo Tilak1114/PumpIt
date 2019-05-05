@@ -13,9 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -29,17 +32,19 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class SignUpThird extends Fragment {
-
-    HashMap<String, List<String>> GymFacilities;
-    List<String> faciList;
+public class SignUpThird extends Fragment{
+    //List<String> faciList;
     ExpandableListView expandableListView;
+    HashMap<String, List<String>> selList;
     GymFaciAdapter adapter;
+    List<String> faciParent;
+    HashMap<String, List<String>> faciChildren;
 
     NextBtnListener nextBtnListener;
     RelativeLayout next;
+
     public interface NextBtnListener{
-        void onBtnClickF(Boolean result);
+        void onBtnClickF(Boolean result, List<String> selItems);
     }
 
     @Nullable
@@ -47,29 +52,37 @@ public class SignUpThird extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View SnpSecV = inflater.inflate(R.layout.signup_final, container, false);
         expandableListView = SnpSecV.findViewById(R.id.expandGymFaci);
-        GymFacilities = GymFaciList.getInfo();
-        faciList = new ArrayList<String>(GymFacilities.keySet());
-        adapter = new GymFaciAdapter(getContext(), GymFacilities, faciList);
+
+        faciChildren = GymFaciList.getInfo();
+        faciParent = new ArrayList<String>(faciChildren.keySet());
+        adapter = new GymFaciAdapter(getContext(), faciParent, faciChildren);
         expandableListView.setAdapter(adapter);
         next = SnpSecV.findViewById(R.id.Next3);
-        return SnpSecV;
-    }
 
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextBtnListener.onBtnClickF(true);
+                //Log.d("ExpCBChk", )
+                nextBtnListener.onBtnClickF(true, adapter.getSelItems());
             }
         });
-        expandableListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+        /*expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-                return false;
+            public void onGroupExpand(int groupPosition) {
+                Toast.makeText(getContext(),
+                        faciParent.get(groupPosition) + " List Expanded.",
+                        Toast.LENGTH_SHORT).show();
             }
         });
+        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+            @Override
+            public void onGroupCollapse(int groupPosition) {
+                Toast.makeText(getContext(),
+                        faciParent.get(groupPosition) + " List Collapsed.",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });*/
+        return SnpSecV;
     }
 
     @Override

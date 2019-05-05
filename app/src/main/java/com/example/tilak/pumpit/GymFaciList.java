@@ -8,7 +8,6 @@ public class GymFaciList {
     public static HashMap<String, List<String>> getInfo(){
         HashMap<String, List<String>> gymFaci = new HashMap<String, List<String>>();
 
-
         List<String> CardioVascular = new ArrayList<>();
         CardioVascular.add("TREADMILLS");
         CardioVascular.add("ELLIPTICAL TRAINERS");

@@ -7,23 +7,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 public class GymFaciAdapter extends BaseExpandableListAdapter {
 
     Context context;
+    List<String> selItems;
     HashMap<String, List<String>> GymFaciAll;
     List<String> GymFaci;
+    boolean state =false;
 
-    public GymFaciAdapter(Context context, HashMap<String, List<String>> GymFaciAll,
-                          List<String> GymFaci){
+
+    public GymFaciAdapter(Context context,
+                          List<String> GymFaci, HashMap<String, List<String>> GymFaciAll){
         this.context = context;
         this.GymFaciAll = GymFaciAll;
         this.GymFaci = GymFaci;
 
+        selItems = new ArrayList<>();
     }
     @Override
     public int getGroupCount() {
@@ -76,18 +82,39 @@ public class GymFaciAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild,
                              View convertView, ViewGroup parent) {
-        String child_title = (String) getChild(groupPosition, childPosition);
+
+        final int mGroupPosition = groupPosition;
+        final int mChildPosition = childPosition;
+
+        final String child_title = (String) getChild(groupPosition, childPosition);
         if(convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.exp_child, parent, false);
         }
         CheckBox childCb = convertView.findViewById(R.id.checkbox_child);
         childCb.setText(child_title);
+        childCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    selItems.add(child_title);
+                    state = true;
+                }
+                else
+                    if(state){
+                        selItems.remove(child_title);
+                    }
+            }
+        });
         return convertView;
     }
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return false;
+        return true;
+    }
+
+    public List<String> getSelItems() {
+        return selItems;
     }
 }
