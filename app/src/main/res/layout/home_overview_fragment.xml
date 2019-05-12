@@ -199,7 +199,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:text="Tasks"
             android:textColor="@android:color/black"
-            android:textSize="16sp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.015"
