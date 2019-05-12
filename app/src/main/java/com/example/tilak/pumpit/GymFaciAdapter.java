@@ -92,10 +92,12 @@ public class GymFaciAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.exp_child, parent, false);
         }
         CheckBox childCb = convertView.findViewById(R.id.checkbox_child);
+        childCb.setChecked(false);
         childCb.setText(child_title);
         childCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
                 if(isChecked){
                     selItems.add(child_title);
                     state = true;
@@ -111,7 +113,7 @@ public class GymFaciAdapter extends BaseExpandableListAdapter {
 
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
-        return true;
+        return false;
     }
 
     public List<String> getSelItems() {

@@ -72,15 +72,6 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         }
     }
 
-    @Override
-    public void onBtnClickF(Boolean result) {
-        if(result){
-            stepView.go(4, true);
-            stepView.done(true);
-            initSetup();
-            startActivity(new Intent(getApplicationContext(), InAppActivity.class));
-        }
-    }
 
     public void initSetup(){
 
@@ -119,7 +110,7 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         data1.put("planPrice", "2500");
         data1.put("planDuration", "3 Months Plan");
         data1.put("planMembCount", "5");
-        data1.put("planFeatures", "Cardio, Strength");
+        data1.put("planFeatures", "");
         data1.put("coverId", R.drawable.plan1);
         planDoc1.set(data1);
 
@@ -130,7 +121,7 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         data2.put("planPrice", "5000");
         data2.put("planMembCount", "3");
         data2.put("planDuration", "6 Months Plan");
-        data2.put("planFeatures", "Cardio, Strength");
+        data2.put("planFeatures", "");
         data2.put("coverId", R.drawable.plan2);
         planDoc2.set(data2);
 
@@ -141,7 +132,7 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         data3.put("planPrice", "12000");
         data3.put("planMembCount", "2");
         data3.put("planDuration", "12 Months Plan");
-        data3.put("planFeatures", "Cardio, Strength");
+        data3.put("planFeatures", "");
         data3.put("coverId", R.drawable.plan3);
         planDoc3.set(data3);
     }
@@ -174,4 +165,47 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
                 });
     }
 
+    @Override
+    public void onBtnClickF(Boolean result, List<String> selItems) {
+        if(result){
+            stepView.go(4, true);
+            stepView.done(true);
+
+            initSetup();
+
+            String cardio, strength, addAmen, grpActi;
+            cardio = "";
+            strength = "";
+            addAmen = "";
+            grpActi = "";
+            DocumentReference faciRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/GymFacilities/facilities");
+            Map<String, Object> faciData = new HashMap<String, Object>();
+            for(int i = 0; i<selItems.size(); i++){
+                if(selItems.get(i).equals("TREADMILLS")||selItems.get(i).equals("ELLIPTICAL TRAINERS")
+                        ||selItems.get(i).equals("CROSS TRAINERS")||selItems.get(i).equals("STAIR CLIMBERS")
+                        ||selItems.get(i).equals("ROWERS")||selItems.get(i).equals("UPRIGHT BIKES")
+                        ||selItems.get(i).equals("RECUMBENT BIKES")||selItems.get(i).equals("CARDIO ENTERTAINMENT")){
+                    cardio = cardio + ", "+ selItems.get(i);
+                }
+                else if(selItems.get(i).equals("CIRCUIT MACHINES")||selItems.get(i).equals("SELECTORIZED MACHINES")||
+                        selItems.get(i).equals("ISO-LATERAL MACHINES")||selItems.get(i).equals("PLATE LOAD MACHINES")||
+                        selItems.get(i).equals("FUNCTIONAL TRAINING MACHINES")||selItems.get(i).equals("FREE WEIGHTS")){
+                    strength = strength+", "+selItems.get(i);
+                }
+                else if(selItems.get(i).equals("YOGA")||selItems.get(i).equals("ZUMBA")||
+                        selItems.get(i).equals("AEROBICS")||selItems.get(i).equals("PILATES")||
+                        selItems.get(i).equals("HOOP FITNESS")){
+                    grpActi = grpActi +", "+selItems.get(i);
+                }
+                else
+                    addAmen = addAmen +", "+ selItems.get(i);
+            }
+            faciData.put("cardio", cardio);
+            faciData.put("strength", strength);
+            faciData.put("groupActi", grpActi);
+            faciData.put("addAmen", addAmen);
+            faciRef.set(faciData);
+            startActivity(new Intent(getApplicationContext(), InAppActivity.class));
+        }
+    }
 }

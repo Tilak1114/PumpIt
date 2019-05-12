@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ScrollView
+        android:layout_above="@id/newTrainerFinal"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/newtrainertitle2"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+                <TextView
+                    android:id="@+id/NewTrainerTv"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="New Trainer"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="26sp"
+                    android:textColor="#1B1C20"/>
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:text="Trainer Specialization(s)"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:layout_below="@id/NewTrainerTv"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginStart="30dp"
+                    android:textSize="16sp"
+                    android:textColor="#1B1C20"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+    <RelativeLayout
+        android:id="@+id/newTrainerFinal"
+        android:elevation="8dp"
+        android:translationZ="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/getstartedbtn"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/tvgetstrt"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Finish"
+            android:textStyle="bold"
+            android:layout_marginStart="160dp"
+            android:textSize="24sp"
+            android:fontFamily="@font/myraidprolight"
+            android:textColor="@android:color/white"
+            />
+        <RelativeLayout
+            android:layout_height="60dp"
+            android:layout_width="80dp"
+            android:background="@color/gtstrtbck1"
+            android:layout_alignParentEnd="true">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/arrow"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

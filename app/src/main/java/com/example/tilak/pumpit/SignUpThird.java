@@ -66,22 +66,12 @@ public class SignUpThird extends Fragment{
                 nextBtnListener.onBtnClickF(true, adapter.getSelItems());
             }
         });
-        /*expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
             @Override
             public void onGroupExpand(int groupPosition) {
-                Toast.makeText(getContext(),
-                        faciParent.get(groupPosition) + " List Expanded.",
-                        Toast.LENGTH_SHORT).show();
+
             }
         });
-        expandableListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-            @Override
-            public void onGroupCollapse(int groupPosition) {
-                Toast.makeText(getContext(),
-                        faciParent.get(groupPosition) + " List Collapsed.",
-                        Toast.LENGTH_SHORT).show();
-            }
-        });*/
         return SnpSecV;
     }
 
