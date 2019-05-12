@@ -18,8 +18,10 @@
             android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/weightlift"/>
+            android:src="@drawable/pumpitsplashv2white"/>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
