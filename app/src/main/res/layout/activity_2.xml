@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bckprimary"
+    android:background="@drawable/loginsignup"
     tools:context=".Activity2"
     tools:layout_editor_absoluteY="25dp">
 
@@ -22,7 +22,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.079"
-        app:srcCompat="@drawable/weightlift" />
+        />
 
     <TextView
         android:id="@+id/tvcreate"
