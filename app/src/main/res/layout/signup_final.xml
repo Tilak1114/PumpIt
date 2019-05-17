@@ -50,14 +50,12 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </RelativeLayout>
-
     <ExpandableListView
+        android:layout_below="@id/signUpTitleLay"
         android:id="@+id/expandGymFaci"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="20dp"
-        android:layout_above="@id/NextOrSkip"
-        android:layout_below="@id/signUpTitleLay"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="30dp"
         android:layout_marginTop="20dp"
@@ -65,6 +63,7 @@
         android:divider="@color/gtstrtbck"
         android:dividerHeight="1dp"
         android:indicatorStart="?android:attr/expandableListPreferredChildIndicatorLeft" />
+
     <LinearLayout
         android:layout_alignParentBottom="true"
         android:id="@+id/NextOrSkip"
@@ -73,6 +72,7 @@
         android:orientation="horizontal">
         <RelativeLayout
             android:layout_weight="1"
+            android:clickable="true"
             android:id="@+id/Skip3"
             android:elevation="8dp"
             android:translationZ="10dp"
@@ -93,6 +93,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_weight="1"
+            android:clickable="false"
             android:id="@+id/Next3"
             android:elevation="8dp"
             android:translationZ="10dp"

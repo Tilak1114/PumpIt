@@ -27,15 +27,15 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SignUpThird extends Fragment{
-    //List<String> faciList;
+    List<String> selList, tempList;
     ExpandableListView expandableListView;
-    HashMap<String, List<String>> selList;
     GymFaciAdapter adapter;
     List<String> faciParent;
     HashMap<String, List<String>> faciChildren;
@@ -50,29 +50,23 @@ public class SignUpThird extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
-        View SnpSecV = inflater.inflate(R.layout.signup_final, container, false);
-        expandableListView = SnpSecV.findViewById(R.id.expandGymFaci);
+        View SnpThrV = inflater.inflate(R.layout.signup_final, container, false);
+        expandableListView = SnpThrV.findViewById(R.id.expandGymFaci);
 
         faciChildren = GymFaciList.getInfo();
         faciParent = new ArrayList<String>(faciChildren.keySet());
         adapter = new GymFaciAdapter(getContext(), faciParent, faciChildren);
         expandableListView.setAdapter(adapter);
-        next = SnpSecV.findViewById(R.id.Next3);
+        next = SnpThrV.findViewById(R.id.Next3);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Log.d("ExpCBChk", )
-                nextBtnListener.onBtnClickF(true, adapter.getSelItems());
+                nextBtnListener.onBtnClickF(false, selList);//skipped for now
             }
         });
-        expandableListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-            @Override
-            public void onGroupExpand(int groupPosition) {
-
-            }
-        });
-        return SnpSecV;
+        return SnpThrV;
     }
 
     @Override

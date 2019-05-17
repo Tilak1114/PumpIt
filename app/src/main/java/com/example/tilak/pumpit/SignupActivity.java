@@ -173,7 +173,7 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
 
             initSetup();
 
-            String cardio, strength, addAmen, grpActi;
+            /*String cardio, strength, addAmen, grpActi;
             cardio = "";
             strength = "";
             addAmen = "";
@@ -204,7 +204,13 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
             faciData.put("strength", strength);
             faciData.put("groupActi", grpActi);
             faciData.put("addAmen", addAmen);
-            faciRef.set(faciData);
+            faciRef.set(faciData);*/
+            startActivity(new Intent(getApplicationContext(), InAppActivity.class));
+        }
+        else{
+            stepView.go(4, true);
+            stepView.done(true);
+            initSetup();
             startActivity(new Intent(getApplicationContext(), InAppActivity.class));
         }
     }
