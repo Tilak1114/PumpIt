@@ -1,7 +1,7 @@
 package com.example.tilak.pumpit;
 
 public class Member {
-    String firstName, lastName, membPlan, payment, phoneNo, planName, profileUrl, fullname_lc,
+    private String firstName, lastName, membPlan, payment, phoneNo, planName, profileUrl, fullname_lc,
             end_date, start_date, email;
     public Member(){
 

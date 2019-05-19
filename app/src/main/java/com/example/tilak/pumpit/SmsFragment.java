@@ -6,10 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SmsFragment extends Fragment {
     RelativeLayout send;
@@ -73,8 +71,8 @@ public class SmsFragment extends Fragment {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    contactList.add(document.get("phoneNo").toString());
+                                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+                                    contactList.add(Objects.requireNonNull(document.get("phoneNo")).toString());
                                 }
                                 for(int i=0; i<contactList.size(); i++){
                                     if(i==(contactList.size()-1)){

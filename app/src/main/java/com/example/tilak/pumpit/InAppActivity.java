@@ -78,7 +78,7 @@ public class InAppActivity extends AppCompatActivity {
 
         //startAlarm(true, true);
 
-        /*DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
+        DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan1");
         Map<String, Object> data1 = new HashMap<String, Object>();
         data1.put("planName", "Plan1");
@@ -109,7 +109,7 @@ public class InAppActivity extends AppCompatActivity {
         data3.put("planDuration", "12 Months Plan");
         data3.put("planFeatures", "Cardio, Strength");
         data3.put("coverId", R.drawable.plan3);
-        planDoc3.set(data3);*/
+        planDoc3.set(data3);
 
         setupInitData();
 
@@ -148,14 +148,14 @@ public class InAppActivity extends AppCompatActivity {
         fetchMemb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
+                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                     //Log.d("planArri", document.getId());
-                    if(document.get("payment").equals("Payment Pending")){
+                    if(Objects.equals(document.get("payment"), "Payment Pending")){
                         Integer count = membMetaInfo.get(0);
                         count++;
                         membMetaInfo.set(0, count);
                     }
-                    else if(document.get("payment").equals("Fees Paid")){
+                    else if(Objects.equals(document.get("payment"), "Fees Paid")){
                         Integer count1 = membMetaInfo.get(1);
                         count1++;
                         membMetaInfo.set(1, count1);
@@ -201,7 +201,7 @@ public class InAppActivity extends AppCompatActivity {
         cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
+                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                     //Log.d("planArri", document.getId());
                     if(!planNameList.contains(document.getId())){
                         planNameList.add(document.getId());
@@ -217,7 +217,7 @@ public class InAppActivity extends AppCompatActivity {
                                 planCountList.add(0);
                             }
                             Log.d("plancntsize", String.valueOf(planCountList.size()));
-                            for (QueryDocumentSnapshot document : task.getResult()) {
+                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
                                 for(int i = 0; i<planNameList.size(); i++){
                                     if(planNameList.get(i).equals(document.getString("planName"))){
                                         Integer cnt = planCountList.get(i);

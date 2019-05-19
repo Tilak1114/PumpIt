@@ -1,47 +1,33 @@
 package com.example.tilak.pumpit;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapter.MemberHolder> {
     protected Context context;
-    Integer count;
+    private Integer count;
     ArrayList<String> planNameList = new ArrayList<>();
     ArrayList<String> planCountList = new ArrayList<>();
-    ItemclickListener itemclickListener;
+    private ItemclickListener itemclickListener;
 
     /**
      * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
@@ -58,9 +44,9 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
         this.itemclickListener = itemclickListener;
     }
     public interface ItemclickListener{
-        public void onItemClick(String name, String plan, String payment,
+        void onItemClick(String name, String plan, String payment,
                                 String profileurl, String phone, String start_date, String end_date, String email);
-        public void callItem(String phone);
+        void callItem(String phone);
     }
 
     @Override
@@ -85,8 +71,8 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
             }
 
         }*/
-
-        holder.membName.setText(model.getFirstName()+" "+model.getLastName());
+        String tempTxt = model.getFirstName()+" "+model.getLastName();
+        holder.membName.setText(tempTxt);
         holder.membPlan.setText(model.getMembPlan());
         if(model.getPayment().equals("Fees Paid")){
             holder.membPaymentStatus.setTextColor(context.getResources().getColor(android.R.color.holo_blue_dark));
