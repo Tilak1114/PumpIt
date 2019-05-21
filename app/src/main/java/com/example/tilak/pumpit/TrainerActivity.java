@@ -8,7 +8,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.shuhart.stepview.StepView;
 
-public class TrainerActivity extends AppCompatActivity implements NewTrainerFrag1.NextBtnListener{
+import java.util.List;
+
+public class TrainerActivity extends AppCompatActivity implements NewTrainerFrag1.NextBtnListener, NewTrainerFrag2.TrainerFinishClick{
     StepView stepView;
     FrameLayout newTrainercont;
 
@@ -33,5 +35,11 @@ public class TrainerActivity extends AppCompatActivity implements NewTrainerFrag
                     .replace(R.id.newTrainer_container, new NewTrainerFrag2()).commit();
             stepView.go(1, true);
         }
+    }
+
+    @Override
+    public void onFinishClick(List selList) {
+        stepView.done(true);
+        finish();
     }
 }

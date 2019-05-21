@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@drawable/list_memb_bck"
+    android:elevation="1dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:id="@+id/parent_lay_trainer"
+    android:layout_marginEnd="5dp"
+    android:layout_marginStart="5dp"
+    android:translationZ="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+    <RelativeLayout
+        android:layout_margin="5dp"
+        android:orientation="horizontal"
+        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_height="80dp">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:scaleType="centerCrop"
+            android:layout_width="70dp"
+            android:layout_marginStart="3dp"
+            android:id="@+id/trainerProfilepic"
+            android:layout_height="70dp"
+            android:background="@drawable/avatar"/>
+        <RelativeLayout
+            android:layout_toRightOf="@id/trainerProfilepic"
+            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp">
+            <TextView
+                android:id="@+id/TrainerName"
+                android:text="Example name"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/NumberOftrainees"
+                android:textSize="16sp"
+                android:text="3 Trainees"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_below="@id/TrainerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+        </RelativeLayout>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/call"
+            android:id="@+id/callTrainer"
+            android:backgroundTint="@color/bckprimary"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</RelativeLayout>

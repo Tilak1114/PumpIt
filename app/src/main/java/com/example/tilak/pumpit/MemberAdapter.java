@@ -118,7 +118,6 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
         return new MemberHolder(view);
     }
 
-
     class MemberHolder extends RecyclerView.ViewHolder{
         TextView membName, membPlan, membPaymentStatus;
         RelativeLayout parentlay;

@@ -1,46 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
-    <ScrollView
-        android:layout_above="@id/newTrainerFinal"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginBottom="10dp"
         android:layout_height="match_parent">
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <RelativeLayout
-                android:id="@+id/newtrainertitle2"
+            android:id="@+id/newtrainertitle2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent">
+            <TextView
+                android:id="@+id/NewTrainerTv"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent">
-                <TextView
-                    android:id="@+id/NewTrainerTv"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="New Trainer"
-                    android:fontFamily="@font/product_sans_reg"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="30dp"
-                    android:textSize="26sp"
-                    android:textColor="#1B1C20"/>
-                <TextView
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    android:text="Trainer Specialization(s)"
-                    android:fontFamily="@font/product_sans_reg"
-                    android:layout_below="@id/NewTrainerTv"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginStart="30dp"
-                    android:textSize="16sp"
-                    android:textColor="#1B1C20"/>
-
-            </RelativeLayout>
-
+                android:layout_width="wrap_content"
+                android:text="New Trainer"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="30dp"
+                android:textSize="26sp"
+                android:textColor="#1B1C20"/>
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Trainer Specialization(s)"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_below="@id/NewTrainerTv"
+                android:layout_marginTop="0dp"
+                android:layout_marginStart="30dp"
+                android:textSize="16sp"
+                android:textColor="#1B1C20"/>
         </RelativeLayout>
-    </ScrollView>
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_below="@id/newtrainertitle2"
+            android:layout_height="match_parent"
+            android:id="@+id/trainerLV"/>
+    </RelativeLayout>
     <RelativeLayout
         android:id="@+id/newTrainerFinal"
         android:elevation="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:translationZ="10dp"
         android:layout_width="match_parent"
         android:layout_height="60dp"

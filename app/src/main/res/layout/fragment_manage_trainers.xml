@@ -53,7 +53,7 @@
         android:translationZ="4dp">
 
         <SearchView
-            android:id="@+id/trainersearchmemb"
+            android:id="@+id/trainersearch"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:queryBackground="@android:color/transparent"

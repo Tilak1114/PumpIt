@@ -193,6 +193,11 @@ public class NewTrainerFrag1 extends Fragment {
             data.put("fullname_lc", TrainerFN.toLowerCase()+" "+TrainerLN.toLowerCase());
             data.put("lastName", TrainerLN);
             data.put("phoneNo", TrainerPhno);
+            data.put("email", "");
+            data.put("trainerSpecs", "");
+            data.put("trainees", "0 Trainees");
+            data.put("salary", 25000);
+            data.put("salaryStatus", "Paid");
             documentReference.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
