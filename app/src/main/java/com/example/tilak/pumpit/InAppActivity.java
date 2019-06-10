@@ -58,6 +58,8 @@ public class InAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app);
 
+        //getWindow().setStatusBarColor(Color.WHITE);
+
         //startAlarm(true, true);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 

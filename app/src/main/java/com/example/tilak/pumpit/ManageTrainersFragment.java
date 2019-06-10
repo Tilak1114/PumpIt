@@ -25,6 +25,8 @@ import com.google.firebase.firestore.Query;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Objects;
+
 public class ManageTrainersFragment extends Fragment implements TrainerAdapter.ItemclickListener{
     RelativeLayout fab;
     RecyclerView trainerRv;
@@ -115,7 +117,7 @@ public class ManageTrainersFragment extends Fragment implements TrainerAdapter.I
     @Override
     public void callItem(String phone) {
         String phonenum = String.format("tel: %s", phone);
-        telephonyManager = (TelephonyManager)getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        telephonyManager = (TelephonyManager) Objects.requireNonNull(getActivity()).getSystemService(Context.TELEPHONY_SERVICE);
         Intent dialIntent = new Intent(Intent.ACTION_DIAL);
         // Set the data for the intent as the phone number.
         dialIntent.setData(Uri.parse(phonenum));

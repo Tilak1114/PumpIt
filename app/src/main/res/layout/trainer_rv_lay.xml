@@ -48,6 +48,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
+            <TextView
+                android:id="@+id/salaryStatus"
+                android:textSize="16sp"
+                android:text="Salary Paid"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_below="@id/NumberOftrainees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
         </RelativeLayout>
         <ImageView
             android:layout_width="30dp"

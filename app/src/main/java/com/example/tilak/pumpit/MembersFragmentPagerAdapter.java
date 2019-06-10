@@ -16,7 +16,7 @@ public class MembersFragmentPagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return new OverViewFragment();
         } else
-            return new StatsFragment();
+            return new FeedFragment();
     }
 
     @Override
@@ -34,7 +34,7 @@ public class MembersFragmentPagerAdapter extends FragmentPagerAdapter {
         }
         else if (position == 1)
         {
-            title = "Stats";
+            title = "Feed";
         }
         return title;
     }

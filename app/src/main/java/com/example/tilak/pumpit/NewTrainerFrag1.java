@@ -108,6 +108,7 @@ public class NewTrainerFrag1 extends Fragment {
         switch (requestCode){
             case 1: if(resultCode==getActivity().RESULT_OK && data!=null && data.getData()!=null){
                 Bundle extras = data.getExtras();
+                assert extras != null;
                 Bitmap imageBitmap = (Bitmap) extras.get("data");
                 avatar.setImageBitmap(imageBitmap);
             }
@@ -116,7 +117,7 @@ public class NewTrainerFrag1 extends Fragment {
             case 2: if(data!=null && data.getData()!=null){
                 uriProfileImage = data.getData();
                 try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(),
                             uriProfileImage);
                     avatar.setImageBitmap(bitmap);
                 } catch (IOException e) {
@@ -155,8 +156,8 @@ public class NewTrainerFrag1 extends Fragment {
         else if(uriProfileImage==null){
             DocumentReference dr = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Trainers/"+firstName.getText().toString()+" "+lastName.getText().toString());
             Map<String, Object> data = new HashMap<String, Object>();
-            Integer avatarid = R.drawable.avatar;
-            data.put("profileUrl", avatarid.toString());
+            int avatarid = R.drawable.avatar;
+            data.put("profileUrl", Integer.toString(avatarid));
             dr.set(data, SetOptions.merge());
             nextBtnListener.onNewTrainerBtnClicked1(true, firstName.getText().toString()+" "+lastName.getText().toString());
         }
