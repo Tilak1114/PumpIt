@@ -1,24 +1,22 @@
 package com.example.tilak.pumpit;
 
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,14 +30,23 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+
+import lecho.lib.hellocharts.model.PieChartData;
+import lecho.lib.hellocharts.model.SliceValue;
+import lecho.lib.hellocharts.view.PieChartView;
 
 public class OverViewFragment extends Fragment {
     RelativeLayout addmemb, messages, leads;
+    LinearLayout taskslay, actodlay;
     FirebaseAuth firebaseAuth;
     ProgressBar pb1, pb2;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView allmembs, activememb, odmemb, activerect, odrect;
+    PieChartView pieChartView;
+    List<SliceValue> pieData = new ArrayList<>();
 
     Handler handler;
 
@@ -57,9 +64,12 @@ public class OverViewFragment extends Fragment {
         Log.d("GymMetainfo_ov", GymName);
 
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
+        taskslay = ovfragview.findViewById(R.id.qcklnkslayout);
+        actodlay = ovfragview.findViewById(R.id.ov_actod_lay);
         pb1= ovfragview.findViewById(R.id.pb1);
         pb2 = ovfragview.findViewById(R.id.pb2);
         leads = ovfragview.findViewById(R.id.leadstsk);
+        pieChartView = ovfragview.findViewById(R.id.piechart);
         messages = ovfragview.findViewById(R.id.messagetsk);
         activememb = ovfragview.findViewById(R.id.activecount);
         odmemb = ovfragview.findViewById(R.id.odcount);
@@ -76,6 +86,28 @@ public class OverViewFragment extends Fragment {
             startActivity(new Intent(getActivity(), MainActivity.class));
         }
         addmemb = ovfragview.findViewById(R.id.addmembfab);
+
+        Animation rtl = AnimationUtils.loadAnimation(getContext(),R.anim.rtl);
+        Animation ltr = AnimationUtils.loadAnimation(getContext(), R.anim.ltr);
+
+        actodlay.startAnimation(rtl);
+        taskslay.startAnimation(ltr);
+
+        pieData.add(new SliceValue(160, Color.parseColor("#87BCBF")));
+        pieData.add(new SliceValue(120, Color.parseColor("#6E8CA0")));
+        pieData.add(new SliceValue(64, Color.parseColor("#D97D54")));
+
+        PieChartData pieChartData = new PieChartData(pieData);
+
+        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.product_sans_reg);
+
+        pieChartData.setHasCenterCircle(true).setCenterText1("330 Members")
+                .setCenterText1FontSize(14).setCenterText1Typeface(typeface)
+                .setCenterText1Color(Color.parseColor("#000000"));
+
+        pieChartView.setPieChartData(pieChartData);
+
+        pieChartView.startAnimation(rtl);
 
         if(activememb.getText().toString().equals("")&&odmemb.getText().toString().equals("")){
             Thread t1 = new Thread(new Runnable() {

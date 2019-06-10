@@ -50,6 +50,7 @@ import static android.app.PendingIntent.FLAG_ONE_SHOT;
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Fragment segmentSelected = null;
+    int activeBtmIconId;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
 
@@ -124,6 +125,7 @@ public class InAppActivity extends AppCompatActivity {
                 switch(menuItem.getItemId()){
                     case R.id.action_home:
                         segmentSelected = new HomeFragment();
+                        activeBtmIconId = R.id.action_home;
                         break;
                     case R.id.action_manage:
                         segmentSelected = new ManageFragment();
