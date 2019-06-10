@@ -346,15 +346,73 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@id/statstv"
                 android:layout_marginBottom="30dp"
-                android:layout_height="300dp">
+                android:layout_height="280dp">
                 <lecho.lib.hellocharts.view.PieChartView
                     android:id="@+id/piechart"
-                    android:layout_width="match_parent"
-                    android:layout_marginEnd="60dp"
-                    android:layout_marginStart="60dp"
+                    android:layout_width="180dp"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:layout_marginBottom="90dp"
-                    android:layout_height="match_parent" />
+                    android:layout_height="180dp" />
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:id="@+id/activeref"
+                    android:background="@drawable/ref_rect"
+                    android:backgroundTint="#87BCBF"
+                    android:layout_below="@id/piechart"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:layout_below="@id/piechart"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_toRightOf="@id/activeref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:textSize="12sp"
+                    android:text="Active Members"/>
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:id="@+id/inactiveref"
+                    android:background="@drawable/ref_rect"
+                    android:backgroundTint="#6E8CA0"
+                    android:layout_below="@id/activeref"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:layout_toRightOf="@id/inactiveref"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_below="@id/activeref"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:textSize="12sp"
+                    android:text="Inactive Members"/>
+                <ImageView
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:id="@+id/odref"
+                    android:background="@drawable/ref_rect"
+                    android:backgroundTint="#D97D54"
+                    android:layout_below="@id/inactiveref"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:layout_toRightOf="@id/odref"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="7.5dp"
+                    android:layout_below="@+id/inactiveref"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/lato"
+                    android:textSize="12sp"
+                    android:text="Payment Pending"/>
             </RelativeLayout>
 
         </RelativeLayout>

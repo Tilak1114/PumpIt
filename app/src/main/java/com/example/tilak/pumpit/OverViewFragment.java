@@ -90,8 +90,8 @@ public class OverViewFragment extends Fragment {
         Animation rtl = AnimationUtils.loadAnimation(getContext(),R.anim.rtl);
         Animation ltr = AnimationUtils.loadAnimation(getContext(), R.anim.ltr);
 
-        actodlay.startAnimation(rtl);
-        taskslay.startAnimation(ltr);
+       // actodlay.startAnimation(rtl);
+        //taskslay.startAnimation(ltr);
 
         pieData.add(new SliceValue(160, Color.parseColor("#87BCBF")));
         pieData.add(new SliceValue(120, Color.parseColor("#6E8CA0")));
@@ -102,7 +102,7 @@ public class OverViewFragment extends Fragment {
         Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.product_sans_reg);
 
         pieChartData.setHasCenterCircle(true).setCenterText1("330 Members")
-                .setCenterText1FontSize(14).setCenterText1Typeface(typeface)
+                .setCenterText1FontSize(12).setCenterText1Typeface(typeface)
                 .setCenterText1Color(Color.parseColor("#000000"));
 
         pieChartView.setPieChartData(pieChartData);
