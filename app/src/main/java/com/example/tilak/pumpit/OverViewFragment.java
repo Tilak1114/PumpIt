@@ -87,27 +87,35 @@ public class OverViewFragment extends Fragment {
         }
         addmemb = ovfragview.findViewById(R.id.addmembfab);
 
-        Animation rtl = AnimationUtils.loadAnimation(getContext(),R.anim.rtl);
-        Animation ltr = AnimationUtils.loadAnimation(getContext(), R.anim.ltr);
-
        // actodlay.startAnimation(rtl);
         //taskslay.startAnimation(ltr);
 
-        pieData.add(new SliceValue(160, Color.parseColor("#87BCBF")));
-        pieData.add(new SliceValue(120, Color.parseColor("#6E8CA0")));
-        pieData.add(new SliceValue(64, Color.parseColor("#D97D54")));
+        // Initialize charts
+        Thread chartThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Animation rtl = AnimationUtils.loadAnimation(getContext(),R.anim.rtl);
+                Animation ltr = AnimationUtils.loadAnimation(getContext(), R.anim.ltr);
 
-        PieChartData pieChartData = new PieChartData(pieData);
+                pieData.add(new SliceValue(160, Color.parseColor("#87BCBF")));
+                pieData.add(new SliceValue(120, Color.parseColor("#6E8CA0")));
+                pieData.add(new SliceValue(64, Color.parseColor("#D97D54")));
 
-        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.product_sans_reg);
+                PieChartData pieChartData = new PieChartData(pieData);
 
-        pieChartData.setHasCenterCircle(true).setCenterText1("330 Members")
-                .setCenterText1FontSize(12).setCenterText1Typeface(typeface)
-                .setCenterText1Color(Color.parseColor("#000000"));
+                Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.product_sans_reg);
 
-        pieChartView.setPieChartData(pieChartData);
+                pieChartData.setHasCenterCircle(true).setCenterText1("330 Members")
+                        .setCenterText1FontSize(12).setCenterText1Typeface(typeface)
+                        .setCenterText1Color(Color.parseColor("#000000"));
 
-        pieChartView.startAnimation(rtl);
+                pieChartView.setPieChartData(pieChartData);
+
+                pieChartView.startAnimation(rtl);
+            }
+        });
+        chartThread.start();
+
 
         if(activememb.getText().toString().equals("")&&odmemb.getText().toString().equals("")){
             Thread t1 = new Thread(new Runnable() {

@@ -50,7 +50,7 @@ import static android.app.PendingIntent.FLAG_ONE_SHOT;
 public class InAppActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     Fragment segmentSelected = null;
-    int activeBtmIconId;
+    int activeBtmIconId = 0;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     String GymName;
 
@@ -58,6 +58,11 @@ public class InAppActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_app);
+
+        final HomeFragment homeFragment = new HomeFragment();
+        final ManageFragment manageFragment = new ManageFragment();
+        final StoreFragment storeFragment = new StoreFragment();
+        final ProfileFragment profileFragment = new ProfileFragment();
 
         //getWindow().setStatusBarColor(Color.WHITE);
 
@@ -119,26 +124,44 @@ public class InAppActivity extends AppCompatActivity {
         setupPlansWithCount();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).addToBackStack(null).commit();
+        activeBtmIconId = R.id.action_home;
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch(menuItem.getItemId()){
                     case R.id.action_home:
-                        segmentSelected = new HomeFragment();
+                        if(activeBtmIconId!=R.id.action_home){
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frag_container, homeFragment, "profilefrag")
+                                    .addToBackStack(null).commit();
+                        }
                         activeBtmIconId = R.id.action_home;
                         break;
                     case R.id.action_manage:
-                        segmentSelected = new ManageFragment();
+                        if(activeBtmIconId!=R.id.action_manage){
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frag_container, manageFragment, "profilefrag")
+                                    .addToBackStack(null).commit();
+                        }
+                        activeBtmIconId = R.id.action_manage;
                         break;
                     case R.id.action_store:
-                        segmentSelected = new StoreFragment();
+                        if(activeBtmIconId!=R.id.action_store){
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frag_container, storeFragment, "storefrag")
+                                    .addToBackStack(null).commit();
+                        }
+                        activeBtmIconId = R.id.action_store;
                         break;
                     case R.id.action_profile:
-                        segmentSelected = new ProfileFragment();
+                        if(activeBtmIconId!=R.id.action_profile){
+                            getSupportFragmentManager().beginTransaction()
+                                    .replace(R.id.frag_container, profileFragment, "profilefrag")
+                                    .addToBackStack(null).commit();
+                        }
+                        activeBtmIconId = R.id.action_profile;
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, segmentSelected, "simp_frag_tag")
-                        .addToBackStack(null).commit();
                 return true;
             }
         });
@@ -175,7 +198,7 @@ public class InAppActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(getSupportFragmentManager().getBackStackEntryCount()==0){
+        if(getSupportFragmentManager().getBackStackEntryCount()==1){
             AlertDialog.Builder builder = new AlertDialog.Builder(InAppActivity.this, R.style.AlertDialogStyle);
             builder.setTitle("Exit");
             builder.setMessage("Do you want to exit?");
