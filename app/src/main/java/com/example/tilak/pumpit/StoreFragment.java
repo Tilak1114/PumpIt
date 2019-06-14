@@ -22,6 +22,7 @@ import java.util.Objects;
 public class StoreFragment extends Fragment {
     ImageView imageChange;
     Handler handler = new Handler();
+    Thread thread;
 
     Animation animationOut;
     Animation animationIn;
@@ -42,7 +43,7 @@ public class StoreFragment extends Fragment {
     }
 
     public void animateStoreImages(final View storeV){
-        Thread thread = new Thread(new Runnable() {
+        thread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true){
@@ -69,10 +70,6 @@ public class StoreFragment extends Fragment {
                 }
             }
         });
-        try {
-            thread.start();
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
+        thread.start();
     }
 }

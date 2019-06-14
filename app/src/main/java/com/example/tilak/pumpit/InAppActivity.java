@@ -123,6 +123,8 @@ public class InAppActivity extends AppCompatActivity {
 
         setupPlansWithCount();
 
+        //bottomNavigationView.setSelectedItemId(R.id.action_profile); this works
+
         getSupportFragmentManager().beginTransaction().replace(R.id.frag_container, new HomeFragment()).addToBackStack(null).commit();
         activeBtmIconId = R.id.action_home;
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -132,7 +134,7 @@ public class InAppActivity extends AppCompatActivity {
                     case R.id.action_home:
                         if(activeBtmIconId!=R.id.action_home){
                             getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.frag_container, homeFragment, "profilefrag")
+                                    .replace(R.id.frag_container, homeFragment, "homefrag")
                                     .addToBackStack(null).commit();
                         }
                         activeBtmIconId = R.id.action_home;
@@ -140,7 +142,7 @@ public class InAppActivity extends AppCompatActivity {
                     case R.id.action_manage:
                         if(activeBtmIconId!=R.id.action_manage){
                             getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.frag_container, manageFragment, "profilefrag")
+                                    .replace(R.id.frag_container, manageFragment, "managefrag")
                                     .addToBackStack(null).commit();
                         }
                         activeBtmIconId = R.id.action_manage;
@@ -148,7 +150,7 @@ public class InAppActivity extends AppCompatActivity {
                     case R.id.action_store:
                         if(activeBtmIconId!=R.id.action_store){
                             getSupportFragmentManager().beginTransaction()
-                                    .replace(R.id.frag_container, storeFragment, "storefrag")
+                                    .replace(R.id.frag_container, storeFragment, "managefrag")
                                     .addToBackStack(null).commit();
                         }
                         activeBtmIconId = R.id.action_store;
@@ -217,8 +219,22 @@ public class InAppActivity extends AppCompatActivity {
                 }
             }).create().show();
         }
-        else
+        else{
             super.onBackPressed();
+            Fragment f = getSupportFragmentManager().findFragmentById(R.id.frag_container);
+            if(f instanceof HomeFragment){
+                bottomNavigationView.setSelectedItemId(R.id.action_home);
+            }
+            else if(f instanceof ManageFragment){
+                bottomNavigationView.setSelectedItemId(R.id.action_manage);
+            }
+            else if(f instanceof StoreFragment){
+                bottomNavigationView.setSelectedItemId(R.id.action_store);
+            }
+            else if(f instanceof ProfileFragment){
+                bottomNavigationView.setSelectedItemId(R.id.action_profile);
+            }
+        }
     }
 
     public void setupPlansWithCount(){
