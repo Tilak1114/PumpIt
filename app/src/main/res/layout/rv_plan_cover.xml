@@ -1,33 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:elevation="4dp"
-    android:translationZ="6dp"
-    android:layout_width="180dp" android:layout_height="160dp">
+    android:elevation="2dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginStart="3dp"
+    android:background="@drawable/grdbck"
+    android:translationZ="2dp"
+    android:layout_width="160dp" android:layout_height="150dp">
     <RelativeLayout
+        android:id="@+id/rblaygrid"
         android:layout_width="match_parent"
-        android:elevation="6dp"
-        android:translationZ="8dp"
-        android:layout_height="25dp">
+        android:background="@android:color/white"
+        android:layout_height="24dp">
         <RadioButton
             android:id="@+id/gridImgRadio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="6dp"
+            android:elevation="2dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginBottom="1dp"
             android:layout_centerVertical="true"
-            android:layout_gravity="end"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="2dp"
-            android:translationZ="8dp"/>
+            android:translationZ="2dp"/>
     </RelativeLayout>
     <RelativeLayout
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/rblaygrid"
         android:id="@+id/planCoverparentlay"
-        android:layout_width="180dp"
-        android:layout_height="135dp">
+        android:layout_width="160dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="2dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="2dp"
+        android:elevation="1dp"
+        android:translationZ="1dp"
+        android:layout_height="125dp">
         <ImageView
             android:id="@+id/gridImg"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
+            android:elevation="1dp"
+            android:translationZ="1dp"
             android:background="@android:color/white"
-            android:layout_height="150dp"/>
+            android:layout_height="match_parent"/>
     </RelativeLayout>
 </RelativeLayout>

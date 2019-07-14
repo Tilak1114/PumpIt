@@ -39,7 +39,7 @@
                 android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
                 android:text="See All Members >"
-                android:textColor="@color/bckprimary"
+                android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:translationZ="7dp" />
 

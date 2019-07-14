@@ -1,8 +1,6 @@
 package com.example.tilak.pumpit;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,14 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,7 +20,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
-import com.squareup.picasso.Picasso;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -42,7 +33,6 @@ public class NewPlanFrag2 extends Fragment {
     RecyclerView planCoverRv;
     String PlanTitle;
     List<PlanCover> planCoverList;
-    long coverId;
 
     PlanCoverAdapter adapter;
     NewPlanFrag2.NextBtnListener nextBtnListener;
@@ -79,8 +69,8 @@ public class NewPlanFrag2 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        for(int i=0;i<mThumbIds.length;i++){
-            planCoverList.add(new PlanCover(mThumbIds[i]));
+        for (Integer mThumbId : mThumbIds) {
+            planCoverList.add(new PlanCover(mThumbId));
         }
 
         adapter = new PlanCoverAdapter(getContext(), planCoverList);
@@ -92,7 +82,7 @@ public class NewPlanFrag2 extends Fragment {
             public void onClick(View v) {
                 DocumentReference newPlan = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                         "/Plans/"+PlanTitle);
-                Map<String, Object> data2 = new HashMap<String, Object>();
+                Map<String, Object> data2 = new HashMap<>();
                 data2.put("coverId", adapter.getCoverId());
                 data2.put("planMembCount", "0");// later change to user input
                 newPlan.set(data2, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {

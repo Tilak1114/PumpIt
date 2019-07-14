@@ -44,9 +44,9 @@
         android:drawSelectorOnTop="true"
         android:gravity="center"
         android:layout_above="@id/newPlanNext2"
-        android:layout_marginBottom="20dp"
-        android:horizontalSpacing="5dp"
-        android:verticalSpacing="5dp"
+        android:layout_marginBottom="40dp"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="7dp"
         android:focusable="true"
         android:clickable="true"/>
 

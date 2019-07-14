@@ -1,10 +1,14 @@
 package com.example.tilak.pumpit;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -20,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +36,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -208,6 +214,8 @@ public class OverViewFragment extends Fragment {
         addmemb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //temp
+                startAlarm();
                 startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
@@ -232,5 +240,22 @@ public class OverViewFragment extends Fragment {
                 startActivity(new Intent(getActivity(), AllMembActivity.class));
             }
         });
+    }
+    private void startAlarm(){
+        Toast.makeText(getContext(), "Alarm called", Toast.LENGTH_LONG).show();
+        AlarmManager manager = (AlarmManager) Objects.requireNonNull(getActivity()).getSystemService(Context.ALARM_SERVICE);
+        Intent myIntent;
+        PendingIntent pendingIntent;
+
+        // SET TIME HERE
+        Calendar calendar= Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 21);
+        calendar.set(Calendar.MINUTE, 8);
+
+
+        myIntent = new Intent(getContext(), AlarmNotificationReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(getContext(),0,myIntent,0);
+
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 }

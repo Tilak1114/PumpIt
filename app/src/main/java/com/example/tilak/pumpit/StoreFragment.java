@@ -29,17 +29,14 @@ public class StoreFragment extends Fragment {
 
     int images[] = {R.drawable.boxingeq, R.drawable.water, R.drawable.proteins, R.drawable.dumbbell};
     int imgId;
+
     @Nullable
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View storeV = inflater.inflate(R.layout.fragment_store, container, false);
         imageChange = storeV.findViewById(R.id.storeimgchange);
+        animateStoreImages(storeV);
         return storeV;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        animateStoreImages(view);
     }
 
     public void animateStoreImages(final View storeV){

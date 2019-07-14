@@ -101,6 +101,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"
             android:windowSoftInputMode="adjustPan" />
+        <receiver android:name=".AlarmNotificationReceiver"/>
     </application>
 
 </manifest>
