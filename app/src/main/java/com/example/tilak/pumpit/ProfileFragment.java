@@ -56,10 +56,8 @@ public class ProfileFragment extends Fragment {
         profilename.setText(user.getDisplayName());
         Picasso.with(getContext()).load("https://images.pexels.com/photos/1554824/pexels-photo-1554824.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260").into(profilepic);
 
-        logout = view.findViewById(R.id.logout);
 
-
-        logout.setOnClickListener(new View.OnClickListener() {
+        /*logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context context;
@@ -81,6 +79,6 @@ public class ProfileFragment extends Fragment {
                     }
                 }).create().show();
             }
-        });
+        });*/
     }
 }

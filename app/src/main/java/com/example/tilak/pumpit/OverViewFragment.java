@@ -249,13 +249,13 @@ public class OverViewFragment extends Fragment {
 
         // SET TIME HERE
         Calendar calendar= Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 21);
-        calendar.set(Calendar.MINUTE, 8);
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 0);
 
 
         myIntent = new Intent(getContext(), AlarmNotificationReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(getContext(),0,myIntent,0);
 
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 }

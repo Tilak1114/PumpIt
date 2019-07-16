@@ -47,30 +47,5 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                 .setContentInfo("Action");
 
         notificationManager.notify(notificationId, builder.build());
-
-        /*
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
-
-        Intent myIntent = new Intent(context, InAppActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(
-                context,
-                0,
-                myIntent,
-                FLAG_ONE_SHOT );
-
-
-
-        builder.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.mipmap.iconpumpit_round)
-                .setContentTitle("Zodiac")
-                .setContentIntent(pendingIntent)
-                .setContentText("Check out your horoscope")
-                .setDefaults(Notification.DEFAULT_LIGHTS | Notification.DEFAULT_SOUND)
-                .setContentInfo("Info");
-
-        NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(1,builder.build());*/
     }
 }

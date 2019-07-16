@@ -7,75 +7,178 @@
     android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/coverbck"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/profilebck">
-    </RelativeLayout>
-
-    <RelativeLayout
         android:id="@+id/profilelay"
+        android:elevation="4dp"
+        android:translationZ="6dp"
+        android:background="@drawable/blurry"
         android:layout_width="match_parent"
-        android:layout_marginTop="130dp"
-        android:layout_height="140dp">
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="125dp"
-            android:elevation="4dp"
-            android:translationZ="6dp"
-            android:id="@+id/adminprofilepic"
-            android:layout_height="125dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/avatar"/>
+        android:layout_height="200dp">
+
         <ImageView
-            android:layout_width="125dp"
-            android:layout_height="125dp"
-            android:elevation="10dp"
-            android:translationZ="12dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/circleborder1"/>
-
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/profilelay"
-        android:id="@+id/infolay">
-        <TextView
-            android:layout_width="140dp"
-            android:gravity="center"
-            android:textSize="22sp"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:id="@+id/profilenametv"
-            android:text=""
-            android:fontFamily="@font/product_sans_reg"
-            android:textColor="@color/typography_black"
-            android:layout_centerInParent="true"
-            />
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="30dp"
-        android:orientation="vertical"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="440px"
-            android:layout_height="wrap_content"
-            android:hapticFeedbackEnabled="true"
-            android:text="LOG OUT"
-            android:background="@drawable/button_states" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_margin="5px"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Version 1.0.0" />
+            android:layout_margin="10dp"
+            android:id="@+id/settingsprofile"
+            android:src="@drawable/ic_settings_white"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"/>
 
-    </LinearLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:elevation="2dp"
+            android:translationZ="2dp"
+            android:id="@+id/adminprofilepic"
+            android:layout_height="100dp"
+            android:layout_marginStart="40dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/avatar"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_toLeftOf="@id/settingsprofile"
+            android:layout_toRightOf="@id/adminprofilepic"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="5dp"
+            >
+            <TextView
+                android:layout_width="140dp"
+                android:textSize="22sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/profilenametv"
+                android:layout_marginStart="10dp"
+                android:text="XYZ Fit"
+                android:fontFamily="@font/product_sans_reg"
+                android:textColor="@android:color/white"
+                />
+            <TextView
+                android:layout_width="150dp"
+                android:textSize="20sp"
+                android:layout_below="@id/profilenametv"
+                android:layout_height="wrap_content"
+                android:id="@+id/profileaddrtv"
+                android:textColor="@android:color/white"
+                android:layout_marginStart="10dp"
+                android:text="Rajajinagar, Blr"
+                android:fontFamily="@font/product_sans_reg"
+                />
+            <Button
+                android:layout_below="@id/profileaddrtv"
+                android:id="@+id/editprofile"
+                android:layout_width="120dp"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:fontFamily="@font/product_sans_reg"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="30dp"
+                android:hapticFeedbackEnabled="true"
+                android:text="Edit Profile"
+                android:background="@drawable/button_states" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/curve"
+        android:layout_below="@id/profilelay"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="0dp"
+        android:elevation="2dp"
+        android:translationZ="4dp"
+        android:layout_height="150dp"
+        android:layout_below="@id/profilelay"
+        android:background="@drawable/round_edge_bck"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_marginEnd="30dp"
+            android:alpha="0.2"
+            android:rotation="-20"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@android:color/white"
+            android:background="@drawable/finbck"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Finances"
+            android:id="@+id/financestvprofile"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textColor="@android:color/white"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View Transactions >"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/product_sans_reg"
+            android:textColor="@android:color/white"
+            />
+        <View
+            android:layout_width="match_parent"
+            android:layout_below="@id/financestvprofile"
+            android:layout_marginTop="10dp"
+            android:id="@+id/linefina"
+            android:layout_height="2dp"
+            android:background="@android:color/white"/>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="20dp"
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/uparrowimg"
+            android:layout_below="@id/linefina"
+            android:background="@drawable/arrowupdwn"/>
+        <TextView
+            android:layout_toRightOf="@id/uparrowimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linefina"
+            android:text="\u20B9 185000"
+            android:layout_marginTop="20dp"
+            android:id="@+id/incometv"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textColor="@android:color/white"
+            />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="20dp"
+            android:backgroundTint="@android:color/white"
+            android:id="@+id/downarrimg"
+            android:rotation="180"
+            android:layout_below="@id/uparrowimg"
+            android:background="@drawable/arrowupdwn"/>
+        <TextView
+            android:layout_toRightOf="@id/uparrowimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/uparrowimg"
+            android:text="\u20B9 5000"
+            android:layout_marginTop="20dp"
+            android:id="@+id/exptv"
+            android:textSize="16sp"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textColor="@android:color/white"
+            />
+    </RelativeLayout>
 </RelativeLayout>
