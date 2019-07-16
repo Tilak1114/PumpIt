@@ -26,7 +26,6 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/mngmmbcnt"
             android:layout_marginTop="0dp"
             android:elevation="14dp"
             android:fontFamily="@font/product_sans_reg"

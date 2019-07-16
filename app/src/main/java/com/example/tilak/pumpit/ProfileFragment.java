@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +34,7 @@ public class ProfileFragment extends Fragment {
     Button logout;
     TextView profilename;
     CircleImageView profilepic;
+    ImageView settings;
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     @Nullable
@@ -45,6 +47,7 @@ public class ProfileFragment extends Fragment {
 
         user.updateProfile(profileUpdates);
         profilename = profileV.findViewById(R.id.profilenametv);
+        settings = profileV.findViewById(R.id.settingsprofile);
         profilepic = profileV.findViewById(R.id.adminprofilepic);
         return profileV;
     }
@@ -56,29 +59,11 @@ public class ProfileFragment extends Fragment {
         profilename.setText(user.getDisplayName());
         Picasso.with(getContext()).load("https://images.pexels.com/photos/1554824/pexels-photo-1554824.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260").into(profilepic);
 
-
-        /*logout.setOnClickListener(new View.OnClickListener() {
+        settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Context context;
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AlertDialogStyle);
-                builder.setTitle("Confirmation");
-                builder.setMessage("Are you sure you want to logout?");
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        FirebaseAuth.getInstance().signOut();
-                        startActivity(new Intent(getActivity(), MainActivity.class));
-                        dialog.dismiss();
-                    }
-                });
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).create().show();
+                startActivity(new Intent(getActivity(), SettingsActivity.class));
             }
-        });*/
+        });
     }
 }
