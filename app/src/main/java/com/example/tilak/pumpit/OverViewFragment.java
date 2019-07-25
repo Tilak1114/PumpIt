@@ -45,7 +45,7 @@ import lecho.lib.hellocharts.model.SliceValue;
 import lecho.lib.hellocharts.view.PieChartView;
 
 public class OverViewFragment extends Fragment {
-    RelativeLayout addmemb, messages, leads;
+    RelativeLayout addmemb, messages, leads, money;
     LinearLayout taskslay, actodlay;
     FirebaseAuth firebaseAuth;
     ProgressBar pb1, pb2;
@@ -77,6 +77,7 @@ public class OverViewFragment extends Fragment {
         pieChartView = ovfragview.findViewById(R.id.piechart);
         messages = ovfragview.findViewById(R.id.messagetsk);
         activememb = ovfragview.findViewById(R.id.activecount);
+        money = ovfragview.findViewById(R.id.finantask);
         odmemb = ovfragview.findViewById(R.id.odcount);
         activerect = ovfragview.findViewById(R.id.activerectbtn);
         odrect = ovfragview.findViewById(R.id.odtv);
@@ -203,6 +204,13 @@ public class OverViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), OverdueMembActivity.class));
+            }
+        });
+
+        money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
 
