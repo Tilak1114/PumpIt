@@ -19,7 +19,7 @@ public class ManageFragment extends Fragment {
     private ViewPager dbviewPager;
     private int[] tabIcons = {
             R.drawable.membicon1,
-            R.drawable.plansicon,
+            R.drawable.cash,
             R.drawable.arm
     };
     @Nullable

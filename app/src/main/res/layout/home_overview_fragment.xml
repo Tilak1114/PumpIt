@@ -35,13 +35,12 @@
                 android:layout_alignParentEnd="true"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="15dp"
-                android:elevation="6dp"
+                android:background="@drawable/list_memb_bck"
                 android:fontFamily="@font/product_sans_reg"
                 android:gravity="center"
                 android:text="See All Members >"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
-                android:translationZ="7dp" />
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:id="@+id/ov_actod_lay"

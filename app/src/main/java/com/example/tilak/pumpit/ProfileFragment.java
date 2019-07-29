@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,6 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     Button logout;
+    RelativeLayout plans, leads;
     TextView profilename;
     CircleImageView profilepic;
     ImageView settings;
@@ -46,6 +48,8 @@ public class ProfileFragment extends Fragment {
                 .build();
 
         user.updateProfile(profileUpdates);
+        plans = profileV.findViewById(R.id.myplanslay);
+        leads = profileV.findViewById(R.id.leadsprofilelay);
         profilename = profileV.findViewById(R.id.profilenametv);
         settings = profileV.findViewById(R.id.settingsprofile);
         profilepic = profileV.findViewById(R.id.adminprofilepic);
@@ -63,6 +67,13 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
+            }
+        });
+
+        leads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), PlansActivity.class));
             }
         });
     }

@@ -6,7 +6,7 @@
         android:id="@+id/action_home"
         android:icon="@drawable/home"/>
     <item
-        android:title="Dashboard"
+        android:title="Manage"
         android:gravity="center"
         android:id="@+id/action_manage"
         android:icon="@drawable/manage"/>
@@ -16,8 +16,8 @@
         android:id="@+id/action_store"
         android:icon="@drawable/store"/>
     <item
-        android:title="Profile"
+        android:title="My Gym"
         android:gravity="center"
         android:id="@+id/action_profile"
-        android:icon="@drawable/user"/>
+        android:icon="@drawable/p"/>
 </menu>

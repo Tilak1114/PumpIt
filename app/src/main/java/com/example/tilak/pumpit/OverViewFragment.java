@@ -207,13 +207,6 @@ public class OverViewFragment extends Fragment {
             }
         });
 
-        money.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         return ovfragview;
     }
 
@@ -223,7 +216,7 @@ public class OverViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //temp
-                startAlarm();
+                //startAlarm();
                 startActivity(new Intent(getActivity(), NewMemberActivity.class));
             }
         });
@@ -239,6 +232,13 @@ public class OverViewFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), LeadsActivity.class));
+            }
+        });
+
+        money.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Finances_Activity.class));
             }
         });
 

@@ -24,7 +24,7 @@
                     android:fontFamily="@font/product_sans_reg"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="30dp"
-                    android:textSize="26sp"
+                    android:textSize="22sp"
                     android:textColor="#1B1C20"/>
                 <TextView
                     android:layout_height="wrap_content"
@@ -172,32 +172,34 @@
     </ScrollView>
     <RelativeLayout
         android:id="@+id/newMembNext"
+        android:clickable="true"
+        android:focusable="true"
         android:elevation="8dp"
         android:translationZ="10dp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:background="@drawable/getstartedbtn"
         android:layout_alignParentBottom="true">
         <TextView
             android:id="@+id/tvgetstrt"
-            android:layout_centerVertical="true"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:text="Next"
-            android:fontFamily="@font/product_sans_reg"
-            android:textStyle="bold"
-            android:layout_marginStart="160dp"
-            android:textSize="24sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:textSize="20sp"
+            android:fontFamily="@font/ubuntu_b"
             android:textColor="@android:color/white"
             />
         <RelativeLayout
-            android:layout_height="60dp"
-            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_width="60dp"
             android:background="@color/gtstrtbck1"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentRight="true">
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
+                android:tint="@android:color/white"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:src="@drawable/arrow"/>

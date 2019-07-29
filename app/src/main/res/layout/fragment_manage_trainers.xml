@@ -47,14 +47,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/trainerlay"
         android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/memb_btn_rect"
-        android:elevation="2dp"
-        android:translationZ="4dp">
-
+        android:layout_marginStart="20dp">
         <SearchView
             android:id="@+id/trainersearch"
             android:layout_width="match_parent"
+            android:background="@drawable/search_btn_rect"
             android:layout_height="50dp"
             android:queryBackground="@android:color/transparent"
             android:layout_centerInParent="true"

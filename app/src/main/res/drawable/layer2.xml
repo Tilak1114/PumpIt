@@ -1,21 +1,12 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item>
-        <shape android:shape="oval">
-            <gradient
-                android:angle="0"
-                android:endColor="#fff"
-                android:startColor="#fff" />
-        </shape>
-    </item>
-
     <item
-        android:left="2dp"
-        android:right="2dp"
-        android:top="2dp"
-        android:bottom="3dp">
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp"
+        android:bottom="1dp">
         <shape android:shape="oval">
-            <solid android:color="@color/primary_rust"/>
+            <solid android:color="@color/colorPrimary"/>
 
         </shape>
     </item>
