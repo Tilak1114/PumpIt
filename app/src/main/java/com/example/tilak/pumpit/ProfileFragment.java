@@ -69,12 +69,5 @@ public class ProfileFragment extends Fragment {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
             }
         });
-
-        leads.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), PlansActivity.class));
-            }
-        });
     }
 }

@@ -268,13 +268,13 @@
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="@android:color/white"
-                android:background="@drawable/plansicon"/>
+                android:background="@drawable/finicon"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Plans"
-                android:layout_above="@id/lineplans"
-                android:id="@+id/myplanstv"
+                android:text="Cash Flow"
+                android:layout_above="@id/linecashflow"
+                android:id="@+id/cashflowtv"
                 android:layout_marginBottom="5dp"
                 android:textSize="14sp"
                 android:layout_marginStart="10dp"
@@ -284,24 +284,35 @@
             <View
                 android:layout_width="70dp"
                 android:layout_marginStart="10dp"
-                android:layout_above="@id/plansedittv"
+                android:layout_above="@id/cashflowtranstv"
                 android:layout_marginBottom="3dp"
                 android:alpha="0.6"
-                android:id="@+id/lineplans"
+                android:id="@+id/linecashflow"
                 android:layout_height="2dp"
                 android:background="@android:color/white"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/plansedittv"
+                android:id="@+id/cashflowtranstv"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"
-                android:text="3 Active Plans"
+                android:text="2/6 Dues Paid"
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/product_sans_reg"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/proxima"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:text="All Transactions >"/>
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/leadsprofilelay"
