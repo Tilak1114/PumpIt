@@ -138,7 +138,9 @@
                 <RelativeLayout
                     android:layout_weight="90"
                     android:layout_marginTop="3dp"
-                    android:id="@+id/rentrm"
+                    android:id="@+id/rentlay"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginStart="20dp"
@@ -155,7 +157,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/gymrent" />
                 </RelativeLayout>
                 <TextView
@@ -179,7 +181,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:layout_marginTop="3dp"
-                    android:id="@+id/billsrm"
+                    android:id="@+id/billslay"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:elevation="1dp"
@@ -196,7 +198,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/billicn"/>
                 </RelativeLayout>
                 <TextView
@@ -219,7 +221,7 @@
                 <RelativeLayout
                     android:clickable="true"
                     android:focusable="true"
-                    android:id="@+id/leadstsk"
+                    android:id="@+id/salarylay"
                     android:layout_marginTop="3dp"
                     android:layout_width="50dp"
                     android:elevation="1dp"
@@ -237,7 +239,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/salaryicn"/>
                 </RelativeLayout>
                 <TextView
@@ -259,7 +261,7 @@
                 <RelativeLayout
                     android:clickable="true"
                     android:focusable="true"
-                    android:id="@+id/finantask"
+                    android:id="@+id/insurancelay"
                     android:layout_width="50dp"
                     android:layout_marginTop="3dp"
                     android:layout_height="50dp"
@@ -278,7 +280,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/insuranceicn"/>
                 </RelativeLayout>
                 <TextView
@@ -329,7 +331,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/repairicn"/>
                 </RelativeLayout>
                 <TextView
@@ -368,7 +370,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/equipnew" />
                 </RelativeLayout>
                 <TextView
@@ -409,7 +411,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         android:background="@drawable/ads"/>
                 </RelativeLayout>
                 <TextView
@@ -431,7 +433,7 @@
                 <RelativeLayout
                     android:clickable="true"
                     android:focusable="true"
-                    android:id="@+id/others"
+                    android:id="@+id/misclay"
                     android:layout_width="50dp"
                     android:layout_marginTop="3dp"
                     android:layout_height="50dp"
@@ -450,7 +452,7 @@
                         android:layout_alignParentTop="true"
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
-                        android:layout_margin="12dp"
+                        android:layout_margin="8dp"
                         />
                 </RelativeLayout>
                 <TextView
