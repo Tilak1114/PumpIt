@@ -1,5 +1,8 @@
 package com.example.tilak.pumpit;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -12,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,7 +37,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileFragment extends Fragment {
     Button logout;
-    RelativeLayout plans, leads;
+    RelativeLayout cashflow, leads;
+    TextView alltrans;
     TextView profilename;
     CircleImageView profilepic;
     ImageView settings;
@@ -48,7 +53,8 @@ public class ProfileFragment extends Fragment {
                 .build();
 
         user.updateProfile(profileUpdates);
-        plans = profileV.findViewById(R.id.myplanslay);
+        cashflow = profileV.findViewById(R.id.cashflowprofilelay);
+        alltrans = profileV.findViewById(R.id.alltransactionsclick);
         leads = profileV.findViewById(R.id.leadsprofilelay);
         profilename = profileV.findViewById(R.id.profilenametv);
         settings = profileV.findViewById(R.id.settingsprofile);
@@ -56,6 +62,7 @@ public class ProfileFragment extends Fragment {
         return profileV;
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
@@ -67,6 +74,65 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), SettingsActivity.class));
+            }
+        });
+
+        cashflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Finances_Activity.class));
+
+            }
+        });
+
+        alltrans.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), AllTransactionsActivity.class));
+            }
+        });
+//        cashflow.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction()) {
+//                    case MotionEvent.ACTION_DOWN:
+//                        ObjectAnimator scaleDownX = ObjectAnimator.ofFloat(cashflow,
+//                                "scaleX", 0.96f);
+//                        ObjectAnimator scaleDownY = ObjectAnimator.ofFloat(cashflow,
+//                                "scaleY", 0.96f);
+//                        scaleDownX.setDuration(100);
+//                        scaleDownY.setDuration(100);
+//
+//                        AnimatorSet scaleDown = new AnimatorSet();
+//                        scaleDown.play(scaleDownX).with(scaleDownY);
+//
+//                        scaleDown.start();
+//                        break;
+//
+//                    case MotionEvent.ACTION_UP:
+//                        ObjectAnimator scaleDownX2 = ObjectAnimator.ofFloat(
+//                                cashflow, "scaleX", 1f);
+//                        ObjectAnimator scaleDownY2 = ObjectAnimator.ofFloat(
+//                                cashflow, "scaleY", 1f);
+//                        scaleDownX2.setDuration(100);
+//                        scaleDownY2.setDuration(100);
+//
+//                        AnimatorSet scaleDown2 = new AnimatorSet();
+//                        scaleDown2.play(scaleDownX2).with(scaleDownY2);
+//
+//                        scaleDown2.start();
+//                        break;
+////                }
+//            }
+//            return true;
+//            }
+//        });
+
+
+        leads.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LeadsActivity.class));
             }
         });
     }

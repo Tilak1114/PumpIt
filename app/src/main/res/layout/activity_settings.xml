@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="#fff"
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
     <android.support.v7.widget.Toolbar
@@ -32,23 +33,175 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_below="@id/setttoolbar"
-        android:elevation="4dp"
-        android:translationZ="4dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/sett_bck"
+        android:id="@+id/notificationsettlay"
         android:layout_height="60dp">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:fontFamily="@font/product_sans_reg"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_centerVertical="true"
-            android:text="Notification settings"/>
+            android:text="Notification Settings"/>
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_below="@id/notificationsettlay"
+        android:background="@drawable/sett_bck"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/remindersettlay"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="Reminder settings"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_below="@id/remindersettlay"
+        android:background="@drawable/sett_bck"
+        android:id="@+id/feedbacklay"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="Send Us Feedback"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_below="@id/feedbacklay"
+        android:background="@drawable/sett_bck"
+        android:id="@+id/aboutuslay"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="About Us"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_below="@id/aboutuslay"
+        android:background="@drawable/sett_bck"
+        android:id="@+id/termsandcondlay"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="Terms and conditions"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_below="@id/termsandcondlay"
+        android:background="@drawable/sett_bck"
+        android:id="@+id/privacypolicylay"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="Privacy Policy"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
+            android:layout_marginEnd="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_below="@id/privacypolicylay"
+        android:background="@drawable/sett_bck"
+        android:id="@+id/contactuslay"
+        android:layout_height="60dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/product_sans_reg"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:text="Contact Us"/>
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:tint="@color/gray"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/arrow"
             android:layout_marginEnd="20dp"/>
     </RelativeLayout>
     <LinearLayout

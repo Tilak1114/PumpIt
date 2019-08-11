@@ -171,9 +171,13 @@
                         </option>
                         <option name="values">
                           <map>
+                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_settings_white" />
-                            <entry key="sourceFile" value="C:\Users\Tilak" />
+                            <entry key="height" value="278" />
+                            <entry key="outputName" value="ic_store" />
+                            <entry key="overrideSize" value="true" />
+                            <entry key="sourceFile" value="E:\Android Project Data\PumpIt\SVGS\sTORE.svg" />
+                            <entry key="width" value="375" />
                           </map>
                         </option>
                       </PersistentState>

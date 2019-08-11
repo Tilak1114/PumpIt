@@ -20,53 +20,55 @@ import java.util.List;
 import java.util.Objects;
 
 public class StoreFragment extends Fragment {
-    ImageView imageChange;
-    Handler handler = new Handler();
-    Thread thread;
-
-    Animation animationOut;
-    Animation animationIn;
-
-    int images[] = {R.drawable.boxingeq, R.drawable.water, R.drawable.proteins, R.drawable.dumbbell};
-    int imgId;
+//    ImageView imageChange;
+    ImageView imageView;
+//    Handler handler = new Handler();
+//    Thread thread;
+//
+//    Animation animationOut;
+//    Animation animationIn;
+//
+//    int images[] = {R.drawable.boxingeq, R.drawable.water, R.drawable.proteins, R.drawable.dumbbell};
+//    int imgId;
 
     @Nullable
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState){
         View storeV = inflater.inflate(R.layout.fragment_store, container, false);
-        imageChange = storeV.findViewById(R.id.storeimgchange);
-        animateStoreImages(storeV);
+        imageView = storeV.findViewById(R.id.storebckimg);
+//        imageChange = storeV.findViewById(R.id.storeimgchange);
+//        animateStoreImages(storeV);
         return storeV;
     }
 
-    public void animateStoreImages(final View storeV){
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true){
-                    for(int i=0; i< images.length; i++){
-                        imgId = images[i];
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                animationOut = AnimationUtils.loadAnimation(storeV.getContext(), R.anim.fade_outtwosec);
-                                animationIn = AnimationUtils.loadAnimation(storeV.getContext(), R.anim.fade_intwosec);
-                                imageChange.setAnimation(animationOut);
-                                imageChange.setVisibility(View.INVISIBLE);
-                                imageChange.setImageResource(imgId);
-                                imageChange.setAnimation(animationIn);
-                                imageChange.setVisibility(View.VISIBLE);
-                            }
-                        });
-                        try {
-                            Thread.sleep(3000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }
-        });
-        thread.start();
-    }
+//    public void animateStoreImages(final View storeV){
+////        thread = new Thread(new Runnable() {
+////            @Override
+////            public void run() {
+////                while (true){
+////                    for(int i=0; i< images.length; i++){
+////                        imgId = images[i];
+////                        handler.post(new Runnable() {
+////                            @Override
+////                            public void run() {
+////                                animationOut = AnimationUtils.loadAnimation(storeV.getContext(), R.anim.fade_outtwosec);
+////                                animationIn = AnimationUtils.loadAnimation(storeV.getContext(), R.anim.fade_intwosec);
+////                                imageChange.setAnimation(animationOut);
+////                                imageChange.setVisibility(View.INVISIBLE);
+////                                imageChange.setImageResource(imgId);
+////                                imageChange.setAnimation(animationIn);
+////                                imageChange.setVisibility(View.VISIBLE);
+////                            }
+////                        });
+////                        try {
+////                            Thread.sleep(3000);
+////                        } catch (InterruptedException e) {
+////                            e.printStackTrace();
+////                        }
+////                    }
+////                }
+////            }
+////        });
+////        thread.start();
+////    }
 }

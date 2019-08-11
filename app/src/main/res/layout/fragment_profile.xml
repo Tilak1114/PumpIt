@@ -250,7 +250,9 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_below="@id/profileprimaryinfolay"
-            android:id="@+id/myplanslay"
+            android:id="@+id/cashflowprofilelay"
+            android:clickable="true"
+            android:focusable="true"
             android:layout_marginTop="20dp"
             android:elevation="2dp"
             android:translationZ="4dp"
@@ -301,13 +303,19 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/product_sans_reg"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
             <TextView
+                android:layout_alignParentEnd="true"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:id="@+id/alltransactionsclick"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/memb_btn_rect"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp"
                 android:fontFamily="@font/proxima"
                 android:textSize="12sp"
                 android:textStyle="bold"
@@ -322,7 +330,7 @@
             android:elevation="2dp"
             android:translationZ="4dp"
             android:layout_height="120dp"
-            android:layout_below="@id/myplanslay"
+            android:layout_below="@id/cashflowprofilelay"
             android:background="@drawable/round_edge_bck"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
@@ -369,7 +377,7 @@
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/product_sans_reg"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"/>
+                android:textSize="18sp"/>
         </RelativeLayout>
     </RelativeLayout>
 </ScrollView>

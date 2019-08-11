@@ -58,6 +58,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -93,10 +94,6 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
 
         memberref = db.collection("Gyms/"+GymName+"/Members");
 
-        //FragmentManager fm =
-        //getFragmentManager().beginTransaction()
-              // .replace(R.id.newMemb_container, new NewMembFrag1()).commit();
-
         swipeRefreshLayout = MemberManage.findViewById(R.id.membSwipetorefLay);
         addNewMembFab = MemberManage.findViewById(R.id.addMembfab);
         searchView = MemberManage.findViewById(R.id.searchmemb);
@@ -109,27 +106,37 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
 
-        dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                        .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        String cnt = documentSnapshot.getString("allmembcount");
-                        membcount.setText(cnt+" Members");
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int count=0;
+                            count= Objects.requireNonNull(task.getResult()).size();
+                            membcount.setText(String.valueOf(count)+" Members");
+                        } else {
+                            membcount.setText("No Members");
+                        }
                         swipeRefreshLayout.setRefreshing(false);
                     }
                 });
             }
         });
 
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("allmembcount");
-                membcount.setText(cnt+" Members");
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int count=0;
+                    count= Objects.requireNonNull(task.getResult()).size();
+                    membcount.setText(String.valueOf(count)+" Members");
+                } else {
+                    membcount.setText("No Members");
+                }
             }
         });
 
@@ -203,12 +210,17 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     @Override
     public void onResume() {
         super.onResume();
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("allmembcount");
-                membcount.setText(cnt+" Members");
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int count=0;
+                    count= Objects.requireNonNull(task.getResult()).size();
+                    membcount.setText(String.valueOf(count)+" Members");
+                } else {
+                    membcount.setText("No Members");
+                }
             }
         });
     }

@@ -1,29 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/storebckimg"
     android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:layout_width="80dp"
+        android:src="@drawable/pumpitdark"
+        android:layout_height="30dp"
+        android:alpha="0.6"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_centerInParent="true"
-        android:layout_height="300dp">
+        android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="120dp"
-            android:id="@+id/storeimgchange"
-            android:layout_height="120dp"
+            android:layout_width="220dp"
+            android:id="@+id/storebckimg"
+            android:src="@drawable/storebck"
+            android:layout_height="220dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="80dp"
             />
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Coming Soon"
-            android:textColor="@color/bckprimary"
-            android:textSize="28sp"
-            android:layout_marginTop="30dp"
-            android:layout_below="@id/storeimgchange"
+            android:id="@+id/tvpgunderconst"
             android:layout_centerHorizontal="true"
-            android:fontFamily="@font/product_sans_reg"/>
+            android:textSize="18sp"
+            android:layout_below="@id/storebckimg"
+            android:layout_height="wrap_content"
+            android:text="This Page is Under Construction"
+            android:fontFamily="@font/product_sans_reg" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="12sp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tvpgunderconst"
+            android:layout_height="wrap_content"
+            android:text="You will be able to buy/sell gym goods soon"
+            android:fontFamily="@font/product_sans_reg" />
     </RelativeLayout>
 
 </RelativeLayout>

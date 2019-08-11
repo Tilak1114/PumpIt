@@ -29,6 +29,10 @@
         <item name="fontFamily">@font/ubuntu_b</item>
         <item name="android:textSize">30sp</item>
     </style>
+    <style name="tabtheme2" parent="Base.Widget.Design.TabLayout">
+        <item name="fontFamily">@font/product_sans_reg</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

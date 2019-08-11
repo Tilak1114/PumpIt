@@ -26,12 +26,16 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -49,6 +53,7 @@ public class OverViewFragment extends Fragment {
     LinearLayout taskslay, actodlay;
     FirebaseAuth firebaseAuth;
     ProgressBar pb1, pb2;
+    int activecount, odcount;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView allmembs, activememb, odmemb, activerect, odrect;
     PieChartView pieChartView;
@@ -139,18 +144,37 @@ public class OverViewFragment extends Fragment {
                         public void run() {
                             pb1.setVisibility(View.VISIBLE);
                             pb2.setVisibility(View.VISIBLE);
-                            DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-                            dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                            FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                                    .whereEqualTo("payment", "Payment Pending").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
-                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                    String actcnt = documentSnapshot.getString("activemembcount");
-                                    String odcnt = documentSnapshot.getString("overduemembcount");
-                                    activememb.setText(actcnt);
-                                    odmemb.setText(odcnt);
-                                    pb1.setVisibility(View.INVISIBLE);
-                                    pb2.setVisibility(View.INVISIBLE);
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        int count=0;
+                                        count= Objects.requireNonNull(task.getResult()).size();
+                                        odmemb.setText(String.valueOf(count));
+                                        pb2.setVisibility(View.INVISIBLE);
+                                    } else {
+                                        activememb.setText("-");
+                                        pb2.setVisibility(View.INVISIBLE);
+                                    }
                                 }
                             });
+                            FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                                    .whereEqualTo("payment", "Fees Paid").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        int count=0;
+                                        count= Objects.requireNonNull(task.getResult()).size();
+                                        activememb.setText(String.valueOf(count));
+                                        pb1.setVisibility(View.INVISIBLE);
+                                    } else {
+                                        activememb.setText("-");
+                                        pb1.setVisibility(View.INVISIBLE);
+                                    }
+                                }
+                            });
+
                         }
                     });
                 }
@@ -171,17 +195,35 @@ public class OverViewFragment extends Fragment {
                                 odmemb.setText("");
                                 pb1.setVisibility(View.VISIBLE);
                                 pb2.setVisibility(View.VISIBLE);
-                                DocumentReference dr = FirebaseFirestore.getInstance()
-                                        .document("/Gyms/"+GymName+"/MetaData/members");
-                                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+//
+                                FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                                        .whereEqualTo("payment", "Payment Pending").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                     @Override
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String actcnt = documentSnapshot.getString("activemembcount");
-                                        String odcnt = documentSnapshot.getString("overduemembcount");
-                                        activememb.setText(actcnt);
-                                        odmemb.setText(odcnt);
-                                        pb1.setVisibility(View.INVISIBLE);
-                                        pb2.setVisibility(View.INVISIBLE);
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            int count=0;
+                                            count= Objects.requireNonNull(task.getResult()).size();
+                                            odmemb.setText(String.valueOf(count));
+                                            pb2.setVisibility(View.INVISIBLE);
+                                        } else {
+                                            activememb.setText("-");
+                                            pb2.setVisibility(View.INVISIBLE);
+                                        }
+                                    }
+                                });
+                                FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                                        .whereEqualTo("payment", "Fees Paid").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if (task.isSuccessful()) {
+                                            int count=0;
+                                            count= Objects.requireNonNull(task.getResult()).size();
+                                            activememb.setText(String.valueOf(count));
+                                            pb1.setVisibility(View.INVISIBLE);
+                                        } else {
+                                            activememb.setText("-");
+                                            pb1.setVisibility(View.INVISIBLE);
+                                        }
                                     }
                                 });
                             }
@@ -231,7 +273,7 @@ public class OverViewFragment extends Fragment {
         leads.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), LeadsActivity.class));
+                startActivity(new Intent(getActivity(), NewLeadActivity.class));
             }
         });
 

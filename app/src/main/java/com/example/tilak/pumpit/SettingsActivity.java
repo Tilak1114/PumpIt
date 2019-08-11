@@ -26,7 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                overridePendingTransition(R.anim.ltr, R.anim.fade_out);
             }
         });
         logout.setOnClickListener(new View.OnClickListener() {
