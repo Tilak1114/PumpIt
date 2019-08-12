@@ -38,8 +38,6 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
     public MemberAdapter(@NonNull FirestoreRecyclerOptions options, Context context,
                          ItemclickListener itemclickListener) {
         super(options);
-
-        count = options.getSnapshots().toArray().length;
         this.context = context;
         this.itemclickListener = itemclickListener;
     }
@@ -75,11 +73,11 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
         holder.membName.setText(tempTxt);
         holder.membPlan.setText(model.getMembPlan());
         if(model.getPayment().equals("Fees Paid")){
-            holder.membPaymentStatus.setTextColor(context.getResources().getColor(android.R.color.holo_blue_dark));
+            holder.membPaymentStatus.setTextColor(context.getColor(android.R.color.holo_blue_dark));
         }
         else if(model.getPayment().equals("Payment Pending"))
         {
-            holder.membPaymentStatus.setTextColor(context.getResources().getColor(android.R.color.holo_red_dark));
+            holder.membPaymentStatus.setTextColor(context.getColor(android.R.color.holo_red_dark));
         }
         holder.parentlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,8 +131,5 @@ public class MemberAdapter extends FirestoreRecyclerAdapter<Member, MemberAdapte
             call = itemView.findViewById(R.id.callmemb);
             parentlay.setClickable(true);
         }
-    }
-    public int getMembCount(){
-        return count;
     }
 }

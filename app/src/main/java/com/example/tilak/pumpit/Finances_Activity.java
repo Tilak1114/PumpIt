@@ -1,18 +1,46 @@
 package com.example.tilak.pumpit;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.Objects;
 
 public class Finances_Activity extends AppCompatActivity {
     TabLayout tabLayout;
     RelativeLayout expFab;
+    TextView nodatatitle, nodatasubtitle;
+    ImageView nodatavector;
+    RecyclerView transRv;
     RelativeLayout summCashLay;
     ViewPager viewPager;
+
+    CollectionReference transref;
+
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
+    private TransactionsAdapter transadapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +49,36 @@ public class Finances_Activity extends AppCompatActivity {
         tabLayout = findViewById(R.id.summcashtabs);
         expFab = findViewById(R.id.expenseFab);
         viewPager = findViewById(R.id.cshpagercontainer);
+        transRv = findViewById(R.id.transRv);
+        nodatasubtitle = findViewById(R.id.nodatasubexp);
+        nodatatitle = findViewById(R.id.nodatatvexp);
+        nodatavector = findViewById(R.id.emptyvector);
+
+        GymName = user.getDisplayName();
+
+        transref = FirebaseFirestore.getInstance().collection("Gyms/"+GymName+"/Cashflow");
+
+        transRv.setVisibility(View.INVISIBLE);
+
+        setupTransactionRv();
+
+        FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Cashflow")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(Objects.requireNonNull(task.getResult()).isEmpty()){
+                    nodatasubtitle.setVisibility(View.VISIBLE);
+                    nodatatitle.setVisibility(View.VISIBLE);
+                    nodatavector.setVisibility(View.VISIBLE);
+                }
+                else{
+                    transRv.setVisibility(View.VISIBLE);
+                    nodatasubtitle.setVisibility(View.INVISIBLE);
+                    nodatatitle.setVisibility(View.INVISIBLE);
+                    nodatavector.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
 
         CashFlowSummaryPagerAdapter cashFlowSummaryPagerAdapter =
                 new CashFlowSummaryPagerAdapter(getSupportFragmentManager());
@@ -55,5 +113,31 @@ public class Finances_Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setupTransactionRv() {
+        Query query = transref;
+        FirestoreRecyclerOptions<Transaction> options = new FirestoreRecyclerOptions.Builder<Transaction>().setQuery(query, Transaction.class).build();
+        transadapter = new TransactionsAdapter(options, getApplicationContext());
+        transRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        transRv.setAdapter(transadapter);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        transadapter.stopListening();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        transadapter.startListening();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        transadapter.startListening();
     }
 }

@@ -4,12 +4,18 @@ import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
+
+import es.dmoral.toasty.Toasty;
 
 public class NewExpense extends AppCompatActivity {
     RelativeLayout rentlay, billslay,
             insurancelay, salarylay, newequiplay,
             repairlay, marketinglay, misclay;
+    EditText expenseName, expenseValue;
+    RelativeLayout finishBtn;
     String selectedCate = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,13 @@ public class NewExpense extends AppCompatActivity {
         marketinglay = findViewById(R.id.marketinglay);
         misclay = findViewById(R.id.misclay);
         newequiplay = findViewById(R.id.newequiplay);
+
+        expenseName = findViewById(R.id.newExpName);
+        expenseValue = findViewById(R.id.newExpVal);
+
+        finishBtn = findViewById(R.id.finishnewexp);
+
+
 
         // radio group logic
 
@@ -145,5 +158,26 @@ public class NewExpense extends AppCompatActivity {
                 selectedCate = "Misc";
             }
         });
+
+        finishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(expenseName.getText().toString().isEmpty()){
+                    expenseName.setError("Required");
+                }
+                if(expenseValue.getText().toString().isEmpty()){
+                    expenseValue.setError("Required");
+                }
+                if(selectedCate.isEmpty()){
+                    Toasty.error(getApplicationContext(), "Choose a category", Toasty.LENGTH_LONG).show();
+                }
+                if(!expenseName.getText().toString().isEmpty()&&!expenseValue.getText().toString().isEmpty()&&!selectedCate.isEmpty()){
+                    Toasty.normal(getApplicationContext(), selectedCate, Toasty.LENGTH_LONG).show();
+                    finish();
+                }
+            }
+        });
+
+
     }
 }
