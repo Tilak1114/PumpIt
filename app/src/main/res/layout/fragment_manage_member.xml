@@ -57,26 +57,48 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp">
 
-            <SearchView
-                android:id="@+id/searchmemb"
-                android:background="@drawable/search_btn_rect"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:queryBackground="@android:color/transparent"
-                android:layout_margin="2dp"
-                android:layout_centerInParent="true"
-                android:queryHint="Search Members" />
+
         </RelativeLayout>
-        <android.support.v7.widget.RecyclerView
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_below="@id/membsearchlay"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/membRecyclerview">
+            android:layout_below="@id/memblay">
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/tabanim_appbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        </android.support.v7.widget.RecyclerView>
+
+                <SearchView
+                    android:id="@+id/searchmemb"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="20dp"
+                    android:background="@drawable/search_btn_rect"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:queryBackground="@android:color/transparent"
+                    android:layout_margin="2dp"
+                    android:layout_centerInParent="true"
+                    android:queryHint="Search Members"
+                    android:isScrollContainer="true"/>
+
+            </android.support.design.widget.AppBarLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_below="@id/searchmemb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/membRecyclerview">
+
+            </android.support.v7.widget.RecyclerView>
+
+        </android.support.design.widget.CoordinatorLayout>
+
         <RelativeLayout
             android:id="@+id/addMembfab"
             android:layout_height="55dp"
