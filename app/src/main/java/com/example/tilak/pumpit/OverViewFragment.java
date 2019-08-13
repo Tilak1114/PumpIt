@@ -280,7 +280,7 @@ public class OverViewFragment extends Fragment {
         money.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), Finances_Activity.class));
+                startActivity(new Intent(getActivity(), NewExpense.class));
             }
         });
 

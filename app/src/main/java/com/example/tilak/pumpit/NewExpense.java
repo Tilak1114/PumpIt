@@ -5,8 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import es.dmoral.toasty.Toasty;
 
@@ -16,13 +28,22 @@ public class NewExpense extends AppCompatActivity {
             repairlay, marketinglay, misclay;
     EditText expenseName, expenseValue;
     RelativeLayout finishBtn;
+    ImageView back;
     String selectedCate = "";
+    DocumentReference expenseref;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String GymName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_expense);
+
+        GymName = user.getDisplayName();
+
         rentlay = findViewById(R.id.rentlay);
         billslay = findViewById(R.id.billslay);
+        back = findViewById(R.id.cancelexp);
         insurancelay = findViewById(R.id.insurancelay);
         salarylay = findViewById(R.id.salarylay);
         repairlay = findViewById(R.id.repairlay);
@@ -35,6 +56,13 @@ public class NewExpense extends AppCompatActivity {
 
         finishBtn = findViewById(R.id.finishnewexp);
 
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
 
         // radio group logic
@@ -173,7 +201,27 @@ public class NewExpense extends AppCompatActivity {
                 }
                 if(!expenseName.getText().toString().isEmpty()&&!expenseValue.getText().toString().isEmpty()&&!selectedCate.isEmpty()){
                     Toasty.normal(getApplicationContext(), selectedCate, Toasty.LENGTH_LONG).show();
-                    finish();
+                    String expName = expenseName.getText().toString();
+                    String expVal = expenseValue.getText().toString();
+                    String category = selectedCate;
+
+                    String timeStamp = new SimpleDateFormat("MMMM dd, yyyy HH:mm").format(new Date());
+                    expenseref = FirebaseFirestore.getInstance()
+                            .document("Gyms/"+GymName+"/Cashflow/"+expName+expVal+category);
+
+                    Map<String, Object> data= new HashMap<String, Object>();
+                    data.put("inorout", "out");
+                    data.put("title", expName);
+                    data.put("category", selectedCate);
+                    data.put("amount", expVal);
+                    data.put("timedate", timeStamp);
+
+                    expenseref.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            finish();
+                        }
+                    });
                 }
             }
         });

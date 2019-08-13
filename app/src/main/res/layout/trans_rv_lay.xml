@@ -45,7 +45,7 @@
                android:layout_width="wrap_content"
                android:fontFamily="@font/product_sans_reg"
                android:id="@+id/timedatetranstv"
-               android:textSize="12sp"
+               android:textSize="10sp"
                android:layout_height="wrap_content"
                android:text="Today at 12:00AM"/>
             <TextView
@@ -74,7 +74,7 @@
             android:text="+1200"
             android:fontFamily="@font/product_sans_reg"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="10dp"
             android:layout_alignParentEnd="true"
             android:textColor="@color/green"/>
     </RelativeLayout>

@@ -122,8 +122,8 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:id="@+id/subsstatus"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:background="@drawable/profilecircleclickable">
                         <TextView
                             android:layout_width="wrap_content"
@@ -136,9 +136,9 @@
                             android:textStyle="bold"
                             android:textColor="#F27A45"/>
                         <RelativeLayout
-                            android:layout_width="25dp"
+                            android:layout_width="20dp"
                             android:layout_alignParentEnd="true"
-                            android:layout_height="25dp"
+                            android:layout_height="20dp"
                             android:backgroundTint="@color/green"
                             android:background="@drawable/profilecircles">
                             <ImageView
@@ -173,8 +173,8 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:id="@+id/profilerev"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginStart="20dp"
                         android:elevation="2dp"
                         android:translationZ="4dp"
@@ -217,8 +217,8 @@
                         android:id="@+id/profilememb"
                         android:elevation="2dp"
                         android:translationZ="4dp"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:background="@drawable/profilecircleclickable">
@@ -254,22 +254,21 @@
             android:clickable="true"
             android:focusable="true"
             android:layout_marginTop="20dp"
-            android:elevation="2dp"
-            android:translationZ="4dp"
+            android:elevation="1dp"
+            android:translationZ="1dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:background="@drawable/round_edge_bck_diff"
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="100dp">
             <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_marginEnd="30dp"
                 android:alpha="0.4"
                 android:rotation="-20"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:backgroundTint="@android:color/white"
                 android:background="@drawable/finicon"/>
             <TextView
                 android:layout_width="wrap_content"
@@ -279,19 +278,19 @@
                 android:id="@+id/cashflowtv"
                 android:layout_marginBottom="5dp"
                 android:textSize="14sp"
+                android:textColor="@color/gtstrtbck"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/product_sans_reg"
-                android:textColor="@android:color/white"
                 />
             <View
                 android:layout_width="70dp"
+                android:background="@color/gtstrtbck"
                 android:layout_marginStart="10dp"
                 android:layout_above="@id/cashflowtranstv"
                 android:layout_marginBottom="3dp"
                 android:alpha="0.6"
                 android:id="@+id/linecashflow"
-                android:layout_height="2dp"
-                android:background="@android:color/white"/>
+                android:layout_height="1dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -302,7 +301,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/product_sans_reg"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"/>
             <TextView
                 android:layout_alignParentEnd="true"
@@ -310,6 +308,9 @@
                 android:paddingStart="5dp"
                 android:id="@+id/alltransactionsclick"
                 android:clickable="true"
+                android:elevation="2dp"
+                android:translationZ="2dp"
+                android:backgroundTint="@color/gtstrtbck"
                 android:focusable="true"
                 android:background="@drawable/memb_btn_rect"
                 android:layout_marginTop="5dp"
@@ -319,7 +320,7 @@
                 android:fontFamily="@font/proxima"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@android:color/white"
                 android:text="All Transactions >"/>
         </RelativeLayout>
         <RelativeLayout
@@ -327,44 +328,43 @@
             android:layout_width="match_parent"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:elevation="2dp"
-            android:translationZ="4dp"
-            android:layout_height="120dp"
+            android:elevation="1dp"
+            android:translationZ="1dp"
+            android:layout_height="100dp"
             android:layout_below="@id/cashflowprofilelay"
-            android:background="@drawable/round_edge_bck"
+            android:background="@drawable/round_edge_bck_diff"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp">
             <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginStart="30dp"
                 android:alpha="0.4"
                 android:rotation="20"
                 android:layout_centerVertical="true"
-                android:backgroundTint="@android:color/white"
                 android:background="@drawable/leadstint"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Enquiries"
+                android:textColor="@color/colorPrimary"
                 android:layout_above="@id/lineenq"
                 android:id="@+id/newleadsprofiletv"
                 android:layout_marginBottom="5dp"
                 android:layout_alignParentEnd="true"
                 android:textSize="14sp"
                 android:layout_marginEnd="10dp"
-                android:fontFamily="@font/product_sans_reg"
-                android:textColor="@android:color/white" />
+                android:fontFamily="@font/product_sans_reg" />
             <View
                 android:layout_width="70dp"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="10dp"
                 android:layout_above="@id/noofleadstv"
                 android:alpha="0.6"
+                android:background="@color/colorPrimary"
                 android:layout_marginBottom="3dp"
                 android:id="@+id/lineenq"
-                android:layout_height="2dp"
-                android:background="@android:color/white"/>
+                android:layout_height="1dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -376,7 +376,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_marginEnd="10dp"
                 android:fontFamily="@font/product_sans_reg"
-                android:textColor="@android:color/white"
                 android:textSize="18sp"/>
         </RelativeLayout>
     </RelativeLayout>
