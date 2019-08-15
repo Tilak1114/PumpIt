@@ -49,14 +49,6 @@ public class ActiveMembActivity extends AppCompatActivity implements MemberAdapt
         close = findViewById(R.id.closeActiveMemb);
         Log.d("GymNameActive", GymName);
         actmemberref = db.collection("Gyms/"+GymName+"/Members");
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("activemembcount");
-                activemembcnt.setText(cnt+" Members");
-            }
-        });
         setUpActiveRecyclerView();
 
         close.setOnClickListener(new View.OnClickListener() {

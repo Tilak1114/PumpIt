@@ -248,135 +248,155 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_below="@id/profileprimaryinfolay"
-            android:id="@+id/cashflowprofilelay"
+        <android.support.v7.widget.CardView
+            app:cardCornerRadius="20dp"
             android:clickable="true"
             android:focusable="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:elevation="1dp"
-            android:translationZ="1dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:background="@drawable/round_edge_bck_diff"
+            android:translationZ="1dp"
+            android:layout_below="@id/profileprimaryinfolay"
+            android:id="@+id/cashflowprofilelay"
             android:layout_width="match_parent"
-            android:layout_height="100dp">
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginEnd="30dp"
-                android:alpha="0.4"
-                android:rotation="-20"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/finicon"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Cash Flow"
-                android:layout_above="@id/linecashflow"
-                android:id="@+id/cashflowtv"
-                android:layout_marginBottom="5dp"
-                android:textSize="14sp"
-                android:textColor="@color/gtstrtbck"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/product_sans_reg"
-                />
-            <View
-                android:layout_width="70dp"
-                android:background="@color/gtstrtbck"
-                android:layout_marginStart="10dp"
-                android:layout_above="@id/cashflowtranstv"
-                android:layout_marginBottom="3dp"
-                android:alpha="0.6"
-                android:id="@+id/linecashflow"
-                android:layout_height="1dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cashflowtranstv"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:text="2/6 Dues Paid"
-                android:layout_alignParentBottom="true"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/product_sans_reg"
-                android:textSize="18sp"/>
-            <TextView
-                android:layout_alignParentEnd="true"
-                android:paddingEnd="5dp"
-                android:paddingStart="5dp"
-                android:id="@+id/alltransactionsclick"
-                android:clickable="true"
-                android:elevation="2dp"
-                android:translationZ="2dp"
-                android:backgroundTint="@color/gtstrtbck"
-                android:focusable="true"
-                android:background="@drawable/memb_btn_rect"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/proxima"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                android:textColor="@android:color/white"
-                android:text="All Transactions >"/>
-        </RelativeLayout>
-        <RelativeLayout
+            android:layout_height="120dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:background="@drawable/cshabs"
+                    android:scaleType="centerCrop"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:alpha="0.8"
+                    android:layout_marginEnd="40dp"
+                    android:rotation="-20"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/money_bag"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cash Flow"
+                    android:layout_above="@id/linecashflow"
+                    android:id="@+id/cashflowtv"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/gtstrtbck"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/product_sans_reg"
+                    />
+                <View
+                    android:layout_width="70dp"
+                    android:background="@color/gtstrtbck"
+                    android:layout_marginStart="10dp"
+                    android:layout_above="@id/cashflowtranstv"
+                    android:layout_marginBottom="3dp"
+                    android:alpha="0.6"
+                    android:id="@+id/linecashflow"
+                    android:layout_height="1dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cashflowtranstv"
+                    android:textColor="@color/typography_black"
+                    android:layout_marginBottom="10dp"
+                    android:text="2/6 Dues Paid"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:textSize="18sp"/>
+                <TextView
+                    android:padding="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:id="@+id/alltransactionsclick"
+                    android:clickable="true"
+                    android:elevation="2dp"
+                    android:translationZ="2dp"
+                    android:backgroundTint="@color/gtstrtbck"
+                    android:focusable="true"
+                    android:background="@drawable/memb_btn_rect"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/proxima"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:text="All Transactions >"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
             android:id="@+id/leadsprofilelay"
-            android:layout_width="match_parent"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="20dp"
             android:elevation="1dp"
-            android:translationZ="1dp"
-            android:layout_height="100dp"
+            app:cardCornerRadius="20dp"
             android:layout_below="@id/cashflowprofilelay"
-            android:background="@drawable/round_edge_bck_diff"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp">
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginStart="30dp"
-                android:alpha="0.4"
-                android:rotation="20"
-                android:layout_centerVertical="true"
-                android:background="@drawable/leadstint"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Enquiries"
-                android:textColor="@color/colorPrimary"
-                android:layout_above="@id/lineenq"
-                android:id="@+id/newleadsprofiletv"
-                android:layout_marginBottom="5dp"
-                android:layout_alignParentEnd="true"
-                android:textSize="14sp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/product_sans_reg" />
-            <View
-                android:layout_width="70dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="10dp"
-                android:layout_above="@id/noofleadstv"
-                android:alpha="0.6"
-                android:background="@color/colorPrimary"
-                android:layout_marginBottom="3dp"
-                android:id="@+id/lineenq"
-                android:layout_height="1dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/noofleadstv"
-                android:textStyle="bold"
-                android:layout_marginBottom="10dp"
-                android:text="9 New Leads"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="@font/product_sans_reg"
-                android:textSize="18sp"/>
-        </RelativeLayout>
+            android:layout_marginEnd="20dp"
+            android:translationZ="1dp"
+            android:layout_height="120dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp">
+                <ImageView
+                    android:alpha="0.8"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/leadsabs"
+                    android:scaleType="centerCrop"
+                    android:layout_height="match_parent"/>
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginStart="30dp"
+                    android:alpha="0.8"
+                    android:backgroundTint="@color/typography_slate"
+                    android:rotation="20"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/leadstint"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enquiries"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_above="@id/lineenq"
+                    android:id="@+id/newleadsprofiletv"
+                    android:layout_marginBottom="5dp"
+                    android:layout_alignParentEnd="true"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/product_sans_reg" />
+                <View
+                    android:layout_width="70dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_above="@id/noofleadstv"
+                    android:alpha="0.6"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginBottom="3dp"
+                    android:id="@+id/lineenq"
+                    android:layout_height="1dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/noofleadstv"
+                    android:layout_marginBottom="10dp"
+                    android:text="9 New Leads"
+                    android:textColor="@color/typography_black"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="10dp"
+                    android:fontFamily="@font/product_sans_reg"
+                    android:textSize="18sp"/>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
     </RelativeLayout>
 </ScrollView>

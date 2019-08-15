@@ -58,14 +58,6 @@ public class ActiveMembFrag extends Fragment implements MemberAdapter.ItemclickL
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("activemembcount");
-                activemembcnt.setText(cnt+" Members");
-            }
-        });
         setUpActiveRecyclerView();
     }
 

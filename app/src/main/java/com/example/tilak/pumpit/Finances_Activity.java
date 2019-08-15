@@ -25,10 +25,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
-public class Finances_Activity extends AppCompatActivity {
+public class Finances_Activity extends AppCompatActivity implements TransactionsAdapter.ItemclickListener{
     TabLayout tabLayout;
     RelativeLayout expFab;
-    TextView nodatatitle, nodatasubtitle;
+    TextView nodatatitle, nodatasubtitle, viewall;
     ImageView nodatavector;
     RecyclerView transRv;
     RelativeLayout summCashLay;
@@ -45,6 +45,7 @@ public class Finances_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cashflow);
+        viewall = findViewById(R.id.alltranscshflow);
         summCashLay = findViewById(R.id.netchslay);
         tabLayout = findViewById(R.id.summcashtabs);
         expFab = findViewById(R.id.expenseFab);
@@ -92,6 +93,13 @@ public class Finances_Activity extends AppCompatActivity {
             }
         });
 
+        viewall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AllTransactionsActivity.class));
+            }
+        });
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -118,7 +126,7 @@ public class Finances_Activity extends AppCompatActivity {
     private void setupTransactionRv() {
         Query query = transref;
         FirestoreRecyclerOptions<Transaction> options = new FirestoreRecyclerOptions.Builder<Transaction>().setQuery(query, Transaction.class).build();
-        transadapter = new TransactionsAdapter(options, getApplicationContext());
+        transadapter = new TransactionsAdapter(options, getApplicationContext(), this);
         transRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         transRv.setAdapter(transadapter);
     }
@@ -139,5 +147,16 @@ public class Finances_Activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         transadapter.startListening();
+    }
+
+    @Override
+    public void onItemClick(String name, String timestamp, String category, String amount, String inOrOut) {
+        Intent intent = new Intent(getApplicationContext(), TransactionDetails.class);
+        intent.putExtra("name", name);
+        intent.putExtra("timestamp", timestamp);
+        intent.putExtra("category", category);
+        intent.putExtra("amount", amount);
+        intent.putExtra("inorout", inOrOut);
+        startActivity(intent);
     }
 }

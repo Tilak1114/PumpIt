@@ -77,28 +77,7 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         GymName = user.getDisplayName();
-
-        DocumentReference membmeta = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
-
-        Map<String, Object> data = new HashMap<String, Object>();
-        data.put("activemembcount", "0");
-        data.put("allmembcount", "0");
-        data.put("overduemembcount", "0");
-        membmeta.set(data, SetOptions.merge());
-
         defaultPlanSetup();
-
-        DocumentReference planmeta = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/plans");
-
-        Map<String, Object> data1 = new HashMap<String, Object>();
-        data1.put("plancount", "3");
-        planmeta.set(data1, SetOptions.merge());
-
-        DocumentReference trainermeta = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/trainers");
-
-        Map<String, Object> data2 = new HashMap<String, Object>();
-        data1.put("trainercnt", "0");
-        trainermeta.set(data2, SetOptions.merge());
     }
 
     private void defaultPlanSetup() {
@@ -109,7 +88,6 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         data1.put("planName", "Plan1");
         data1.put("planPrice", "2500");
         data1.put("planDuration", "3 Months Plan");
-        data1.put("planMembCount", "5");
         data1.put("planFeatures", "");
         data1.put("coverId", R.drawable.plan1);
         planDoc1.set(data1);
@@ -119,7 +97,6 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         Map<String, Object> data2 = new HashMap<String, Object>();
         data2.put("planName", "Plan2");
         data2.put("planPrice", "5000");
-        data2.put("planMembCount", "3");
         data2.put("planDuration", "6 Months Plan");
         data2.put("planFeatures", "");
         data2.put("coverId", R.drawable.plan2);
@@ -130,7 +107,6 @@ public class SignupActivity extends AppCompatActivity implements SignUpEmailPass
         Map<String, Object> data3 = new HashMap<String, Object>();
         data3.put("planName", "Plan3");
         data3.put("planPrice", "12000");
-        data3.put("planMembCount", "2");
         data3.put("planDuration", "12 Months Plan");
         data3.put("planFeatures", "");
         data3.put("coverId", R.drawable.plan3);

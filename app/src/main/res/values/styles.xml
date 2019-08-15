@@ -31,7 +31,7 @@
     </style>
     <style name="tabtheme2" parent="Base.Widget.Design.TabLayout">
         <item name="fontFamily">@font/product_sans_reg</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">16sp</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

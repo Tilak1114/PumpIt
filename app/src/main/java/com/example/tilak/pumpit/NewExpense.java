@@ -138,7 +138,7 @@ public class NewExpense extends AppCompatActivity {
                 marketinglay.setBackgroundResource(R.drawable.stats_bck_rect);
                 newequiplay.setBackgroundResource(R.drawable.stats_bck_rect_org);
                 misclay.setBackgroundResource(R.drawable.stats_bck_rect);
-                selectedCate = "newEquipment";
+                selectedCate = "+Equipment";
             }
         });
 

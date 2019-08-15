@@ -57,11 +57,18 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     protected void onBindViewHolder(@NonNull final PlanViewHolder holder, int position, @NonNull final Plan model) {
         GymName = user.getDisplayName();
 
-        Log.d("GymMetainfo_planadap", GymName);
-
         holder.planDuration.setText(model.getPlanDuration());
         holder.coverLay.setBackgroundResource(model.getCoverId());
-        holder.planResMembCnt.setText(model.getPlanMembCount()+" Members");
+        FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
+                .whereEqualTo("planName", model.getPlanName()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful())
+                    holder.planMembCnt.setText(task.getResult().size()+" Members");
+                else
+                    holder.planMembCnt.setText("0 Members");
+            }
+        });
         holder.coverLay.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
@@ -83,7 +90,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
                 holder.delete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if(Integer.parseInt(model.getPlanMembCount())!=0){
+                        if(Integer.parseInt(holder.planMembCnt.getText().toString().substring(0, 1))>0){
                             AlertDialog.Builder builder1 = new AlertDialog.Builder(context, R.style.AlertDialogStyle);
                             builder1.setTitle("Deletion Not Allowed");
                             builder1.setMessage("Cannot delete this plan as it is in use");
@@ -139,12 +146,12 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     }
 
     class PlanViewHolder extends RecyclerView.ViewHolder {
-        TextView planDuration, planResMembCnt, planDurTop;
+        TextView planDuration, planMembCnt, planDurTop;
         RelativeLayout coverLay;
         RelativeLayout delete, edit;
         public PlanViewHolder(View itemView) {
             super(itemView);
-            planResMembCnt = itemView.findViewById(R.id.newPlanmembCnt);
+            planMembCnt = itemView.findViewById(R.id.newPlanmembCnt);
             planDuration = itemView.findViewById(R.id.newPlanDur);
             coverLay = itemView.findViewById(R.id.newPlanlay);
             delete = itemView.findViewById(R.id.deleteIconlay);

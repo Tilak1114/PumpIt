@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
@@ -20,17 +21,34 @@ public class TransactionsAdapter extends FirestoreRecyclerAdapter<Transaction, T
      * @param options
      */
 
+    private ItemclickListener itemclickListener;
+
     Context context;
-    public TransactionsAdapter(@NonNull FirestoreRecyclerOptions<Transaction> options, Context context) {
+    public TransactionsAdapter(@NonNull FirestoreRecyclerOptions<Transaction> options, Context context, ItemclickListener itemclickListener) {
         super(options);
         this.context = context;
+        this.itemclickListener = itemclickListener;
+    }
+
+    public interface ItemclickListener{
+        void onItemClick(String name, String timestamp, String category,
+                         String amount, String inOrOut);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull TransactionHolder holder, int position, @NonNull Transaction model) {
+    protected void onBindViewHolder(@NonNull TransactionHolder holder, int position, @NonNull final Transaction model) {
         holder.category.setText("Category:"+model.getCategory());
         holder.title.setText(model.getTitle());
         holder.timedate.setText(model.getTimedate());
+
+        holder.bck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                itemclickListener.onItemClick(model.getTitle(), model.getTimedate(),
+                        model.getCategory(), model.getAmount(), model.getInorout());
+            }
+        });
+
         if(model.getInorout().equals("in")){
             holder.circle.setBackgroundResource(R.drawable.circleinc);
             holder.amount.setText("+"+model.getAmount());
@@ -52,9 +70,11 @@ public class TransactionsAdapter extends FirestoreRecyclerAdapter<Transaction, T
 
     class TransactionHolder extends RecyclerView.ViewHolder {
         View topline, bottomline, circle;
+        RelativeLayout bck;
         TextView timedate, title, category, amount;
         public TransactionHolder(@NonNull View itemView) {
             super(itemView);
+            bck = itemView.findViewById(R.id.transbacklay);
             topline = itemView.findViewById(R.id.toplinerv);
             bottomline = itemView.findViewById(R.id.bottomlinerv);
             circle = itemView.findViewById(R.id.cshflowtype);

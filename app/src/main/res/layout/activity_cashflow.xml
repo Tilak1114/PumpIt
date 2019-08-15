@@ -11,7 +11,7 @@
             android:background="@color/bckprimary"
             android:id="@+id/cshflowtitlelay"
             android:elevation="2dp"
-            android:translationZ="4dp"
+            android:translationZ="2dp"
             android:layout_width="match_parent"
             android:layout_height="50dp">
 
@@ -73,7 +73,7 @@
                 android:layout_marginTop="5dp"
                 app:tabIndicatorHeight="0dp"
                 app:tabRippleColor="@null"
-                android:layout_height="32dp"/>
+                android:layout_height="30dp"/>
             <android.support.v4.view.ViewPager
                 android:id="@+id/cshpagercontainer"
                 android:layout_width="match_parent"
@@ -91,11 +91,22 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Latest Transactions"/>
+            android:text="Recent"/>
+        <TextView
+            android:id="@+id/alltranscshflow"
+            android:layout_below="@id/netchslay"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/lato"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/typography_black"
+            android:layout_marginEnd="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All >"/>
         <RelativeLayout
             android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/recenttrans">

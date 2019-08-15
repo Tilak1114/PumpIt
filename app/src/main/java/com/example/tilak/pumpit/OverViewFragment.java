@@ -71,8 +71,6 @@ public class OverViewFragment extends Fragment {
         handler = new Handler();
         GymName = user.getDisplayName();
 
-        Log.d("GymMetainfo_ov", GymName);
-
         allmembs = ovfragview.findViewById(R.id.seeallmemb);
         taskslay = ovfragview.findViewById(R.id.qcklnkslayout);
         actodlay = ovfragview.findViewById(R.id.ov_actod_lay);

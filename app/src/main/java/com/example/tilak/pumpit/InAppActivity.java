@@ -92,7 +92,6 @@ public class InAppActivity extends AppCompatActivity {
         data1.put("planName", "Plan1");
         data1.put("planPrice", "2500");
         data1.put("planDuration", "3 Months Plan");
-        data1.put("planMembCount", "5");
         data1.put("planFeatures", "Cardio, Strength");
         data1.put("coverId", R.drawable.plan1);
         planDoc1.set(data1);
@@ -102,7 +101,6 @@ public class InAppActivity extends AppCompatActivity {
         Map<String, Object> data2 = new HashMap<String, Object>();
         data2.put("planName", "Plan2");
         data2.put("planPrice", "5000");
-        data2.put("planMembCount", "3");
         data2.put("planDuration", "6 Months Plan");
         data2.put("planFeatures", "Cardio, Strength");
         data2.put("coverId", R.drawable.plan2);
@@ -113,15 +111,11 @@ public class InAppActivity extends AppCompatActivity {
         Map<String, Object> data3 = new HashMap<String, Object>();
         data3.put("planName", "Plan3");
         data3.put("planPrice", "12000");
-        data3.put("planMembCount", "2");
         data3.put("planDuration", "12 Months Plan");
         data3.put("planFeatures", "Cardio, Strength");
         data3.put("coverId", R.drawable.plan3);
         planDoc3.set(data3);
 
-        setupInitData();
-
-        setupPlansWithCount();
 
         //bottomNavigationView.setSelectedItemId(R.id.action_profile); this works
 
@@ -169,33 +163,33 @@ public class InAppActivity extends AppCompatActivity {
         });
     }
 
-    private void setupInitData() {
-        final ArrayList<Integer> membMetaInfo = new ArrayList<>();
-        membMetaInfo.add(0);
-        membMetaInfo.add(0);
-        CollectionReference fetchMemb = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
-        fetchMemb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                    //Log.d("planArri", document.getId());
-                    if(Objects.equals(document.get("payment"), "Payment Pending")){
-                        Integer count = membMetaInfo.get(0);
-                        count++;
-                        membMetaInfo.set(0, count);
-                    }
-                    else if(Objects.equals(document.get("payment"), "Fees Paid")){
-                        Integer count1 = membMetaInfo.get(1);
-                        count1++;
-                        membMetaInfo.set(1, count1);
-                    }
-                }
-                DocumentReference updateInitData = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
-                updateInitData.update("activemembcount", String.valueOf(membMetaInfo.get(1)));
-                updateInitData.update("overduemembcount", String.valueOf(membMetaInfo.get(0)));
-            }
-        });
-    }
+//    private void setupInitData() {
+//        final ArrayList<Integer> membMetaInfo = new ArrayList<>();
+//        membMetaInfo.add(0);
+//        membMetaInfo.add(0);
+//        CollectionReference fetchMemb = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
+//        fetchMemb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+//                    //Log.d("planArri", document.getId());
+//                    if(Objects.equals(document.get("payment"), "Payment Pending")){
+//                        Integer count = membMetaInfo.get(0);
+//                        count++;
+//                        membMetaInfo.set(0, count);
+//                    }
+//                    else if(Objects.equals(document.get("payment"), "Fees Paid")){
+//                        Integer count1 = membMetaInfo.get(1);
+//                        count1++;
+//                        membMetaInfo.set(1, count1);
+//                    }
+//                }
+//                DocumentReference updateInitData = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
+//                updateInitData.update("activemembcount", String.valueOf(membMetaInfo.get(1)));
+//                updateInitData.update("overduemembcount", String.valueOf(membMetaInfo.get(0)));
+//            }
+//        });
+//    }
 
 
     @Override
@@ -237,54 +231,47 @@ public class InAppActivity extends AppCompatActivity {
         }
     }
 
-    public void setupPlansWithCount(){
-        final ArrayList<String> planNameList = new ArrayList<>();
-        final ArrayList<Integer> planCountList = new ArrayList<>();
-        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans");
-        cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                    //Log.d("planArri", document.getId());
-                    if(!planNameList.contains(document.getId())){
-                        planNameList.add(document.getId());
-                    }
-                }
-                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
-                membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            Log.d("planNamelst", String.valueOf(planNameList.size()));
-                            for(int i = 0; i<planNameList.size(); i++){
-                                planCountList.add(0);
-                            }
-                            Log.d("plancntsize", String.valueOf(planCountList.size()));
-                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                                for(int i = 0; i<planNameList.size(); i++){
-                                    if(planNameList.get(i).equals(document.getString("planName"))){
-                                        Integer cnt = planCountList.get(i);
-                                        cnt = cnt+1;
-                                        planCountList.set(i, cnt);
-                                    }
-                                }
-                            }
-                            for(int j = 0; j<planCountList.size();j++){
-                                Log.d("plancntval", String.valueOf(planCountList.get(j)));
-                            }
-                        }
-                    }
-                });
-            }
-        });
-        for(int i =0; i<planNameList.size(); i++){
-            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
-                    "/Plans/"+planNameList.get(i));
-            Map<String, Object> data = new HashMap<String, Object>();
-            data.put("planMembCount", planCountList.get(i));
-            writeRef.set(data);
-        }
-    }
+//    public void setupPlansWithCount(){
+//        final ArrayList<String> planNameList = new ArrayList<>();
+//        final ArrayList<Integer> planCountList = new ArrayList<>();
+//        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans");
+//        cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+//                    //Log.d("planArri", document.getId());
+//                    if(!planNameList.contains(document.getId())){
+//                        planNameList.add(document.getId());
+//                    }
+//                }
+//                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
+//                membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            Log.d("planNamelst", String.valueOf(planNameList.size()));
+//                            for(int i = 0; i<planNameList.size(); i++){
+//                                planCountList.add(0);
+//                            }
+//                            Log.d("plancntsize", String.valueOf(planCountList.size()));
+//                            for (QueryDocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
+//                                for(int i = 0; i<planNameList.size(); i++){
+//                                    if(planNameList.get(i).equals(document.getString("planName"))){
+//                                        Integer cnt = planCountList.get(i);
+//                                        cnt = cnt+1;
+//                                        planCountList.set(i, cnt);
+//                                    }
+//                                }
+//                            }
+//                            for(int j = 0; j<planCountList.size();j++){
+//                                Log.d("plancntval", String.valueOf(planCountList.get(j)));
+//                            }
+//                        }
+//                    }
+//                });
+//            }
+//        });
+//    }
 
     public void checkNoti(){
         NotificationManager notificationManager = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);

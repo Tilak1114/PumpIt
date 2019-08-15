@@ -84,8 +84,6 @@ public class NewMembFrag1 extends Fragment {
 
         GymName = user.getDisplayName();
 
-        Log.d("GymMetainfo_nmf1", GymName);
-
         return NewMembView1;
     }
 

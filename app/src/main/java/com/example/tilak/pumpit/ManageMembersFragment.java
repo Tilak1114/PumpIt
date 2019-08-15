@@ -71,9 +71,6 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
     SearchView searchView;
     TextView membcount;
     TelephonyManager telephonyManager;
-    DocumentReference dr;
-
-    ArrayList<String> planNameList = new ArrayList<>();
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -89,8 +86,6 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
         View MemberManage = inflater.inflate(R.layout.fragment_manage_member, container, false);
 
         GymName = user.getDisplayName();
-
-        Log.d("GymMetainfo_MMF", GymName);
 
         memberref = db.collection("Gyms/"+GymName+"/Members");
 
@@ -116,7 +111,7 @@ public class ManageMembersFragment extends Fragment implements MemberAdapter.Ite
                         if (task.isSuccessful()) {
                             int count=0;
                             count= Objects.requireNonNull(task.getResult()).size();
-                            membcount.setText(String.valueOf(count)+" Members");
+                            membcount.setText(count+" Members");
                         } else {
                             membcount.setText("No Members");
                         }

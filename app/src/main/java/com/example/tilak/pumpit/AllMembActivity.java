@@ -56,8 +56,6 @@ public class AllMembActivity extends AppCompatActivity implements MemberAdapter.
         GymName = user.getDisplayName();
         close = findViewById(R.id.closeAllMemb);
 
-        Log.d("GymMetainfo_MMF", GymName);
-
         memberref = db.collection("Gyms/"+GymName+"/Members");
 
         //FragmentManager fm =

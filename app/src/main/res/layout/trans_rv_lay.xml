@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/transbacklay"
+    android:background="@drawable/white_rect_selector"
     android:layout_width="match_parent" android:layout_height="70dp">
     <RelativeLayout
         android:id="@+id/rvlinecir"
+        android:layout_marginStart="20dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
         <View
@@ -45,14 +48,14 @@
                android:layout_width="wrap_content"
                android:fontFamily="@font/product_sans_reg"
                android:id="@+id/timedatetranstv"
-               android:textSize="10sp"
+               android:textSize="12sp"
                android:layout_height="wrap_content"
                android:text="Today at 12:00AM"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:id="@+id/titletranstv"
                 android:fontFamily="@font/product_sans_reg"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@color/typography_black"
                 android:layout_height="wrap_content"
                 android:text="New Member Jangra"/>
@@ -60,7 +63,8 @@
                 android:layout_width="wrap_content"
                 android:id="@+id/catetranstv"
                 android:fontFamily="@font/product_sans_reg"
-                android:textSize="12sp"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp"
                 android:textColor="@color/colorPrimary"
                 android:layout_height="wrap_content"
                 android:text="Categoty: New Member"/>
@@ -74,7 +78,7 @@
             android:text="+1200"
             android:fontFamily="@font/product_sans_reg"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="10dp"
+            android:layout_marginEnd="20dp"
             android:layout_alignParentEnd="true"
             android:textColor="@color/green"/>
     </RelativeLayout>

@@ -53,14 +53,6 @@ public class OverDueMembFrag extends Fragment implements  MemberAdapter.Itemclic
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("overduemembcount");
-                odmembcnt.setText(cnt+" Members");
-            }
-        });
         setUpActiveRecyclerView();
     }
 

@@ -84,7 +84,6 @@ public class NewPlanFrag2 extends Fragment {
                         "/Plans/"+PlanTitle);
                 Map<String, Object> data2 = new HashMap<>();
                 data2.put("coverId", adapter.getCoverId());
-                data2.put("planMembCount", "0");// later change to user input
                 newPlan.set(data2, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

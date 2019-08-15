@@ -50,8 +50,6 @@ public class NewPlanFrag1 extends Fragment {
 
         GymName = user.getDisplayName();
 
-        Log.d("GymMetainfo_npf1", GymName);
-
         return NewPlanView1;
     }
 

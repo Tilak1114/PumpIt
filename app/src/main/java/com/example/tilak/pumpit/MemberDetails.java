@@ -24,6 +24,8 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MemberDetails extends AppCompatActivity{
@@ -159,7 +161,7 @@ public class MemberDetails extends AppCompatActivity{
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 69&&data.getBooleanExtra("shouldFinish", true)){
+        if(requestCode == 69&& Objects.requireNonNull(data).getBooleanExtra("shouldFinish", true)){
             finish();
         }
     }

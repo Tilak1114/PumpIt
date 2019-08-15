@@ -49,14 +49,6 @@ public class OverdueMembActivity extends AppCompatActivity implements MemberAdap
         Log.d("GymNameActive", GymName);
         odmemberref = db.collection("Gyms/"+GymName+"/Members");
 
-        DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-        dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String cnt = documentSnapshot.getString("overduemembcount");
-                odmembcnt.setText(cnt+" Members");
-            }
-        });
         setUpActiveRecyclerView();
 
         cancel.setOnClickListener(new View.OnClickListener() {

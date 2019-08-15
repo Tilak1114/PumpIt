@@ -95,8 +95,6 @@ public class MemberEdit extends AppCompatActivity {
 
         GymName = user.getDisplayName();
 
-        Log.d("GymMetainfo_MemberEdit", GymName);
-
         progressDialog = new ProgressDialog(MemberEdit.this, R.style.ProgressDialogStyle);
 
         membUpdate = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
@@ -238,20 +236,7 @@ public class MemberEdit extends AppCompatActivity {
                                 document(name).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                final DocumentReference dr = FirebaseFirestore.getInstance().document("/Gyms/"+GymName+"/MetaData/members");
-                                dr.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                    @Override
-                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                        String cnt = documentSnapshot.getString("allmembcount");
-                                        Integer cnti = Integer.valueOf(cnt);
-                                        cnti = cnti -1;
-                                        dr.update("allmembcount", cnti.toString());
-
-                                        setupInitData();
-                                    }
-                                });
                                 progressDialog.dismiss();
-                                setupPlansWithCount();
                                 Intent intent=new Intent();
                                 intent.putExtra("shouldFinish", true);
                                 setResult(69,intent);
@@ -271,80 +256,47 @@ public class MemberEdit extends AppCompatActivity {
             }
         });
     }
-    public void setupPlansWithCount(){
-        final ArrayList<String> planNameList = new ArrayList<>();
-        final ArrayList<Integer> planCountList = new ArrayList<>();
-        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans");
-        cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    //Log.d("planArri", document.getId());
-                    if(!planNameList.contains(document.getId())){
-                        planNameList.add(document.getId());
-                    }
-                }
-                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
-                membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            Log.d("planNamelst", String.valueOf(planNameList.size()));
-                            for(int i = 0; i<planNameList.size(); i++){
-                                planCountList.add(0);
-                            }
-                            Log.d("plancntsize", String.valueOf(planCountList.size()));
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                for(int i = 0; i<planNameList.size(); i++){
-                                    if(planNameList.get(i).equals(document.getString("planName"))){
-                                        Integer cnt = planCountList.get(i);
-                                        cnt = cnt+1;
-                                        planCountList.set(i, cnt);
-                                    }
-                                }
-                            }
-                            for(int j = 0; j<planCountList.size();j++){
-                                Log.d("plancntval", String.valueOf(planCountList.get(j)));
-                            }
-                        }
-                    }
-                });
-            }
-        });
-        for(int i =0; i<planNameList.size(); i++){
-            DocumentReference writeRef = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Plans/"+planNameList.get(i));
-            Map<String, Object> data = new HashMap<String, Object>();
-            data.put("planMembCount", planCountList.get(i));
-            writeRef.set(data);
-        }
-    }
-    private void setupInitData() {
-        final ArrayList<Integer> membMetaInfo = new ArrayList<>();
-        membMetaInfo.add(0);
-        membMetaInfo.add(0);
-        CollectionReference fetchMemb = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
-        fetchMemb.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                for (QueryDocumentSnapshot document : task.getResult()) {
-                    //Log.d("planArri", document.getId());
-                    if(document.get("payment").equals("Payment Pending")){
-                        Integer count = membMetaInfo.get(0);
-                        count++;
-                        membMetaInfo.set(0, count);
-                    }
-                    else if(document.get("payment").equals("Fees Paid")){
-                        Integer count1 = membMetaInfo.get(1);
-                        count1++;
-                        membMetaInfo.set(1, count1);
-                    }
-                }
-                DocumentReference updateInitData = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/MetaData/members");
-                updateInitData.update("activemembcount", String.valueOf(membMetaInfo.get(1)));
-                updateInitData.update("overduemembcount", String.valueOf(membMetaInfo.get(0)));
-            }
-        });
-    }
+//    public void setupPlansWithCount(){
+//        final ArrayList<String> planNameList = new ArrayList<>();
+//        final ArrayList<Integer> planCountList = new ArrayList<>();
+//        CollectionReference cr = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans");
+//        cr.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                for (QueryDocumentSnapshot document : task.getResult()) {
+//                    //Log.d("planArri", document.getId());
+//                    if(!planNameList.contains(document.getId())){
+//                        planNameList.add(document.getId());
+//                    }
+//                }
+//                CollectionReference membRef = FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members");
+//                membRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if(task.isSuccessful()){
+//                            Log.d("planNamelst", String.valueOf(planNameList.size()));
+//                            for(int i = 0; i<planNameList.size(); i++){
+//                                planCountList.add(0);
+//                            }
+//                            Log.d("plancntsize", String.valueOf(planCountList.size()));
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                for(int i = 0; i<planNameList.size(); i++){
+//                                    if(planNameList.get(i).equals(document.getString("planName"))){
+//                                        Integer cnt = planCountList.get(i);
+//                                        cnt = cnt+1;
+//                                        planCountList.set(i, cnt);
+//                                    }
+//                                }
+//                            }
+//                            for(int j = 0; j<planCountList.size();j++){
+//                                Log.d("plancntval", String.valueOf(planCountList.get(j)));
+//                            }
+//                        }
+//                    }
+//                });
+//            }
+//        });
+//    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -352,7 +304,7 @@ public class MemberEdit extends AppCompatActivity {
         switch (requestCode){
             case 1: if(resultCode==RESULT_OK && data!=null && data.getData()!=null){
                 Bundle extras = data.getExtras();
-                Bitmap imageBitmap = (Bitmap) extras.get("data");
+                Bitmap imageBitmap = (Bitmap) Objects.requireNonNull(extras).get("data");
                 avatar.setImageBitmap(imageBitmap);
                 changed = true;
             }
@@ -452,5 +404,13 @@ public class MemberEdit extends AppCompatActivity {
     protected void onDestroy() {
         progressDialog.dismiss();
         super.onDestroy();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent=new Intent();
+        intent.putExtra("shouldFinish", false);
+        setResult(69,intent);
+        finish();
     }
 }
