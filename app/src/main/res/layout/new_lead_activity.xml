@@ -49,12 +49,12 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/newleadfullname"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:singleLine="true"
                         android:maxLength="10"
                         android:layout_alignParentBottom="true"
@@ -87,12 +87,12 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <Spinner
                         android:id="@+id/genderspinner"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:layout_alignParentBottom="true"
                         android:layout_marginEnd="22dp"
                         android:layout_marginStart="22dp"
@@ -121,19 +121,19 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/newleademailet"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:singleLine="true"
                         android:inputType="textEmailAddress"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"
                         android:layout_marginEnd="22dp"
                         android:layout_marginBottom="3dp"
-                        android:maxLength="10"
+                        android:maxLength="20"
                         android:background="@drawable/memb_btn_rect"
                         android:fontFamily="@font/product_sans_reg" />
                 </RelativeLayout>
@@ -159,11 +159,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:id="@+id/newleadphnoet"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"
@@ -197,10 +197,10 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:id="@+id/selectdatetv"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"

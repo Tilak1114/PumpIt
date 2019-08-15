@@ -88,15 +88,14 @@ public class ManagePlansFragment extends Fragment {
 
         GymName = user.getDisplayName();
 
-        Log.d("GymMetainfo_Plans", GymName);
-
-        DocumentReference plncnt = FirebaseFirestore.getInstance()
-                .document("Gyms/"+GymName+"/MetaData/plans/");
-        plncnt.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Plans")
+                .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String plncnt = documentSnapshot.getString("plancount");
-                plancount.setText(plncnt+" Active Plans");
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if(task.isSuccessful())
+                    plancount.setText(task.getResult().size()+" Active Plans");
+                else
+                    plancount.setText("0 Active Plans");
             }
         });
         return mngplans;

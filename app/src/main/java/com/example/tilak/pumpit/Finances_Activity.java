@@ -124,7 +124,7 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
     }
 
     private void setupTransactionRv() {
-        Query query = transref;
+        Query query = transref.limit(4).orderBy("timelong", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Transaction> options = new FirestoreRecyclerOptions.Builder<Transaction>().setQuery(query, Transaction.class).build();
         transadapter = new TransactionsAdapter(options, getApplicationContext(), this);
         transRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));

@@ -10,9 +10,11 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
@@ -206,6 +208,7 @@ public class NewExpense extends AppCompatActivity {
                     String category = selectedCate;
 
                     String timeStamp = new SimpleDateFormat("MMMM dd, yyyy HH:mm").format(new Date());
+                    Long timeLong = new Date().getTime();
                     expenseref = FirebaseFirestore.getInstance()
                             .document("Gyms/"+GymName+"/Cashflow/"+expName+expVal+category);
 
@@ -215,6 +218,8 @@ public class NewExpense extends AppCompatActivity {
                     data.put("category", selectedCate);
                     data.put("amount", expVal);
                     data.put("timedate", timeStamp);
+                    data.put("timelong", timeLong);
+
 
                     expenseref.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

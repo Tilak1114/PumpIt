@@ -47,8 +47,8 @@
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_centerInParent="true"
                     android:id="@+id/newMembAvatar"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
                     android:background="@drawable/avatar"/>
             </RelativeLayout>
             <RelativeLayout
@@ -64,12 +64,12 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/newMembFN"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:singleLine="true"
                         android:maxLength="10"
                         android:layout_alignParentBottom="true"
@@ -102,12 +102,12 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/newMembLN"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:singleLine="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"
@@ -141,11 +141,11 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginEnd="30dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:id="@+id/newMembPNO"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"

@@ -14,13 +14,12 @@
         android:layout_marginTop="20dp">
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:layout_marginStart="10dp"
             android:id="@+id/totv"
             android:layout_centerVertical="true"
             android:fontFamily="@font/product_sans_reg"
             android:textColor="#585656"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="To"/>
         <RelativeLayout
@@ -59,13 +58,12 @@
         android:layout_below="@id/tolay">
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:id="@+id/subtv"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:fontFamily="@font/product_sans_reg"
             android:textColor="#585656"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="Subject"/>
 
@@ -105,13 +103,10 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:elevation="14dp"
                 android:fontFamily="@font/product_sans_reg"
                 android:text="Compose Mail"
                 android:textColor="#585656"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:translationZ="10dp" />
+                android:textSize="18sp" />
 
         </RelativeLayout>
         <EditText

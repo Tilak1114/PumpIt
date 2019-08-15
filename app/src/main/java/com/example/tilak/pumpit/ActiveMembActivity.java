@@ -47,7 +47,6 @@ public class ActiveMembActivity extends AppCompatActivity implements MemberAdapt
         activemembcnt = findViewById(R.id.actmmbcnt);
         GymName = user.getDisplayName();
         close = findViewById(R.id.closeActiveMemb);
-        Log.d("GymNameActive", GymName);
         actmemberref = db.collection("Gyms/"+GymName+"/Members");
         setUpActiveRecyclerView();
 

@@ -42,8 +42,8 @@
                 xmlns:app="http://schemas.android.com/apk/lib/com.mikhaellopez.circularimageviewsample"
                 android:id="@+id/snpavatar"
                 android:layout_below="@id/signUpTitleLay"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
                 android:layout_marginTop="40dp"
                 android:src="@drawable/avatar"
                 app:civ_border_width="2dp"
@@ -61,12 +61,12 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/snpName"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"
                         android:layout_marginEnd="22dp"
@@ -98,12 +98,12 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/snpPhone"
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
+                        android:layout_height="40dp"
                         android:layout_alignParentBottom="true"
                         android:layout_marginStart="22dp"
                         android:layout_marginEnd="22dp"
