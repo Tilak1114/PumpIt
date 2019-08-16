@@ -23,7 +23,8 @@
             android:layout_marginStart="5dp"
             android:id="@+id/trainerProfilepic"
             android:layout_height="59dp"
-            android:background="@drawable/avatar"/>
+            android:background="@drawable/avatar"
+            android:layout_centerVertical="true"/>
         <RelativeLayout
             android:layout_toRightOf="@id/trainerProfilepic"
             android:layout_width="match_parent"

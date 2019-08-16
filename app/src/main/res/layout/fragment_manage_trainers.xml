@@ -41,27 +41,25 @@
             android:textStyle="normal" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/trainersearchlay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/trainerlay"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="20dp">
         <SearchView
             android:id="@+id/trainersearch"
             android:layout_width="match_parent"
             android:background="@drawable/search_btn_rect"
+            android:layout_below="@id/trainerlay"
             android:layout_height="50dp"
             android:queryBackground="@android:color/transparent"
             android:layout_centerInParent="true"
-            android:queryHint="Search Trainers" />
-    </RelativeLayout>
+            android:queryHint="Search Trainers"
+            android:elevation="1dp"
+            android:translationZ="1dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            />
     <android.support.v7.widget.RecyclerView
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_below="@id/trainersearchlay"
+        android:layout_below="@id/trainersearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/trainerRecyclerview">
