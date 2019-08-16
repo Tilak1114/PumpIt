@@ -2,27 +2,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/list_memb_bck"
     android:elevation="1dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
+    android:layout_marginTop="1dp"
+    android:layout_marginBottom="1dp"
     android:id="@+id/parent_lay_trainer"
     android:layout_marginEnd="5dp"
     android:layout_marginStart="5dp"
     android:translationZ="1dp"
     android:layout_width="match_parent"
-    android:layout_height="80dp">
+    android:layout_height="70dp">
     <RelativeLayout
-        android:layout_margin="5dp"
+        android:layout_margin="1dp"
         android:orientation="horizontal"
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_centerVertical="true"
-        android:layout_height="80dp">
+        android:layout_height="match_parent">
         <de.hdodenhof.circleimageview.CircleImageView
             android:scaleType="centerCrop"
-            android:layout_width="70dp"
-            android:layout_marginStart="3dp"
+            android:layout_width="59dp"
+            android:layout_marginStart="5dp"
             android:id="@+id/trainerProfilepic"
-            android:layout_height="70dp"
+            android:layout_height="59dp"
             android:background="@drawable/avatar"/>
         <RelativeLayout
             android:layout_toRightOf="@id/trainerProfilepic"
@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/TrainerName"
                 android:text="Example name"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_width="wrap_content"
@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/NumberOftrainees"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="3 Trainees"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_below="@id/TrainerName"
@@ -50,7 +50,7 @@
                 />
             <TextView
                 android:id="@+id/salaryStatus"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:text="Salary Paid"
                 android:fontFamily="@font/product_sans_reg"
                 android:layout_below="@id/NumberOftrainees"
