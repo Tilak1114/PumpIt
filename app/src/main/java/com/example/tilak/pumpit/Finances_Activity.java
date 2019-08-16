@@ -31,6 +31,7 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
     RelativeLayout expFab;
     TextView nodatatitle, nodatasubtitle, viewall;
     ImageView nodatavector;
+    ImageView cancelCashflow;
     RecyclerView transRv;
     RelativeLayout summCashLay;
     ViewPager viewPager;
@@ -52,6 +53,7 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
         expFab = findViewById(R.id.expenseFab);
         viewPager = findViewById(R.id.cshpagercontainer);
         transRv = findViewById(R.id.transRv);
+        cancelCashflow = findViewById(R.id.cancelcshflow);
         nodatasubtitle = findViewById(R.id.nodatasubexp);
         nodatatitle = findViewById(R.id.nodatatvexp);
         nodatavector = findViewById(R.id.emptyvector);
@@ -63,6 +65,13 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
         transRv.setVisibility(View.INVISIBLE);
 
         setupTransactionRv();
+
+        cancelCashflow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         transRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -138,7 +147,7 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
     }
 
     private void setupTransactionRv() {
-        Query query = transref.limit(7).orderBy("timestamp", Query.Direction.DESCENDING);
+        Query query = transref.limit(5).orderBy("timestamp", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Transaction> options = new FirestoreRecyclerOptions.Builder<Transaction>().setQuery(query, Transaction.class).build();
         transadapter = new TransactionsAdapter(options, getApplicationContext(), this);
         transRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
