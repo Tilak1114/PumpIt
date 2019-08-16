@@ -218,7 +218,7 @@ public class NewExpense extends AppCompatActivity {
                     data.put("category", selectedCate);
                     data.put("amount", expVal);
                     data.put("timedate", timeStamp);
-                    data.put("timelong", timeLong);
+                    data.put("timestamp", new Timestamp(new Date()));
 
 
                     expenseref.set(data).addOnSuccessListener(new OnSuccessListener<Void>() {

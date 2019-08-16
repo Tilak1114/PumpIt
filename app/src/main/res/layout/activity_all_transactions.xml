@@ -36,5 +36,22 @@
             android:textColor="@android:color/white"
             android:textSize="20sp" />
     </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/expbar"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/lato"
+        android:textSize="18sp"
+        android:textColor="@color/typography_black"
+        android:layout_marginTop="20dp"
+        android:text=" Transactions"
+        android:id="@+id/nooftranstv"/>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"
+        android:id="@+id/alltransrv"
+        android:layout_below="@id/nooftranstv"/>
 
 </RelativeLayout>

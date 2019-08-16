@@ -52,6 +52,7 @@ public class TransactionsAdapter extends FirestoreRecyclerAdapter<Transaction, T
         if(model.getInorout().equals("in")){
             holder.circle.setBackgroundResource(R.drawable.circleinc);
             holder.amount.setText("+"+model.getAmount());
+            holder.amount.setTextColor(context.getColor(android.R.color.holo_green_dark));
         }
         else if(model.getInorout().equals("out")){
             holder.circle.setBackgroundResource(R.drawable.circleexp);

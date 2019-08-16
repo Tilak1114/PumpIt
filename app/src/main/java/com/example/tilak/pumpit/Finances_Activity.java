@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -62,6 +63,19 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
         transRv.setVisibility(View.INVISIBLE);
 
         setupTransactionRv();
+
+        transRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(@NonNull RecyclerView rv, int dx, int dy) {
+                super.onScrolled(rv, dx, dy);
+                if (dy > 0 && expFab.getVisibility() == View.VISIBLE) {
+                    expFab.setVisibility(View.INVISIBLE);
+                } else if (dy < 0 && expFab.getVisibility() != View.VISIBLE) {
+                    expFab.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
 
         FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Cashflow")
                 .get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -124,7 +138,7 @@ public class Finances_Activity extends AppCompatActivity implements Transactions
     }
 
     private void setupTransactionRv() {
-        Query query = transref.limit(4).orderBy("timelong", Query.Direction.DESCENDING);
+        Query query = transref.limit(7).orderBy("timestamp", Query.Direction.DESCENDING);
         FirestoreRecyclerOptions<Transaction> options = new FirestoreRecyclerOptions.Builder<Transaction>().setQuery(query, Transaction.class).build();
         transadapter = new TransactionsAdapter(options, getApplicationContext(), this);
         transRv.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
