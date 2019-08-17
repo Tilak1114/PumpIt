@@ -36,7 +36,7 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/tvpgunderconst"
             android:layout_height="wrap_content"
-            android:text="You will be able to buy/sell gym goods soon"
+            android:text="You will be able to buy/sell gym goods here"
             android:fontFamily="@font/product_sans_reg" />
     </RelativeLayout>
 
