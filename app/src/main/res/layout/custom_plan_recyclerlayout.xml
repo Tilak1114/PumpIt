@@ -105,7 +105,7 @@
                android:id="@+id/blacktemplate"
                android:background="@drawable/background_tint_black"
                android:layout_width="match_parent"
-               android:layout_height="90dp"
+               android:layout_height="match_parent"
                android:layout_alignParentBottom="true">
            </RelativeLayout>
         </RelativeLayout>
