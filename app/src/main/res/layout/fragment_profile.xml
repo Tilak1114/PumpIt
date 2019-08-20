@@ -264,21 +264,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:background="@drawable/cshabs"
-                    android:scaleType="centerCrop"
-                    android:layout_height="match_parent"/>
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:alpha="0.8"
-                    android:layout_marginEnd="40dp"
-                    android:rotation="-20"
-                    android:backgroundTint="@color/colorPrimary"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/money_bag"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -347,21 +333,6 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="120dp">
-                <ImageView
-                    android:alpha="0.8"
-                    android:layout_width="match_parent"
-                    android:background="@drawable/leadsabs"
-                    android:scaleType="centerCrop"
-                    android:layout_height="match_parent"/>
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_marginStart="30dp"
-                    android:alpha="0.8"
-                    android:backgroundTint="@color/typography_slate"
-                    android:rotation="20"
-                    android:layout_centerVertical="true"
-                    android:background="@drawable/leadstint"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
