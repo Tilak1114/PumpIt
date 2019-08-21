@@ -84,8 +84,9 @@ public class InAppActivity extends AppCompatActivity {
 
         //checkNoti();
 
-        //startAlarm(true, true);
+        startAlarm();
 
+        // later initialize only once
         DocumentReference planDoc1 = FirebaseFirestore.getInstance().document("Gyms/"+GymName+
                 "/Plans/Plan1");
         Map<String, Object> data1 = new HashMap<String, Object>();
@@ -299,7 +300,7 @@ public class InAppActivity extends AppCompatActivity {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
                 .setContentTitle("Manage Gym")
-                .setSmallIcon(R.drawable.notificationicon)
+                .setSmallIcon(R.drawable.notification)
                 .setColor(getResources().getColor(R.color.gtstrtbck))
                 //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.iconsplash))
                 .setContentIntent(pendingIntent)
@@ -308,5 +309,23 @@ public class InAppActivity extends AppCompatActivity {
                 .setContentInfo("Action");
 
         notificationManager.notify(notificationId, builder.build());
+    }
+
+    private void startAlarm(){
+        AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        Intent myIntent;
+        PendingIntent pendingIntent;
+        GymName = user.getDisplayName();
+        // SET TIME HERE
+        Calendar calendar= Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 13);
+
+
+        myIntent = new Intent(this, AlarmNotificationReceiver.class);
+        myIntent.putExtra("gymdispname", GymName);
+        pendingIntent = PendingIntent.getBroadcast(this,0,myIntent,0);
+
+        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
     }
 }

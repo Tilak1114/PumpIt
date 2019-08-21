@@ -8,10 +8,15 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.Calendar;
 import java.util.Objects;
 
 public class MyService extends Service {
+    String GymName;
+    FirebaseUser user;
     public MyService(){
 
     }
@@ -22,6 +27,7 @@ public class MyService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+        user = FirebaseAuth.getInstance().getCurrentUser();
         startAlarm();
     }
 
@@ -33,14 +39,15 @@ public class MyService extends Service {
         AlarmManager manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         Intent myIntent;
         PendingIntent pendingIntent;
-
+        GymName = user.getDisplayName();
         // SET TIME HERE
         Calendar calendar= Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 13);
 
 
         myIntent = new Intent(this, AlarmNotificationReceiver.class);
+        myIntent.putExtra("gymdispname", GymName);
         pendingIntent = PendingIntent.getBroadcast(this,0,myIntent,0);
 
         manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
