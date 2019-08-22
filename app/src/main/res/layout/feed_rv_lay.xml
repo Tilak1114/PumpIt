@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="1dp"
+    app:cardCornerRadius="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="20dp"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:layout_width="match_parent"
+            android:id="@+id/feedrvimg"
+            android:background="@drawable/profilebck"
+            android:layout_height="200dp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_below="@id/feedrvimg"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textSize="18sp"
+                android:id="@+id/feedtitletv"
+                android:textColor="@color/typography_black"
+                android:fontFamily="@font/lato"
+                android:text="Client Success Story:safsafaf"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:id="@+id/feeddate"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Aug 17, 2019"
+                android:layout_below="@id/feedtitletv"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

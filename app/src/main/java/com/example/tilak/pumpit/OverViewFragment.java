@@ -289,21 +289,4 @@ public class OverViewFragment extends Fragment {
             }
         });
     }
-    private void startAlarm(){
-        Toast.makeText(getContext(), "Alarm called", Toast.LENGTH_LONG).show();
-        AlarmManager manager = (AlarmManager) Objects.requireNonNull(getActivity()).getSystemService(Context.ALARM_SERVICE);
-        Intent myIntent;
-        PendingIntent pendingIntent;
-
-        // SET TIME HERE
-        Calendar calendar= Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 8);
-        calendar.set(Calendar.MINUTE, 0);
-
-
-        myIntent = new Intent(getContext(), AlarmNotificationReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(getContext(),0,myIntent,0);
-
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
-    }
 }

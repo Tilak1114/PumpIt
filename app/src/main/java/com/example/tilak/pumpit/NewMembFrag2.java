@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -27,6 +28,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -96,14 +98,17 @@ public class NewMembFrag2 extends Fragment {
                     endDate = edate.getTime().toString().substring(4, 10);
                     edateyr = edate.getTime().toString().substring(29, 34);
                     endDate = endDate + edateyr;
+                    Date date;
+                    date = edate.getTime();
 
                     DocumentReference documentReference = FirebaseFirestore.getInstance().document("Gyms/"+GymName+"/Members/"+membName);
 
-                    Map<String, Object> data = new HashMap<String, Object>();
+                    Map<String, Object> data = new HashMap<>();
                     data.put("membPlan", adapter.getPlanSel());
                     data.put("payment", "Fees Paid");// later move this to frag three
                     data.put("start_date", startDate);
                     data.put("end_date", endDate);
+                    data.put("endTimeStamp", new Timestamp(date));
                     data.put("email", "");
                     documentReference.set(data, SetOptions.merge());
                     nextBtnListener.onNewMembBtnClicked2(true, adapter.getPlanRate(), adapter.getPlanName());

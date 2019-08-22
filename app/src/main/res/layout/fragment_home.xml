@@ -30,6 +30,7 @@
                 android:src="@drawable/pumpitdark"/>
             <ImageView
                 android:layout_width="20dp"
+                android:visibility="invisible"
                 android:layout_height="20dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"

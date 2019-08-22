@@ -39,6 +39,7 @@ public class NewMembFrag3 extends Fragment {
         next = NewMembView3.findViewById(R.id.newMembNext3);
         invoiceTotal = NewMembView3.findViewById(R.id.invoicetotal);
         next.setClickable(false);
+        assert getArguments() != null;
         selPlanName = getArguments().getString("planName");
         String price = getArguments().getString("planPrice");
 

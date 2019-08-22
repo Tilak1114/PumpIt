@@ -135,8 +135,8 @@ public class NewMemberActivity extends AppCompatActivity implements NewMembFrag1
     @Override
     public void onNewMembBtnClicked3(String planName) {
         stepView.done(true);
-        Log.d("next3check", "entered next3");
-        Log.d("next3click", "nextfinish");
+//        Log.d("next3check", "entered next3");
+//        Log.d("next3click", "nextfinish");
         Toasty.success(getApplicationContext(), "Added new Member", Toasty.LENGTH_SHORT).show();
         finish();
     }

@@ -48,7 +48,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     Context context;
 
 
-    public PlanAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
+    PlanAdapter(@NonNull FirestoreRecyclerOptions<Plan> options, Context context) {
         super(options);
         this.context = context;
     }
@@ -110,19 +110,6 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
                                 public void onClick(DialogInterface dialog, int which) {
                                     FirebaseFirestore.getInstance().
                                             collection("Gyms/"+GymName+"/Plans").document(model.planName).delete();
-                                    final DocumentReference plncntref = FirebaseFirestore.getInstance()
-                                            .document("Gyms/"+GymName+"/MetaData/plans");
-                                    plncntref.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                            String plncnt = documentSnapshot.getString("plancount");
-                                            int plncntint = Integer.parseInt(plncnt);
-                                            plncntint = plncntint-1;
-                                            Map<String, Object> data = new HashMap<String, Object>();
-                                            data.put("plancount", String.valueOf(plncntint));
-                                            plncntref.set(data, SetOptions.merge());
-                                        }
-                                    });
                                 }
                             }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
@@ -146,17 +133,16 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     }
 
     class PlanViewHolder extends RecyclerView.ViewHolder {
-        TextView planDuration, planMembCnt, planDurTop;
+        TextView planDuration, planMembCnt;
         RelativeLayout coverLay;
         RelativeLayout delete, edit;
-        public PlanViewHolder(View itemView) {
+        PlanViewHolder(View itemView) {
             super(itemView);
             planMembCnt = itemView.findViewById(R.id.newPlanmembCnt);
             planDuration = itemView.findViewById(R.id.newPlanDur);
             coverLay = itemView.findViewById(R.id.newPlanlay);
             delete = itemView.findViewById(R.id.deleteIconlay);
             edit = itemView.findViewById(R.id.editIconlay);
-
 
             coverLay.setOnClickListener(new View.OnClickListener() {
                 @Override
