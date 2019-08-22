@@ -24,6 +24,7 @@ import static android.app.PendingIntent.FLAG_ONE_SHOT;
 
 public class AlarmNotificationReceiver extends BroadcastReceiver {
     NotificationCompat.Builder builder;
+    int expCount = 0;
     @Override
     public void onReceive(Context context, Intent intent) {
         final NotificationManager notificationManager = (NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -53,7 +54,7 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
                 .setContentTitle("Overdue Members")
-                .setSmallIcon(R.drawable.notificationicon)
+                .setSmallIcon(R.drawable.iconapp)
                 .setColor(context.getResources().getColor(R.color.gtstrtbck))
                 //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.iconsplash))
                 .setContentIntent(pendingIntent)
@@ -67,11 +68,16 @@ public class AlarmNotificationReceiver extends BroadcastReceiver {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if(task.isSuccessful()){
                     if(Objects.requireNonNull(task.getResult()).size()>0){
-                        builder.setContentText(task.getResult().size()+" Membership(s) Expired today");
                         for (QueryDocumentSnapshot document : task.getResult()) {
-                            document.getReference().update("payment", "Payment Pending");
+                            if(Objects.equals(document.get("payment"), "Fees Paid")){
+                                expCount++;
+                                document.getReference().update("payment", "Payment Pending");
+                            }
                         }
-                        notificationManager.notify(notificationId, builder.build());
+                        if(expCount>0){
+                            builder.setContentText(expCount+" Membership(s) Expired today");
+                            notificationManager.notify(notificationId, builder.build());
+                        }
                     }
                 }
             }

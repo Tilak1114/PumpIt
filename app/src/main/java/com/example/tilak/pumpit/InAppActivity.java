@@ -300,7 +300,7 @@ public class InAppActivity extends AppCompatActivity {
                 .setDefaults(Notification.DEFAULT_ALL)
                 .setWhen(System.currentTimeMillis())
                 .setContentTitle("Manage Gym")
-                .setSmallIcon(R.drawable.notification)
+                .setSmallIcon(R.drawable.iconapp)
                 .setColor(getResources().getColor(R.color.gtstrtbck))
                 //.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.iconsplash))
                 .setContentIntent(pendingIntent)
