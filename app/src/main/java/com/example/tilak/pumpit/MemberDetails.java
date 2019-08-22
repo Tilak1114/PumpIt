@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,8 +18,11 @@ import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,9 +41,13 @@ public class MemberDetails extends AppCompatActivity{
     RelativeLayout editlay, editdef, savechanges, sendmsg;
     CircleImageView membprofile;
     Intent i;
+    String GymName;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DocumentReference membRef;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        GymName = user.getDisplayName();
         setContentView(R.layout.activity_member_details);
         membname = findViewById(R.id.MemberNameDetails);
         plan = findViewById(R.id.monthstv);
@@ -133,7 +141,10 @@ public class MemberDetails extends AppCompatActivity{
                             builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    // perform updation
+                                    //updation
+                                    membRef = FirebaseFirestore.getInstance()
+                                            .document("/Gyms/"+GymName+"/Members/"+membname.getText().toString());
+                                    membRef.update("payment", "Inactive");
                                     dialog.dismiss();
                                     finish();
                                 }
