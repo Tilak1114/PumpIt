@@ -51,7 +51,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/adminemail"
@@ -77,16 +77,16 @@
             </RelativeLayout>
             <RelativeLayout
                 android:layout_below="@id/lgnead"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="0dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <RelativeLayout
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="27dp"
                     android:layout_width="match_parent"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/etbckfields"
-                    android:layout_height="60dp">
+                    android:layout_height="50dp">
 
                     <EditText
                         android:id="@+id/adminpwd"
@@ -105,7 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50dp"
-                    android:layout_marginTop="18dp"
+                    android:layout_marginTop="16dp"
                     android:background="#ffffff"
                     android:text=" Password "
                     android:textSize="18sp" />

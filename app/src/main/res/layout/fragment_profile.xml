@@ -249,7 +249,10 @@
             </LinearLayout>
         </RelativeLayout>
         <android.support.v7.widget.CardView
-            app:cardCornerRadius="20dp"
+            android:id="@+id/cashflowprofilelay"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:cardCornerRadius="10dp"
             android:clickable="true"
             android:focusable="true"
             android:layout_marginTop="10dp"
@@ -257,58 +260,52 @@
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
             android:translationZ="1dp"
-            android:layout_below="@id/profileprimaryinfolay"
-            android:id="@+id/cashflowprofilelay"
-            android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_below="@id/profileprimaryinfolay">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dp">
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/moneybg"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Cash Flow"
-                    android:layout_above="@id/linecashflow"
+                    android:layout_above="@id/cashflowtranstv"
                     android:id="@+id/cashflowtv"
                     android:layout_marginBottom="5dp"
-                    android:textSize="14sp"
-                    android:textColor="@color/gtstrtbck"
-                    android:layout_marginStart="10dp"
+                    android:elevation="12dp"
+                    android:translationZ="14dp"
+                    android:textSize="22sp"
+                    android:textColor="@android:color/white"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/product_sans_reg"
                     />
-                <View
-                    android:layout_width="70dp"
-                    android:background="@color/gtstrtbck"
-                    android:layout_marginStart="10dp"
-                    android:layout_above="@id/cashflowtranstv"
-                    android:layout_marginBottom="3dp"
-                    android:alpha="0.6"
-                    android:id="@+id/linecashflow"
-                    android:layout_height="1dp" />
+
                 <TextView
+                    android:id="@+id/cashflowtranstv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cashflowtranstv"
-                    android:textColor="@color/typography_black"
+                    android:elevation="12dp"
+                    android:translationZ="14dp"
+                    android:textColor="@android:color/white"
                     android:layout_marginBottom="10dp"
                     android:text="2/6 Dues Paid"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="20dp"
                     android:fontFamily="@font/product_sans_reg"
-                    android:textSize="18sp"/>
+                    android:textSize="14sp"/>
                 <TextView
-                    android:padding="5dp"
+                    android:visibility="invisible"
                     android:layout_alignParentEnd="true"
                     android:id="@+id/alltransactionsclick"
                     android:clickable="true"
                     android:elevation="2dp"
                     android:translationZ="2dp"
-                    android:backgroundTint="@color/gtstrtbck"
                     android:focusable="true"
-                    android:background="@drawable/memb_btn_rect"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginEnd="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/proxima"
@@ -316,6 +313,14 @@
                     android:textStyle="bold"
                     android:textColor="@android:color/white"
                     android:text="All Transactions >"/>
+                <RelativeLayout
+                    android:id="@+id/blacktemplate"
+                    android:background="@drawable/background_tint_black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true">
+
+                </RelativeLayout>
             </RelativeLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView
