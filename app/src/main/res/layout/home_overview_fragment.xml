@@ -390,6 +390,7 @@
                 android:layout_height="280dp">
                 <lecho.lib.hellocharts.view.PieChartView
                     android:id="@+id/piechart"
+                    android:visibility="invisible"
                     android:layout_width="180dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"

@@ -56,6 +56,7 @@ public class OverViewFragment extends Fragment {
     int activecount, odcount;
     SwipeRefreshLayout swipeRefreshLayout;
     TextView allmembs, activememb, odmemb, activerect, odrect;
+    List<SliceValue> pieData;
     PieChartView pieChartView;
 
     Handler handler;
@@ -106,26 +107,50 @@ public class OverViewFragment extends Fragment {
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        List<SliceValue> pieData = new ArrayList<>();
+                        pieData = new ArrayList<>();
+                        // #87BCBF for active
+                        // #D97D54 for PP
+                        // #6E8CA0 for inactive
 
-                        Animation rtl = AnimationUtils.loadAnimation(getContext(),R.anim.rtl);
-                        Animation ltr = AnimationUtils.loadAnimation(getContext(), R.anim.ltr);
+                        FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members/").get()
+                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                    int inactcnt=0, actcnt=0, ppcnt=0, totalcnt=0;
+                                    @Override
+                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                        if(task.isSuccessful()){
+                                            for(QueryDocumentSnapshot document: Objects.requireNonNull(task.getResult())){
+                                                totalcnt++;
+                                                if(Objects.equals(document.get("payment"), "Fees Paid")){
+                                                    actcnt++;
+                                                }
+                                                else if(Objects.equals(document.get("payment"), "Payment Pending")){
+                                                    ppcnt++;
+                                                }
+                                                else if(Objects.equals(document.get("payment"), "Inactive")){
+                                                    inactcnt++;
+                                                }
+                                            }
+                                        }
+                                        Animation rtl = AnimationUtils.loadAnimation(getContext(), R.anim.rtl);
+                                        Animation ltr = AnimationUtils.loadAnimation(getContext(), R.anim.ltr);
 
-                        pieData.add(new SliceValue(160, Color.parseColor("#87BCBF")));
-                        pieData.add(new SliceValue(120, Color.parseColor("#6E8CA0")));
-                        pieData.add(new SliceValue(64, Color.parseColor("#D97D54")));
+                                        pieData.add(new SliceValue(ppcnt, Color.parseColor("#D97D54")));
+                                        pieData.add(new SliceValue(actcnt, Color.parseColor("#87BCBF")));
+                                        pieData.add(new SliceValue(inactcnt, Color.parseColor("#6E8CA0")));
 
-                        PieChartData pieChartData = new PieChartData(pieData);
+                                        PieChartData pieChartData = new PieChartData(pieData);
 
-                        Typeface typeface = ResourcesCompat.getFont(getContext(), R.font.product_sans_reg);
+                                        Typeface typeface = ResourcesCompat.getFont(Objects.requireNonNull(getContext()), R.font.product_sans_reg);
 
-                        pieChartData.setHasCenterCircle(true).setCenterText1("330 Members")
-                                .setCenterText1FontSize(12).setCenterText1Typeface(typeface)
-                                .setCenterText1Color(Color.parseColor("#000000"));
+                                        pieChartData.setHasCenterCircle(true).setCenterText1(totalcnt+" Members")
+                                                .setCenterText1FontSize(12).setCenterText1Typeface(typeface)
+                                                .setCenterText1Color(Color.parseColor("#000000"));
 
-                        pieChartView.setPieChartData(pieChartData);
-
-                        pieChartView.startAnimation(rtl);
+                                        pieChartView.setPieChartData(pieChartData);
+                                        pieChartView.setVisibility(View.VISIBLE);
+                                        pieChartView.startAnimation(rtl);
+                                    }
+                                });
                     }
                 });
             }
