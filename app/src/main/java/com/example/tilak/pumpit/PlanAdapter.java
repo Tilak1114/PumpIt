@@ -3,6 +3,7 @@ package com.example.tilak.pumpit;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -58,7 +59,8 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
         GymName = user.getDisplayName();
 
         holder.planDuration.setText(model.getPlanDuration());
-        holder.coverLay.setBackgroundResource(model.getCoverId());
+        Drawable drawable = context.getDrawable(model.getCoverId());
+        holder.coverImg.setImageDrawable(drawable);
         FirebaseFirestore.getInstance().collection("/Gyms/"+GymName+"/Members")
                 .whereEqualTo("planName", model.getPlanName()).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -135,6 +137,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
     class PlanViewHolder extends RecyclerView.ViewHolder {
         TextView planDuration, planMembCnt;
         RelativeLayout coverLay;
+        ImageView coverImg;
         RelativeLayout delete, edit;
         PlanViewHolder(View itemView) {
             super(itemView);
@@ -143,6 +146,7 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
             coverLay = itemView.findViewById(R.id.newPlanlay);
             delete = itemView.findViewById(R.id.deleteIconlay);
             edit = itemView.findViewById(R.id.editIconlay);
+            coverImg = itemView.findViewById(R.id.coverImgId);
 
             coverLay.setOnClickListener(new View.OnClickListener() {
                 @Override
