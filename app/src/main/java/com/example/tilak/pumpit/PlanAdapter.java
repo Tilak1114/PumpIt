@@ -141,12 +141,19 @@ public class PlanAdapter extends FirestoreRecyclerAdapter<Plan, PlanAdapter.Plan
         RelativeLayout delete, edit;
         PlanViewHolder(View itemView) {
             super(itemView);
-            coverImg  = itemView.findViewById(R.id.coverImgId);
             planMembCnt = itemView.findViewById(R.id.newPlanmembCnt);
             planDuration = itemView.findViewById(R.id.newPlanDur);
             coverLay = itemView.findViewById(R.id.newPlanlay);
             delete = itemView.findViewById(R.id.deleteIconlay);
             edit = itemView.findViewById(R.id.editIconlay);
+            coverImg = itemView.findViewById(R.id.coverImgId);
+
+            coverLay.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
         }
     }
 }

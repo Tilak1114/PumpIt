@@ -14,20 +14,20 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="180dp">
-
         <RelativeLayout
             android:id="@+id/newPlanlay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:elevation="1dp"
-            android:translationZ="1dp"
-            >
+            android:translationZ="1dp">
             <ImageView
                 android:id="@+id/coverImgId"
-                android:scaleType="centerCrop"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/plan3"/>
+                android:src="@drawable/plan3"
+                android:scaleType="centerCrop">
+
+            </ImageView>
             <RelativeLayout
                 android:layout_width="30dp"
                 android:visibility="invisible"
