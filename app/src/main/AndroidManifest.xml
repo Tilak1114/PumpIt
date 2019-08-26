@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tilak.pumpit">
+    package="com.pumpit.app.pumpit">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
 
     <application
         android:allowBackup="true"
@@ -13,33 +13,33 @@
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:supportsRtl="true">
-        <activity android:name=".TransactionDetails"
+        <activity android:name="com.pumpit.app.pumpit.TransactionDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan"
             ></activity>
         <activity
-            android:name=".NewExpense"
+            android:name="com.pumpit.app.pumpit.NewExpense"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".AllTransactionsActivity"
+            android:name="com.pumpit.app.pumpit.AllTransactionsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Finances_Activity"
+            android:name="com.pumpit.app.pumpit.Finances_Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.pumpit.app.pumpit.SettingsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SplashScr"
+            android:name="com.pumpit.app.pumpit.SplashScr"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -49,86 +49,86 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TrainerActivity"
+            android:name="com.pumpit.app.pumpit.TrainerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".AllMembActivity"
+            android:name="com.pumpit.app.pumpit.AllMembActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".OverdueMembActivity"
+            android:name="com.pumpit.app.pumpit.OverdueMembActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ActiveMembActivity"
+            android:name="com.pumpit.app.pumpit.ActiveMembActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.pumpit.app.pumpit.LoginActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MemberEdit"
+            android:name="com.pumpit.app.pumpit.MemberEdit"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.pumpit.app.pumpit.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".MemberDetails"
+            android:name="com.pumpit.app.pumpit.MemberDetails"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".RequestADemo"
+            android:name="com.pumpit.app.pumpit.RequestADemo"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".NewPlanActivity"
+            android:name="com.pumpit.app.pumpit.NewPlanActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".NewMemberActivity"
+            android:name="com.pumpit.app.pumpit.NewMemberActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".SignupActivity"
+            android:name="com.pumpit.app.pumpit.SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".InAppActivity"
+            android:name="com.pumpit.app.pumpit.InAppActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme3"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".Activity2"
+            android:name="com.pumpit.app.pumpit.Activity2"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".LeadsActivity"
+            android:name="com.pumpit.app.pumpit.LeadsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2" />
         <activity
-            android:name=".MessageActivity"
+            android:name="com.pumpit.app.pumpit.MessageActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".NewLeadActivity"
+            android:name="com.pumpit.app.pumpit.NewLeadActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme2"
             android:windowSoftInputMode="adjustPan" />
 
-        <receiver android:name=".AlarmNotificationReceiver" />
+        <receiver android:name="com.pumpit.app.pumpit.AlarmNotificationReceiver" />
         <receiver
-            android:name=".BootReceiver"
+            android:name="com.pumpit.app.pumpit.BootReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
@@ -139,7 +139,7 @@
         </receiver>
 
         <service
-            android:name=".MyService"
+            android:name="com.pumpit.app.pumpit.MyService"
             android:enabled="true"
             android:exported="true" />
     </application>
