@@ -248,7 +248,7 @@
                 </LinearLayout>
             </LinearLayout>
         </RelativeLayout>
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:id="@+id/cashflowprofilelay"
             android:layout_width="match_parent"
             android:layout_height="120dp"
@@ -322,8 +322,8 @@
 
                 </RelativeLayout>
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:id="@+id/leadsprofilelay"
             android:layout_marginTop="10dp"
@@ -373,6 +373,6 @@
                     android:fontFamily="@font/product_sans_reg"
                     android:textSize="18sp"/>
             </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </ScrollView>

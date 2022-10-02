@@ -1,39 +1,36 @@
 {
   "project_info": {
-    "project_number": "296015450418",
-    "firebase_url": "https://pumpit-2b897.firebaseio.com",
-    "project_id": "pumpit-2b897",
-    "storage_bucket": "pumpit-2b897.appspot.com"
+    "project_number": "1003849429738",
+    "project_id": "pumpit-pro",
+    "storage_bucket": "pumpit-pro.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:296015450418:android:37b660430b938f01",
+        "mobilesdk_app_id": "1:1003849429738:android:541e41c357a659add6dd93",
         "android_client_info": {
-          "package_name": "com.pumpit.app.pumpit"
+          "package_name": "com.pumpit.app.pumpitpro"
         }
       },
       "oauth_client": [
         {
-          "client_id": "296015450418-l0p7hnfc81ur1kj8kmmi6jraanemu8gg.apps.googleusercontent.com",
+          "client_id": "1003849429738-c3rg0s426ahoc1c517t31hfm6pfqd178.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBkpRnXU0UC3Cbi6wiWpi8QshP8F_phX0c"
+          "current_key": "AIzaSyAXbaMHBwhxxkCkEf_3K1Vb8Ys3K0zsCr0"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1003849429738-c3rg0s426ahoc1c517t31hfm6pfqd178.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
+
     <Button
         android:id="@+id/reqdemo"
         android:layout_width="match_parent"
-        android:layout_marginEnd="20dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        android:layout_marginStart="20dp"
         android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/reqdemoinactive"
         android:hapticFeedbackEnabled="true"
-        android:textColor="@android:color/white"
         android:text="Request a Demo"
-        android:background="@drawable/reqdemoinactive" />
+        android:textColor="@android:color/white" />
     <TextView
         android:id="@+id/gotcodetv"
         android:layout_marginTop="20dp"

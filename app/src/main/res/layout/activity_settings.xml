@@ -6,7 +6,7 @@
     android:background="#fff"
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:id="@+id/setttoolbar"
         android:background="@color/colorPrimary"
@@ -29,7 +29,7 @@
             android:fontFamily="@font/product_sans_reg"
             android:layout_marginStart="20dp"
             android:layout_centerVertical="true"/>
-    </android.support.v7.widget.Toolbar>
+    </androidx.appcompat.widget.Toolbar>
     <RelativeLayout
         android:layout_width="match_parent"
         android:clickable="true"
